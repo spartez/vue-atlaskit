@@ -1,0 +1,13 @@
+.eslintignore
+.eslintrc.js
+.idea/
+.github/
+.storybook/
+node_modules/
+coverage/
+src/
+stories/
+jest.*.js
+tests/
+babel.config.js
+rollup.config.js

@@ -1,0 +1,40 @@
+html,
+body,
+#app {
+    height: 100%;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-size: 14px;
+    max-width: 95%;
+    font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+    margin: 0 auto;
+    padding: 20px 0;
+    background: transparent;
+}
+
+section{
+    margin-top: 10px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    max-width: 90%;
+}
+
+.wrapper{
+    display: flex;
+    flex-direction: column;
+}
+
+.loading-state-switcher{
+    margin-bottom: 10px;
+}
+
+
+
