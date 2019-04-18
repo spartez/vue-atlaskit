@@ -9,5 +9,6 @@ src/
 stories/
 jest.*.js
 tests/
+docs/
 babel.config.js
 rollup.config.js

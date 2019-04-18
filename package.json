@@ -11,7 +11,8 @@
     "lint": "eslint --ext .js,.vue .",
     "lint-fix": "eslint src --fix --ext .js,.vue",
     "test": "npm run lint && jest --verbose --coverage",
-    "test:watch": "jest --verbose --watchAll --notify"
+    "test:watch": "jest --verbose --watchAll --notify",
+    "build-storybook": "build-storybook -c .storybook -o docs"
   },
   "keywords": [
     "vue",
