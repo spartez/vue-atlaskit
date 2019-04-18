@@ -1,16 +1,16 @@
-# vue-atlaskit
+# @spartez/vue-atlaskit
 
 ![Rollup badge](https://img.shields.io/badge/Rollup-^1.10.0-ff69b4.svg)
 ![Jest](https://img.shields.io/badge/Jest-^24.7.1-blue.svg)
 ![Vue](https://img.shields.io/badge/Vue-^2.5.13-brightgreen.svg)
 ![Storybook](https://img.shields.io/badge/Storybook-^5.0.8-ff70a3.svg)
-![Npm badge](https://img.shields.io/npm/v/vue-atlaskit.svg)
+![Npm badge](https://img.shields.io/npm/v/@spartez/vue-atlaskit.svg)
 
 > Unofficial Vue UI library, built according to the Atlassian Design Guidelines.
 
 ## Installation
 ```
-npm install vue-atlaskit
+npm install @spartez/vue-atlaskit
 ```
 vue-atlaskit can be used as a module in both CommonJS and ES modular environments.
 
@@ -21,7 +21,7 @@ When in non-modular environment, vue-atlaskit will register all the components t
 //
 // You can register a component manually
 //
-import { Spinner } from 'vue-atlaskit';
+import { Spinner } from '@spartez/vue-atlaskit';
 
 export default {
   components: {
@@ -32,7 +32,7 @@ export default {
 //
 // or register the whole module with vue
 //
-import atlaskit from 'vue-atlaskit';
+import atlaskit from '@spartez/vue-atlaskit';
 
 // Install this library
 Vue.use(atlaskit);
@@ -44,7 +44,7 @@ Vue.use(atlaskit);
 // You can register a component manually
 //
 const Vue = require('vue');
-const atlaskit = require('vue-atlaskit');
+const atlaskit = require('@spartez/vue-atlaskit');
 
 const YourComponent = Vue.extend({
   components: {
@@ -56,7 +56,7 @@ const YourComponent = Vue.extend({
 // or register the whole module with vue
 //
 const Vue = require('vue');
-const atlaskit = require('vue-atlaskit');
+const atlaskit = require('@spartez/vue-atlaskit');
 
 // Install this library
 Vue.use(atlaskit);
@@ -66,7 +66,7 @@ Vue.use(atlaskit);
 
 ```html
 <script src="path/to/vue/vue.min.js"></script>
-<script src="path/to/vue-atlaskit/dist/vue-atlaskit.min.js"></script>
+<script src="path/to/@spartez/vue-atlaskit/dist/vue-atlaskit.min.js"></script>
 <!-- Components are registered globally -->
 ```
 
