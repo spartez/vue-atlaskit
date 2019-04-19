@@ -8,4 +8,10 @@ describe('Button', () => {
 
         expect(component.find({ ref: 'label' }).text()).toBe('Click me!');
     });
+
+    it('emits click event on button click', () => {
+        const component = shallowMount(Button, { slots: { default: 'Click me!' } });
+        component.trigger('click');
+        expect(component.emitted('click')).toBeTruthy();
+    });
 });

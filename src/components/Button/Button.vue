@@ -8,11 +8,8 @@
        :spacing="spacing"
        @click.prevent="onClick">
         <span class="wrapper" tabindex="-1">
-            <span v-if="$slots['default']" ref="label" class="label"><slot/></span>
-            <span class="icon">
-                <Spinner v-if="isLoading" :size="spacing === 'default' ? 'small' : 'icon'"/>
-                <slot v-else name="icon"/>
-            </span>
+            <Spinner v-if="isLoading" :size="spacing === 'default' ? 'small' : 'icon'"/>
+            <span ref="label" class="label"><slot/></span>
         </span>
     </a>
 </template>
@@ -98,15 +95,12 @@ span.wrapper {
 }
 
 span.label {
+    display: flex;
     margin: 0 4px;
 }
 
 [spacing="none"] span.label {
     margin: 0;
-}
-
-span.icon {
-    display: flex;
 }
 
 a[loading] {
