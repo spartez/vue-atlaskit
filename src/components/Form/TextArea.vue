@@ -17,7 +17,7 @@
         props: {
             value: {
                 type: [Number, String],
-                default: ''
+                default: undefined
             },
             rows: {
                 type: Number,
