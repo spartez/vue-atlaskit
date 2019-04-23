@@ -8,11 +8,12 @@
   "scripts": {
     "build": "rollup -c",
     "storybook": "start-storybook -p 9001 -c .storybook",
-    "lint": "eslint --ext .js,.vue .",
+    "lint": "eslint src --ext .js,.vue",
     "lint-fix": "eslint src --fix --ext .js,.vue",
     "test": "npm run lint && jest --verbose --coverage",
     "test:watch": "jest --verbose --watchAll --notify",
-    "build-storybook": "build-storybook -c .storybook -o docs"
+    "build-storybook": "build-storybook -c .storybook -o docs",
+    "generate-icons": "node build/generate-icons.js"
   },
   "keywords": [
     "vue",
@@ -43,9 +44,11 @@
     "rollup-plugin-node-resolve": "^4.2.3",
     "rollup-plugin-terser": "^4.0.4",
     "rollup-plugin-vue": "^5.0.0",
+    "rollup-plugin-vue-inline-svg": "^1.0.1",
     "storybook-addon-vue-info": "^1.0.1",
     "vue-jest": "^3.0.4",
     "vue-loader": "^15.7.0",
+    "vue-svg-loader": "^0.12.0",
     "vue-template-compiler": "^2.6.10"
   },
   "lint-staged": {
@@ -59,5 +62,8 @@
     "hooks": {
       "pre-commit": "lint-staged"
     }
+  },
+  "dependencies": {
+    "@atlaskit/icon": "^16.0.9"
   }
 }
