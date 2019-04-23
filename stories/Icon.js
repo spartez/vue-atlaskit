@@ -1,8 +1,10 @@
 import { storiesOf } from '@storybook/vue';
 import { withInfo } from 'storybook-addon-vue-info';
-import * as Icons from '../src/components/Icon';
+import * as AtlaskitComponents from '..';
 
-const IconComponents = Object.entries(Icons).reduce((acc, [name, comp]) => ({ ...acc, [name]: comp }), {});
+const IconComponents = Object.entries(AtlaskitComponents)
+    .filter(([name]) => name.endsWith('Icon'))
+    .reduce((acc, [name, comp]) => ({ ...acc, [name]: comp }), {});
 
 storiesOf('Icon', module)
     .addDecorator(withInfo)

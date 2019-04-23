@@ -29,7 +29,7 @@ async function generateIcons() {
     });
 
     const imports = iconsData.map(({ glyphName, importPath }) => `import ${glyphName} from '${importPath}';`).join('\n');
-    const exports = iconsData.map(({ glyphName, componentName }) => `export const ${componentName} = createIconComponent(${glyphName});`).join('\n');
+    const exports = iconsData.map(({ glyphName, componentName }) => `export const ${componentName} = createIconComponent('${componentName}', ${glyphName});`).join('\n');
 
     let fileContent = '// This file is generated automatically with \'npm run generate-icons\' script\n';
     fileContent += `${imports}\n`;
