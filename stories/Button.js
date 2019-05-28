@@ -43,6 +43,12 @@ storiesOf('Button', module)
                 capitalize(str) {
                     return str.charAt(0).toUpperCase() + str.slice(1);
                 }
+            },
+            propsDescription: {
+                Button: {
+                    appearance: ['default', 'primary', 'link', 'subtle', 'subtle-link', 'warning', 'danger'],
+                    spacing: ['default', 'compact', 'none']
+                }
             }
         }),
         {
