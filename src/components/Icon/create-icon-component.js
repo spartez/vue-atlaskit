@@ -9,7 +9,6 @@ export default (name, IconGlyph) => Vue.component(name, {
         }
     },
     render(h) {
-        console.log(this.size);
         return h(
             IconWrapper,
             {
