@@ -1,0 +1,57 @@
+<template>
+    <span :size="size">
+        <slot/>
+    </span>
+</template>
+
+<script>
+    export default {
+        name: 'IconWrapper',
+        props: {
+            size: {
+                type: String,
+                default: 'medium'
+            }
+        }
+    };
+</script>
+
+<style scoped>
+    span {
+        height: 24px;
+        width: 24px;
+        color: currentcolor;
+        display: inline-block;
+        fill: rgb(255, 255, 255);
+        flex-shrink: 0;
+        line-height: 1;
+    }
+
+    span > svg {
+        height: 24px;
+        width: 24px;
+        max-height: 100%;
+        max-width: 100%;
+        pointer-events: none;
+        vertical-align: bottom;
+        overflow: hidden;
+    }
+
+    span[size="small"],
+    span[size="small"] > svg {
+        width: 16px;
+        height: 16px;
+    }
+
+    span[size="large"],
+    span[size="large"] > svg {
+        width: 32px;
+        height: 32px;
+    }
+
+    span[size="xlarge"],
+    span[size="xlarge"] > svg {
+        width: 48px;
+        height: 48px;
+    }
+</style>
