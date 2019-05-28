@@ -4,8 +4,10 @@ import babel from 'rollup-plugin-babel';
 import vue from 'rollup-plugin-vue';
 import svg from 'rollup-plugin-vue-inline-svg';
 import { terser } from 'rollup-plugin-terser';
+import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 
 const plugins = [
+    peerDepsExternal(),
     resolve({
         extensions: ['.js', '.json', '.vue']
     }),

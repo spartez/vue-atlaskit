@@ -42,6 +42,7 @@
     "rollup-plugin-babel": "^4.3.2",
     "rollup-plugin-commonjs": "^9.3.4",
     "rollup-plugin-node-resolve": "^4.2.3",
+    "rollup-plugin-peer-deps-external": "^2.2.0",
     "rollup-plugin-terser": "^4.0.4",
     "rollup-plugin-vue": "^5.0.0",
     "rollup-plugin-vue-inline-svg": "^1.0.1",
@@ -50,6 +51,9 @@
     "vue-loader": "^15.7.0",
     "vue-svg-loader": "^0.12.0",
     "vue-template-compiler": "^2.6.10"
+  },
+  "peerDependencies": {
+    "vue": "~2.5.18"
   },
   "lint-staged": {
     "*.{js,vue}": [
