@@ -7,9 +7,11 @@
        :loading="isLoading"
        :spacing="spacing"
        @click.prevent="onClick">
-        <span class="wrapper" tabindex="-1">
+        <span class="wrapper" tabindex="-1" :icon-is-only-child="iconIsOnlyChild">
+            <slot name="icon-before"/>
+            <span v-if="this.$slots.default" ref="label" class="label"><slot/></span>
+            <slot name="icon-after"/>
             <Spinner v-if="isLoading" :size="spacing === 'default' ? 'small' : 'icon'"/>
-            <span ref="label" class="label"><slot/></span>
         </span>
     </a>
 </template>
@@ -30,6 +32,12 @@
             isLoading: { type: Boolean, default: false },
             spacing: { type: String, default: 'default' }
         },
+        computed: {
+            iconIsOnlyChild() {
+                return !!(this.$slots['icon-after'] && !this.$slots['icon-before'] && !this.$slots.default) ||
+                    (!this.$slots['icon-after'] && this.$slots['icon-before'] && !this.$slots.default)
+            },
+        },
         mounted() {
             if (this.autoFocus) {
                 this.$refs.button.focus();
@@ -46,14 +54,14 @@
 
 <style scoped>
 a {
-    font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+    font-family: sans-serif;
     font-size: 14px;
     align-items: baseline;
     border-radius: 3px;
     border-width: 0;
     box-sizing: border-box;
     cursor: pointer;
-    display: inline-flex;
+    display: inline-block;
     font-style: normal;
     margin: 0;
     max-width: 100%;
@@ -63,7 +71,6 @@ a {
     vertical-align: middle;
     white-space: nowrap;
     width: auto;
-    padding: 0 8px;
     outline: none;
     position: relative;
     overflow: hidden;
@@ -82,6 +89,9 @@ a[spacing="compact"] {
 a[spacing="none"] {
     height: auto;
     line-height: inherit;
+}
+
+[spacing="none"] span.wrapper {
     padding: 0;
 }
 
@@ -89,21 +99,26 @@ span.wrapper {
     border-radius: 3px;
     outline: none;
     display: flex;
+    align-items: center;
     height: 100%;
-    flex-direction: column;
     justify-content: center;
+    padding: 0 8px;
+
+}
+
+[spacing="compact"] span.wrapper[icon-is-only-child] {
+    padding: 0 4px;
 }
 
 span.label {
+    align-self: center;
     display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
     margin: 0 4px;
 }
 
-[spacing="none"] span.label {
-    margin: 0;
-}
-
-a[loading] {
+span.label, a[loading] {
     pointer-events: none;
 }
 
@@ -111,7 +126,7 @@ a[loading] span.label {
     opacity: 0;
 }
 
-a[loading] .spinner {
+a[loading] >>> .spinner {
     display: flex;
     position: absolute;
     left: 50%;
@@ -119,7 +134,7 @@ a[loading] .spinner {
     transform: translate(-50%, -50%);
 }
 
-a[loading][selected] .spinner {
+a[loading][selected] >>> .spinner {
     color: #FFF;
 }
 
@@ -142,6 +157,10 @@ a[appearance="default"]:active {
     color: #0052CC;
 }
 
+a[appearance="default"]:active >>> svg {
+    color: #0052CC;
+}
+
 /*primary*/
 a[appearance="primary"] {
     background: #0052CC;
@@ -156,7 +175,7 @@ a[appearance="primary"]:active {
     background: #0747A6;
 }
 
-a[appearance="primary"][loading] .spinner {
+a[appearance="primary"][loading] >>> .spinner {
     color: #FFF;
 }
 
@@ -221,8 +240,16 @@ a[appearance="warning"]:hover {
     background: #FFC400;
 }
 
-a[appearance="warning"]:active, a[appearance="warning"][selected], a[appearance="warning"][selected]:hover {
+a[appearance="warning"]:active,
+a[appearance="warning"][selected],
+a[appearance="warning"][selected]:hover {
     background: #FF991F;
+    color: #172B4D;
+}
+
+a[appearance="warning"]:active >>> svg,
+a[appearance="warning"][selected] >>> svg,
+a[appearance="warning"][selected]:hover >>> svg {
     color: #172B4D;
 }
 
@@ -240,18 +267,28 @@ a[appearance="danger"]:hover {
     background: #FF5630;
 }
 
-a[appearance="danger"]:active, a[appearance="danger"][selected], a[appearance="danger"][selected]:hover {
+a[appearance="danger"]:active,
+a[appearance="danger"][selected],
+a[appearance="danger"][selected]:hover {
     background: #BF2600;
 }
 
-a[appearance="danger"][loading] .spinner {
+a[appearance="danger"][loading] >>> .spinner {
     color: #FFF;
 }
 
-a[selected], a[selected]:hover, a[selected]:active {
+a[selected],
+a[selected]:hover,
+a[selected]:active {
     background: #253858;
     color: rgb(244, 245, 247);
     text-decoration: none;
+}
+
+a[selected] >>> svg,
+a[selected]:hover >>> svg,
+a[selected]:active >>> svg {
+    color: rgb(244, 245, 247);
 }
 
 a[disabled] {
@@ -259,7 +296,7 @@ a[disabled] {
     pointer-events: none;
 }
 
-a[loading][disabled] .spinner {
+a[loading][disabled] >>> .spinner {
     color: #172B4D;
 }
 
@@ -267,7 +304,9 @@ a[disabled]:not([appearance="subtle-link"]):not([appearance="link"]):not([appear
     background: rgba(9, 30, 66, 0.04);
 }
 
-a::-moz-focus-inner, span::-moz-focus-inner, button::-moz-focus-inner {
+a::-moz-focus-inner,
+span::-moz-focus-inner,
+button::-moz-focus-inner {
     border: 0;
     margin: 0;
     padding: 0;

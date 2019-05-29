@@ -1,6 +1,6 @@
 import { storiesOf } from '@storybook/vue';
 import { withInfo } from 'storybook-addon-vue-info';
-import * as AtlaskitComponents from '..';
+import * as AtlaskitComponents from '../src/components/Icon';
 
 const IconComponents = Object.entries(AtlaskitComponents)
     .filter(([name]) => name.endsWith('Icon'))
@@ -26,7 +26,7 @@ storiesOf('Icon', module)
                         </div>
                         <p :style="{ color, backgroundColor, padding: '20px' }">
                             <span v-for="(icon, name) in icons">
-                                <component :is="icon" :size="size" :key="name" :title="name" :style="{ fill: backgroundColor }"/>
+                                <component :is="icon" :size="size" :key="name" :title="name"/>
                             </span>
                         </p>
                     </div>`,
