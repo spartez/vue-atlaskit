@@ -1,6 +1,9 @@
 import { storiesOf } from '@storybook/vue';
 import { withInfo } from 'storybook-addon-vue-info';
-import * as AtlaskitComponents from '..';
+import * as AtlaskitComponents from '../src/components/Icon';
+import IconWrapper from "../src/components/Icon/IconWrapper";
+import Trash from '../src/components/Icon/custom-icons/trash.svg';
+import Button from '../src/components/Button/Button.vue';
 
 const IconComponents = Object.entries(AtlaskitComponents)
     .filter(([name]) => name.endsWith('Icon'))
@@ -26,7 +29,7 @@ storiesOf('Icon', module)
                         </div>
                         <p :style="{ color, backgroundColor, padding: '20px' }">
                             <span v-for="(icon, name) in icons">
-                                <component :is="icon" :size="size" :key="name" :title="name" :style="{ fill: backgroundColor }"/>
+                                <component :is="icon" :size="size" :key="name" :title="name"/>
                             </span>
                         </p>
                     </div>`,
@@ -49,5 +52,17 @@ storiesOf('Icon', module)
                     }
                 }
             }
+        })
+    )
+    .add(
+        'Custom Icon',
+        () => ({
+            components: { IconWrapper, Trash,Button },
+            template:
+                `
+                  <Button>
+                      <IconWrapper slot="icon-before" size="small"><Trash/></IconWrapper>
+                  </Button>
+                `,
         })
     );

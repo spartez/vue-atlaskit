@@ -5,9 +5,11 @@ import vue from 'rollup-plugin-vue';
 import svg from 'rollup-plugin-vue-inline-svg';
 import { terser } from 'rollup-plugin-terser';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
+import css from 'rollup-plugin-css-only'
 
 const plugins = [
     peerDepsExternal(),
+    css({ output: 'dist/bundle.css' }),
     resolve({
         extensions: ['.js', '.json', '.vue']
     }),

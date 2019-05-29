@@ -1,49 +1,19 @@
 import { storiesOf } from '@storybook/vue';
 import { withInfo } from 'storybook-addon-vue-info';
-import Button from '../src/components/Button/Button.vue';
+import { Button } from '../src';
+import ButtonAppearance from './Button/ButtonApperance.vue';
+import ButtonSpacing from './Button/ButtonSpacing.vue';
+import ButtonWithIcon from './Button/ButtonWithIcons.vue';
 
+const styles = { info: { fontFamily: 'Helvetica, Arial, sans-serif' } };
 
 storiesOf('Button', module)
     .addDecorator(withInfo)
     .add(
-        'Button',
+        'Appearances',
         () => ({
-            components: { Button },
-            template: `
-                    <div class="wrapper">
-                        <div class="loading-state-switcher"><label><input type="checkbox" v-model="isLoading"><span>Show Loading State</span></label></div>
-                        <div class="loading-state-switcher"><label><input type="checkbox" v-model="isDisabled"><span>Show Disable State</span></label></div>
-                        <div class="loading-state-switcher"><label><input type="checkbox" v-model="isSelected"><span>Show Selected State</span></label></div>
-                        <div class="buttons">
-                            <Button :isLoading="isLoading" :isDisabled="isDisabled" 
-                                    :isSelected="isSelected" :key="appearance" 
-                                    v-for="appearance in appearances" :appearance="appearance">
-                                        {{capitalize(appearance)}}
-                            </Button>
-                        </div>
-                    </div>`,
-            data() {
-                return {
-                    appearances: [
-                        'default',
-                        'primary',
-                        'link',
-                        'subtle',
-                        'subtle-link',
-                        'warning',
-                        'danger'
-                    ],
-                    isLoading: false,
-                    isDisabled: false,
-                    isSelected: false
-
-                };
-            },
-            methods: {
-                capitalize(str) {
-                    return str.charAt(0).toUpperCase() + str.slice(1);
-                }
-            },
+            components: { Button, ButtonAppearance },
+            template: '<ButtonAppearance/>',
             propsDescription: {
                 Button: {
                     appearance: ['default', 'primary', 'link', 'subtle', 'subtle-link', 'warning', 'danger'],
@@ -51,9 +21,22 @@ storiesOf('Button', module)
                 }
             }
         }),
-        {
-            info: {
-                styles: { info: { fontFamily: 'Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"' } }
-            }
-        }
+        { info: { styles, source: false } }
+    )
+    .add(
+        'Spacing',
+        () => ({
+            components: { Button, ButtonSpacing },
+            template: `<ButtonSpacing/>`,
+        }),
+        { info: { styles, source: false } }
+    )
+    .add(
+        'Icon before & after',
+        () => ({
+            components: { Button, ButtonWithIcon },
+            template: `<ButtonWithIcon/>`,
+
+        }),
+        { info: { styles, source: false } }
     );

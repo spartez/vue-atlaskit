@@ -1,8 +1,8 @@
 import { storiesOf } from '@storybook/vue';
 import { withInfo } from 'storybook-addon-vue-info';
-import Input from '../src/components/Form/Input';
-import TextArea from '../src/components/Form/TextArea';
-import FieldGroup from '../src/components/Form/FieldGroup';
+import { Input } from '../src';
+import { TextArea } from '../src';
+import { FieldGroup } from '../src';
 
 
 storiesOf('Form', module)

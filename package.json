@@ -1,6 +1,6 @@
 {
   "name": "@spartez/vue-atlaskit",
-  "version": "0.0.2-beta",
+  "version": "0.0.3-beta.13",
   "description": "Unofficial Vue UI library, built according to the Atlassian Design Guidelines.",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
@@ -41,6 +41,7 @@
     "rollup": "^1.10.0",
     "rollup-plugin-babel": "^4.3.2",
     "rollup-plugin-commonjs": "^9.3.4",
+    "rollup-plugin-css-only": "^1.0.0",
     "rollup-plugin-node-resolve": "^4.2.3",
     "rollup-plugin-peer-deps-external": "^2.2.0",
     "rollup-plugin-terser": "^4.0.4",
@@ -68,6 +69,7 @@
     }
   },
   "dependencies": {
+    "@atlaskit/css-reset": "^4.0.1",
     "@atlaskit/icon": "^16.0.9"
   }
 }
