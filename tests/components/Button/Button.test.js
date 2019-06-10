@@ -10,8 +10,9 @@ describe('Button', () => {
     });
 
     it('emits click event on button click', () => {
-        const component = shallowMount(Button, { slots: { default: 'Click me!' } });
+        const clickHandler = jest.fn();
+        const component = shallowMount(Button, { slots: { default: 'Click me!' }, listeners: { click: clickHandler } });
         component.trigger('click');
-        expect(component.emitted('click')).toBeTruthy();
+        expect(clickHandler).toBeCalled();
     });
 });
