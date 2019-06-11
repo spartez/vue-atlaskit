@@ -15,6 +15,7 @@
     "build-storybook": "build-storybook -c .storybook -o docs",
     "generate-icons": "node build/generate-icons.js"
   },
+  "sideEffects": false,
   "keywords": [
     "vue",
     "atlassian"
@@ -22,6 +23,8 @@
   "author": "Adrian Bilicz",
   "license": "MIT",
   "devDependencies": {
+    "@atlaskit/css-reset": "^4.0.1",
+    "@atlaskit/icon": "^16.0.9",
     "@babel/core": "^7.4.3",
     "@babel/preset-env": "^7.4.3",
     "@spartez/eslint-config-vue": "^1.0.3",
@@ -46,7 +49,6 @@
     "rollup-plugin-peer-deps-external": "^2.2.0",
     "rollup-plugin-terser": "^4.0.4",
     "rollup-plugin-vue": "^5.0.0",
-    "rollup-plugin-vue-inline-svg": "^1.0.1",
     "storybook-addon-vue-info": "^1.0.1",
     "vue-jest": "^3.0.4",
     "vue-loader": "^15.7.0",
@@ -67,9 +69,5 @@
     "hooks": {
       "pre-commit": "lint-staged"
     }
-  },
-  "dependencies": {
-    "@atlaskit/css-reset": "^4.0.1",
-    "@atlaskit/icon": "^16.0.9"
   }
 }

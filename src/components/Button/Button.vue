@@ -1,53 +1,53 @@
 <template>
-<button ref="button"
-        :appearance="appearance"
-        :disabled="isDisabled"
-        :selected="isSelected"
-        :loading="isLoading"
-        :spacing="spacing"
-        v-on="listeners">
-    <span class="wrapper" tabindex="-1" :icon-is-only-child="iconIsOnlyChild">
-        <slot v-if="!isLoading" name="icon-before"/>
-        <span v-if="this.$slots.default" ref="label" class="label">
-            <slot/>
+    <button ref="button"
+            :appearance="appearance"
+            :disabled="isDisabled"
+            :selected="isSelected"
+            :loading="isLoading"
+            :spacing="spacing"
+            v-on="listeners">
+        <span class="wrapper" tabindex="-1" :icon-is-only-child="iconIsOnlyChild">
+            <slot v-if="!isLoading" name="icon-before"/>
+            <span v-if="this.$slots.default" ref="label" class="label">
+                <slot/>
+            </span>
+            <slot v-if="!isLoading" name="icon-after"/>
+            <Spinner v-if="isLoading" :size="spacing === 'default' ? 'small' : 'icon'"/>
         </span>
-        <slot v-if="!isLoading" name="icon-after"/>
-        <Spinner v-if="isLoading" :size="spacing === 'default' ? 'small' : 'icon'"/>
-    </span>
     </button>
 </template>
 
 <script>
-import Spinner from '../Spinner/Spinner';
+    import Spinner from '../Spinner/Spinner';
 
-export default {
-    name: 'Button',
-    components: {
-        Spinner
-    },
-    props: {
-        isSelected: { type: Boolean, default: false },
-        isDisabled: { type: Boolean, default: false },
-        appearance: { type: String, default: 'default' },
-        autoFocus: { type: Boolean, default: false },
-        isLoading: { type: Boolean, default: false },
-        spacing: { type: String, default: 'default' }
-    },
-    computed: {
-        iconIsOnlyChild() {
-            return !!(this.$slots['icon-after'] && !this.$slots['icon-before'] && !this.$slots.default) ||
-                (!this.$slots['icon-after'] && this.$slots['icon-before'] && !this.$slots.default)
+    export default {
+        name: 'Button',
+        components: {
+            Spinner
         },
-        listeners() {
-            return this.$listeners;
+        props: {
+            isSelected: { type: Boolean, default: false },
+            isDisabled: { type: Boolean, default: false },
+            appearance: { type: String, default: 'default' },
+            autoFocus: { type: Boolean, default: false },
+            isLoading: { type: Boolean, default: false },
+            spacing: { type: String, default: 'default' }
+        },
+        computed: {
+            iconIsOnlyChild() {
+                return !!(this.$slots['icon-after'] && !this.$slots['icon-before'] && !this.$slots.default)
+                    || (!this.$slots['icon-after'] && this.$slots['icon-before'] && !this.$slots.default);
+            },
+            listeners() {
+                return this.$listeners;
+            }
+        },
+        mounted() {
+            if (this.autoFocus) {
+                this.$refs.button.focus();
+            }
         }
-    },
-    mounted() {
-        if (this.autoFocus) {
-            this.$refs.button.focus();
-        }
-    }
-};
+    };
 </script>
 
 <style scoped>

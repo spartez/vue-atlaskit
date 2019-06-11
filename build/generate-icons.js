@@ -1,5 +1,12 @@
 const { resolve, relative, extname } = require('path');
-const { readdir, stat, writeFile } = require('fs').promises;
+const {
+    readdir, stat, writeFile, readFile
+} = require('fs').promises;
+const SVGO = require('svgo');
+
+const svgo = new SVGO({
+    plugins: [{ removeDimensions: true }, { removeViewBox: false }]
+});
 
 async function getSvgFiles(dir) {
     const subdirs = await readdir(dir);
@@ -14,6 +21,36 @@ function camelize(str) {
     return str.replace(/(?:^\w|[A-Z]|\b\w)/g, word => word.toUpperCase()).replace(/\s+/g, '').replace(/[-\\/]/g, '');
 }
 
+function componentTemplate({ componentName, svg }) {
+    return `import IconWrapper from './IconWrapper';
+
+export default {
+    name: '${componentName}',
+    props: {
+        size: {
+            type: String
+        },
+        primaryColor: {
+            type: String
+        },
+        secondaryColor: {
+            type: String
+        }
+    },
+    render(h) {
+        // eslint-disable-next-line max-len
+        return h(IconWrapper, { props: { ...this.$props }, domProps: { innerHTML: '${svg}' } });
+    }
+};
+`;
+}
+
+async function getOptimizedSvg(path) {
+    const data = await readFile(path, 'utf-8');
+    const result = await svgo.optimize(data);
+    return result.data;
+}
+
 async function generateIcons() {
     const glyphsPath = resolve(__dirname, '..', 'node_modules/@atlaskit/icon/svgs');
     const sourcePath = resolve(__dirname, '..', 'src/components/Icon/index.js');
@@ -24,16 +61,20 @@ async function generateIcons() {
         const name = camelize(relativePath.substr(0, relativePath.length - 4));
         const componentName = `${name}Icon`;
         const glyphName = `${name}Glyph`;
-        const importPath = `@atlaskit/icon/svgs/${relativePath}`;
-        return { glyphName, importPath, componentName };
+        return { glyphName, componentName, file };
     });
 
-    const imports = iconsData.map(({ glyphName, importPath }) => `import ${glyphName} from '${importPath}';`).join('\n');
-    const exports = iconsData.map(({ glyphName, componentName }) => `export const ${componentName} = createIconComponent('${componentName}', ${glyphName});`).join('\n');
+    await Promise.all(
+        iconsData.map(async ({ glyphName, file, componentName }) => {
+            const svg = await getOptimizedSvg(file);
+            const componentPath = resolve(__dirname, '..', `src/components/Icon/${componentName}.js`);
+            const template = componentTemplate({ glyphName, svg, componentName });
+            return writeFile(componentPath, template);
+        })
+    );
+    const exports = iconsData.map(({ componentName }) => `export { default as ${componentName} } from './${componentName}';`).join('\n');
 
     let fileContent = '// This file is generated automatically with \'npm run generate-icons\' script\n';
-    fileContent += `${imports}\n`;
-    fileContent += 'import createIconComponent from \'./create-icon-component\';\n\n';
     fileContent += `${exports}\n`;
 
     await writeFile(sourcePath, fileContent);
