@@ -1,13 +1,9 @@
 import { storiesOf } from '@storybook/vue';
 import { withInfo } from 'storybook-addon-vue-info';
-import * as AtlaskitComponents from '../src/components/Icon';
-import IconWrapper from "../src/components/Icon/IconWrapper";
+import * as IconComponents from '../src/components/Icon';
+import IconWrapper from '../src/components/Icon/IconWrapper';
 import Trash from '../src/components/Icon/custom-icons/trash.svg';
 import Button from '../src/components/Button/Button.vue';
-
-const IconComponents = Object.entries(AtlaskitComponents)
-    .filter(([name]) => name.endsWith('Icon'))
-    .reduce((acc, [name, comp]) => ({ ...acc, [name]: comp }), {});
 
 storiesOf('Icon', module)
     .addDecorator(withInfo)
@@ -27,9 +23,9 @@ storiesOf('Icon', module)
                             </select>
                             <button @click="toggleColors">Toggle colors</button>
                         </div>
-                        <p :style="{ color, backgroundColor, padding: '20px' }">
+                        <p :style="{ color, backgroundColor, fill: backgroundColor, padding: '20px' }">
                             <span v-for="(icon, name) in icons">
-                                <component :is="icon" :size="size" :key="name" :title="name"/>
+                                <component :is="icon" :size="size" :key="name" secondary-color="inherit" :title="name"/>
                             </span>
                         </p>
                     </div>`,
@@ -38,7 +34,7 @@ storiesOf('Icon', module)
                     icons: IconComponents,
                     size: 'medium',
                     color: undefined,
-                    backgroundColor: undefined
+                    backgroundColor: '#fff'
                 };
             },
             methods: {
@@ -48,7 +44,7 @@ storiesOf('Icon', module)
                         this.backgroundColor = '#0747a6';
                     } else {
                         this.color = undefined;
-                        this.backgroundColor = undefined;
+                        this.backgroundColor = '#fff';
                     }
                 }
             }
@@ -57,12 +53,12 @@ storiesOf('Icon', module)
     .add(
         'Custom Icon',
         () => ({
-            components: { IconWrapper, Trash,Button },
+            components: { IconWrapper, Trash, Button },
             template:
                 `
                   <Button>
                       <IconWrapper slot="icon-before" size="small"><Trash/></IconWrapper>
                   </Button>
-                `,
+                `
         })
     );

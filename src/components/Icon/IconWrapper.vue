@@ -8,7 +8,7 @@
             },
             primaryColor: {
                 type: String,
-                default: '#344563'
+                default: 'currentcolor'
             },
             secondaryColor: {
                 type: String,
