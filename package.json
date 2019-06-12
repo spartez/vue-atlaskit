@@ -15,7 +15,9 @@
     "build-storybook": "build-storybook -c .storybook -o docs",
     "generate-icons": "node build/generate-icons.js"
   },
-  "sideEffects": false,
+  "sideEffects": [
+    "*.css"
+  ],
   "keywords": [
     "vue",
     "atlassian"
