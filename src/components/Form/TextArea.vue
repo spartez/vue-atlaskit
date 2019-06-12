@@ -1,6 +1,6 @@
 <template>
     <TextField :is-focused="isFocused">
-        <textarea v-model="text" :rows="rows" maxlength="maxlength"
+        <textarea v-model="text" :rows="rows" :maxlength="maxlength"
                   :placeholder="placeholder"
                   @focus="onFocus" @blur="onBlur" @input="onInput"/>
     </TextField>
