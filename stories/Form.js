@@ -3,6 +3,7 @@ import { withInfo } from 'storybook-addon-vue-info';
 import { Input } from '../src';
 import { TextArea } from '../src';
 import { FieldGroup } from '../src';
+import InlineInput from '../src/components/Form/InlineInput';
 
 
 storiesOf('Form', module)
@@ -23,4 +24,11 @@ storiesOf('Form', module)
     .add('TextArea', () => ({
         components: { TextArea, FieldGroup },
         template: '<FieldGroup label="Label" required><TextArea should-fit-container/></FieldGroup>'
-    }));
+    }))
+    .add('InlineEditInput', () => ({
+        components: { FieldGroup, InlineInput },
+        template: `<main>
+                        <FieldGroup label="Title:"><InlineInput value="initial"/></FieldGroup>
+                       </main>`,
+    }))
+

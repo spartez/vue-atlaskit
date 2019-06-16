@@ -1,8 +1,11 @@
 <template>
     <TextField :is-focused="isFocused">
         <input v-model="text" type="text" :placeholder="placeholder"
-               :maxlength="maxlength"
-               @focus="onFocus" @blur="onBlur" @input="onInput">
+               :maxlength="maxlength" v-on="listeners"
+               ref="input"
+               @focus="onFocus"
+               @blur="onBlur"
+               @input="onInput">
     </TextField>
 </template>
 
@@ -33,6 +36,12 @@
                 text: this.value,
                 isFocused: false
             };
+        },
+        computed: {
+            listeners() {
+                const { focus, blur, input, ...listeners } = this.$listeners;
+                return listeners;
+            }
         },
         methods: {
             onInput(e) {

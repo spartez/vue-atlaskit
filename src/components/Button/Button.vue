@@ -67,7 +67,6 @@ button {
     transition: background 0.1s ease-out 0s, box-shadow 0.15s cubic-bezier(0.47, 0.03, 0.49, 1.38) 0s;
     vertical-align: middle;
     white-space: nowrap;
-    width: auto;
     outline: none;
     position: relative;
     overflow: hidden;
