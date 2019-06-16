@@ -1,7 +1,7 @@
 <template>
-    <TextField :is-focused="isFocused">
-        <input v-model="text" type="text" :placeholder="placeholder"
-               :maxlength="maxlength"
+    <TextField :is-focused="isFocused" :style="{width: width}">
+        <input ref="input" v-model="text" type="text"
+               :placeholder="placeholder" :maxlength="maxlength"
                @focus="onFocus" @blur="onBlur" @input="onInput">
     </TextField>
 </template>
@@ -26,6 +26,14 @@
             placeholder: {
                 type: String,
                 default: undefined
+            },
+            autoFocus: {
+                type: Boolean,
+                default: false
+            },
+            width: {
+                type: String,
+                default: '100%'
             }
         },
         data() {
@@ -33,6 +41,11 @@
                 text: this.value,
                 isFocused: false
             };
+        },
+        mounted() {
+            if (this.autoFocus) {
+                this.$refs.input.focus();
+            }
         },
         methods: {
             onInput(e) {
