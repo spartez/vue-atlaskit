@@ -13,7 +13,7 @@
 </template>
 
 <script>
-        import { Button } from '../../'
+        import Button from '../../src/components/Button/Button'
         import { TableIcon, CalendarIcon, EditorRemoveIcon, EditorSettingsIcon, PageIcon, EditorEditIcon } from "../../src/components/Icon";
 
         export default {
