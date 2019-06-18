@@ -4,7 +4,6 @@
     </div>
 </template>
 
-
 <script>
     export default {
         name: 'TextField'
@@ -23,6 +22,7 @@ input {
     min-width: 0;
     outline: none;
     width: 100%;
+    padding: 8px 6px;
 }
 
 textarea {
@@ -67,9 +67,13 @@ input :-moz-placeholder {
     overflow: hidden;
     transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
     word-wrap: break-word;
-    padding: 6px;
     min-height: 40px;
     background-color: #fafbfc;
+}
+
+.input-wrapper[editable]:not([is-focused]) {
+    border: transparent;
+    background-color: inherit;
 }
 
 .input-wrapper[should-fit-container] {
