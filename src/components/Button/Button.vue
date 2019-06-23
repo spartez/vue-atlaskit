@@ -145,16 +145,16 @@ button:focus {
 
 /*default*/
 button[appearance="default"] {
-    background: rgba(9, 30, 66, 0.04);
+    background: #f6f7f8;
     color: #505F79;
 }
 
 button[appearance="default"]:hover {
-    background: rgba(9, 30, 66, 0.08);
+    background: #efeff2;
 }
 
 button[appearance="default"]:active {
-    background: rgba(179, 212, 255, 0.6);
+    background: #d2e6ff;
     color: #0052CC;
 }
 

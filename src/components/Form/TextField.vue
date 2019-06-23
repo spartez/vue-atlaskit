@@ -1,5 +1,5 @@
 <template>
-    <div class="input-wrapper">
+    <div class="input-wrapper" v-on="$listeners">
         <slot/>
     </div>
 </template>
@@ -15,14 +15,18 @@ textarea,
 input {
     background: transparent;
     border: 0;
-    box-sizing: border-box;
     color: inherit;
     cursor: inherit;
-    font-size: 14px;
+    font-size: inherit;
     min-width: 0;
     outline: none;
     width: 100%;
+    line-height: inherit;
     padding: 8px 6px;
+}
+
+[compact] input, [compact] textarea {
+    padding: 0;
 }
 
 textarea {
@@ -62,12 +66,10 @@ input :-moz-placeholder {
     display: inline-flex;
     flex: 1 0 auto;
     justify-content: space-between;
-    line-height: 1.4;
     max-width: 100%;
     overflow: hidden;
     transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
     word-wrap: break-word;
-    min-height: 40px;
     background-color: #fafbfc;
 }
 
