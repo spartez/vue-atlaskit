@@ -22,11 +22,7 @@ input {
     outline: none;
     width: 100%;
     line-height: inherit;
-    padding: 8px 6px;
-}
-
-[compact] input, [compact] textarea {
-    padding: 0;
+    padding: 6px 6px;
 }
 
 textarea {
