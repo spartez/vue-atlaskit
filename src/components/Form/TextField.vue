@@ -18,11 +18,17 @@ input {
     color: inherit;
     cursor: inherit;
     font-size: inherit;
-    min-width: 0;
     outline: none;
-    width: 100%;
     line-height: inherit;
-    padding: 6px 6px;
+    padding: 6px;
+    width: 100%;
+    letter-spacing: inherit;
+    box-sizing: border-box;
+}
+
+.input-wrapper[compact] > input,
+.input-wrapper[compact] > textarea {
+    padding: 0;
 }
 
 textarea {
@@ -59,7 +65,7 @@ input :-moz-placeholder {
     border-radius: 3px;
     box-sizing: border-box;
     color: #091E42;
-    display: inline-flex;
+    display: flex;
     flex: 1 0 auto;
     justify-content: space-between;
     max-width: 100%;
