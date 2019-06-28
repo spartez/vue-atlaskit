@@ -24,6 +24,7 @@ input {
     width: 100%;
     letter-spacing: inherit;
     box-sizing: border-box;
+    margin: 0;
 }
 
 .input-wrapper[compact] > input,
