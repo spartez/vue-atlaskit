@@ -99,7 +99,7 @@ input :-moz-placeholder {
     border-color: #4c9aff;
 }
 
-.input-wrapper:not([is-focused])[is-invalid] {
+.input-wrapper[is-invalid] {
     border-color: #de350b;
 }
 </style>
