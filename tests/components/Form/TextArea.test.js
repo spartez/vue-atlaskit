@@ -3,6 +3,20 @@ import TextArea from 'components/Form/TextArea';
 
 
 describe('TextArea', () => {
+    it('contains properly configured textarea', () => {
+        const component = shallowMount(TextArea, {
+            propsData: {
+                value: 'ABC', maxlength: 5, row: 10, placeholder: 'Placeholder'
+            }
+        });
+
+        expect(component.find('textarea').attributes()).toEqual({
+            maxlength: '5',
+            placeholder: 'Placeholder',
+            rows: '10'
+        });
+    });
+
     it('emits focus event on textarea focus', () => {
         const component = shallowMount(TextArea);
         component.find('textarea').trigger('focus');
