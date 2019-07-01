@@ -13,8 +13,8 @@
 </template>
 
 <script>
-        import Button from '../../src/components/Button/Button'
-        import { TableIcon, CalendarIcon, EditorRemoveIcon, EditorSettingsIcon, PageIcon, EditorEditIcon } from "../../src/components/Icon";
+        import Button from '@/components/Button/Button'
+        import { TableIcon, CalendarIcon, EditorRemoveIcon, EditorSettingsIcon, PageIcon, EditorEditIcon } from "@/components/Icon";
 
         export default {
             name: "ButtonWithIcons",

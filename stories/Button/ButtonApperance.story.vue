@@ -33,7 +33,7 @@
 </template>
 
 <script>
-    import Button from '../../src/components/Button/Button'
+    import Button from '@/components/Button/Button'
 
     export default {
         name: "ButtonAppearance",
