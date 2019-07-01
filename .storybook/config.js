@@ -1,4 +1,5 @@
 import '@atlaskit/css-reset/dist/bundle.css';
+import {html} from 'common-tags'
 import './style.css';
 
 import { storiesOf, configure } from '@storybook/vue';
@@ -17,6 +18,8 @@ const registerStory = (filename) => {
     const component = req(filename).default;
     const { group, name } = parseFilename(filename);
 
+    const summary = require(`!!html-loader!../stories/${group}/${name}.story`);
+
     storiesOf(group, module)
         .addDecorator(withInfo)
         .add(name, () => ({
@@ -25,7 +28,12 @@ const registerStory = (filename) => {
             render(h) {
                 return h(component);
             }
-        }), { info: { source: false } });
+        }), {
+            info: {
+                source: false,
+                summary: html`\`\`\`\n ${summary} \`\`\``
+            }
+        });
 };
 
 function loadStories() {

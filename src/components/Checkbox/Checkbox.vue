@@ -1,6 +1,7 @@
 <template>
     <label class="checkbox-wrapper" :for="id">
-        <input type="checkbox" :id="id" :disabled="disabled" v-model="checked">
+        <input :id="id" v-model="checked" type="checkbox"
+               :disabled="disabled">
         <CheckboxIcon class="icon"/>
         <span v-if="$slots['default']" class="label"><slot/></span>
     </label>
@@ -12,22 +13,19 @@
     export default {
         name: 'Checkbox',
         components: { CheckboxIcon },
-        watch: {
-            checked(checked) {
-                this.$emit('input', checked);
-            }
-        },
         props: {
-            value: {
-                type: [Number, String, Boolean]
-            },
             disabled: {
                 type: Boolean,
                 default: false
             }
         },
         data() {
-            return { id: undefined, checked: false }
+            return { id: undefined, checked: false };
+        },
+        watch: {
+            checked(checked) {
+                this.$emit('input', checked);
+            }
         },
         created() {
             // eslint-disable-next-line

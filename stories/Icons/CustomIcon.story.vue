@@ -11,7 +11,3 @@
         components: { IconWrapper, Trash }
     }
 </script>
-
-<style scoped>
-
-</style>

@@ -11,7 +11,3 @@
         components: { FieldGroup, TextArea }
     }
 </script>
-
-<style scoped>
-
-</style>

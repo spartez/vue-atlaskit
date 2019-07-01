@@ -15,7 +15,3 @@
         components: { Spinner }
     }
 </script>
-
-<style scoped>
-
-</style>
