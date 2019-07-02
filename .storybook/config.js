@@ -1,6 +1,6 @@
 import '@atlaskit/css-reset/dist/bundle.css';
-import {html} from 'common-tags'
 import './style.css';
+import '../dist/bundle.css';
 
 import { storiesOf, configure } from '@storybook/vue';
 import { withInfo } from 'storybook-addon-vue-info';
@@ -31,7 +31,7 @@ const registerStory = (filename) => {
         }), {
             info: {
                 source: false,
-                summary: html`\`\`\`\n ${summary} \`\`\``
+                summary: `\`\`\`html \n ${summary} \`\`\``
             }
         });
 };
