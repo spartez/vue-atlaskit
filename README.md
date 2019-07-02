@@ -66,7 +66,7 @@ Vue.use(atlaskit);
 
 ```html
 <script src="path/to/vue/vue.min.js"></script>
-<script src="path/to/@spartez/vue-atlaskit/dist/vue-atlaskit.min.js"></script>
+<script src="https://unpkg.com/@spartez/vue-atlaskit/dist/index.min.js"></script>
 <!-- Components are registered globally -->
 ```
 
@@ -80,6 +80,16 @@ Vue.use(atlaskit);
       data: { hello: 'Click Me!' }
   })
 </script>
+```
+For including styles you can either place the below styles in your `index.html` 
+ ```html
+ <link href="https://unpkg.com/@spartez/vue-atlaskit/dist/bundle.css" rel="stylesheet">
+ ```
+ 
+ 
+Or you can import it to your webpack entry point file. This is _usually_ your `main.js` file.
+```js
+import '@spartez/vue-atlaskit/dist/bundle.css';
 ```
 
 ## Contributing
