@@ -1,7 +1,7 @@
 <template>
     <div class="footer">
-        <Button :auto-focus="autoFocus" type="submit" :is-disabled="pending"
-                :appearance="appearance">
+        <Button :auto-focus="autoFocus" type="submit" :is-disabled="pending || !shouldAllowSubmit"
+                :is-loading="pending" :appearance="appearance">
             {{ submit }}
         </Button>
         <Button appearance="subtle" :is-disabled="pending" @click="onCancel">
@@ -32,6 +32,10 @@
             pending: {
                 type: Boolean,
                 default: false
+            },
+            shouldAllowSubmit: {
+                type: Boolean,
+                default: true
             }
         },
         data() {

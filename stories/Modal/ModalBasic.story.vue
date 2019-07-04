@@ -31,6 +31,7 @@
         methods: {
             onSubmit() {
                 console.log('submit!');
+                this.onCancel();
             },
             showDialog() {
                 this.show = true;

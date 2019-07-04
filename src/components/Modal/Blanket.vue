@@ -21,7 +21,6 @@
     position: fixed;
     z-index: 500;
     background: rgba(9, 30, 66, 0.54);
-    transition: opacity 0.2s ease;
-    transition-delay: 0.1s;
+    transition: opacity 220ms ease 0s;
 }
 </style>

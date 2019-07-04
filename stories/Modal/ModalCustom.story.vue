@@ -3,11 +3,16 @@
         <Button @click="showDialog">
             Show Dialog
         </Button>
-        <Modal v-if="show" heading="Modal Warning" auto-focus
-               :appearance="appearance" @submit="onSubmit" @cancel="onCancel">
+        <Modal v-if="show" heading="Modal Basic" auto-focus
+               width="400px" @submit="onSubmit" @cancel="onCancel">
             <p slot="content">
                 {{ paragraph }}
             </p>
+            <div slot="footer" class="footer">
+                <Button appearance="primary" @click="onCancel">
+                    Go it!
+                </Button>
+            </div>
         </Modal>
     </div>
 </template>
@@ -20,12 +25,11 @@
     const paragraph = faker.lorem.paragraph();
 
     export default {
-        name: 'ModalWarningStory',
+        name: 'ModalCustomStory',
         components: { Modal, Button },
         data() {
             return {
                 show: false,
-                appearance: 'warning',
                 paragraph
             };
         },

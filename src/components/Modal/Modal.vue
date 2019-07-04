@@ -1,7 +1,7 @@
 <template>
     <transition name="modal" appear>
         <Blanket class="dialog">
-            <PositionerAbsolute>
+            <PositionerAbsolute :width="width">
                 <form class="modal-container" @submit.prevent="onSubmit">
                     <header>
                         <slot name="header">
@@ -13,8 +13,9 @@
                     </div>
                     <footer>
                         <slot name="footer">
+                            <slot name="progress"/>
                             <Footer :actions="actions" :auto-focus="autoFocus" :appearance="appearance"
-                                    :pending="pending" @cancel="onCancel"/>
+                                    :should-allow-submit="shouldAllowSubmit" :pending="pending" @cancel="onCancel"/>
                         </slot>
                     </footer>
                 </form>
@@ -55,6 +56,14 @@
             pending: {
                 type: Boolean,
                 default: false
+            },
+            shouldAllowSubmit: {
+                type: Boolean,
+                default: true
+            },
+            width: {
+                type: String,
+                default: '600px'
             }
         },
         data() {
@@ -85,12 +94,6 @@
 </script>
 
 <style scoped>
-    .dialog {
-        opacity: 1;
-        visibility: visible;
-        transition: opacity 0.2s;
-    }
-
     .modal-container {
         background-color: rgb(255, 255, 255);
         box-shadow: rgba(9, 30, 66, 0.08) 0 0 0 1px,
@@ -121,10 +124,12 @@
     }
 
     .modal-enter .positioner {
+        opacity: 0;
         transform: translateY(20px);
     }
 
     .modal-leave-active .positioner {
+        opacity: 0;
         transform: translateY(-20px);
     }
 

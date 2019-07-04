@@ -3,10 +3,13 @@
         <Button @click="showDialog">
             Show Dialog
         </Button>
-        <Modal v-if="show" heading="Modal Warning" auto-focus
-               :appearance="appearance" @submit="onSubmit" @cancel="onCancel">
+        <Modal v-if="show" heading="Modal Basic" auto-focus
+               :should-allow-submit="shouldAllowSubmit"
+               @submit="onSubmit" @cancel="onCancel">
             <p slot="content">
-                {{ paragraph }}
+                <Checkbox v-model="shouldAllowSubmit">
+                    By checking agree and continue
+                </Checkbox>
             </p>
         </Modal>
     </div>
@@ -15,17 +18,18 @@
 <script>
     import Modal from '@/components/Modal/Modal';
     import Button from '@/components/Button/Button';
+    import Checkbox from '@/components/Checkbox/Checkbox';
     import faker from 'faker';
 
     const paragraph = faker.lorem.paragraph();
 
     export default {
-        name: 'ModalWarningStory',
-        components: { Modal, Button },
+        name: 'ModalPreventSubmitStory',
+        components: { Modal, Button, Checkbox },
         data() {
             return {
                 show: false,
-                appearance: 'warning',
+                shouldAllowSubmit: false,
                 paragraph
             };
         },

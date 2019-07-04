@@ -1,13 +1,15 @@
 <template>
-    <IconWrapper slot="icon-before" size="small"><Trash/></IconWrapper>
+    <IconWrapper size="small">
+        <Trash/>
+    </IconWrapper>
 </template>
 
 <script>
-    import IconWrapper from '@/components/Icon/IconWrapper'
-    import Trash from '@/components/Icon/svgs/trash.svg'
+    import IconWrapper from '@/components/Icon/IconWrapper';
+    import Trash from '../assets/svgs/trash.svg';
 
     export default {
-        name: "CustomIcon.story",
+        name: 'CustomIconStory',
         components: { IconWrapper, Trash }
-    }
+    };
 </script>

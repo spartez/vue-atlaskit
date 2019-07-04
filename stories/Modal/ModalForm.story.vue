@@ -32,12 +32,13 @@
             return {
                 title: '',
                 type: '',
-                show: true
+                show: false
             };
         },
         methods: {
             onSubmit() {
                 console.log(JSON.stringify({ title: this.title, type: this.type }));
+                this.onCancel();
             },
             showDialog() {
                 this.show = true;
