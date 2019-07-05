@@ -13,6 +13,7 @@ module.exports = {
         ],
         'no-param-reassign': ['error', { props: false }],
         'vue/html-closing-bracket-spacing': 'off',
+        'import/prefer-default-export': 'off',
         'import/no-extraneous-dependencies': [
             {
                 devDependencies: [

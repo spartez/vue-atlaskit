@@ -1,8 +1,9 @@
 <template>
-    <TextField :is-focused="isFocused" :style="{width: width}">
-        <input ref="input" v-model="text" type="text"
-               :placeholder="placeholder" :maxlength="maxlength"
-               @focus="onFocus" @blur="onBlur" @input="onInput">
+    <TextField :is-focused="isFocused">
+        <input ref="input" :value="value" type="text"
+               :placeholder="placeholder"
+               :maxlength="maxlength" @input="onInput"
+               @focus="onFocus" @blur="onBlur">
     </TextField>
 </template>
 
@@ -51,13 +52,13 @@
             onInput(e) {
                 this.$emit('input', e.target.value);
             },
-            onFocus() {
+            onFocus(e) {
                 this.isFocused = true;
-                this.$emit('focus');
+                this.$emit('focus', e);
             },
-            onBlur() {
+            onBlur(e) {
                 this.isFocused = false;
-                this.$emit('blur');
+                this.$emit('blur', e);
             }
         }
     };

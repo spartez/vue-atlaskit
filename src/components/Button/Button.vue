@@ -150,7 +150,7 @@ button[appearance="default"] {
     color: #505F79;
 }
 
-button[appearance="default"]:not([disabled]):hover {
+button[appearance="default"]:not([disabled]):not([selected]):hover {
     background: #efeff2;
 }
 
@@ -169,7 +169,7 @@ button[appearance="primary"] {
     color: #FFFFFF;
 }
 
-button[appearance="primary"]:not([disabled]):hover {
+button[appearance="primary"]:not([disabled]):not([selected]):hover {
     background: #0065FF;
 }
 
@@ -187,7 +187,7 @@ button[appearance="link"] {
     color: #0052CC;
 }
 
-button[appearance="link"]:not([disabled]):hover {
+button[appearance="link"]:not([disabled]):not([selected]):hover {
     color: #0065FF;
     text-decoration: underline;
 }
@@ -203,7 +203,7 @@ button[appearance="subtle"] {
     color: #505F79;
 }
 
-button[appearance="subtle"]:not([disabled]):hover {
+button[appearance="subtle"]:not([disabled]):not([selected]):hover {
     background-color: rgba(9, 30, 66, 0.08);
 }
 
@@ -218,7 +218,7 @@ button[appearance="subtle-link"] {
     color: #6B778C;
 }
 
-button[appearance="subtle-link"]:not([disabled]):hover {
+button[appearance="subtle-link"]:not([disabled]):not([selected]):hover {
     text-decoration: underline;
     color: #8993A4;
 }
@@ -238,7 +238,7 @@ button:focus[appearance="warning"] {
     box-shadow: #FF8B00 0 0 0 2px;
 }
 
-button[appearance="warning"]:not([disabled]):hover {
+button[appearance="warning"]:not([disabled]):not([selected]):hover {
     background: #FFC400;
 }
 
@@ -265,7 +265,7 @@ button:focus[appearance="danger"] {
     box-shadow: #FF8F73 0 0 0 2px;
 }
 
-button[appearance="danger"]:not([disabled]):hover {
+button[appearance="danger"]:not([disabled]):not([selected]):hover {
     background: #FF5630;
 }
 
