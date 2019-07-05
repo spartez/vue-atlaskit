@@ -1,5 +1,6 @@
 <template>
     <button ref="button"
+            type="button"
             :appearance="appearance"
             :disabled="isDisabled"
             :selected="isSelected"
@@ -149,7 +150,7 @@ button[appearance="default"] {
     color: #505F79;
 }
 
-button[appearance="default"]:hover {
+button[appearance="default"]:not([disabled]):hover {
     background: #efeff2;
 }
 
@@ -168,7 +169,7 @@ button[appearance="primary"] {
     color: #FFFFFF;
 }
 
-button[appearance="primary"]:hover {
+button[appearance="primary"]:not([disabled]):hover {
     background: #0065FF;
 }
 
@@ -186,7 +187,7 @@ button[appearance="link"] {
     color: #0052CC;
 }
 
-button[appearance="link"]:hover {
+button[appearance="link"]:not([disabled]):hover {
     color: #0065FF;
     text-decoration: underline;
 }
@@ -202,7 +203,7 @@ button[appearance="subtle"] {
     color: #505F79;
 }
 
-button[appearance="subtle"]:hover {
+button[appearance="subtle"]:not([disabled]):hover {
     background-color: rgba(9, 30, 66, 0.08);
 }
 
@@ -217,7 +218,7 @@ button[appearance="subtle-link"] {
     color: #6B778C;
 }
 
-button[appearance="subtle-link"]:hover {
+button[appearance="subtle-link"]:not([disabled]):hover {
     text-decoration: underline;
     color: #8993A4;
 }
@@ -237,7 +238,7 @@ button:focus[appearance="warning"] {
     box-shadow: #FF8B00 0 0 0 2px;
 }
 
-button[appearance="warning"]:hover {
+button[appearance="warning"]:not([disabled]):hover {
     background: #FFC400;
 }
 
@@ -264,7 +265,7 @@ button:focus[appearance="danger"] {
     box-shadow: #FF8F73 0 0 0 2px;
 }
 
-button[appearance="danger"]:hover {
+button[appearance="danger"]:not([disabled]):hover {
     background: #FF5630;
 }
 
@@ -296,6 +297,10 @@ button[disabled] span.wrapper,
 button[disabled] >>> svg {
     color: rgb(165, 173, 186);
     pointer-events: none;
+}
+
+button[disabled] {
+    cursor: not-allowed;
 }
 
 button[loading][disabled] >>> .spinner {

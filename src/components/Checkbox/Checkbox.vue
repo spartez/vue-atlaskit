@@ -1,6 +1,6 @@
 <template>
     <label class="checkbox-wrapper" :for="id">
-        <input :id="id" v-model="checked" type="checkbox"
+        <input :id="id" v-model="isChecked" type="checkbox"
                :disabled="disabled">
         <CheckboxIcon class="icon"/>
         <span v-if="$slots['default']" class="label"><slot/></span>
@@ -17,14 +17,23 @@
             disabled: {
                 type: Boolean,
                 default: false
+            },
+            value: {
+                type: Boolean,
+                default: false
             }
         },
         data() {
             return { id: undefined, checked: false };
         },
-        watch: {
-            checked(checked) {
-                this.$emit('input', checked);
+        computed: {
+            isChecked: {
+                get() {
+                    return this.value;
+                },
+                set(value) {
+                    this.$emit('input', value);
+                }
             }
         },
         created() {

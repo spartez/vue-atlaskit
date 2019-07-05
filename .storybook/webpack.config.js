@@ -15,11 +15,26 @@ module.exports = async ({ config }) => {
     config.module.rules.push({
         test: /\.svg$/,
         loader: 'vue-svg-loader',
+        exclude: [
+            path.resolve(__dirname, './stories/assets/images/')
+        ],
         options: {
             svgo: {
                 plugins: [{ removeDimensions: true }, { removeViewBox: false }]
             }
         }
+    });
+    config.module.rules.push({
+        test: /\.(png|jpg|gif|svg)$/,
+        include: [
+            path.resolve(__dirname, './stories/assets/images/')
+        ],
+        use: [
+            {
+                loader: 'file-loader',
+                options: {}
+            }
+        ]
     });
     config.resolve = {
         ...resolve, alias: { ...resolve.alias }
