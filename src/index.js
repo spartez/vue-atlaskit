@@ -9,9 +9,10 @@ import Checkbox from './components/Checkbox/Checkbox';
 import Toggle from './components/Toggle/Toggle';
 import Tooltip from './components/Tooltip/Tooltip';
 import Modal from './components/Modal/Modal';
+import DatePicker from './components/Calendar/DatePicker';
 import '@atlaskit/css-reset/dist/bundle.css';
 
 export {
-    Button, Spinner, IconWrapper, FieldGroup, TextArea, Input, TextField, Checkbox, Toggle, Tooltip, Modal
+    Button, Spinner, IconWrapper, FieldGroup, TextArea, Input, TextField, Checkbox, Toggle, Tooltip, Modal, DatePicker
 };
 export * from './components/Icon';

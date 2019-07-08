@@ -2,7 +2,7 @@
     <td class="day">
         <Button appearance="subtle" class="date" :today="day.isToday"
                 :is-not-same-month="day.isNotSameMonth"
-                :is-selected="day.isSelected" @click="onDateSelected">
+                :is-selected="day.isSelected" @click.stop="onDateSelected">
             {{ date }}
         </Button>
     </td>
@@ -57,16 +57,7 @@
     right: 2px;
 }
 
-[today][isSelected]::after {
-    background-color: rgb(37, 56, 88);
-    color: #fff;
-}
-
-[today][isSelected]:hover {
-    color: #172B4D;
-}
-
-[isNotSameMonth]:not([today]) {
+[is-not-same-month]:not([today]) {
     color: #cacaca;
 }
 </style>

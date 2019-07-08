@@ -76,14 +76,9 @@ input :-moz-placeholder {
     background-color: #fafbfc;
 }
 
-.input-wrapper[select]{
+.input-wrapper[select] {
     background-color: #F4F5F7;
     border-color: #F4F5F7;
-}
-
-.input-wrapper[editable]:not([is-focused]) {
-    border: transparent;
-    background-color: inherit;
 }
 
 .input-wrapper[should-fit-container] {
@@ -96,10 +91,12 @@ input :-moz-placeholder {
 }
 
 .input-wrapper:hover {
-     background-color: #ebecf0;
- }
+    background-color: #ebecf0;
+}
 
-.input-wrapper:not([is-focused]):hover {
+.input-wrapper[select]:not([is-focused]):hover {
+    background-color: #ebecf0;
+    border-color: #ebecf0;
     cursor: pointer;
 }
 
@@ -110,5 +107,22 @@ input :-moz-placeholder {
 
 .input-wrapper[is-invalid] {
     border-color: #de350b;
+}
+
+.input-wrapper[is-loading] {
+    background-color: white;
+    animation: loading 1s linear infinite;
+    background-image: linear-gradient(90deg, rgba(9, 30, 66, 0.08) 30%, rgba(9, 30, 66, 0.16) 50%, rgba(9, 30, 66, 0.08) 70%);
+    background-size: 300%;
+    background-position: 0% 0%;
+}
+
+@keyframes loading {
+    0% {
+        background-position: 100% 0%;
+    }
+    100% {
+        background-position: 0% 0%;
+    }
 }
 </style>

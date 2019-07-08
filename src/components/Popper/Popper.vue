@@ -23,6 +23,10 @@
             transitionDelay: {
                 type: Number,
                 default: 0
+            },
+            boundariesElement: {
+                type: String,
+                default: 'scrollParent'
             }
         },
         mounted() {
@@ -41,7 +45,7 @@
                     modifiers: {
                         offset: { offset: this.offset },
                         preventOverflow: {
-                            boundariesElement: 'scrollParent'
+                            boundariesElement: this.boundariesElement
                         },
                         flip: {
                             behavior: this.flipBehavior

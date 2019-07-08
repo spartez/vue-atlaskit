@@ -10,7 +10,7 @@
         components: { DatePicker },
         data() {
             return {
-                date: new Date()
+                date: ''
             };
         }
     };
