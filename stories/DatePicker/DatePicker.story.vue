@@ -1,5 +1,5 @@
 <template>
-    <DatePicker/>
+    <DatePicker v-model="date"/>
 </template>
 
 <script>
@@ -7,6 +7,11 @@
 
     export default {
         name: 'DatePickerStory',
-        components: { DatePicker }
+        components: { DatePicker },
+        data() {
+            return {
+                date: new Date()
+            };
+        }
     };
 </script>

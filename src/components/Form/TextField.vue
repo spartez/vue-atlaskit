@@ -76,6 +76,11 @@ input :-moz-placeholder {
     background-color: #fafbfc;
 }
 
+.input-wrapper[select]{
+    background-color: #F4F5F7;
+    border-color: #F4F5F7;
+}
+
 .input-wrapper[editable]:not([is-focused]) {
     border: transparent;
     background-color: inherit;
@@ -91,7 +96,11 @@ input :-moz-placeholder {
 }
 
 .input-wrapper:hover {
-    background-color: #ebecf0;
+     background-color: #ebecf0;
+ }
+
+.input-wrapper:not([is-focused]):hover {
+    cursor: pointer;
 }
 
 .input-wrapper[is-focused] {
