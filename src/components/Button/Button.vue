@@ -150,12 +150,13 @@ button[appearance="default"] {
     color: #505F79;
 }
 
-button[appearance="default"]:not([disabled]):hover {
+button[appearance="default"]:not([disabled]):not([selected]):hover {
     background: #efeff2;
 }
 
-button[appearance="default"]:active {
-    background: #d2e6ff;
+button[appearance="default"]:not([disabled]):not([selected]):active {
+    /*background: #d2e6ff;*/
+    background-color: rgba(179, 212, 255, 0.6);
     color: #0052CC;
 }
 
@@ -169,11 +170,11 @@ button[appearance="primary"] {
     color: #FFFFFF;
 }
 
-button[appearance="primary"]:not([disabled]):hover {
+button[appearance="primary"]:not([disabled]):not([selected]):hover {
     background: #0065FF;
 }
 
-button[appearance="primary"]:active {
+button[appearance="primary"]:not([disabled]):not([selected]):active {
     background: #0747A6;
 }
 
@@ -187,12 +188,12 @@ button[appearance="link"] {
     color: #0052CC;
 }
 
-button[appearance="link"]:not([disabled]):hover {
+button[appearance="link"]:not([disabled]):not([selected]):hover {
     color: #0065FF;
     text-decoration: underline;
 }
 
-button[appearance="link"]:active {
+button[appearance="link"]:not([disabled]):not([selected]):active {
     text-decoration: none;
     color: #0747A6;
 }
@@ -203,11 +204,11 @@ button[appearance="subtle"] {
     color: #505F79;
 }
 
-button[appearance="subtle"]:not([disabled]):hover {
+button[appearance="subtle"]:not([disabled]):not([selected]):hover {
     background-color: rgba(9, 30, 66, 0.08);
 }
 
-button[appearance="subtle"]:active {
+button[appearance="subtle"]:not([disabled]):not([selected]):active {
     background: rgba(179, 212, 255, 0.6);
     color: #0052CC;
 }
@@ -218,12 +219,12 @@ button[appearance="subtle-link"] {
     color: #6B778C;
 }
 
-button[appearance="subtle-link"]:not([disabled]):hover {
+button[appearance="subtle-link"]:not([disabled]):not([selected]):hover {
     text-decoration: underline;
     color: #8993A4;
 }
 
-button[appearance="subtle-link"]:active {
+button[appearance="subtle-link"]:not([disabled]):not([selected]):active {
     text-decoration: none;
     color: #505F79;
 }
@@ -238,11 +239,11 @@ button:focus[appearance="warning"] {
     box-shadow: #FF8B00 0 0 0 2px;
 }
 
-button[appearance="warning"]:not([disabled]):hover {
+button[appearance="warning"]:not([disabled]):not([selected]):hover {
     background: #FFC400;
 }
 
-button[appearance="warning"]:active,
+button[appearance="warning"]:not([disabled]):not([selected]):active,
 button[appearance="warning"][selected],
 button[appearance="warning"][selected]:hover {
     background: #FF991F;
@@ -265,11 +266,11 @@ button:focus[appearance="danger"] {
     box-shadow: #FF8F73 0 0 0 2px;
 }
 
-button[appearance="danger"]:not([disabled]):hover {
+button[appearance="danger"]:not([disabled]):not([selected]):hover {
     background: #FF5630;
 }
 
-button[appearance="danger"]:active,
+button[appearance="danger"]:not([disabled]):not([selected]):active,
 button[appearance="danger"][selected],
 button[appearance="danger"][selected]:hover {
     background: #BF2600;

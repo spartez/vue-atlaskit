@@ -1,6 +1,5 @@
 import '@atlaskit/css-reset/dist/bundle.css';
 import './style.css';
-import '../dist/bundle.css';
 
 import { storiesOf, configure } from '@storybook/vue';
 import { withInfo } from 'storybook-addon-vue-info';
