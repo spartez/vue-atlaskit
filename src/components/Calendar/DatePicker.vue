@@ -4,10 +4,9 @@
                    :is-invalid="isInvalid" select>
             <input ref="input" :value="formattedDate" type="text"
                    width="50%" placeholder="e.g. 31/12/2018" v-on="listeners"
-                   @input="onInput"
-                   @focus="onFocus" @blur="onBlur" @keydown.enter="onEnter"
-                   @keyup.esc="onEsc">
-            <CalendarIcon/>
+                   @input="onInput" @click="onCLick" @keyup.esc="onEsc"
+                   @focus="onFocus" @blur="onBlur" @keydown.enter="onEnter">
+            <CalendarIcon class="icon" size="small"/>
         </TextField>
         <Popper v-if="isOpen" :target-element="$refs['date-picker']" placement="bottom-start">
             <Calendar :value="selectedDate" @date-selected="onDateSelected"/>
@@ -77,7 +76,7 @@
             },
             listeners() {
                 const {
-                    focus, blur, input, keyup, ...listeners
+                    focus, blur, input, ...listeners
                 } = this.$listeners;
                 return listeners;
             }
@@ -101,13 +100,15 @@
                     this.selectedDate = date;
                 }
             },
-            onEnter(e) {
-                this.$emit('confirm', e);
+            onCLick() {
+                this.isOpen = true;
             },
-            onEsc(e) {
+            onEsc() {
                 this.focused = false;
                 this.isOpen = false;
-                this.$emit('blur', e);
+            },
+            onEnter(e) {
+                this.$emit('confirm', e);
             },
             onFocus(e) {
                 if (!this.$refs['date-picker'].contains(e.relatedTarget)) {
@@ -133,3 +134,8 @@
         }
     };
 </script>
+<style scoped>
+    .icon {
+        padding-right: 8px;
+    }
+</style>
