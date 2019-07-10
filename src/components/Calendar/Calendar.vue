@@ -42,12 +42,12 @@
             CalendarHeader, Weeks, Months, Years
         },
         props: {
-            value: { type: Date, default: undefined }
+            value: { type: Date, default: () => undefined }
         },
         data() {
             return {
                 today: TODAY,
-                currentDate: TODAY,
+                currentDate: this.value || TODAY,
                 selectedDate: this.value,
                 currentInterval: 'days'
             };
@@ -86,7 +86,7 @@
         watch: {
             value(date) {
                 this.selectedDate = date;
-                this.currentDate = date;
+                this.currentDate = date || TODAY;
             }
         },
         methods: {

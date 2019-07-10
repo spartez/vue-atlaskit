@@ -95,7 +95,9 @@
         methods: {
             onInput(e) {
                 const date = parse(e.target.value, 'dd/MM/y', new Date()).getTime();
-                if (!Number.isNaN(date)) {
+                if (e.target.value.length === 0) {
+                    this.selectedDate = undefined;
+                } else if (!Number.isNaN(date)) {
                     this.selectedDate = date;
                 }
             },
