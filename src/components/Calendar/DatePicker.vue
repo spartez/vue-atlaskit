@@ -3,9 +3,10 @@
         <TextField :is-focused="focused" :is-loading="isLoading" :disabled="isLoading"
                    :is-invalid="isInvalid" select>
             <input ref="input" :value="formattedDate" type="text"
-                   width="50%" placeholder="e.g. 31/12/2018" v-on="listeners"
+                   width="50%" placeholder="e.g. 31/12/2018" :disabled="isLoading"
+                   v-on="listeners" @keydown.enter="onEnter"
                    @input="onInput" @click="onCLick" @keyup.esc="onEsc"
-                   @focus="onFocus" @blur="onBlur" @keydown.enter="onEnter">
+                   @focus="onFocus" @blur="onBlur">
             <CalendarIcon class="icon" size="small"/>
         </TextField>
         <Popper v-if="isOpen" :target-element="$refs['date-picker']" placement="bottom-start">
@@ -104,11 +105,10 @@
                 this.isOpen = true;
             },
             onEsc() {
-                this.focused = false;
                 this.isOpen = false;
             },
-            onEnter(e) {
-                this.$emit('confirm', e);
+            onEnter() {
+                this.$refs.input.blur();
             },
             onFocus(e) {
                 if (!this.$refs['date-picker'].contains(e.relatedTarget)) {

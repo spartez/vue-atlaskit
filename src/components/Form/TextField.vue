@@ -76,7 +76,7 @@ input :-moz-placeholder {
     background-color: #fafbfc;
 }
 
-.input-wrapper[select] {
+.input-wrapper[select]:not([is-loading]) {
     background-color: #F4F5F7;
     border-color: #F4F5F7;
 }
@@ -94,13 +94,13 @@ input :-moz-placeholder {
     background-color: #ebecf0;
 }
 
-.input-wrapper[select]:not([is-focused]):hover {
+.input-wrapper[select]:not([is-focused]):not([disabled]):hover {
     background-color: #ebecf0;
     border-color: #ebecf0;
     cursor: pointer;
 }
 
-.input-wrapper[is-focused] {
+.input-wrapper[is-focused]:not([is-loading]):not([disabled]) {
     background-color: #ffffff;
     border-color: #4c9aff;
 }
