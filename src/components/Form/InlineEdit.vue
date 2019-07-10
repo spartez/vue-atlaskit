@@ -30,8 +30,7 @@
                 <slot/>
             </InlineEditViewContent>
         </div>
-        <Popper v-if="isEditing" :target-element="$refs['text-field']" placement="bottom-end"
-                boundaries-element="viewport">
+        <Popper v-if="isEditing" :target-element="$refs['text-field']" placement="bottom-end">
             <InlineEditButtons @confirm="confirmEditedValue" @cancel="cancelInlineEdit"
                                @blur="onBlur"/>
         </Popper>

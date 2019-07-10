@@ -3,7 +3,7 @@
         <InlineEdit field="field" :value="date" type="text"
                     class="date-edit"
                     @save-requested="onSaveRequested">
-            <DatePicker slot="editor" slot-scope="{ ...props }"
+            <DatePicker slot="editor" slot-scope="props"
                         :value="props.value"
                         :is-focused="props.isFocused"
                         :is-invalid="props.isInvalid"

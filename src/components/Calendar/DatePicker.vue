@@ -5,7 +5,8 @@
             <input ref="input" :value="formattedDate" type="text"
                    width="50%" placeholder="e.g. 31/12/2018" v-on="listeners"
                    @input="onInput"
-                   @focus="onFocus" @blur="onBlur" @keydown.enter="onEnter">
+                   @focus="onFocus" @blur="onBlur" @keydown.enter="onEnter"
+                   @keyup.esc="onEsc">
             <CalendarIcon/>
         </TextField>
         <Popper v-if="isOpen" :target-element="$refs['date-picker']" placement="bottom-start">
@@ -31,8 +32,8 @@
         },
         props: {
             value: {
-                type: Number,
-                required: true
+                type: [Number, String],
+                default: undefined
             },
             isFocused: {
                 type: Boolean,
@@ -55,7 +56,7 @@
         },
         computed: {
             isValid() {
-                return isValid(this.value);
+                return this.value && isValid(this.value);
             },
             selectedDate: {
                 get() {
@@ -100,6 +101,11 @@
             },
             onEnter(e) {
                 this.$emit('confirm', e);
+            },
+            onEsc(e) {
+                this.focused = false;
+                this.isOpen = false;
+                this.$emit('blur', e);
             },
             onFocus(e) {
                 if (!this.$refs['date-picker'].contains(e.relatedTarget)) {
