@@ -100,12 +100,12 @@ input :-moz-placeholder {
     cursor: pointer;
 }
 
-.input-wrapper[is-focused]:not([is-loading]):not([disabled]) {
+.input-wrapper[is-focused]:not([disabled]):not([is-loading]) {
     background-color: #ffffff;
     border-color: #4c9aff;
 }
 
-.input-wrapper[is-invalid] {
+.input-wrapper[is-invalid]:not([disabled]):not([is-loading]) {
     border-color: #de350b;
 }
 

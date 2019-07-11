@@ -2,7 +2,7 @@
     <label ref="checkbox" class="checkbox-wrapper" :for="id"
            tabindex="-1">
         <input :id="id" ref="input" v-model="isChecked"
-               type="checkbox"
+               type="checkbox" :is-invalid="isInvalid"
                :disabled="disabled" @focus="onFocus"
                @blur="onBlur">
         <CheckboxIcon class="icon"/>
@@ -28,6 +28,10 @@
             isFocused: {
                 type: Boolean,
                 default: false
+            },
+            isInvalid: {
+                type: Boolean,
+                default: true
             }
         },
         data() {
@@ -93,38 +97,42 @@ input[type="checkbox"] {
     padding: 2px 4px;
 }
 
->>> input:checked + .icon rect {
+input:checked + .icon >>> rect {
     color: #0052cc;
     stroke: #0052cc;
 }
 
->>> input + .icon rect {
+input + .icon >>> rect {
     color: #fafbfc;
     stroke: #dfe1e6;
 }
 
->>> input:not(:checked) + .icon:hover rect {
+label:hover input:not(:checked) + .icon >>> rect {
     fill: #EBECF0;
 }
 
->>> input:not(:checked) + .icon:hover path {
+label:hover input:not(:checked) + .icon >>> path {
     fill: #EBECF0;
 }
 
->>> input:checked + .icon:hover rect {
+label:hover input:checked + .icon >>> rect {
     color: #0065ff;
     stroke: #0065ff;
 }
 
->>> input + .icon path {
+input + .icon >>> path {
     fill: #fafbfc;
 }
 
->>> input:focus + .icon rect {
+input:not([is-invalid]):focus + .icon >>> rect {
     stroke: #4c9aff;
 }
 
->>> input[disabled] + .icon rect {
+input[is-invalid] + .icon >>> rect {
+    stroke: #FF5630;
+}
+
+input[disabled] + .icon >>> rect {
     opacity: .5;
 }
 
