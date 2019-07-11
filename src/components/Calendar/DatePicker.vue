@@ -107,8 +107,8 @@
             onEsc() {
                 this.isOpen = false;
             },
-            onEnter() {
-                this.$refs.input.blur();
+            onEnter(e) {
+                this.$emit('confirm', e);
             },
             onFocus(e) {
                 if (!this.$refs['date-picker'].contains(e.relatedTarget)) {
