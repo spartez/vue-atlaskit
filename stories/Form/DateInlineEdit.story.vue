@@ -8,14 +8,15 @@
                         :is-focused="props.isFocused"
                         :is-invalid="props.isInvalid"
                         :is-loading="props.isLoading"
+                        @confirm="props.confirm"
                         @input="props.input"
                         @blur="props.blur"
-                        @confirm="props.confirm"
                         @keyup.esc="props.cancel"/>
             <span>{{ formattedValue }}</span>
         </InlineEdit>
     </div>
 </template>
+
 
 <script>
     import InlineEdit from '@/components/Form/InlineEdit';
@@ -24,7 +25,7 @@
     import format from 'date-fns/format';
 
     export default {
-        name: 'InlineEditStory',
+        name: 'DateInlineEdit',
         components: { InlineEdit, DatePicker },
         data() {
             return {

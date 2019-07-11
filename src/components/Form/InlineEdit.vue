@@ -30,7 +30,7 @@
                 <slot/>
             </InlineEditViewContent>
         </div>
-        <Popper v-if="isEditing" :target-element="$refs['text-field']" placement="bottom-end">
+        <Popper v-if="isEditing && !isLoading" :target-element="$refs['container']" placement="bottom-end">
             <InlineEditButtons @confirm="confirmEditedValue" @cancel="cancelInlineEdit"
                                @blur="onBlur"/>
         </Popper>
@@ -72,7 +72,7 @@
         },
         props: {
             value: {
-                type: [Number, String, Date],
+                type: [Number, String, Date, Boolean],
                 default: undefined
             },
             type: {
@@ -127,9 +127,9 @@
             },
             onBlur(event) {
                 const focusWithinComponent = this.$refs.container.contains(event.relatedTarget);
-                if (!this.isEditing) return;
+                if (!this.isEditing || this.isLoading) return;
                 if (!focusWithinComponent) {
-                    this.$nextTick(() => this.confirmEditedValue());
+                    this.$nextTick(() => this.cancelInlineEdit());
                 }
                 this.isFocused = false;
             },

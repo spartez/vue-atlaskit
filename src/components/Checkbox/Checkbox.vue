@@ -1,7 +1,10 @@
 <template>
-    <label class="checkbox-wrapper" :for="id">
-        <input :id="id" v-model="isChecked" type="checkbox"
-               :disabled="disabled">
+    <label ref="checkbox" class="checkbox-wrapper" :for="id"
+           tabindex="-1">
+        <input :id="id" ref="input" v-model="isChecked"
+               type="checkbox"
+               :disabled="disabled" @focus="onFocus"
+               @blur="onBlur">
         <CheckboxIcon class="icon"/>
         <span v-if="$slots['default']" class="label"><slot/></span>
     </label>
@@ -21,10 +24,14 @@
             value: {
                 type: Boolean,
                 default: false
+            },
+            isFocused: {
+                type: Boolean,
+                default: false
             }
         },
         data() {
-            return { id: undefined, checked: false };
+            return { id: undefined };
         },
         computed: {
             isChecked: {
@@ -36,9 +43,29 @@
                 }
             }
         },
+        watch: {
+            isFocused: {
+                handler(isFocused) {
+                    if (isFocused) {
+                        this.$nextTick(() => this.$refs.input.focus());
+                    }
+                },
+                immediate: true
+            }
+        },
         created() {
             // eslint-disable-next-line
             this.id = this._uuid;
+        },
+        methods: {
+            onBlur(e) {
+                if (!this.$refs.checkbox.contains(e.relatedTarget)) {
+                    this.$emit('blur', e);
+                }
+            },
+            onFocus(e) {
+                this.$emit('focus', e);
+            }
         }
     };
 </script>
@@ -59,6 +86,7 @@ input[type="checkbox"] {
     display: inline-flex;
     position: relative;
     cursor: pointer;
+    outline: none;
 }
 
 .label {
