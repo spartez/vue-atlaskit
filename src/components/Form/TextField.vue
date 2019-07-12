@@ -20,8 +20,8 @@ input {
     font-size: inherit;
     outline: none;
     line-height: inherit;
-    padding: 6px;
     width: 100%;
+    padding: 0;
     letter-spacing: inherit;
     box-sizing: border-box;
     margin: 0;
@@ -65,9 +65,11 @@ input :-moz-placeholder {
     border: solid 2px #dfe1e6;
     border-radius: 3px;
     box-sizing: border-box;
+    padding: 6px;
     color: #091E42;
     display: flex;
     flex: 1 0 auto;
+    position: relative;
     justify-content: space-between;
     max-width: 100%;
     overflow: hidden;
@@ -79,6 +81,11 @@ input :-moz-placeholder {
 .input-wrapper[select]:not([is-loading]) {
     background-color: #F4F5F7;
     border-color: #F4F5F7;
+}
+
+.input-wrapper[editable]:not([is-focused]) {
+    border: transparent;
+    background-color: inherit;
 }
 
 .input-wrapper[should-fit-container] {

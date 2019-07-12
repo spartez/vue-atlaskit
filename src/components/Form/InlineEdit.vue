@@ -30,7 +30,8 @@
                 <slot/>
             </InlineEditViewContent>
         </div>
-        <Popper v-if="isEditing && !isLoading" :target-element="$refs['container']" placement="bottom-end">
+        <Popper v-if="isEditing && !isLoading" ref="buttons" :target-element="$refs['container']"
+                placement="bottom-end">
             <InlineEditButtons @confirm="confirmEditedValue" @cancel="cancelInlineEdit"
                                @blur="onBlur"/>
         </Popper>
@@ -72,7 +73,7 @@
         },
         props: {
             value: {
-                type: [Number, String, Date, Boolean],
+                type: [Number, String, Date, Boolean, Object, Array],
                 default: undefined
             },
             type: {
@@ -116,6 +117,11 @@
             },
             editingValue() {
                 this.isDirty = true;
+                this.$nextTick(() => {
+                    if (this.$refs.buttons) {
+                        this.$refs.buttons.update();
+                    }
+                });
             },
             value() {
                 this.editingValue = this.value;

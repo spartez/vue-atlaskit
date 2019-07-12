@@ -25,7 +25,7 @@
                 default: 0
             },
             boundariesElement: {
-                type: String,
+                type: [String, HTMLElement],
                 default: 'scrollParent'
             }
         },
@@ -52,6 +52,9 @@
                         }
                     }
                 });
+            },
+            update() {
+                this.popper.update();
             }
         },
         render() {
