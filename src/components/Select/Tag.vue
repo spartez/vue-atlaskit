@@ -39,13 +39,13 @@
     color: rgb(66, 82, 110);
     max-width: 100%;
     border-radius: 2px;
-    margin: 0 2px;
+    margin: 1px 2px;
     cursor: pointer;
 }
 
 .label {
     color: rgb(51, 51, 51);
-    font-size: 85%;
+    font-size: 10px;
     text-overflow: ellipsis;
     white-space: nowrap;
     box-sizing: border-box;
@@ -56,7 +56,7 @@
 
 .remove-tag {
     display: flex;
-    height: 20px;
+    height: 18px;
     align-items: center;
     padding-left: 2px;
     padding-right: 2px;
