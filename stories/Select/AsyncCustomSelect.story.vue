@@ -9,11 +9,11 @@
                     placeholder="Type to search..."
                     @search-change="onGetSuggestions">
                 <div slot="option" slot-scope="{option}" class="label">
-                    <img height="20" :src="option.avatar" alt="">
+                    <img height="24" :src="option.avatar" alt="">
                     <span>{{ option.name }}</span>
                 </div>
                 <div slot="selected" slot-scope="{selected}" class="label">
-                    <img class="avatar" height="20" :src="selected.avatar"
+                    <img class="avatar" height="24" :src="selected.avatar"
                          alt="">
                     <span>{{ selected.name }}</span>
                 </div>

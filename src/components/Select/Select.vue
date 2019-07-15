@@ -32,10 +32,11 @@
                 <Caret size="xsmall" @click.native="onFocus"/>
             </div>
         </TextField>
-        <Popper v-if="isOpen && options.length" offset="0,0" :target-element="$refs.target"
+        <Popper v-if="isOpen" offset="0,0" :target-element="$refs.target"
                 placement="bottom-start">
             <SelectMenu :selected="selected" :options="suggestions"
                         :current-suggestion-index="currentSuggestionIndex"
+                        :is-fetching="isFetching"
                         :has-suggestions="hasSuggestions"
                         @mouseover="onMouseOverSuggestion"
                         @option-selected="onOptionSelected">

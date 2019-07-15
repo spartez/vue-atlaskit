@@ -11,7 +11,7 @@
                       :option="option"/>
             </SelectOption>
             <div v-if="!hasSuggestions" class="no-options">
-                No options
+                {{ isFetching ? 'Loading...' : 'No options' }}
             </div>
         </div>
     </div>
@@ -37,6 +37,10 @@
                 default: undefined
             },
             hasSuggestions: {
+                type: Boolean,
+                default: false
+            },
+            isFetching: {
                 type: Boolean,
                 default: false
             }
