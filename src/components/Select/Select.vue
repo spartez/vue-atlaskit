@@ -1,8 +1,8 @@
 <template>
     <div ref="target" class="multi-select">
         <TextField :is-focused="focused" :is-invalid="isInvalid" :is-loading="isLoading"
-                   class="text-field"
-                   select @click="onFocus">
+                   class="text-field" select @mousedown.prevent
+                   @click="onClick">
             <template v-if="multi">
                 <Tag v-for="tag in selected" :key="tag.id" :tag="tag"
                      @on-remove="onRemove"/>
@@ -12,7 +12,6 @@
                    @keydown.down.prevent="onNextSuggestion"
                    @keydown.up.prevent="onPreviousSuggestion"
                    @keydown.enter.prevent="onSuggestionSelected"
-                   @click="onClick"
                    @input="onInput"
                    @focus="onFocus"
                    @blur="onBlur"
@@ -171,6 +170,9 @@
             isOpen(open) {
                 if (!open) {
                     this.currentSuggestionIndex = undefined;
+                    this.$emit('close');
+                } else {
+                    this.$emit('open');
                 }
             }
         },
@@ -183,14 +185,14 @@
                 this.$emit('focus', e);
             },
 
-            onClick() {
-                this.isOpen = true;
-            },
-
             onBlur(e) {
                 this.search = '';
                 this.closeOptions();
                 this.$emit('blur', e);
+            },
+
+            onClick() {
+                this.$refs.input.focus();
             },
 
             onEsc() {
