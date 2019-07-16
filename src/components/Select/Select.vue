@@ -2,33 +2,30 @@
     <div ref="target" class="multi-select">
         <TextField :is-focused="focused" :is-invalid="isInvalid" :is-loading="isLoading"
                    class="text-field" select @mousedown.prevent="onMouseDown">
-            <template v-if="multi">
-                <Tag v-for="(tag,i) in selected" :key="`${tag.id}-${i}`" :tag="tag"
-                     @on-remove="onRemove"/>
-            </template>
-            <input ref="input" class="search" :value="search"
-                   :disabled="isLoading" :style="{width: currentWidth}"
-                   @keydown.down.prevent="onNextSuggestion"
-                   @keydown.up.prevent="onPreviousSuggestion"
-                   @keydown.enter.prevent="onSuggestionSelected"
-                   @input="onInput"
-                   @focus="onFocus"
-                   @blur="onBlur"
-                   @keyup.esc="onEsc"
-                   @keydown.delete="removeOption">
+            <div class="flex-wrapper" :gap="multi && !!selected.length">
+                <template v-if="multi">
+                    <Tag v-for="(tag,i) in selected" :key="`${tag.id}-${i}`" :tag="tag"
+                         @on-remove="onRemove"/>
+                </template>
+                <input ref="input" class="search" :value="search"
+                       :disabled="isLoading" :style="{width: currentWidth}"
+                       @keydown.down.prevent="onNextSuggestion"
+                       @keydown.up.prevent="onPreviousSuggestion"
+                       @keydown.enter.prevent="onSuggestionSelected"
+                       @input="onInput"
+                       @focus="onFocus"
+                       @blur="onBlur"
+                       @keyup.esc="onEsc"
+                       @keydown.delete="removeOption">
+            </div>
             <div v-if="!multi && !selected.length" class="text">
                 <slot v-if="!search && selected.value && $scopedSlots['selected']" name="selected" :selected="selected.value"/>
                 <span v-else :placeholder="!search && !selected.label">
                     {{ input }}
                 </span>
             </div>
-            <div class="icons">
-                <Spinner v-if="isFetching" size="icon"/>
-                <Clear v-if="multi && selected.length" size="xsmall" class="clear-icon"
-                       primary-color="#A5ADBA"
-                       @click.native="onClear"/>
-                <Caret size="xsmall" @click.native="onFocus"/>
-            </div>
+            <Icons :multi="multi" :is-selected="!!selected.length" :is-fetching="isFetching"
+                   @clear="onClear"/>
         </TextField>
         <Popper v-if="isOpen" offset="0,0" :target-element="$refs.target"
                 placement="bottom-start">
@@ -52,15 +49,13 @@
     import SelectMenu from './SelectMenu';
     import Popper from '../Popper/Popper';
     import Tag from './Tag';
-    import Spinner from '../Spinner/Spinner';
-    import Caret from '../Icon/HipchatChevronDownIcon';
-    import Clear from '../Icon/EditorErrorIcon';
+    import Icons from './Icons';
 
     const INPUT_WIDTH = '5px';
 
     export default {
         components: {
-            TextField, Popper, SelectMenu, Tag, Spinner, Caret, Clear
+            TextField, Popper, SelectMenu, Tag, Icons
         },
         props: {
             value: {
@@ -275,7 +270,8 @@
                 if (!this.isOpen) {
                     this.$emit('confirm', e);
                     return;
-                } if (!this.hasSuggestions || this.currentSuggestionIndex === undefined) {
+                }
+                if (!this.hasSuggestions || this.currentSuggestionIndex === undefined) {
                     return;
                 }
 
@@ -309,18 +305,24 @@
         left: 6px;
     }
 
-    .clear-icon:hover {
-        cursor: pointer;
-    }
-
     .text-field {
         padding-right: 55px;
         flex-wrap: wrap;
         justify-content: normal;
     }
 
+    .flex-wrapper {
+        display: inline-flex;
+        max-width: 100%;
+        flex-wrap: wrap;
+    }
+
+    .flex-wrapper[gap] {
+        margin-top: -4px;
+    }
+
     .text [placeholder] {
-        color: rgb(122, 134, 154);;
+        color: rgb(122, 134, 154);
     }
 
     .search {
@@ -329,9 +331,8 @@
         z-index: 3;
     }
 
-    .icons {
-        display: inline-flex;
-        position: absolute;
-        right: 6px;
+    [gap] .search {
+        margin-top: 4px;
     }
+
 </style>

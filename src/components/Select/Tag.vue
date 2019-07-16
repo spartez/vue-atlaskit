@@ -41,6 +41,7 @@
     border-radius: 2px;
     margin: 0px 2px;
     cursor: pointer;
+    margin-top: 4px;
 }
 
 .label {
