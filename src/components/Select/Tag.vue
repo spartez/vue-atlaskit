@@ -3,7 +3,7 @@
         <div class="label">
             {{ tag.label }}
         </div>
-        <div class="remove-tag" @mousedown.prevent @click="onRemove">
+        <div class="remove-tag" @mousedown.prevent.stop @click="onRemove">
             <EditorCloseIcon primary-color="#000" size="xsmall"/>
         </div>
     </div>

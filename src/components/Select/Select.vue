@@ -1,10 +1,9 @@
 <template>
     <div ref="target" class="multi-select">
         <TextField :is-focused="focused" :is-invalid="isInvalid" :is-loading="isLoading"
-                   class="text-field" select @mousedown.prevent
-                   @click="onClick">
+                   class="text-field" select @mousedown.prevent="onMouseDown">
             <template v-if="multi">
-                <Tag v-for="tag in selected" :key="tag.id" :tag="tag"
+                <Tag v-for="(tag,i) in selected" :key="`${tag.id}-${i}`" :tag="tag"
                      @on-remove="onRemove"/>
             </template>
             <input ref="input" class="search" :value="search"
@@ -19,9 +18,9 @@
                    @keydown.delete="removeOption">
             <div v-if="!multi && !selected.length" class="text">
                 <slot v-if="!search && selected.value && $scopedSlots['selected']" name="selected" :selected="selected.value"/>
-                <template v-else>
+                <span v-else :placeholder="!search && !selected.label">
                     {{ input }}
-                </template>
+                </span>
             </div>
             <div class="icons">
                 <Spinner v-if="isFetching" size="icon"/>
@@ -191,7 +190,8 @@
                 this.$emit('blur', e);
             },
 
-            onClick() {
+            onMouseDown() {
+                this.isOpen = !this.isOpen;
                 this.$refs.input.focus();
             },
 
@@ -231,7 +231,6 @@
                 const selected = this.selected
                     .filter(option => option.id !== id)
                     .map(option => option.value);
-                this.isOpen = false;
                 this.$emit('input', selected);
             },
 
@@ -272,8 +271,11 @@
                 this.currentSuggestionIndex = id;
             },
 
-            onSuggestionSelected() {
-                if (!this.hasSuggestions || !this.isOpen || this.currentSuggestionIndex === undefined) {
+            onSuggestionSelected(e) {
+                if (!this.isOpen) {
+                    this.$emit('confirm', e);
+                    return;
+                } if (!this.hasSuggestions || this.currentSuggestionIndex === undefined) {
                     return;
                 }
 
@@ -315,6 +317,10 @@
         padding-right: 55px;
         flex-wrap: wrap;
         justify-content: normal;
+    }
+
+    .text [placeholder] {
+        color: rgb(122, 134, 154);;
     }
 
     .search {

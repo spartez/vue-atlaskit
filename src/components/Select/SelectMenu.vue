@@ -2,7 +2,7 @@
     <div ref="menu" class="select-menu" tabindex="-1"
          @mousedown.prevent>
         <div class="select-menu-inner">
-            <SelectOption v-for="(option,index) in options" :key="option.id" :selected-id="selectedId"
+            <SelectOption v-for="(option,index) in options" :key="`${option.id}-${index}`" :selected-id="selectedId"
                           :option="option" :index="index"
                           :current-suggestion-index="currentSuggestionIndex"
                           @mouseover="onMouseOver"
