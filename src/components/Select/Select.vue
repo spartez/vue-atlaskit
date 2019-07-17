@@ -1,5 +1,5 @@
 <template>
-    <div ref="target" class="multi-select">
+    <div ref="target">
         <TextField :is-focused="focused" :is-invalid="isInvalid" :is-loading="isLoading"
                    class="text-field" select @mousedown.prevent="onMouseDown">
             <div class="flex-wrapper" :gap="multi && !!selected.length">
@@ -34,6 +34,7 @@
                         :current-suggestion-index="currentSuggestionIndex"
                         :is-fetching="isFetching"
                         :contains-query="!!search"
+                        :style="{width: selectWidth}"
                         :has-suggestions="hasSuggestions"
                         @mouseover="onMouseOverSuggestion"
                         @option-selected="onOptionSelected">
@@ -112,7 +113,8 @@
                 focused: false,
                 currentSuggestionIndex: undefined,
                 currentWidth: INPUT_WIDTH,
-                isDirty: false
+                isDirty: false,
+                selectWidth: 'auto'
             };
         },
         computed: {
@@ -170,6 +172,8 @@
                     this.currentSuggestionIndex = undefined;
                     this.$emit('close');
                 } else {
+                    const { width } = this.$refs.target.getBoundingClientRect();
+                    this.selectWidth = `${width}px`;
                     this.$emit('open');
                 }
             },
@@ -313,10 +317,6 @@
     };
 </script>
 <style scoped>
-    .multi-select {
-        position: relative;
-    }
-
     .text {
         cursor: text;
         position: absolute;
