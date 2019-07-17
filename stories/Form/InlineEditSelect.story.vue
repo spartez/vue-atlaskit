@@ -42,7 +42,7 @@
         methods: {
             onSaveRequested(value, callback) {
                 this.selected = value;
-                setTimeout(() => callback(), 3000);
+                setTimeout(() => callback({ message: 'error' }), 1000);
             }
         }
     };

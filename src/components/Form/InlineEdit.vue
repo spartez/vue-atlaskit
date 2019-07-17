@@ -53,7 +53,6 @@
 </template>
 
 <script>
-    import anime from 'animejs';
     import TextField from './TextField';
     import InlineEditButtons from './InlineEditButtons';
     import InlineEditViewContent from './InlineEditViewContent';
@@ -172,7 +171,6 @@
                 this.isLoading = false;
                 this.isFocused = false;
                 this.error = error;
-                this.shake();
                 this.$nextTick(() => {
                     this.isFocused = true;
                     if (this.$refs.input) {
@@ -189,6 +187,7 @@
                 if (!this.isLoading) {
                     this.isLoading = true;
                     if (this.isDirty) {
+                        this.error = undefined;
                         this.$emit('save-requested', this.editingValue, this.saveInlineEdit);
                     } else if (this.error) {
                         this.onValidateError(this.error);
@@ -198,21 +197,6 @@
             beforeTextFieldMount() {
                 const styles = getComputedStyle(this.$refs.value.$el);
                 this.$refs['text-field'].style['min-width'] = styles.getPropertyValue('width');
-            },
-            shake() {
-                anime({
-                    targets: this.$refs['text-field'],
-                    easing: 'linear',
-                    translateX: [
-                        { value: -10, duration: 40 },
-                        { value: 10, duration: 85 },
-                        { value: -10, duration: 80 },
-                        { value: 10, duration: 85 },
-                        { value: -5, duration: 85 },
-                        { value: 5, duration: 85 },
-                        { value: 0, duration: 40 }
-                    ]
-                });
             }
         }
     };

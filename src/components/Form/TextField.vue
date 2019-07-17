@@ -114,6 +114,7 @@ input :-moz-placeholder {
 
 .input-wrapper[is-invalid]:not([disabled]):not([is-loading]) {
     border-color: #de350b;
+    animation: shake .5s linear;
 }
 
 .input-wrapper[is-loading] {
@@ -130,6 +131,24 @@ input :-moz-placeholder {
     }
     100% {
         background-position: 0% 0%;
+    }
+}
+
+@keyframes shake {
+    8%, 41% {
+        transform: translateX(-10px);
+    }
+    25%, 58% {
+        transform: translateX(10px);
+    }
+    75% {
+        transform: translateX(-5px);
+    }
+    92% {
+        transform: translateX(5px);
+    }
+    0%, 100% {
+        transform: translateX(0);
     }
 }
 </style>
