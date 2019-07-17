@@ -27,7 +27,8 @@
             <Icons :multi="multi" :is-selected="!!selected.length" :is-fetching="isFetching"
                    @clear="onClear"/>
         </TextField>
-        <Popper v-if="isOpen" offset="0,0" :target-element="$refs.target"
+        <Popper v-if="isOpen" ref="menu" offset="0,0"
+                :target-element="$refs.target"
                 placement="bottom-start">
             <SelectMenu :selected="selected" :options="suggestions"
                         :current-suggestion-index="currentSuggestionIndex"
@@ -219,6 +220,7 @@
                 this.search = target.value;
                 this.isOpen = true;
                 this.resize();
+                this.updatePopperPosition();
             },
 
             onRemove(id) {
@@ -226,7 +228,9 @@
                 const selected = this.selected
                     .filter(option => option.id !== id)
                     .map(option => option.value);
+                this.updatePopperPosition();
                 this.$emit('input', selected);
+                this.$nextTick(() => this.updatePopperPosition());
             },
 
             removeOption() {
@@ -289,6 +293,12 @@
                         this.currentWidth = `${this.$refs.input.scrollWidth}px`;
                     }
                 });
+            },
+
+            updatePopperPosition() {
+                if (this.$refs.menu) {
+                    this.$refs.menu.update();
+                }
             }
         }
     };
