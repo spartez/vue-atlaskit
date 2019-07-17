@@ -27,12 +27,13 @@
             <Icons :multi="multi" :is-selected="!!selected.length" :is-fetching="isFetching"
                    @clear="onClear"/>
         </TextField>
-        <Popper v-if="isOpen" ref="menu" offset="0,0"
+        <Popper v-if="isOpen && !isDirty" ref="menu" offset="0,0"
                 :target-element="$refs.target"
                 placement="bottom-start">
             <SelectMenu :selected="selected" :options="suggestions"
                         :current-suggestion-index="currentSuggestionIndex"
                         :is-fetching="isFetching"
+                        :contains-query="!!search"
                         :has-suggestions="hasSuggestions"
                         @mouseover="onMouseOverSuggestion"
                         @option-selected="onOptionSelected">
@@ -110,7 +111,8 @@
                 search: '',
                 focused: false,
                 currentSuggestionIndex: undefined,
-                currentWidth: INPUT_WIDTH
+                currentWidth: INPUT_WIDTH,
+                isDirty: false
             };
         },
         computed: {
@@ -159,6 +161,7 @@
 
             search() {
                 if (!this.search) this.currentWidth = INPUT_WIDTH;
+                if (this.async) this.isDirty = true;
                 this.$emit('search-change', this.search);
             },
 
@@ -168,6 +171,12 @@
                     this.$emit('close');
                 } else {
                     this.$emit('open');
+                }
+            },
+
+            isFetching(isFetching) {
+                if (!isFetching) {
+                    this.isDirty = false;
                 }
             }
         },

@@ -11,7 +11,7 @@
                       :option="option"/>
             </SelectOption>
             <div v-if="!hasSuggestions" class="no-options">
-                {{ isFetching ? 'Loading...' : 'No options' }}
+                {{ !containsQuery ? 'Type to search...' : 'No options' }}
             </div>
         </div>
     </div>
@@ -40,7 +40,7 @@
                 type: Boolean,
                 default: false
             },
-            isFetching: {
+            containsQuery: {
                 type: Boolean,
                 default: false
             }
@@ -86,5 +86,4 @@
     padding: 6px 12px;
     text-align: center;
 }
-
 </style>
