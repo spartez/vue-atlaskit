@@ -33,6 +33,7 @@
             <SelectMenu :selected="selected" :options="suggestions"
                         :current-suggestion-index="currentSuggestionIndex"
                         :is-fetching="isFetching"
+                        :async="async"
                         :contains-query="!!search"
                         :style="{width: selectWidth}"
                         :has-suggestions="hasSuggestions"
@@ -258,6 +259,10 @@
 
             onNextSuggestion() {
                 if (!this.isOpen) this.isOpen = true;
+                if (!this.hasSuggestions) {
+                    this.currentSuggestionIndex = undefined;
+                    return;
+                }
                 if (this.currentSuggestionIndex === undefined) {
                     this.currentSuggestionIndex = 0;
                 } else {
@@ -269,6 +274,11 @@
             },
 
             onPreviousSuggestion() {
+                if (!this.isOpen) this.isOpen = true;
+                if (!this.hasSuggestions) {
+                    this.currentSuggestionIndex = undefined;
+                    return;
+                }
                 if (this.currentSuggestionIndex === undefined) {
                     this.currentSuggestionIndex = this.suggestions.length - 1;
                 } else {
@@ -284,11 +294,13 @@
             },
 
             onSuggestionSelected(e) {
-                if (!this.isOpen) {
+                // if current index is undefined, means we are doesn't want to select any value, jus submit
+                if (this.currentSuggestionIndex === undefined) {
                     this.$emit('confirm', e);
                     return;
                 }
-                if (!this.hasSuggestions || this.currentSuggestionIndex === undefined) {
+
+                if (!this.hasSuggestions && this.isOpen) {
                     return;
                 }
 

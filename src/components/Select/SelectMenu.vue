@@ -11,7 +11,7 @@
                       :option="option"/>
             </SelectOption>
             <div v-if="!hasSuggestions" class="no-options">
-                {{ !containsQuery ? 'Type to search...' : 'No options' }}
+                {{ !containsQuery && async ? 'Type to search...' : 'No options' }}
             </div>
         </div>
     </div>
@@ -41,6 +41,10 @@
                 default: false
             },
             containsQuery: {
+                type: Boolean,
+                default: false
+            },
+            async: {
                 type: Boolean,
                 default: false
             }
