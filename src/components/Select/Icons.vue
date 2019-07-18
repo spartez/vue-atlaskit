@@ -1,9 +1,9 @@
 <template>
     <div class="icons">
-        <Spinner v-if="isFetching" size="icon"/>
-        <Clear v-if="multi && isSelected" size="xsmall" class="clear-icon"
+        <Spinner v-if="isFetching" class="spinner-icon" size="icon"/>
+        <Clear v-if="isSelected && !isFetching" size="xsmall" class="clear-icon"
                primary-color="#A5ADBA"
-               @click.native="onClear"/>
+               @mousedown.native.stop.prevent="onClear"/>
         <Caret size="xsmall"/>
     </div>
 </template>
@@ -18,10 +18,6 @@
         components: { Spinner, Caret, Clear },
         props: {
             isFetching: {
-                type: Boolean,
-                default: false
-            },
-            multi: {
                 type: Boolean,
                 default: false
             },
@@ -43,6 +39,10 @@
         display: inline-flex;
         position: absolute;
         right: 6px;
+    }
+
+    .clear-icon, .spinner-icon {
+        margin-right: 3px;
     }
 
     .clear-icon:hover {

@@ -24,7 +24,7 @@
                     {{ input }}
                 </span>
             </div>
-            <Icons :multi="multi" :is-selected="!!selected.length" :is-fetching="isFetching"
+            <Icons :is-selected="isAnyOptionSelected" :is-fetching="isFetching"
                    @clear="onClear"/>
         </TextField>
         <Popper v-if="isOpen && !isDirty" ref="menu" offset="0,0"
@@ -148,6 +148,10 @@
 
             hasSuggestions() {
                 return this.suggestions && this.suggestions.length > 0;
+            },
+
+            isAnyOptionSelected() {
+                return (this.multi && !!this.selected.length) || !!this.selected.value;
             }
         },
         watch: {
@@ -214,8 +218,9 @@
             },
 
             onClear() {
-                this.$emit('input', []);
-                this.$refs.input.focus();
+                const empty = this.multi ? [] : undefined;
+                this.$emit('input', empty);
+                this.$nextTick(() => this.$refs.input.focus());
             },
 
             onOptionSelected(option) {
@@ -332,14 +337,14 @@
         position: absolute;
         z-index: 2;
         left: 6px;
-        right: 55px;
+        right: 45px;
         white-space: nowrap;
         text-overflow: ellipsis;
         overflow: hidden;
     }
 
     .text-field {
-        padding-right: 55px;
+        padding-right: 45px;
         flex-wrap: wrap;
         justify-content: normal;
     }
