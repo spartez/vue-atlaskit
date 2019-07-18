@@ -44,14 +44,4 @@
   .wrapper {
       padding: 20px;
   }
-
-  .label {
-      display: flex;
-      align-items: center;
-  }
-
-  .avatar {
-      border-radius: 50%;
-      margin-right: 5px;
-  }
 </style>

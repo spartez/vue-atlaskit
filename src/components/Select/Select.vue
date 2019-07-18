@@ -29,6 +29,7 @@
         </TextField>
         <Popper v-if="isOpen && !isDirty" ref="menu" offset="0,0"
                 :target-element="$refs.target"
+                :boundaries-element="boundariesElement"
                 placement="bottom-start">
             <SelectMenu :selected="selected" :options="suggestions"
                         :current-suggestion-index="currentSuggestionIndex"
@@ -78,7 +79,10 @@
             },
             filterPredicate: {
                 type: Function,
-                default: (label = '', input = '') => label.toLowerCase().includes(input.toLowerCase().trim())
+                default: (label = '', input = '') => label
+                    .toString()
+                    .toLowerCase()
+                    .includes(input.toLowerCase().trim())
             },
             normalizer: {
                 type: Function,
@@ -103,6 +107,10 @@
             async: {
                 type: Boolean,
                 default: false
+            },
+            boundariesElement: {
+                type: String,
+                default: 'viewport'
             }
         },
         data() {

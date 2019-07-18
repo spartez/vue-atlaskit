@@ -26,7 +26,7 @@
             },
             boundariesElement: {
                 type: [String, HTMLElement],
-                default: 'scrollParent'
+                default: 'viewport'
             }
         },
         mounted() {
