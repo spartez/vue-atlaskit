@@ -1,5 +1,6 @@
 <template>
-    <div :selected="isSelected" class="select-option" :current="current"
+    <div ref="option" :selected="isSelected" class="select-option"
+         :current="current"
          @click.stop="onOptionSelected" @mouseover="onMouseOver">
         <slot name="option" :option="option.value">
             {{ option.label }}
@@ -34,6 +35,13 @@
             },
             current() {
                 return this.currentSuggestionIndex === this.index;
+            }
+        },
+        watch: {
+            current(isCurrent) {
+                if (isCurrent) {
+                    this.$refs.option.scrollIntoView(false);
+                }
             }
         },
         methods: {

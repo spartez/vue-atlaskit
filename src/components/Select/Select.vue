@@ -228,6 +228,7 @@
             onClear() {
                 const empty = this.multi ? [] : undefined;
                 this.$emit('input', empty);
+                this.isOpen = false;
                 this.$nextTick(() => this.$refs.input.focus());
             },
 

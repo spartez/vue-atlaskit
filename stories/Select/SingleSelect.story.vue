@@ -25,7 +25,7 @@
     import faker from 'faker';
     import { many } from '../api-mocks/helpers';
 
-    const cities = many(faker.address.city)({}, 10);
+    const cities = many(faker.address.city)({}, 20);
 
     export default {
         components: {
