@@ -38,12 +38,13 @@
     import pDebounce from 'p-debounce';
     import Select from '@/components/Select/Select';
     import { createPersonsList } from '../api-mocks/people';
-    import { escapedRegExp } from '../../src/components/Select/utils';
 
     const list = createPersonsList({}, 50);
     const getUsers = query => new Promise((resolve) => {
         setTimeout(() => {
-            const results = list.filter(user => user.name.match(escapedRegExp(query)));
+            const results = list.filter(user => user.name
+                .toLowerCase()
+                .includes(query.toLowerCase().trim()));
             resolve(results);
         }, 1000);
     });

@@ -55,6 +55,9 @@
     width: 100%;
     box-sizing: border-box;
     padding: 6px 12px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 
 .select-option[selected] {

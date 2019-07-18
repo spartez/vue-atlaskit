@@ -47,8 +47,6 @@
 </template>
 
 <script>
-    import { escapedRegExp } from './utils';
-
     import TextField from '../Form/TextField';
     import SelectMenu from './SelectMenu';
     import Popper from '../Popper/Popper';
@@ -80,7 +78,7 @@
             },
             filterPredicate: {
                 type: Function,
-                default: (label = '', input = '') => label.match(escapedRegExp(input))
+                default: (label = '', input = '') => label.toLowerCase().includes(input.toLowerCase().trim())
             },
             normalizer: {
                 type: Function,
@@ -334,6 +332,10 @@
         position: absolute;
         z-index: 2;
         left: 6px;
+        right: 55px;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
     }
 
     .text-field {
