@@ -21,7 +21,7 @@ input {
     outline: none;
     line-height: inherit;
     width: 100%;
-    padding: 0;
+    padding: 6px;
     letter-spacing: inherit;
     box-sizing: border-box;
     margin: 0;
@@ -65,7 +65,7 @@ input :-moz-placeholder {
     border: solid 2px #dfe1e6;
     border-radius: 3px;
     box-sizing: border-box;
-    padding: 6px;
+    padding: 0;
     color: #091E42;
     display: flex;
     flex: 1 0 auto;

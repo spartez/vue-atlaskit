@@ -353,9 +353,13 @@
     }
 
     .text-field {
-        padding-right: 45px;
         flex-wrap: wrap;
+        padding: 6px 45px 6px 6px;
         justify-content: normal;
+    }
+
+    .text-field input {
+        padding: 0;
     }
 
     .flex-wrapper {
