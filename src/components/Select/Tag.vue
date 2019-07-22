@@ -1,8 +1,10 @@
 <template>
     <div class="tag">
-        <div class="label">
-            {{ tag.label }}
-        </div>
+        <slot>
+            <div class="label">
+                {{ tag.label }}
+            </div>
+        </slot>
         <div class="remove-tag" @mousedown.prevent.stop @click="onRemove">
             <EditorCloseIcon primary-color="#000" size="xsmall"/>
         </div>

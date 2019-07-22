@@ -5,7 +5,9 @@
             <div class="flex-wrapper" :gap="multi && !!selected.length">
                 <template v-if="multi">
                     <Tag v-for="(tag,i) in selected" :key="`${tag.id}-${i}`" :tag="tag"
-                         @on-remove="onRemove"/>
+                         @on-remove="onRemove">
+                        <slot name="tag" :tag="tag" />
+                    </Tag>
                 </template>
                 <input ref="input" class="search" :value="search"
                        :disabled="isLoading" :style="{width: currentWidth}"
