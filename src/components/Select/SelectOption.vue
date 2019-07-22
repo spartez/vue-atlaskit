@@ -40,7 +40,7 @@
         watch: {
             current(isCurrent) {
                 if (isCurrent) {
-                    this.$refs.option.scrollIntoView(false);
+                    this.$refs.option.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
                 }
             }
         },
