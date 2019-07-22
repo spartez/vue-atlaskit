@@ -1,19 +1,21 @@
 import { shallowMount } from '@vue/test-utils';
-import TextArea from 'components/Form/TextArea';
+import TextArea from '../../../src/components/Form/TextArea';
 
 
 describe('TextArea', () => {
     it('contains properly configured textarea', () => {
         const component = shallowMount(TextArea, {
             propsData: {
-                value: 'ABC', maxlength: 5, row: 10, placeholder: 'Placeholder'
+                value: 'ABC', maxlength: 5, rows: 10, placeholder: 'Placeholder'
             }
         });
 
         expect(component.find('textarea').attributes()).toEqual({
+            auto: 'true',
             maxlength: '5',
             placeholder: 'Placeholder',
-            rows: '10'
+            rows: '10',
+            style: 'height: auto; width: 100%; max-height: auto;'
         });
     });
 

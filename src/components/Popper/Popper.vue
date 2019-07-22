@@ -10,7 +10,7 @@
             },
             placement: {
                 type: String,
-                default: 'bottom'
+                default: 'bottom-end'
             },
             flipBehavior: {
                 type: [String, Array],

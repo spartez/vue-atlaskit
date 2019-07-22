@@ -1,54 +1,47 @@
 <template>
     <div ref="container" class="content-editable-wrapper" :editing="isEditing">
         <div ref="text-field" class="content-editable" :compact="compact"
-             @click.stop>
+             :is-invalid="!!error">
             <slot v-if="isEditing"
                   name="editor"
                   :value="editingValue"
                   :input="onInput"
                   :blur="onBlur"
+                  :focus="onFocus"
                   :confirm="confirmEditedValue"
                   :cancel="cancelInlineEdit"
-                  :focus="onFocus"
                   :is-focused="isFocused"
                   :is-invalid="!!error"
-                  :is-loading="isLoading">
-                <TextField v-if="isEditing" :is-focused="isFocused" :is-invalid="!!error"
+                  :is-loading="isLoading"
+                  :content-width="contentWidth"
+                  :content-height="contentHeight">
+                <TextField :is-focused="isFocused" :is-invalid="!!error"
                            :is-loading="isLoading"
                            :is-disabled="isLoading" :compact="compact"
+                           @click.stop
                            @hook:beforeMount="beforeTextFieldMount">
                     <input ref="input" v-model="editingValue"
+                           :style="{ minWidth: `${contentWidth}px` }"
                            :type="type" :step="step" class="input"
                            :maxlength="maxlength" :disabled="isLoading"
                            @keyup="onKeyUp"
+                           @keydown.meta.enter="onKeyUp"
                            @focus="onFocus"
                            @blur="onBlur">
                 </TextField>
             </slot>
             <InlineEditViewContent v-else ref="value" :compact="compact"
+                                   :pencil-style="pencilStyle"
                                    @edit-requested="onEditRequested">
                 <slot/>
             </InlineEditViewContent>
         </div>
-        <Popper v-if="isEditing && !isLoading" ref="buttons" :target-element="$refs['container']"
-                placement="bottom-end">
+        <Popper v-if="isEditing && !isLoading" ref="buttons" :offset="offset"
+                :target-element="$refs['text-field']">
             <InlineEditButtons @confirm="confirmEditedValue" @cancel="cancelInlineEdit"
                                @blur="onBlur"/>
         </Popper>
-        <!--TODO error handling-->
-        <Popper v-if="isValidationError" :target-element="$refs['text-field']" placement="right"
-                :flip-behavior="['right', 'top-end']">
-            <div ref="error-dialog" class="error-dialog">
-                <template v-if="error.fieldErrors">
-                    <div v-for="(fieldError,i) in error.fieldErrors" :key="i" class="error-message">
-                        {{ fieldError.message }}
-                    </div>
-                </template>
-                <template v-else>
-                    {{ error.message }}
-                </template>
-            </div>
-        </Popper>
+        <InlineErrorMessage v-if="isValidationError" :error="error" :target-element="$refs['text-field']"/>
     </div>
 </template>
 
@@ -56,11 +49,12 @@
     import TextField from './TextField';
     import InlineEditButtons from './InlineEditButtons';
     import InlineEditViewContent from './InlineEditViewContent';
+    import InlineErrorMessage from './InlineErrorMessage';
     import Popper from '../Popper/Popper';
 
     const ENTER = 13;
     const ESC = 27;
-    const VALIDATION_ERROR = 422;
+    const Status = { VALIDATION_ERROR: 422 };
 
     export default {
         name: 'InlineEdit',
@@ -68,11 +62,12 @@
             TextField,
             InlineEditButtons,
             InlineEditViewContent,
+            InlineErrorMessage,
             Popper
         },
         props: {
             value: {
-                type: [Number, String, Date, Boolean, Object, Array],
+                type: [Number, String, Boolean, Array, Object],
                 default: undefined
             },
             type: {
@@ -90,6 +85,14 @@
             compact: {
                 type: Boolean,
                 default: false
+            },
+            pencilStyle: {
+                type: String,
+                default: undefined
+            },
+            offset: {
+                type: String,
+                default: '0,5'
             }
         },
         data() {
@@ -99,12 +102,14 @@
                 isLoading: false,
                 editingValue: this.value,
                 error: undefined,
-                isDirty: false
+                isDirty: false,
+                contentWidth: 0,
+                contentHeight: 0
             };
         },
         computed: {
             isValidationError() {
-                return this.error && (!this.error.status || this.error.status === VALIDATION_ERROR);
+                return this.error && (!this.error.status || this.error.status === Status.VALIDATION_ERROR);
             }
         },
         watch: {
@@ -132,6 +137,7 @@
             },
             onBlur(event) {
                 const focusWithinComponent = this.$refs.container.contains(event.relatedTarget);
+
                 if (!this.isEditing || this.isLoading) return;
                 if (!focusWithinComponent) {
                     this.$nextTick(() => this.cancelInlineEdit());
@@ -162,6 +168,7 @@
                 }
                 this.isLoading = false;
                 this.isEditing = false;
+                this.editingValue = this.value;
             },
             cancelInlineEdit() {
                 this.isEditing = false;
@@ -185,9 +192,8 @@
                     return;
                 }
                 if (!this.isLoading) {
-                    this.isLoading = true;
                     if (this.isDirty) {
-                        this.error = undefined;
+                        this.isLoading = true;
                         this.$emit('save-requested', this.editingValue, this.saveInlineEdit);
                     } else if (this.error) {
                         this.onValidateError(this.error);
@@ -195,8 +201,9 @@
                 }
             },
             beforeTextFieldMount() {
-                const styles = getComputedStyle(this.$refs.value.$el);
-                this.$refs['text-field'].style['min-width'] = styles.getPropertyValue('width');
+                const { width, height } = this.$refs.value.$el.getBoundingClientRect();
+                this.contentWidth = width;
+                this.contentHeight = height;
             }
         }
     };
@@ -217,5 +224,6 @@
         background: rgb(255, 255, 255);
         border-radius: 3px;
         padding: 4px 10px;
+        z-index: 10000;
     }
 </style>

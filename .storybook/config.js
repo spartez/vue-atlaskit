@@ -25,7 +25,7 @@ const registerStory = (filename) => {
             name: 'StoryWrapper',
             components: component.components,
             render(h) {
-                return h(component);
+                return h(component, { style: { padding: '20px' } });
             }
         }), {
             info: {
