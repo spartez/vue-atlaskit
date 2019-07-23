@@ -308,7 +308,7 @@
             },
 
             onSuggestionSelected(e) {
-                // if current index is undefined, means we are doesn't want to select any value, jus submit
+                // if current index is undefined, means we doesn't want to select any value, just submit
                 if (this.currentSuggestionIndex === undefined) {
                     this.$emit('confirm', e);
                     return;
