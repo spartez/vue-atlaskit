@@ -13,7 +13,7 @@
                        :disabled="isLoading" :style="{width: currentWidth}"
                        @keydown.down.prevent="onNextSuggestion"
                        @keydown.up.prevent="onPreviousSuggestion"
-                       @keydown.enter.prevent="onSuggestionSelected"
+                       @keydown.enter="onSuggestionSelected"
                        @input="onInput"
                        @focus="onFocus"
                        @blur="onBlur"
@@ -308,11 +308,12 @@
             },
 
             onSuggestionSelected(e) {
-                // if current index is undefined, means we doesn't want to select any value, just submit
+                // if current index is undefined, means we don't want to select any value, just submit
                 if (this.currentSuggestionIndex === undefined) {
                     this.$emit('confirm', e);
                     return;
                 }
+                e.preventDefault();
 
                 if (!this.hasSuggestions && this.isOpen) {
                     return;
