@@ -2,7 +2,7 @@
     <transition name="modal" appear>
         <Blanket class="dialog">
             <PositionerAbsolute :width="width">
-                <form class="modal-container" @submit.prevent="onSubmit">
+                <form class="modal-container" novalidate @submit.prevent="onSubmit">
                     <header>
                         <slot name="header">
                             <Header :heading="heading" :appearance="appearance"/>

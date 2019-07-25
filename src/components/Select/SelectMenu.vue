@@ -76,7 +76,6 @@
     border-radius: 4px;
     width: 100%;
     position: absolute;
-    overflow: scroll;
     z-index: 1000;
 }
 
