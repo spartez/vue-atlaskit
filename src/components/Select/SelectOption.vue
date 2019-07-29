@@ -2,7 +2,7 @@
     <div ref="option" :selected="isSelected" class="select-option"
          :current="current"
          @click.stop="onOptionSelected" @mouseover="onMouseOver">
-        <slot name="option" :option="option.value">
+        <slot name="option" :option="option.value" :is-current="current">
             {{ option.label }}
         </slot>
     </div>
@@ -40,7 +40,10 @@
         watch: {
             current(isCurrent) {
                 if (isCurrent) {
-                    this.$refs.option.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+                    this.$nextTick(() => {
+                        if (!this.$refs.option) return;
+                        this.$refs.option.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+                    });
                 }
             }
         },

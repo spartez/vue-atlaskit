@@ -42,7 +42,8 @@
                         :has-suggestions="hasSuggestions"
                         @mouseover="onMouseOverSuggestion"
                         @option-selected="onOptionSelected">
-                <slot slot="option" slot-scope="{option}" name="option"
+                <slot slot="option" slot-scope="{option, isCurrent}" name="option"
+                      :is-current="isCurrent"
                       :option="option"/>
             </SelectMenu>
         </Popper>

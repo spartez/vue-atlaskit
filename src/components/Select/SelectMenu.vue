@@ -7,7 +7,8 @@
                           :current-suggestion-index="currentSuggestionIndex"
                           @mouseover="onMouseOver"
                           @option-selected="onOptionSelected">
-                <slot slot="option" slot-scope="{option}" name="option"
+                <slot slot="option" slot-scope="{option, isCurrent}" name="option"
+                      :is-current="isCurrent"
                       :option="option"/>
             </SelectOption>
             <div v-if="!hasSuggestions" class="no-options">
