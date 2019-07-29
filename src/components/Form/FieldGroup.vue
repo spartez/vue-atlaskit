@@ -36,7 +36,6 @@
         margin-top: 4px;
         display: flex;
         align-items: center;
-        text-transform: capitalize;
     }
 
     .label {
