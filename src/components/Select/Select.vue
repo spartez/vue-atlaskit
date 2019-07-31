@@ -177,7 +177,7 @@
 
             search() {
                 if (!this.search) this.currentWidth = INPUT_WIDTH;
-                if (this.async) this.isDirty = true;
+                if (this.async && this.search) this.isDirty = true;
                 this.$emit('search-change', this.search);
             },
 
