@@ -196,6 +196,10 @@
                 if (!isFetching) {
                     this.isDirty = false;
                 }
+            },
+
+            suggestions() {
+                this.$nextTick(() => this.updatePopperPosition());
             }
         },
         methods: {

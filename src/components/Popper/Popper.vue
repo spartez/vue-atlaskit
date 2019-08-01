@@ -54,7 +54,9 @@
                 });
             },
             update() {
-                this.popper.update();
+                if (this.popper) {
+                    this.popper.update();
+                }
             }
         },
         render() {
