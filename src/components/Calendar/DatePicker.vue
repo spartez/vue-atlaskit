@@ -1,13 +1,13 @@
 <template>
     <div ref="date-picker" class="date-picker" @click.stop>
         <TextField :is-focused="focused" :is-loading="isLoading" :disabled="isLoading"
-                   :is-invalid="isInvalid" select>
+                   :is-invalid="isInvalid" select @mousedown="toggle">
             <input ref="input" :value="formattedDate" type="text"
                    width="50%" placeholder="e.g. 31/12/2018" :disabled="isLoading"
                    v-on="listeners" @keydown.enter="onEnter"
-                   @input="onInput" @click="onCLick" @keyup.esc="onEsc"
+                   @input="onInput" @keyup.esc="onEsc"
                    @focus="onFocus" @blur="onBlur">
-            <CalendarIcon class="icon" size="small"/>
+            <CalendarIcon class="icon" size="small" @mousedown.native.prevent/>
         </TextField>
         <Popper v-if="isOpen" :target-element="$refs['date-picker']" placement="bottom-start">
             <Calendar :value="selectedDate" @date-selected="onDateSelected"/>
@@ -101,8 +101,8 @@
                     this.selectedDate = date;
                 }
             },
-            onCLick() {
-                this.isOpen = true;
+            toggle() {
+                this.isOpen = !this.isOpen;
             },
             onEsc() {
                 this.isOpen = false;
