@@ -42,6 +42,8 @@
                 if (isCurrent) {
                     this.$nextTick(() => {
                         if (!this.$refs.option) return;
+                        const isMicrosoftBrowser = new RegExp(['MSIE ', 'Edge/'].join('|')).test(navigator.userAgent);
+                        if (isMicrosoftBrowser) return;
                         this.$refs.option.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
                     });
                 }
