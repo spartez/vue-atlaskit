@@ -36,13 +36,13 @@ textarea {
     resize: vertical;
 }
 
-textarea,
-input ::-ms-clear {
+textarea::-ms-clear,
+input::-ms-clear {
     display: none;
 }
 
-textarea,
-input ::-moz-placeholder {
+textarea::-moz-placeholder,
+input::-moz-placeholder {
     /* Mozilla Firefox 19+ */
     opacity: 1;
     color: #7a869a;
@@ -53,8 +53,8 @@ input::-ms-input-placeholder {
     color: #7a869a;
 }
 
-textarea,
-input :-moz-placeholder {
+textarea:-moz-placeholder,
+input:-moz-placeholder {
     /* Mozilla Firefox 4 to 18 */
     color: #7a869a;
     opacity: 1;
