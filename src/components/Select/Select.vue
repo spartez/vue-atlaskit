@@ -40,6 +40,8 @@
                         :contains-query="!!search"
                         :style="{width: selectWidth}"
                         :has-suggestions="hasSuggestions"
+                        :no-options-message="noOptionsMessage"
+                        :placeholder="placeholder"
                         @mouseover="onMouseOverSuggestion"
                         @option-selected="onOptionSelected">
                 <slot slot="option" slot-scope="{option, isCurrent}" name="option"
@@ -74,7 +76,7 @@
             },
             placeholder: {
                 type: String,
-                default: ''
+                default: 'Type to search...'
             },
             multi: {
                 type: Boolean,
@@ -114,6 +116,10 @@
             boundariesElement: {
                 type: String,
                 default: 'viewport'
+            },
+            noOptionsMessage: {
+                type: String,
+                default: 'No options'
             }
         },
         data() {

@@ -12,7 +12,7 @@
                       :option="option"/>
             </SelectOption>
             <div v-if="!hasSuggestions" class="no-options">
-                {{ !containsQuery && async ? 'Type to search...' : 'No options' }}
+                {{ !containsQuery && async ? placeholder : noOptionsMessage }}
             </div>
         </div>
     </div>
@@ -48,6 +48,14 @@
             async: {
                 type: Boolean,
                 default: false
+            },
+            noOptionsMessage: {
+                type: String,
+                default: undefined
+            },
+            placeholder: {
+                type: String,
+                default: undefined
             }
         },
         computed: {
