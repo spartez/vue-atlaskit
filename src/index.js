@@ -31,3 +31,4 @@ export {
     Popper
 };
 export * from './components/Icon';
+export * from './components/field-renderers';
