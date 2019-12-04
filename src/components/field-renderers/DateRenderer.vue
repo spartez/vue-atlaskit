@@ -8,14 +8,14 @@
     export default {
         name: 'DateRenderer',
         props: {
-            date: {
+            value: {
                 type: [String, Number],
                 default: undefined
             }
         },
         computed: {
             formattedDate() {
-                return this.date && format(parseInt(this.date, 10), 'dd MMMM yyyy');
+                return this.value && format(new Date(this.value), 'dd MMMM yyyy');
             }
         }
     };

@@ -8,7 +8,7 @@
         name: 'NumberLongRenderer',
         props: {
             value: {
-                type: String,
+                type: Number,
                 default: undefined
             }
         }

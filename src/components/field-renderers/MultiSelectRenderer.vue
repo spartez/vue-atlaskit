@@ -29,7 +29,7 @@
         name: 'MultiSelectRenderer',
         components: { Popper, Button },
         props: {
-            selectedValues: {
+            value: {
                 type: Array,
                 default: () => []
             }
@@ -37,15 +37,15 @@
         data() {
             return {
                 isOpen: false,
-                visibleCount: this.selectedValues.length
+                visibleCount: this.value.length
             };
         },
         computed: {
             visibleValues() {
-                return this.selectedValues.slice(0, this.visibleCount);
+                return this.value.slice(0, this.visibleCount);
             },
             hiddenValues() {
-                return this.selectedValues.slice(this.visibleCount);
+                return this.value.slice(this.visibleCount);
             }
         },
         created() {
@@ -73,7 +73,7 @@
                     this.breakPoints[this.visibleCount] = overflowContainer.clientWidth;
                     this.visibleCount -= 1;
                 }
-                while (overflowContainer.clientWidth > this.breakPoints[this.visibleCount + 1] && this.visibleCount < this.selectedValues.length) {
+                while (overflowContainer.clientWidth > this.breakPoints[this.visibleCount + 1] && this.visibleCount < this.value.length) {
                     this.visibleCount += 1;
                 }
             },

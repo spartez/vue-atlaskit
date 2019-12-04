@@ -8,7 +8,7 @@
         name: 'NumberFloatRenderer',
         props: {
             value: {
-                type: String,
+                type: Number,
                 default: undefined
             }
         }

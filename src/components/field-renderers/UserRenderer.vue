@@ -1,17 +1,17 @@
 <template>
-    <div class="user">
+    <div class="user test">
         <slot>
-            <template v-if="user">
+            <template v-if="name">
                 <img class="avatar"
-                     :src="user.avatar"
-                     :alt="user.name"
-                     :title="user.name">
-                <component :is="tag" v-if="!avatarOnly"
-                           class="user-name"
-                           :href="`${baseURL}/secure/ViewProfile.jspa?&name=${user.username}`"
-                           target="_top">
-                    {{ user.name }}
-                </component>
+                     :src="avatar"
+                     :alt="name"
+                     :title="name">
+                <a v-if="!avatarOnly"
+                   class="user-name"
+                   :href="link"
+                   target="_top">
+                    {{ name }}
+                </a>
             </template>
         </slot>
     </div>
@@ -22,23 +22,31 @@
     export default {
         name: 'UserRenderer',
         props: {
-            user: {
-                type: Object,
+            baseUrl: {
+                type: String,
+                default: ''
+            },
+            name: {
+                type: String,
                 default: undefined
             },
-            avatarOnly: {
-                type: Boolean,
-                default: false
+            avatar: {
+                type: String,
+                default: ''
             },
             tag: {
                 type: String,
                 default: 'a'
+            },
+            avatarOnly: {
+                type: Boolean,
+                default: false
             }
         },
-        data() {
-            return {
-                baseURL: 'baseURL'
-            };
+        computed: {
+            link() {
+                return `${this.baseUrl}/secure/ViewProfile.jspa?&name=${this.name}`;
+            }
         }
     };
 </script>

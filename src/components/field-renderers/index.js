@@ -18,6 +18,11 @@ import DateEditableRenderer from './DateEditableRenderer';
 import DateRenderer from './DateRenderer';
 import HyperlinkEditableRenderer from './HyperlinkEditableRenderer';
 import HyperlinkRenderer from './HyperlinkRenderer';
+import IssuePriorityRenderer from './IssuePriorityRenderer';
+import IssueStatusRenderer from './IssueStatusRenderer';
+import IssueTypeRenderer from './IssueTypeRenderer';
+import IssueRenderer from './IssueRenderer';
+import LinkedIssuesList from './LinkedIssuesList';
 
 
 export {
@@ -40,5 +45,10 @@ export {
     DateEditableRenderer,
     DateRenderer,
     HyperlinkEditableRenderer,
-    HyperlinkRenderer
+    HyperlinkRenderer,
+    IssuePriorityRenderer,
+    IssueStatusRenderer,
+    IssueTypeRenderer,
+    IssueRenderer,
+    LinkedIssuesList
 };
