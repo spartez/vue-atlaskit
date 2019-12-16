@@ -20,17 +20,21 @@
                 @focus="props.focus"
                 @cancel="props.cancel">
             <div slot="option" slot-scope="{option}" class="label">
-                <UserRenderer tag="span" :user="option" :avatar-only="avatarOnly"/>
+                <UserRenderer :base-url="baseUrl" tag="span" :user="option"
+                              :avatar-only="avatarOnly"/>
             </div>
             <div slot="selected" slot-scope="{selected}" class="label">
-                <UserRenderer tag="span" :user="selected" :avatar-only="avatarOnly"/>
+                <UserRenderer :base-url="baseUrl" tag="span" :user="selected"
+                              :avatar-only="avatarOnly"/>
             </div>
         </Select>
         <slot>
-            <UserRenderer :user="user" :avatar-only="avatarOnly" @click.native.stop/>
+            <UserRenderer :base-url="baseUrl" :user="user" :avatar-only="avatarOnly"
+                          @click.native.stop/>
         </slot>
     </InlineEdit>
-    <UserRenderer v-else :user="user" :avatar-only="avatarOnly"/>
+    <UserRenderer v-else :user="user" :base-url="baseUrl"
+                  :avatar-only="avatarOnly"/>
 </template>
 
 <script>
@@ -59,6 +63,10 @@
             loadOptions: {
                 type: Function,
                 required: true
+            },
+            baseUrl: {
+                type: String,
+                required: true
             }
         },
         data() {
@@ -80,8 +88,7 @@
             },
 
             onSaveRequested(user, callback) {
-                const key = user ? user.key : '';
-                this.$emit('save-requested', key, callback);
+                this.$emit('save-requested', user, callback);
             },
 
             normalizer(user) {

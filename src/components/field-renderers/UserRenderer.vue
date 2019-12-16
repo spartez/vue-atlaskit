@@ -1,17 +1,17 @@
 <template>
-    <div class="user test">
+    <div class="user">
         <slot>
-            <template v-if="name">
+            <template v-if="user">
                 <img class="avatar"
-                     :src="avatar"
-                     :alt="name"
-                     :title="name">
-                <a v-if="!avatarOnly"
-                   class="user-name"
-                   :href="link"
-                   target="_top">
-                    {{ name }}
-                </a>
+                     :src="user.avatar"
+                     :alt="user.name"
+                     :title="user.name">
+                <component :is="tag" v-if="!avatarOnly"
+                           class="user-name"
+                           :href="link"
+                           target="_top">
+                    {{ user.name }}
+                </component>
             </template>
         </slot>
     </div>
@@ -24,28 +24,24 @@
         props: {
             baseUrl: {
                 type: String,
-                default: ''
+                required: true
             },
-            name: {
-                type: String,
+            user: {
+                type: Object,
                 default: undefined
-            },
-            avatar: {
-                type: String,
-                default: ''
-            },
-            tag: {
-                type: String,
-                default: 'a'
             },
             avatarOnly: {
                 type: Boolean,
                 default: false
+            },
+            tag: {
+                type: String,
+                default: 'a'
             }
         },
         computed: {
             link() {
-                return `${this.baseUrl}/secure/ViewProfile.jspa?&name=${this.name}`;
+                return `${this.baseUrl}/secure/ViewProfile.jspa?&name=${this.user.name}`;
             }
         }
     };
