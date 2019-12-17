@@ -2,22 +2,22 @@
     <div>
         <h5>Editable:</h5>
         <p>
-            <UserEditableRenderer :base-url="baseUrl" :user="user" :load-options="loadOptions"
+            <UserEditableRenderer :user="user" :load-options="loadOptions"
                                   @save-requested="onSave"/>
         </p>
         <h5>Editable - callback with error:</h5>
         <p>
-            <UserEditableRenderer :base-url="baseUrl" :user="user" :load-options="loadOptions"
+            <UserEditableRenderer :user="user" :load-options="loadOptions"
                                   @save-requested="onSaveError"/>
         </p>
         <h5>Non-editable:</h5>
         <p>
-            <UserEditableRenderer :base-url="baseUrl" :user="user" :load-options="loadOptions"
+            <UserEditableRenderer :user="user" :load-options="loadOptions"
                                   :editable="false"/>
         </p>
         <h5>Avatar only:</h5>
         <p>
-            <UserEditableRenderer :base-url="baseUrl" :user="user" :avatar-only="true"/>
+            <UserEditableRenderer :user="user" :avatar-only="true"/>
         </p>
     </div>
 </template>

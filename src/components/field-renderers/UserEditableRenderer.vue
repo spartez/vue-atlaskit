@@ -20,20 +20,23 @@
                 @focus="props.focus"
                 @cancel="props.cancel">
             <div slot="option" slot-scope="{option}" class="label">
-                <UserRenderer :base-url="baseUrl" tag="span" :user="option"
+                <UserRenderer :tag="tag" :base-url="baseUrl"
+                              :user="option"
                               :avatar-only="avatarOnly"/>
             </div>
             <div slot="selected" slot-scope="{selected}" class="label">
-                <UserRenderer :base-url="baseUrl" tag="span" :user="selected"
+                <UserRenderer :tag="tag" :base-url="baseUrl"
+                              :user="selected"
                               :avatar-only="avatarOnly"/>
             </div>
         </Select>
         <slot>
-            <UserRenderer :base-url="baseUrl" :user="user" :avatar-only="avatarOnly"
-                          @click.native.stop/>
+            <UserRenderer :tag="tag" :base-url="baseUrl" :user="user"
+                          :avatar-only="avatarOnly"/>
         </slot>
     </InlineEdit>
-    <UserRenderer v-else :user="user" :base-url="baseUrl"
+    <UserRenderer v-else :tag="tag" :user="user"
+                  :base-url="baseUrl"
                   :avatar-only="avatarOnly"/>
 </template>
 
@@ -66,7 +69,11 @@
             },
             baseUrl: {
                 type: String,
-                required: true
+                default: ''
+            },
+            tag: {
+                type: String,
+                default: 'span'
             }
         },
         data() {

@@ -1,5 +1,5 @@
 <template>
-    <div class="user">
+    <div class="user" @click="onClick">
         <slot>
             <template v-if="user">
                 <img class="avatar"
@@ -24,7 +24,7 @@
         props: {
             baseUrl: {
                 type: String,
-                required: true
+                default: ''
             },
             user: {
                 type: Object,
@@ -36,12 +36,19 @@
             },
             tag: {
                 type: String,
-                default: 'a'
+                default: 'span'
             }
         },
         computed: {
             link() {
                 return `${this.baseUrl}/secure/ViewProfile.jspa?&name=${this.user.name}`;
+            }
+        },
+        methods: {
+            onClick(e) {
+                if (this.tag === 'a') {
+                    e.stopPropagation();
+                }
             }
         }
     };
