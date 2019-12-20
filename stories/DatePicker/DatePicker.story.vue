@@ -1,5 +1,7 @@
 <template>
-    <DatePicker v-model="date"/>
+    <div class="wrapper">
+        <DatePicker v-model="date"/>
+    </div>
 </template>
 
 <script>

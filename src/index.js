@@ -11,6 +11,7 @@ import Tooltip from './components/Tooltip/Tooltip';
 import Modal from './components/Modal/Modal';
 import DatePicker from './components/Calendar/DatePicker';
 import Select from './components/Select/Select';
+import UserPicker from './components/Select/UserPicker';
 import Popper from './components/Popper/Popper';
 import '@atlaskit/css-reset/dist/bundle.css';
 
@@ -28,7 +29,8 @@ export {
     Modal,
     DatePicker,
     Select,
-    Popper
+    Popper,
+    UserPicker
 };
 export * from './components/Icon';
 export * from './components/field-renderers';
