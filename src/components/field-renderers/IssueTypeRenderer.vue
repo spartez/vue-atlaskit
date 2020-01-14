@@ -2,6 +2,7 @@
     <div class="type">
         <img class="issue-type-icon" :src="typeIconUrl" :alt="typeName"
              :title="typeName">
+        <span v-if="compact">{{ value.name }}</span>
     </div>
 </template>
 
@@ -12,6 +13,10 @@
             value: {
                 type: Object,
                 required: true
+            },
+            compact: {
+                type: Boolean,
+                default: false
             }
         },
         computed: {
@@ -31,7 +36,11 @@
         height: 16px;
     }
 
-    .type{
+    span {
+        margin-left: 4px;
+    }
+
+    .type {
         display: inline-flex;
         align-items: center;
     }
