@@ -2,7 +2,6 @@
     <div class="type">
         <img class="issue-type-icon" :src="typeIconUrl" :alt="typeName"
              :title="typeName">
-        <span>{{ value.name }}</span>
     </div>
 </template>
 
