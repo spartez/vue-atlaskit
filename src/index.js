@@ -13,6 +13,7 @@ import DatePicker from './components/Calendar/DatePicker';
 import Select from './components/Select/Select';
 import UserPicker from './components/Select/UserPicker';
 import Popper from './components/Popper/Popper';
+import Lozenge from './components/Lozenge/Lozenge';
 import '@atlaskit/css-reset/dist/bundle.css';
 
 export {
@@ -30,6 +31,7 @@ export {
     DatePicker,
     Select,
     Popper,
+    Lozenge,
     UserPicker
 };
 export * from './components/Icon';
