@@ -14,6 +14,11 @@ import Select from './components/Select/Select';
 import UserPicker from './components/Select/UserPicker';
 import Popper from './components/Popper/Popper';
 import Lozenge from './components/Lozenge/Lozenge';
+import Popup from './components/common/Popup';
+import Dropdown from './components/Dropdown/Dropdown';
+import DropdownGroup from './components/Dropdown/DropdownGroup';
+import DropdownItem from './components/Dropdown/DropdownItem';
+import DropdownCheckboxItem from './components/Dropdown/DropdownCheckboxItem';
 import '@atlaskit/css-reset/dist/bundle.css';
 
 export {
@@ -32,7 +37,9 @@ export {
     Select,
     Popper,
     Lozenge,
-    UserPicker
+    UserPicker,
+    Popup,
+    Dropdown, DropdownGroup, DropdownItem, DropdownCheckboxItem
 };
 export * from './components/Icon';
 export * from './components/field-renderers';
