@@ -1,5 +1,5 @@
 <template>
-    <div class="dropdown-item">
+    <div class="dropdown-item" v-on="$listeners">
         <slot/>
     </div>
 </template>

@@ -54,7 +54,7 @@
 
 table {
     border-collapse: collapse;
-    width: 100%;
+    table-layout: fixed;
 }
 
 thead, tbody {

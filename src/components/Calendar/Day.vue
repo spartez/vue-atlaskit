@@ -1,6 +1,8 @@
 <template>
-    <td class="day">
+    <td class="day" :highlighted="isHighlighted" :range-start="isRangeStart"
+        :range-end="isRangeEnd">
         <Button appearance="subtle" class="date" :today="day.isToday"
+                :disabled="isDisabled"
                 :is-not-same-month="day.isNotSameMonth"
                 :is-selected="day.isSelected" @click.stop="onDateSelected">
             {{ date }}
@@ -23,6 +25,18 @@
         computed: {
             date() {
                 return this.day.date.getDate();
+            },
+            isDisabled() {
+                return this.day.isDisabled;
+            },
+            isHighlighted() {
+                return this.day.isHighlighted;
+            },
+            isRangeStart() {
+                return this.day.isRangeStart;
+            },
+            isRangeEnd() {
+                return this.day.isRangeEnd;
             }
         },
         methods: {
@@ -37,6 +51,18 @@
 
 .date{
     width: 100%;
+}
+
+[highlighted] {
+    background-color: rgb(244, 245, 247);
+}
+
+[range-start] [selected] {
+    border-radius: 3px 0 0 3px;
+}
+
+[range-end] [selected] {
+    border-radius: 0 3px 3px 0;
 }
 
 [today] {

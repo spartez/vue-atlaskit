@@ -4,9 +4,11 @@
                         :current-interval="currentInterval"
                         @change-interval="onIntervalChange"
                         @next="onNext" @prev="onPrev"/>
-        <Weeks v-if="currentInterval === 'days'" :weeks="weeks" @date-selected="onDateSelected"/>
-        <Months v-else-if="currentInterval === 'months'" @month-selected="onMonthSelected"/>
-        <Years v-else :years-of-decade="yearsOfDecade" @year-selected="onYearSelected"/>
+        <Weeks v-if="currentInterval === 'days'" :weeks="weeks" :disabled-range="disabledRange"
+               @date-selected="onDateSelected"/>
+        <Months v-else-if="currentInterval === 'months'" :disabled-range="disabledRange" @month-selected="onMonthSelected"/>
+        <Years v-else :years-of-decade="yearsOfDecade" :disabled-range="disabledRange"
+               @year-selected="onYearSelected"/>
     </div>
 </template>
 
@@ -20,6 +22,10 @@
         isToday,
         isSameMonth,
         isSameDay,
+        isBefore,
+        isAfter,
+        endOfDay,
+        startOfDay,
         startOfDecade,
         endOfDecade,
         setYear,
@@ -42,13 +48,28 @@
             CalendarHeader, Weeks, Months, Years
         },
         props: {
-            value: { type: Date, default: () => undefined }
+            value: { type: [Date, Object], default: () => undefined },
+            rangeValue: {
+                type: Boolean,
+                default: false
+            },
+            disabledRange: {
+                type: Object,
+                default: () => ({
+                    from: undefined,
+                    to: undefined
+                })
+            },
+            visibleDate: {
+                type: Date,
+                default: undefined
+            }
         },
         data() {
             return {
                 today: TODAY,
-                currentDate: this.value || TODAY,
-                selectedDate: this.value,
+                currentDate: undefined,
+                selectedDate: undefined,
                 currentInterval: 'days'
             };
         },
@@ -81,12 +102,32 @@
                 const start = startOfDecade(this.currentDate).getFullYear();
                 const end = endOfDecade(this.currentDate).getFullYear();
                 return Array(end - start + 1).fill().map((_, idx) => start + idx);
+            },
+            disabledFrom() {
+                return this.disabledRange && this.disabledRange.from && startOfDay(this.disabledRange.from);
+            },
+            disabledTo() {
+                return this.disabledRange && this.disabledRange.to && endOfDay(this.disabledRange.to);
+            },
+            rangeFrom() {
+                return this.value && this.rangeValue && startOfDay(this.value.from);
+            },
+            rangeTo() {
+                return this.value && this.rangeValue && endOfDay(this.value.to);
             }
         },
         watch: {
-            value(date) {
-                this.selectedDate = date;
-                this.currentDate = date || TODAY;
+            value: {
+                handler(date) {
+                    this.selectedDate = this.rangeValue ? date.from : date;
+                },
+                immediate: true
+            },
+            visibleDate: {
+                handler() {
+                    this.currentDate = this.visibleDate || (this.rangeValue ? this.value.from : this.value) || TODAY;
+                },
+                immediate: true
             }
         },
         methods: {
@@ -95,8 +136,34 @@
                     date,
                     isToday: isToday(date),
                     isNotSameMonth: !isSameMonth(this.currentDate, date),
-                    isSelected: isSameDay(this.selectedDate, date)
+                    isSelected: this.isSelected(date),
+                    isDisabled: this.isDisabled(date),
+                    isHighlighted: this.isHighlighted(date),
+                    isRangeStart: isSameDay(date, this.rangeFrom),
+                    isRangeEnd: isSameDay(date, this.rangeTo)
                 };
+            },
+            isSelected(date) {
+                if (this.rangeValue) {
+                    return isSameDay(date, this.value.from) || isSameDay(date, this.value.to);
+                }
+                return isSameDay(this.selectedDate, date);
+            },
+            isDisabled(date) {
+                if (!this.disabledFrom && !this.disabledTo) {
+                    return false;
+                } if (!this.disabledFrom) {
+                    return !isAfter(date, this.disabledTo);
+                } if (!this.disabledTo) {
+                    return !isBefore(date, this.disabledFrom);
+                }
+                return !isAfter(date, this.disabledTo) && !isBefore(date, this.disabledFrom);
+            },
+            isHighlighted(date) {
+                if (!this.rangeValue) {
+                    return false;
+                }
+                return isAfter(date, this.rangeFrom) && isBefore(date, this.rangeTo);
             },
             onNext(callback) {
                 this.currentDate = callback(this.currentDate, this.currentInterval);
@@ -114,6 +181,7 @@
             },
             onDateSelected(day) {
                 this.selectedDate = day.date;
+                this.currentDate = day.date;
                 this.$emit('date-selected', this.selectedDate);
             },
             onIntervalChange(interval) {
@@ -125,16 +193,7 @@
 
 <style scoped>
 .calendar {
-    display: inline-block;
-    font-size: 14px;
-    position: absolute;
-    box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.31) 0px 0px 1px;
-    border-radius: 3px;
     padding: 15px;
-    outline: none;
-    background-color: #fff;
-    min-width: 300px;
-    overflow: hidden;
-    z-index: 1000;
+    width: 301px;
 }
 </style>

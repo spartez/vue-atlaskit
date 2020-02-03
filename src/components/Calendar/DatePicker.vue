@@ -9,9 +9,9 @@
                    @focus="onFocus" @blur="onBlur">
             <CalendarIcon class="icon" size="small" @mousedown.native.prevent/>
         </TextField>
-        <Popper v-if="isOpen" :target-element="$refs['date-picker']" placement="bottom-start">
+        <Popup :is-open="isOpen" :target-element="$refs['date-picker']" placement="bottom-start">
             <Calendar :value="selectedDate" @date-selected="onDateSelected"/>
-        </Popper>
+        </Popup>
     </div>
 </template>
 
@@ -20,7 +20,7 @@
     import { fromUnixTime, parse, isValid } from 'date-fns';
     import TextField from '../Form/TextField';
     import Calendar from './Calendar';
-    import Popper from '../Popper/Popper';
+    import Popup from '../common/Popup';
     import CalendarIcon from '../Icon/CalendarIcon';
 
     const MILISECONDS_IN_SECOND = 1000;
@@ -28,7 +28,7 @@
     export default {
         name: 'DatePicker',
         components: {
-            TextField, Calendar, Popper, CalendarIcon
+            TextField, Calendar, Popup, CalendarIcon
         },
         props: {
             value: {
@@ -46,6 +46,10 @@
             isInvalid: {
                 type: Boolean,
                 default: false
+            },
+            dateFormat: {
+                type: String,
+                default: 'dd/MM/y'
             }
         },
         data() {
@@ -73,7 +77,7 @@
                 if (!this.isValid) {
                     return '';
                 }
-                return format(this.value, 'dd/MM/y');
+                return format(this.value, this.dateFormat);
             },
             listeners() {
                 const {
@@ -94,10 +98,12 @@
         },
         methods: {
             onInput(e) {
-                const date = parse(e.target.value, 'dd/MM/y', new Date()).getTime();
+                const date = parse(e.target.value, this.dateFormat, new Date()).getTime();
                 if (e.target.value.length === 0) {
                     this.selectedDate = undefined;
                 } else if (!Number.isNaN(date)) {
+                    const formatted = format(date, this.dateFormat);
+                    if (e.target.value !== formatted) return;
                     this.selectedDate = date;
                 }
             },

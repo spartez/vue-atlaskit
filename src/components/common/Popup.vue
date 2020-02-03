@@ -3,9 +3,10 @@
             :target-element="targetElement"
             :placement="placement"
             :offset="offset"
-            :boundaries-element="boundariesElement"
-            class="popup">
-        <slot/>
+            :boundaries-element="boundariesElement">
+        <div class="popup">
+            <slot/>
+        </div>
     </Popper>
 </template>
 
