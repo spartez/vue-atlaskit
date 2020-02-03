@@ -79,7 +79,6 @@
                 }
             },
             onOutsideClick(event) {
-                console.log(event);
                 if (this.$refs['dropdown-container'].contains(event.target)) return;
                 if (this.closeOnOutsideClick) {
                     this.open = false;

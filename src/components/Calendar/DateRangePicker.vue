@@ -60,7 +60,8 @@
 <script>
     import format from 'date-fns/format';
     import {
-        fromUnixTime, parse, isValid, isBefore, isAfter, startOfWeek, endOfWeek, startOfMonth, endOfMonth, subMonths, subWeeks, subDays, startOfYear, endOfYear, subYears
+        fromUnixTime, parse, isValid, isBefore, isAfter, startOfWeek, endOfWeek,
+        startOfMonth, endOfMonth, subMonths, subWeeks, subDays, startOfYear, endOfYear, subYears
     } from 'date-fns';
     import TextField from '../Form/TextField';
     import Calendar from './Calendar';

@@ -2,6 +2,7 @@
     <label ref="checkbox" class="checkbox-wrapper" :for="id"
            tabindex="-1">
         <input :id="id" ref="input" v-model="isChecked"
+               :value="value"
                type="checkbox" :is-invalid="isInvalid"
                :disabled="disabled" @focus="onFocus"
                @blur="onBlur">
@@ -16,14 +17,22 @@
     export default {
         name: 'Checkbox',
         components: { CheckboxIcon },
+        model: {
+            prop: 'checked',
+            event: 'input'
+        },
         props: {
             disabled: {
                 type: Boolean,
                 default: false
             },
             value: {
-                type: Boolean,
-                default: false
+                type: String,
+                default: undefined
+            },
+            checked: {
+                type: [Boolean, Array],
+                required: true
             },
             isFocused: {
                 type: Boolean,
@@ -40,7 +49,7 @@
         computed: {
             isChecked: {
                 get() {
-                    return this.value;
+                    return this.checked;
                 },
                 set(value) {
                     this.$emit('input', value);

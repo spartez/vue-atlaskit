@@ -1,23 +1,48 @@
 <template>
-    <Checkbox class="dropdown-checkbox-item" :value="value" @input="onInput">
-        <slot/>
+    <Checkbox class="dropdown-checkbox-item" :checked="checked" :value="value"
+              @input="onInput">
+        <span class="label-text">
+            <slot/>
+        </span>
+        <Button v-if="isMulti" class="only-button" appearance="subtle"
+                spacing="none"
+                @click="onOnlyClicked">
+            only
+        </Button>
     </Checkbox>
 </template>
 
 <script>
     import Checkbox from '../Checkbox/Checkbox';
+    import Button from '../Button/Button';
 
     export default {
-        components: { Checkbox },
+        components: { Checkbox, Button },
+        model: {
+            prop: 'checked',
+            event: 'input'
+        },
         props: {
-            value: {
-                type: Boolean,
+            checked: {
+                type: [Boolean, Array],
                 required: true
+            },
+            value: {
+                type: String,
+                default: undefined
+            }
+        },
+        computed: {
+            isMulti() {
+                return Array.isArray(this.checked) && this.value;
             }
         },
         methods: {
             onInput(value) {
                 this.$emit('input', value);
+            },
+            onOnlyClicked() {
+                this.$emit('input', [this.value]);
             }
         }
     };
@@ -47,6 +72,22 @@
 
     .dropdown-checkbox-item >>> .label {
         overflow: hidden;
+        display: flex;
+        width: 100%;
+    }
+
+    .dropdown-checkbox-item .label-text {
+        overflow: hidden;
         text-overflow: ellipsis;
+        flex: 1;
+    }
+
+    .dropdown-checkbox-item .only-button {
+        margin-left: auto;
+        display: none;
+    }
+
+    .dropdown-checkbox-item:hover .only-button {
+        display: block;
     }
 </style>

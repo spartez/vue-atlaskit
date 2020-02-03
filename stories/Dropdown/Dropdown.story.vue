@@ -41,18 +41,36 @@
                 <DropdownItem>Lorem ipsum dolor sit amet consectetur adipisicing elit</DropdownItem>
             </Dropdown>
         </p>
-        <h3>Dropdown with checkboxes ({{ valueA }}, {{ valueB }}, {{ valueC }})</h3>
+        <h3>Dropdown with checkboxes (selected: {{ selected }})</h3>
         <p>
             <Dropdown label="With checkboxes" :close-on-click="false">
-                <DropdownCheckboxItem v-model="valueA">
+                <DropdownCheckboxItem v-model="selected" value="first">
                     First item
                 </DropdownCheckboxItem>
-                <DropdownCheckboxItem v-model="valueB">
+                <DropdownCheckboxItem v-model="selected" value="second">
                     Second item
                 </DropdownCheckboxItem>
-                <DropdownCheckboxItem v-model="valueC">
+                <DropdownCheckboxItem v-model="selected" value="third">
                     Lorem ipsum dolor sit amet consectetur adipisicing elit
                 </DropdownCheckboxItem>
+            </Dropdown>
+        </p>
+        <h3>Mixed (value: {{ mixedValue }})</h3>
+        <p>
+            <Dropdown label="Mixed values" :close-on-click="false">
+                <DropdownGroup label="Europe">
+                    <DropdownItem>Poland</DropdownItem>
+                    <DropdownItem>Germany</DropdownItem>
+                    <DropdownItem>France</DropdownItem>
+                    <DropdownItem>United Kingdom</DropdownItem>
+                    <DropdownItem>Spain</DropdownItem>
+                </DropdownGroup>
+                <DropdownGroup label="North America">
+                    <DropdownCheckboxItem v-model="mixedValue">
+                        Some checkbox
+                    </DropdownCheckboxItem>
+                    <DropdownItem>United States of America</DropdownItem>
+                </DropdownGroup>
             </Dropdown>
         </p>
     </div>
@@ -71,9 +89,8 @@
         },
         data() {
             return {
-                valueA: false,
-                valueB: true,
-                valueC: false
+                selected: ['second'],
+                mixedValue: false
             };
         }
     };
