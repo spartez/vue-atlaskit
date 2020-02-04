@@ -19,6 +19,9 @@ import Dropdown from './components/Dropdown/Dropdown';
 import DropdownGroup from './components/Dropdown/DropdownGroup';
 import DropdownItem from './components/Dropdown/DropdownItem';
 import DropdownCheckboxItem from './components/Dropdown/DropdownCheckboxItem';
+import Menu from './components/Menu/Menu';
+import MenuSection from './components/Menu/MenuSection';
+import MenuItem from './components/Menu/MenuItem';
 import '@atlaskit/css-reset/dist/bundle.css';
 
 export {
@@ -39,7 +42,8 @@ export {
     Lozenge,
     UserPicker,
     Popup,
-    Dropdown, DropdownGroup, DropdownItem, DropdownCheckboxItem
+    Dropdown, DropdownGroup, DropdownItem, DropdownCheckboxItem,
+    Menu, MenuItem, MenuSection
 };
 export * from './components/Icon';
 export * from './components/field-renderers';

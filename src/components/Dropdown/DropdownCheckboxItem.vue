@@ -61,6 +61,7 @@
         white-space: nowrap;
         text-overflow: ellipsis;
         display: flex;
+        height: 40px;
     }
 
     .dropdown-checkbox-item:hover {
