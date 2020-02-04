@@ -8,10 +8,10 @@
 </template>
 
 <script>
-    import Spinner from '@/components/Spinner/Spinner'
+    import Spinner from '@/components/Spinner/Spinner';
 
     export default {
-        name: "Spinner.story",
+        name: 'SpinnerStory',
         components: { Spinner }
-    }
+    };
 </script>
