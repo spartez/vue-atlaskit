@@ -32,6 +32,7 @@
     import TableHeaderCell from './TableHeaderCell';
     import TableRow from './TableRow';
     import Spinner from '../Spinner/Spinner';
+    import { getScrollParent } from '../../utils/utils';
 
     function withPxSuffix(value) {
         if (typeof value === 'number') return `${value}px`;
@@ -91,6 +92,17 @@
                 },
                 immediate: true
             }
+        },
+        updated() {
+            this.$nextTick(() => {
+                const el = this.$refs['infinite-scroll-loader'];
+                const { bottom, height } = el.getBoundingClientRect();
+                const { bottom: scrollParentBottom } = getScrollParent(el).getBoundingClientRect();
+                const isBottomReached = bottom - height - scrollParentBottom <= 0;
+                if (isBottomReached) {
+                    this.$emit('table-bottom-reached');
+                }
+            });
         },
         async mounted() {
             const observer = new IntersectionObserver((entries) => {
