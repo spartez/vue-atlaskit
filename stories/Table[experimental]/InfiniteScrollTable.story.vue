@@ -34,7 +34,7 @@
             };
         },
         methods: {
-            loadMoreData() {
+            loadMoreData(callback) {
                 setTimeout(() => {
                     const lastId = this.data[this.data.length - 1].id;
                     if (lastId > 30) {
@@ -46,6 +46,7 @@
                             job: faker.name.jobTitle()
                         }))];
                     }
+                    callback();
                 }, 1000);
             }
         }

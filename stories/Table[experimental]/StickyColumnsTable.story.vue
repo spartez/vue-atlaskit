@@ -1,12 +1,20 @@
 <template>
     <div class="wrapper">
-        <Table :columns="columns" :data="data" :sticky-header="true"
+        <Table ref="table" class="table" :columns="columns"
+               :data="data"
+               :sticky-header="true"
                :sticky-left-column="true" :sticky-right-column="true">
             <template v-slot:email="{ value }">
                 <a :href="`mailto:${value}`">{{ value }}</a>
             </template>
-            <template v-slot:action="{ row }">
-                <Button>Delete {{ row.id }}</Button>
+            <template v-slot:action="{ row, cellElement }">
+                <Dropdown label="Actions" :boundaries-element="$refs.table && $refs.table.$el"
+                          @open="dropdownOpen(cellElement)"
+                          @close="dropdownClose(cellElement)">
+                    <DropdownItem>Move {{ row.id }}</DropdownItem>
+                    <DropdownItem>Edit {{ row.id }}</DropdownItem>
+                    <DropdownItem>Delete {{ row.id }}</DropdownItem>
+                </Dropdown>
             </template>
         </Table>
     </div>
@@ -14,12 +22,13 @@
 
 <script>
     import Table from '@/components/Table/Table';
-    import Button from '@/components/Button/Button';
+    import Dropdown from '@/components/Dropdown/Dropdown';
+    import DropdownItem from '@/components/Dropdown/DropdownItem';
     import faker from 'faker';
 
     export default {
         name: 'TableStory',
-        components: { Table, Button },
+        components: { Table, Dropdown, DropdownItem },
         data() {
             return {
                 columns: [{
@@ -58,13 +67,27 @@
                     job: faker.name.jobTitle()
                 }))
             };
+        },
+        methods: {
+            dropdownOpen(cellElement) {
+                cellElement.setAttribute('with-dropdown', '');
+            },
+            dropdownClose(cellElement) {
+                cellElement.removeAttribute('with-dropdown');
+            }
         }
     };
 </script>
 
 <style scoped>
     .wrapper {
-        height: 300px;
-        max-width: 800px;
+        max-height: 500px;
+        max-width: 900px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    >>> .table-row-cell[with-dropdown] {
+        z-index: 100;
     }
 </style>

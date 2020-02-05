@@ -1,31 +1,40 @@
 <template>
-    <table ref="table" class="table">
-        <thead>
-            <tr class="table-header-row">
-                <TableHeaderCell v-for="(column, index) in columns" :key="column.id" :column="column"
-                                 :sticky-left="stickyLeftColumn && index === 0"
-                                 :sticky-right="stickyRightColumn && index === (columns.length - 1)"
-                                 :sticky-header="stickyHeader"/>
-            </tr>
-        </thead>
-        <tbody>
-            <TableRow v-for="row in data" :key="row.id" :columns="columns"
-                      :row="row"
-                      :sticky-right="stickyRightColumn"
-                      :sticky-left="stickyLeftColumn">
-                <template v-for="column in columns" v-slot:[column.id]="{row, value}">
-                    <slot :name="column.id" :row="row" :value="value"/>
-                </template>
-            </TableRow>
-        </tbody>
-        <tfoot v-show="infiniteScroll">
-            <tr>
-                <td ref="infinite-scroll-loader" class="infinite-scroll-loader">
-                    <Spinner size="small"/>
-                </td>
-            </tr>
-        </tfoot>
-    </table>
+    <div class="table-wrapper">
+        <table ref="table" class="table">
+            <thead>
+                <tr class="table-header-row">
+                    <TableHeaderCell v-for="(column, index) in columns" :key="column.id" :column="column"
+                                     :sticky-left="stickyLeftColumn && index === 0"
+                                     :sticky-right="stickyRightColumn && index === (columns.length - 1)"
+                                     :sticky-header="stickyHeader"
+                                     :sorted="sortedBy === column.id"
+                                     :sorted-desc="sortedDesc"
+                                     @sorted="onSorted(column)"/>
+                </tr>
+            </thead>
+            <tbody>
+                <TableRow v-for="row in data" :key="row.id"
+                          :columns="columns"
+                          :row="row"
+                          :sticky-right="stickyRightColumn"
+                          :sticky-left="stickyLeftColumn">
+                    <template v-for="column in columns" v-slot:[column.id]="props">
+                        <slot :name="column.id" v-bind="props"/>
+                    </template>
+                </TableRow>
+            </tbody>
+            <tfoot v-show="infiniteScroll">
+                <tr>
+                    <td ref="infinite-scroll-loader" class="infinite-scroll-loader" :style="{ width: `${tableWidth}px` }">
+                        <Spinner size="small"/>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+        <div class="busy-glass" :busy="busy">
+            <Spinner/>
+        </div>
+    </div>
 </template>
 
 <script>
@@ -76,7 +85,22 @@
             busy: {
                 type: Boolean,
                 default: false
+            },
+            sortedBy: {
+                type: String,
+                default: undefined
+            },
+            sortedDesc: {
+                type: Boolean,
+                default: false
             }
+        },
+        data() {
+            return {
+                observer: undefined,
+                tableWidth: 0,
+                activeRowId: undefined
+            };
         },
         watch: {
             columns: {
@@ -87,23 +111,49 @@
                             const minWidth = column.minWidth || column.width || this.defaultColumnMinWidth;
                             return `minmax(${withPxSuffix(minWidth)}, ${withPxSuffix(width)})`;
                         }).join(' ');
+                        this.tableWidth = this.$refs.table.offsetWidth;
                     });
                 },
                 immediate: true
             }
         },
         async mounted() {
-            const observer = new IntersectionObserver((entries) => {
-                if (entries[0].isIntersecting) {
-                    this.$emit('table-bottom-reached');
+            this.createObserver();
+        },
+        methods: {
+            createObserver() {
+                if (this.observer) {
+                    this.observer.unobserve(this.$refs['infinite-scroll-loader']);
                 }
-            });
-            observer.observe(this.$refs['infinite-scroll-loader']);
+                this.observer = new IntersectionObserver((entries) => {
+                    if (entries[0].isIntersecting) {
+                        this.tableBottomReached();
+                    }
+                });
+                this.observer.observe(this.$refs['infinite-scroll-loader']);
+            },
+            tableBottomReached() {
+                this.$emit('table-bottom-reached', () => {
+                    this.createObserver();
+                });
+            },
+            onSorted(column) {
+                this.$emit('sorted', { id: column.id, desc: this.sortedBy === column.id ? !this.sortedDesc : false });
+            }
         }
     };
 </script>
 
 <style scoped>
+    .table-wrapper {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        position: relative;
+    }
+
     .table {
         display: grid;
         height: 100%;
@@ -111,6 +161,7 @@
         box-sizing: border-box;
         grid-auto-rows: min-content;
         position: relative;
+        overflow: auto;
     }
 
     .table tbody, .table thead, .table tfoot {
@@ -124,9 +175,25 @@
     .table .infinite-scroll-loader {
         box-sizing: border-box;
         height: auto;
-        width: 100%;
-        position: absolute;
         display: flex;
+        justify-content: center;
+        padding: 5px;
+    }
+
+    .table-wrapper .busy-glass {
+        position: absolute;
+        display: none;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(255,255,255,0.5);
+        z-index: 200;
+    }
+
+    .table-wrapper .busy-glass[busy] {
+        display: flex;
+        align-items: center;
         justify-content: center;
     }
 </style>

@@ -34,7 +34,7 @@
                 required: true
             },
             boundariesElement: {
-                type: String,
+                type: [String, HTMLElement],
                 default: 'viewport'
             },
             closeOnClick: {
@@ -60,9 +60,11 @@
                 if (value) {
                     document.addEventListener('click', this.onOutsideClick);
                     document.addEventListener('keydown', this.onKeyDown);
+                    this.$emit('open');
                 } else {
                     document.removeEventListener('click', this.onOutsideClick);
                     document.removeEventListener('keydown', this.onKeyDown);
+                    this.$emit('close');
                 }
             }
         },

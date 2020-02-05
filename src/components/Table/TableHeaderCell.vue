@@ -2,13 +2,25 @@
     <th class="table-header-cell"
         :sticky-header="stickyHeader"
         :sticky-left="stickyLeft"
-        :sticky-right="stickyRight">
-        {{ column.name }}
+        :sticky-right="stickyRight"
+        :sortable="column.sortable"
+        @click="onClick">
+        <span class="table-header-label">
+            {{ column.name }}
+        </span>
+        <template v-if="column.sortable">
+            <ChevronDownIcon v-if="sorted && sortedDesc" size="small"/>
+            <ChevronUpIcon v-if="sorted && !sortedDesc" size="small"/>
+        </template>
     </th>
 </template>
 
 <script>
+    import ChevronDownIcon from '../Icon/ChevronDownIcon';
+    import ChevronUpIcon from '../Icon/ChevronUpIcon';
+
     export default {
+        components: { ChevronDownIcon, ChevronUpIcon },
         props: {
             column: {
                 type: Object,
@@ -25,6 +37,21 @@
             stickyRight: {
                 type: Boolean,
                 default: false
+            },
+            sorted: {
+                type: Boolean,
+                default: false
+            },
+            sortedDesc: {
+                type: Boolean,
+                default: false
+            }
+        },
+        methods: {
+            onClick() {
+                if (this.column.sortable) {
+                    this.$emit('sorted');
+                }
             }
         }
     };
@@ -41,11 +68,13 @@
         line-height: 1.67;
         letter-spacing: -0.1px;
         color: rgb(94, 108, 132);
-        padding: 8px 25px;
+        padding: 9px 16px 7px;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
         border-bottom: 2px solid rgb(223, 225, 230);
+        display: flex;
+        align-items: center;
     }
 
     .table-header-cell[sticky-header] {
@@ -67,5 +96,10 @@
         right: 0;
         z-index: 20;
         background: white;
+    }
+
+    .table-header-cell[sortable]:hover {
+        background-color: rgb(244, 245, 247);
+        cursor: pointer;
     }
 </style>

@@ -1,19 +1,25 @@
 <template>
     <tr class="table-row">
-        <td v-for="(column, index) in columns" :key="column.id" class="table-row-cell"
-            :sticky-left="stickyLeft && index === 0"
-            :sticky-right="stickyRight && index === (columns.length - 1)">
-            <slot :name="column.id" :row="row" :value="row[column.id]">
+        <TableRowCell v-for="(column, index) in columns"
+                      :key="column.id"
+                      :value="row[column.id]"
+                      :sticky-left="stickyLeft && index === 0"
+                      :sticky-right="stickyRight && index === (columns.length - 1)">
+            <slot slot-scope="props" :name="column.id" :row="row"
+                  v-bind="props">
                 <span class="table-row-cell-value">
                     {{ row[column.id] }}
                 </span>
             </slot>
-        </td>
+        </TableRowCell>
     </tr>
 </template>
 
 <script>
+    import TableRowCell from './TableRowCell';
+
     export default {
+        components: { TableRowCell },
         props: {
             columns: {
                 type: Array,
@@ -30,6 +36,10 @@
             stickyRight: {
                 type: Boolean,
                 default: false
+            },
+            isActiveRow: {
+                type: Boolean,
+                default: false
             }
         }
     };
@@ -40,35 +50,7 @@
         display: contents;
     }
 
-    .table-row-cell {
-        align-items: center;
-        position: relative;
-        box-sizing: border-box;
-        min-height: 40px;
-        color: rgb(23, 43, 77);
-        line-height: 20px;
-        padding: 8px 25px;
-        overflow: hidden;
-        display: flex;
-    }
-
-    .table-row-cell-value {
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-    }
-
-    .table-row-cell[sticky-left] {
-        position: sticky;
-        left: 0;
-        z-index: 2;
-        background: white;
-    }
-
-    .table-row-cell[sticky-right] {
-        position: sticky;
-        right: 0;
-        z-index: 2;
-        background: white;
+    .table-row:hover .table-row-cell {
+        background-color: rgb(244, 245, 247);
     }
 </style>
