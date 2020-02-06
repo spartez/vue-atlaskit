@@ -1,8 +1,10 @@
 <template>
     <TextField :is-focused="isFocused">
-        <input ref="input" :value="value" :type="type"
+        <input ref="input" v-model="input" :type="type"
                :placeholder="placeholder"
-               :maxlength="maxlength" @input="onInput"
+               :step="step"
+               v-bind="$attrs"
+               :maxlength="maxlength"
                @focus="onFocus" @blur="onBlur">
     </TextField>
 </template>
@@ -39,13 +41,37 @@
             type: {
                 type: String,
                 default: 'text'
+            },
+            step: {
+                type: String,
+                default: '1'
+            },
+            allowedValues: {
+                type: String,
+                default: ''
             }
         },
         data() {
             return {
-                text: this.value,
                 isFocused: false
             };
+        },
+        computed: {
+            input: {
+                get() {
+                    return this.value;
+                },
+                set(val) {
+                    this.$emit('input', val);
+                }
+            }
+        },
+        watch: {
+            input() {
+                if (this.allowedValues) {
+                    this.input = this.input.replace(new RegExp(this.allowedValues, 'g'), '');
+                }
+            }
         },
         mounted() {
             if (this.autoFocus) {
@@ -53,9 +79,6 @@
             }
         },
         methods: {
-            onInput(e) {
-                this.$emit('input', e.target.value);
-            },
             onFocus(e) {
                 this.isFocused = true;
                 this.$emit('focus', e);
