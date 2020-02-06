@@ -17,7 +17,7 @@
                           :columns="columns"
                           :row="row"
                           :sticky-right="stickyRightColumn"
-                          :sticky-left="stickyLeftColumn">
+                          :sticky-left="stickyLeftColumn" @click="onRowClick(row, $event)">
                     <template v-for="column in columns" v-slot:[column.id]="props">
                         <slot :name="column.id" v-bind="props"/>
                     </template>
@@ -121,6 +121,9 @@
             this.createObserver();
         },
         methods: {
+            onRowClick(row, event) {
+                this.$emit('row-click', { row, event });
+            },
             createObserver() {
                 if (this.observer) {
                     this.observer.unobserve(this.$refs['infinite-scroll-loader']);

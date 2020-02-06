@@ -1,5 +1,5 @@
 <template>
-    <tr class="table-row">
+    <tr class="table-row" @click="onClick">
         <TableRowCell v-for="(column, index) in columns"
                       :key="column.id"
                       :value="row[column.id]"
@@ -41,6 +41,11 @@
                 type: Boolean,
                 default: false
             }
+        },
+        methods: {
+            onClick(event) {
+                this.$emit('click', event);
+            }
         }
     };
 </script>
@@ -50,7 +55,7 @@
         display: contents;
     }
 
-    .table-row:hover .table-row-cell {
+    .table-row:hover > .table-row-cell {
         background-color: rgb(244, 245, 247);
     }
 </style>
