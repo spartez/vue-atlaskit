@@ -1,45 +1,38 @@
 <template>
-    <div ref="dropdown-container" class="dropdown-container">
-        <slot v-if="$scopedSlots.trigger" name="trigger"
+    <span ref="dialog-container">
+        <slot name="trigger"
               :is-open="open"
               :toggle="onTriggerClick"/>
-        <Button v-else :is-selected="open" @click="onTriggerClick">
-            {{ label }}
-            <ChevronDownIcon slot="icon-after"/>
-        </Button>
-
-        <Popup ref="menu" :is-open="open" offset="0,8"
-               :target-element="$refs['dropdown-container']"
+        <Popup ref="dialog" :is-open="open" :offset="offset"
+               :target-element="$refs['dialog-container']"
                :boundaries-element="boundariesElement"
-               placement="bottom-start">
-            <div class="dropdown-menu" @click="onMenuClick">
+               :placement="placement">
+            <div ref="dialog-content" class="dialog-content">
                 <slot/>
             </div>
         </Popup>
-    </div>
+    </span>
 </template>
 
 <script>
-    import Button from '../Button/Button';
-    import ChevronDownIcon from '../Icon/ChevronDownIcon';
     import Popup from '../common/Popup';
 
     export default {
         components: {
-            Button, ChevronDownIcon, Popup
+            Popup
         },
         props: {
-            label: {
-                type: String,
-                default: 'Dropdown'
-            },
             boundariesElement: {
                 type: [String, HTMLElement],
                 default: 'viewport'
             },
-            closeOnClick: {
-                type: Boolean,
-                default: true
+            placement: {
+                type: String,
+                default: 'right-top'
+            },
+            offset: {
+                type: String,
+                default: '8,8'
             },
             closeOnOutsideClick: {
                 type: Boolean,
@@ -75,13 +68,8 @@
             onTriggerClick() {
                 this.open = !this.open;
             },
-            onMenuClick() {
-                if (this.closeOnClick) {
-                    this.open = false;
-                }
-            },
             onOutsideClick(event) {
-                if (this.$refs['dropdown-container'].contains(event.target)) return;
+                if (this.$refs['dialog-container'].contains(event.target)) return;
                 if (this.closeOnOutsideClick) {
                     this.open = false;
                 }
@@ -96,12 +84,7 @@
 </script>
 
 <style scoped>
-    .dropdown-container {
-        display: inline-block;
-    }
-
-    .dropdown-menu {
-        padding: 4px 0;
+    .dialog-content {
         max-width: 300px;
         max-height: 400px;
     }

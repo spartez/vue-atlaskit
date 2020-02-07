@@ -73,6 +73,59 @@
                 </DropdownGroup>
             </Dropdown>
         </p>
+        <h3>Scrolled items</h3>
+        <p>
+            <Dropdown label="Drop down menu">
+                <DropdownGroup label="Europe">
+                    <DropdownItem>Poland</DropdownItem>
+                    <DropdownItem>Germany</DropdownItem>
+                    <DropdownItem>France</DropdownItem>
+                    <DropdownItem>United Kingdom</DropdownItem>
+                    <DropdownItem>Spain</DropdownItem>
+                </DropdownGroup>
+                <DropdownGroup label="North America">
+                    <DropdownItem>Canada</DropdownItem>
+                    <DropdownItem>United States of America</DropdownItem>
+                </DropdownGroup>
+                <DropdownGroup label="Asia">
+                    <DropdownItem>China</DropdownItem>
+                    <DropdownItem>Japan</DropdownItem>
+                    <DropdownItem>India</DropdownItem>
+                </DropdownGroup>
+                <DropdownGroup label="Europe">
+                    <DropdownItem>Poland</DropdownItem>
+                    <DropdownItem>Germany</DropdownItem>
+                    <DropdownItem>France</DropdownItem>
+                    <DropdownItem>United Kingdom</DropdownItem>
+                    <DropdownItem>Spain</DropdownItem>
+                </DropdownGroup>
+                <DropdownGroup label="North America">
+                    <DropdownItem>Canada</DropdownItem>
+                    <DropdownItem>United States of America</DropdownItem>
+                </DropdownGroup>
+                <DropdownGroup label="Asia">
+                    <DropdownItem>China</DropdownItem>
+                    <DropdownItem>Japan</DropdownItem>
+                    <DropdownItem>India</DropdownItem>
+                </DropdownGroup>
+                <DropdownGroup label="Europe">
+                    <DropdownItem>Poland</DropdownItem>
+                    <DropdownItem>Germany</DropdownItem>
+                    <DropdownItem>France</DropdownItem>
+                    <DropdownItem>United Kingdom</DropdownItem>
+                    <DropdownItem>Spain</DropdownItem>
+                </DropdownGroup>
+                <DropdownGroup label="North America">
+                    <DropdownItem>Canada</DropdownItem>
+                    <DropdownItem>United States of America</DropdownItem>
+                </DropdownGroup>
+                <DropdownGroup label="Asia">
+                    <DropdownItem>China</DropdownItem>
+                    <DropdownItem>Japan</DropdownItem>
+                    <DropdownItem>India</DropdownItem>
+                </DropdownGroup>
+            </Dropdown>
+        </p>
     </div>
 </template>
 
