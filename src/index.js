@@ -23,6 +23,7 @@ import Menu from './components/Menu/Menu';
 import MenuSection from './components/Menu/MenuSection';
 import MenuItem from './components/Menu/MenuItem';
 import InlineDialog from './components/InlineDialog/InlineDialog';
+import SectionMessage from './components/SectionMessage/SectionMessage';
 import Table from './components/Table/Table';
 import '@atlaskit/css-reset/dist/bundle.css';
 
@@ -46,7 +47,9 @@ export {
     Popup,
     Dropdown, DropdownGroup, DropdownItem, DropdownCheckboxItem,
     Menu, MenuItem, MenuSection,
-    InlineDialog, Table
+    InlineDialog,
+    SectionMessage,
+    Table
 };
 export * from './components/Icon';
 export * from './components/field-renderers';
