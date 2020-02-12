@@ -25,6 +25,7 @@ import MenuItem from './components/Menu/MenuItem';
 import InlineDialog from './components/InlineDialog/InlineDialog';
 import SectionMessage from './components/SectionMessage/SectionMessage';
 import Table from './components/Table/Table';
+import Progress from './components/Progress/progress';
 import '@atlaskit/css-reset/dist/bundle.css';
 
 export {
@@ -49,7 +50,8 @@ export {
     Menu, MenuItem, MenuSection,
     InlineDialog,
     SectionMessage,
-    Table
+    Table,
+    Progress
 };
 export * from './components/Icon';
 export * from './components/field-renderers';
