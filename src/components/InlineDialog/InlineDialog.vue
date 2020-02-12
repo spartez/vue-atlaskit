@@ -6,7 +6,8 @@
         <Popup ref="dialog" :is-open="open" :offset="offset"
                :target-element="$refs['dialog-container']"
                :boundaries-element="boundariesElement"
-               :placement="placement">
+               :placement="placement"
+               :position-fixed="positionFixed">
             <div ref="dialog-content" class="dialog-content">
                 <slot/>
             </div>
@@ -23,7 +24,7 @@
         },
         props: {
             boundariesElement: {
-                type: [String, HTMLElement],
+                type: [String, HTMLElement, Function],
                 default: 'viewport'
             },
             placement: {
@@ -41,6 +42,10 @@
             closeOnEsc: {
                 type: Boolean,
                 default: true
+            },
+            positionFixed: {
+                type: Boolean,
+                default: false
             }
         },
         data() {

@@ -37,6 +37,62 @@
                 </div>
             </InlineDialog>
         </p>
+        <h3>Keep to scroll parent boundaries</h3>
+        <div class="scroll-container">
+            <p>
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quae aspernatur, necessitatibus dolores
+                minus ad illo. Vel ipsa, cupiditate, maxime atque dolores ut autem enim neque sit temporibus
+                recusandae quidem cumque!
+            </p>
+            <InlineDialog boundaries-element="scrollParent">
+                <template v-slot:trigger="{ toggle }">
+                    <a href @click.prevent="toggle">Click me!</a>
+                </template>
+                <div class="content">
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    </p>
+                </div>
+            </InlineDialog>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus aliquid quisquam ullam fugit
+                repellendus a voluptatem repudiandae vero. Ipsam mollitia dolore dolorum possimus dolor amet
+                deserunt repellendus distinctio sapiente provident.
+            </p>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus aliquid quisquam ullam fugit
+                repellendus a voluptatem repudiandae vero. Ipsam mollitia dolore dolorum possimus dolor amet
+                deserunt repellendus distinctio sapiente provident.
+            </p>
+        </div>
+        <h3>Overflow a relative parent</h3>
+        <div class="scroll-container">
+            <p>
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quae aspernatur, necessitatibus dolores
+                minus ad illo. Vel ipsa, cupiditate, maxime atque dolores ut autem enim neque sit temporibus
+                recusandae quidem cumque!
+            </p>
+            <InlineDialog :position-fixed="true">
+                <template v-slot:trigger="{ toggle }">
+                    <a href @click.prevent="toggle">Click me!</a>
+                </template>
+                <div class="content">
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    </p>
+                </div>
+            </InlineDialog>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus aliquid quisquam ullam fugit
+                repellendus a voluptatem repudiandae vero. Ipsam mollitia dolore dolorum possimus dolor amet
+                deserunt repellendus distinctio sapiente provident.
+            </p>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus aliquid quisquam ullam fugit
+                repellendus a voluptatem repudiandae vero. Ipsam mollitia dolore dolorum possimus dolor amet
+                deserunt repellendus distinctio sapiente provident.
+            </p>
+        </div>
     </div>
 </template>
 
@@ -59,5 +115,13 @@
 
     .content {
         padding: 10px;
+    }
+
+    .scroll-container {
+        border: 1px solid gray;
+        position: relative;
+        max-width: 400px;
+        max-height: 100px;
+        overflow: auto;
     }
 </style>

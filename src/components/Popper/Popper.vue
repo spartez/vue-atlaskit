@@ -25,8 +25,12 @@
                 default: 0
             },
             boundariesElement: {
-                type: [String, HTMLElement],
+                type: [String, HTMLElement, Function],
                 default: 'viewport'
+            },
+            positionFixed: {
+                type: Boolean,
+                default: false
             }
         },
         mounted() {
@@ -40,12 +44,14 @@
         methods: {
             initPopper() {
                 const [defaultSlot] = this.$slots.default;
+                const boundariesElement = typeof this.boundariesElement === 'function' ? this.boundariesElement() : this.boundariesElement;
                 this.popper = new Popper(this.targetElement, defaultSlot.elm, {
                     placement: this.placement,
+                    positionFixed: this.positionFixed,
                     modifiers: {
                         offset: { offset: this.offset },
                         preventOverflow: {
-                            boundariesElement: this.boundariesElement
+                            boundariesElement
                         },
                         flip: {
                             behavior: this.flipBehavior

@@ -11,6 +11,7 @@
         <Popup ref="menu" :is-open="open" offset="0,8"
                :target-element="$refs['dropdown-container']"
                :boundaries-element="boundariesElement"
+               :position-fixed="positionFixed"
                placement="bottom-start">
             <div class="dropdown-menu" @click="onMenuClick">
                 <slot/>
@@ -34,7 +35,7 @@
                 default: 'Dropdown'
             },
             boundariesElement: {
-                type: [String, HTMLElement],
+                type: [String, HTMLElement, Function],
                 default: 'viewport'
             },
             closeOnClick: {
@@ -48,6 +49,10 @@
             closeOnEsc: {
                 type: Boolean,
                 default: true
+            },
+            positionFixed: {
+                type: Boolean,
+                default: false
             }
         },
         data() {

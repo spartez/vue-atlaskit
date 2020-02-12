@@ -3,7 +3,8 @@
             :target-element="targetElement"
             :placement="placement"
             :offset="offset"
-            :boundaries-element="boundariesElement">
+            :boundaries-element="boundariesElement"
+            :position-fixed="positionFixed">
         <div class="popup">
             <slot/>
         </div>
@@ -41,8 +42,12 @@
                 default: 0
             },
             boundariesElement: {
-                type: [String, HTMLElement],
+                type: [String, HTMLElement, Function],
                 default: 'viewport'
+            },
+            positionFixed: {
+                type: Boolean,
+                default: false
             }
         }
     };
