@@ -1,6 +1,10 @@
 <template>
     <div class="wrapper">
         <UserPicker v-model="value" :get-users="getUsers"/>
+        <p>{{ value }}</p>
+        <br>
+        <UserPicker v-model="users" :multi="true" :get-users="getUsers"/>
+        <p>{{ users }}</p>
     </div>
 </template>
 
@@ -15,7 +19,7 @@
                 .toLowerCase()
                 .includes(query.toLowerCase().trim()));
             resolve({ data: results });
-        }, 1000);
+        }, 300);
     });
 
     export default {
@@ -24,6 +28,7 @@
         data() {
             return {
                 value: undefined,
+                users: [],
                 getUsers
             };
         }

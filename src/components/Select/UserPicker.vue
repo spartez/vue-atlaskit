@@ -2,6 +2,7 @@
     <Select :value="value"
             :options="users"
             :async="true"
+            :multi="multi"
             :is-fetching="isFetching"
             placeholder="Type to search..."
             :normalizer="normalizer"
@@ -12,6 +13,9 @@
         </div>
         <div slot="selected" slot-scope="{selected}" class="label">
             <UserRenderer tag="span" :user="selected"/>
+        </div>
+        <div slot="tag" slot-scope="{tag}" class="user-tag">
+            <UserRenderer appearance="micro" tag="span" :user="tag.value"/>
         </div>
     </Select>
 </template>
@@ -30,8 +34,12 @@
                 required: true
             },
             value: {
-                type: Object,
+                type: [Object, Array],
                 default: undefined
+            },
+            multi: {
+                type: Boolean,
+                default: false
             }
         },
         data() {
@@ -63,3 +71,8 @@
         }
     };
 </script>
+<style scoped>
+    .user-tag {
+        padding: 2px 4px 2px 4px;
+    }
+</style>

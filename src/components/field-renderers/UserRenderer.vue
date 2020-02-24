@@ -1,5 +1,5 @@
 <template>
-    <div class="user" @click="onClick">
+    <div class="user" :appearance="appearance" @click="onClick">
         <slot>
             <template v-if="user">
                 <img class="avatar"
@@ -37,6 +37,10 @@
             tag: {
                 type: String,
                 default: 'span'
+            },
+            appearance: {
+                type: String,
+                default: undefined
             }
         },
         computed: {
@@ -68,6 +72,16 @@
         border-radius: 50%;
         margin-right: 5px;
         background: rgba(9, 30, 66, 0.13);
+    }
+
+    .user[appearance='micro'] {
+        height: 16px;
+        font-size: 85%;
+    }
+
+    [appearance='micro'] .avatar{
+        height: 16px;
+        width: 16px;
     }
 
     a.user-name {
