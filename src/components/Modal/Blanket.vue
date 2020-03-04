@@ -1,12 +1,18 @@
 <template>
-    <div class="blanket">
+    <div class="blanket" :style="{zIndex}">
         <slot/>
     </div>
 </template>
 
 <script>
     export default {
-        name: 'Blanket'
+        name: 'Blanket',
+        props: {
+            zIndex: {
+                type: Number,
+                default: 999
+            }
+        }
     };
 </script>
 
@@ -19,7 +25,6 @@
     left: 0;
     opacity: 1;
     position: fixed;
-    z-index: 500;
     background: rgba(9, 30, 66, 0.54);
     transition: opacity 220ms ease 0s;
 }

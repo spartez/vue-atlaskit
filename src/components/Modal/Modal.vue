@@ -1,6 +1,6 @@
 <template>
     <transition name="modal" appear>
-        <Blanket class="dialog">
+        <Blanket class="dialog" :z-index="zIndex">
             <PositionerAbsolute :width="width">
                 <form class="modal-container" novalidate @submit.prevent="onSubmit">
                     <header>
@@ -64,6 +64,10 @@
             width: {
                 type: String,
                 default: '600px'
+            },
+            zIndex: {
+                type: Number,
+                default: 999
             }
         },
         data() {
