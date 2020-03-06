@@ -5,6 +5,7 @@ import vue from 'rollup-plugin-vue';
 import { terser } from 'rollup-plugin-terser';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 import css from 'rollup-plugin-css-only';
+import renameExtensions from '@betit/rollup-plugin-rename-extensions';
 
 const plugins = [
     peerDepsExternal(),
@@ -13,6 +14,10 @@ const plugins = [
         extensions: ['.js', '.json', '.vue']
     }),
     commonjs(),
+    renameExtensions({
+        include: ['**/*.vue'],
+        mappings: { '.vue': '.vue.js' }
+    }),
     vue({
         css: false,
         compileTemplate: true // Explicitly convert template to render function
@@ -28,19 +33,12 @@ export default [
         input: 'src/index.js',
         output: [
             {
-                exports: 'named',
                 format: 'es',
-                file: 'dist/index.esm.js',
-                name: 'atlaskit'
-            },
-            {
-                exports: 'named',
-                format: 'cjs',
-                file: 'dist/index.cjs.js',
-                name: 'atlaskit'
+                dir: 'dist/lib/'
             }
         ],
-        plugins
+        plugins,
+        preserveModules: true
     }, {
         input: 'src/index.umd.js',
         output: [
