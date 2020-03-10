@@ -12,14 +12,11 @@
 ```
 npm install @spartez/vue-atlaskit
 ```
-vue-atlaskit can be used as a module in both CommonJS and ES modular environments.
-
-When in non-modular environment, vue-atlaskit will register all the components to vue by itself.</p>
 
 ### ES6
 ```js
 //
-// You can register a component manually
+// Register a component manually for optimal tree shaking
 //
 import { Spinner } from '@spartez/vue-atlaskit';
 
@@ -28,38 +25,6 @@ export default {
     Spinner
   },
 };
-
-//
-// or register the whole module with vue
-//
-import atlaskit from '@spartez/vue-atlaskit';
-
-// Install this library
-Vue.use(atlaskit);
-```
-
-### CommonJS
-```js
-//
-// You can register a component manually
-//
-const Vue = require('vue');
-const atlaskit = require('@spartez/vue-atlaskit');
-
-const YourComponent = Vue.extend({
-  components: {
-    'spinner': atlaskit.spinner
-  },
-});
-
-//
-// or register the whole module with vue
-//
-const Vue = require('vue');
-const atlaskit = require('@spartez/vue-atlaskit');
-
-// Install this library
-Vue.use(atlaskit);
 ```
 
 ### Browser
