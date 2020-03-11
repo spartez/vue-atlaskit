@@ -80,7 +80,6 @@
   "dependencies": {
     "date-fns": "^2.0.0-beta.2",
     "popper.js": "^1.15.0",
-    "vue-content-loader": "^0.2.2",
     "vue-promised": "^1.2.0"
   }
 }

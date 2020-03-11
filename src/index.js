@@ -26,6 +26,7 @@ import InlineDialog from './components/InlineDialog/InlineDialog';
 import SectionMessage from './components/SectionMessage/SectionMessage';
 import Table from './components/Table/Table';
 import Progress from './components/Progress/progress';
+import ContentLoader from './components/ContentLoader/ContentLoader';
 import '@atlaskit/css-reset/dist/bundle.css';
 
 export {
@@ -51,7 +52,8 @@ export {
     InlineDialog,
     SectionMessage,
     Table,
-    Progress
+    Progress,
+    ContentLoader
 };
 export * from './components/Icon';
 export * from './components/field-renderers';

@@ -1,18 +1,19 @@
 <template>
     <Promised v-if="isPromise(value)" :promise="value" :pending-delay="pendingDelay">
         <template slot="combined" slot-scope="{ isPending, isDelayOver, data, error }">
-            <VueContentLoader v-if="(isDelayOver && isPending)"
-                              :style="{ width: `${width}px`, height: `${height}px` }"
-                              :width="width" :height="height"
-                              class="content-loader"
-                              primary-color="rgba(9, 30, 66, 0.08)"
-                              secondary-color="rgba(9, 30, 66, 0.13)" :speed="1">
+            <ContentLoader v-if="(isDelayOver && isPending)"
+                           :width="width" :height="height"
+                           :preserve-aspect-ratio="preserveAspectRatio"
+                           :view-box="viewBox"
+                           class="content-loader"
+                           primary-color="rgba(9, 30, 66, 0.08)"
+                           secondary-color="rgba(9, 30, 66, 0.13)" :speed="1">
                 <slot name="loader-shape">
                     <rect x="0" y="0"
                           :rx="height/2" :ry="height/2"
                           :width="width" :height="height"/>
                 </slot>
-            </VueContentLoader>
+            </ContentLoader>
             <slot v-else-if="error" name="error-message">
                 <div class="error-message">
                     {{ error.message }}
@@ -27,25 +28,25 @@
 </template>
 
 <script>
-    import { ContentLoader as VueContentLoader } from 'vue-content-loader';
     import { Promised } from 'vue-promised';
+    import ContentLoader from '../ContentLoader/ContentLoader';
     import { isPromise } from '../../utils/utils';
 
     export default {
-        name: 'ContentLoader',
-        components: { Promised, VueContentLoader },
+        name: 'PromisedContentLoader',
+        components: { Promised, ContentLoader },
         props: {
             value: {
                 type: Promise,
                 required: true
             },
             width: {
-                type: Number,
-                default: 200
+                type: String,
+                default: '200px'
             },
             height: {
-                type: Number,
-                default: 16
+                type: String,
+                default: '16px'
             },
             tag: {
                 type: String,
@@ -54,6 +55,14 @@
             pendingDelay: {
                 type: Number,
                 default: 200
+            },
+            preserveAspectRatio: {
+                type: String,
+                default: 'none'
+            },
+            viewBox: {
+                type: String,
+                default: undefined
             }
         },
         methods: {

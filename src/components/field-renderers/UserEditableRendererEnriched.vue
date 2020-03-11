@@ -1,6 +1,6 @@
 <template>
-    <ContentLoader :width="150" :height="24" :value="user.enriched"
-                   :pending-delay="0">
+    <PromisedContentLoader :width="150" :height="24" :value="user.enriched"
+                           :pending-delay="0">
         <UserEditableRenderer slot-scope="{ value }" :user="value"
                               :load-options="user.getUsers"
                               :editable="editable"
@@ -26,19 +26,19 @@
                 <span>{{ user.value }} <small>(deleted)</small></span>
             </div>
         </component>
-    </ContentLoader>
+    </PromisedContentLoader>
 </template>
 
 <script>
     import CrossIcon from '../Icon/CrossIcon';
-    import ContentLoader from '../common/ContentLoader';
+    import PromisedContentLoader from '../common/PromisedContentLoader';
     import UserEditableRenderer from './UserEditableRenderer';
     import UserRenderer from './UserRenderer';
 
     export default {
         name: 'UserRendererEnriched',
         components: {
-            UserEditableRenderer, UserRenderer, ContentLoader, CrossIcon
+            UserEditableRenderer, UserRenderer, PromisedContentLoader, CrossIcon
         },
         props: {
             user: {
