@@ -1,5 +1,6 @@
 <template>
     <svg
+        style="display: flex"
         :viewBox="viewBox"
         :width="width"
         :height="height"

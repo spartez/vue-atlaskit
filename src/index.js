@@ -27,6 +27,8 @@ import SectionMessage from './components/SectionMessage/SectionMessage';
 import Table from './components/Table/Table';
 import Progress from './components/Progress/progress';
 import ContentLoader from './components/ContentLoader/ContentLoader';
+import PromisedContentLoader from './components/common/PromisedContentLoader';
+import TableLoader from './components/ContentLoader/TableLoader';
 import '@atlaskit/css-reset/dist/bundle.css';
 
 export {
@@ -53,7 +55,9 @@ export {
     SectionMessage,
     Table,
     Progress,
-    ContentLoader
+    ContentLoader,
+    TableLoader,
+    PromisedContentLoader
 };
 export * from './components/Icon';
 export * from './components/field-renderers';
