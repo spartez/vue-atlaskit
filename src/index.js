@@ -29,6 +29,12 @@ import Progress from './components/Progress/progress';
 import ContentLoader from './components/ContentLoader/ContentLoader';
 import PromisedContentLoader from './components/common/PromisedContentLoader';
 import TableLoader from './components/ContentLoader/TableLoader';
+import PageDetailsLoader from './components/ContentLoader/PageDetailsLoader';
+import AvatarDetailsLoader from './components/ContentLoader/AvatarDetailsLoader';
+import FolderPathLoader from './components/ContentLoader/FolderPathLoader';
+import AvatarNameLoader from './components/ContentLoader/AvatarNameLoader';
+import BulletListLoader from './components/ContentLoader/BulletListLoader';
+import ListWithImageLoader from './components/ContentLoader/ListWithImageLoader';
 import '@atlaskit/css-reset/dist/bundle.css';
 
 export {
@@ -57,7 +63,13 @@ export {
     Progress,
     ContentLoader,
     TableLoader,
-    PromisedContentLoader
+    PromisedContentLoader,
+    PageDetailsLoader,
+    AvatarDetailsLoader,
+    FolderPathLoader,
+    AvatarNameLoader,
+    BulletListLoader,
+    ListWithImageLoader
 };
 export * from './components/Icon';
 export * from './components/field-renderers';

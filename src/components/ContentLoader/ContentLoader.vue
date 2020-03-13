@@ -66,7 +66,7 @@
             },
             preserveAspectRatio: {
                 type: String,
-                default: 'xMinYMax meet'
+                default: 'none'
             },
             baseUrl: {
                 type: String,
@@ -100,11 +100,11 @@
                 default: undefined
             },
             width: {
-                type: String,
+                type: [String, Number],
                 default: '300px'
             },
             height: {
-                type: String,
+                type: [String, Number],
                 default: '20px'
             }
         },

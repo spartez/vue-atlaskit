@@ -41,11 +41,11 @@
                 required: true
             },
             width: {
-                type: String,
+                type: [Number, String],
                 default: '200px'
             },
             height: {
-                type: String,
+                type: [Number, String],
                 default: '16px'
             },
             tag: {
