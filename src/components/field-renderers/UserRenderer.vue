@@ -4,7 +4,7 @@
             <template v-if="user">
                 <img class="avatar"
                      :src="user.avatar"
-                     :alt="user.name"
+                     :alt="alt"
                      :title="user.name">
                 <component :is="tag" v-if="!avatarOnly"
                            class="user-name"
@@ -41,6 +41,10 @@
             appearance: {
                 type: String,
                 default: undefined
+            },
+            alt: {
+                type: String,
+                default: ''
             }
         },
         computed: {
