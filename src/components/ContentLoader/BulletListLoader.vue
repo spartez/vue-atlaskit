@@ -1,6 +1,6 @@
 <template>
     <div>
-        <ContentLoader v-for="item in 4" :key="item" view-box="0 0 300 24"
+        <ContentLoader v-for="item in items" :key="item" view-box="0 0 300 24"
                        height="24px" width="300px">
             <rect x="0" y="4"
                   :rx="4" :ry="4"
@@ -20,7 +20,13 @@
 
     export default {
         name: 'BulletListLoader',
-        components: { ContentLoader }
+        components: { ContentLoader },
+        props: {
+            items: {
+                type: Number,
+                default: 3
+            }
+        }
     };
 </script>
 
