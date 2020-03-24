@@ -3,21 +3,23 @@
         <Blanket class="dialog" :z-index="zIndex">
             <PositionerAbsolute :width="width">
                 <form class="modal-container" novalidate @submit.prevent="onSubmit">
-                    <header>
-                        <slot name="header">
-                            <Header :heading="heading" :appearance="appearance"/>
-                        </slot>
-                    </header>
-                    <div class="content">
-                        <slot name="content"/>
-                    </div>
-                    <footer>
-                        <slot name="footer">
-                            <slot name="progress"/>
-                            <Footer :actions="actions" :auto-focus="autoFocus" :appearance="appearance"
-                                    :should-allow-submit="shouldAllowSubmit" :pending="pending" @cancel="onCancel"/>
-                        </slot>
-                    </footer>
+                    <slot>
+                        <header>
+                            <slot name="header">
+                                <Header :heading="heading" :appearance="appearance"/>
+                            </slot>
+                        </header>
+                        <div class="content">
+                            <slot name="content"/>
+                        </div>
+                        <footer>
+                            <slot name="footer">
+                                <slot name="progress"/>
+                                <Footer :actions="actions" :auto-focus="autoFocus" :appearance="appearance"
+                                        :should-allow-submit="shouldAllowSubmit" :pending="pending" @cancel="onCancel"/>
+                            </slot>
+                        </footer>
+                    </slot>
                 </form>
             </PositionerAbsolute>
         </Blanket>
@@ -110,6 +112,7 @@
         pointer-events: auto;
         border-radius: 3px;
         outline: 0;
+        overflow: hidden;
     }
 
     .content {

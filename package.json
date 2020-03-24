@@ -7,7 +7,7 @@
   "unpkg": "dist/index.min.js",
   "scripts": {
     "build": "rollup -c",
-    "storybook": "start-storybook -p 9001 -c .storybook",
+    "storybook": "start-storybook -p 9001 -s ./public -c .storybook",
     "lint": "eslint src --ext .js,.vue",
     "lint-fix": "eslint src --fix --ext .js,.vue",
     "test": "npm run lint && jest --verbose --coverage",

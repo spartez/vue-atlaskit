@@ -1,6 +1,8 @@
 <template>
-    <span class="lozenge" :appearance="appearance" :bold="isBold">
-        <slot/>
+    <span>
+        <span class="lozenge" :appearance="appearance" :bold="isBold">
+            <slot/>
+        </span>
     </span>
 </template>
 
@@ -32,15 +34,14 @@
         background-color: rgb(223, 225, 230);
         box-sizing: border-box;
         color: rgb(66, 82, 110);
-        display: inline-block;
+        display: inline;
         font-size: 11px;
         font-weight: 700;
         line-height: 1;
-        max-width: 100%;
         text-transform: uppercase;
         vertical-align: baseline;
         border-radius: 3px;
-        padding: 2px 4px 3px;
+        padding: 1px 4px 2px;
         overflow: hidden;
         max-width: 200px;
         text-overflow: ellipsis;
