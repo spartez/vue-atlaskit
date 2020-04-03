@@ -1,6 +1,6 @@
 {
   "name": "@spartez/vue-atlaskit",
-  "version": "0.0.69",
+  "version": "0.0.70",
   "description": "Unofficial Vue UI library, built according to the Atlassian Design Guidelines.",
   "main": "dist/lib/src/index.js",
   "module": "dist/lib/src/index.js",
