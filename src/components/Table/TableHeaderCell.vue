@@ -69,12 +69,8 @@
         letter-spacing: -0.1px;
         color: rgb(94, 108, 132);
         padding: 9px 16px 7px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
         border-bottom: 2px solid rgb(223, 225, 230);
         display: flex;
-        align-items: center;
     }
 
     .table-header-cell[sticky-header] {
@@ -101,5 +97,11 @@
     .table-header-cell[sortable]:hover {
         background-color: rgb(244, 245, 247);
         cursor: pointer;
+    }
+
+    .table-header-label {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
     }
 </style>
