@@ -36,6 +36,7 @@ import AvatarNameLoader from './components/ContentLoader/AvatarNameLoader';
 import BulletListLoader from './components/ContentLoader/BulletListLoader';
 import ListWithImageLoader from './components/ContentLoader/ListWithImageLoader';
 import Avatar from './components/Avatar/Avatar';
+import Badge from './components/Badge/Badge';
 import '@atlaskit/css-reset/dist/bundle.css';
 
 export {
@@ -71,7 +72,8 @@ export {
     AvatarNameLoader,
     BulletListLoader,
     ListWithImageLoader,
-    Avatar
+    Avatar,
+    Badge
 };
 export * from './components/Icon';
 export * from './components/field-renderers';
