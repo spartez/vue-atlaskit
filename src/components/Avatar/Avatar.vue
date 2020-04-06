@@ -34,7 +34,7 @@
             },
             presence: {
                 type: String,
-                default: 'offline'
+                default: ''
             },
             avatar: {
                 type: String,
@@ -56,6 +56,7 @@ img{
     border-radius: 50%;
     height: 100%;
     width: 100%;
+    background: rgba(9, 30, 66, 0.13);
 }
 
 .wrapper[size='xxlarge'] {

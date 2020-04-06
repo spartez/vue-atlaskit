@@ -8,7 +8,7 @@
         props: {
             value: {
                 type: String,
-                default: ''
+                default: 'default'
             }
         }
     };

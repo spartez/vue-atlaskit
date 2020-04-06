@@ -18,7 +18,7 @@
             return {
                 avatar: `https://i.pravatar.cc/300?u=${faker.random.uuid()}`,
                 sizes: ['xxlarge', 'xlarge', 'large', 'medium', 'small', 'xsmall'],
-                presences: ['online', 'busy', 'focus', 'offline']
+                presences: ['online', 'busy', 'focus', 'offline', '']
             };
         }
     };
