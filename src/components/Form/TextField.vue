@@ -11,8 +11,8 @@
 </script>
 
 <style scoped>
-textarea,
-input {
+>>> textarea,
+>>> input {
     background: transparent;
     border: 0;
     color: inherit;

@@ -1,5 +1,9 @@
 <template>
-    <div class="tag">
+    <div class="tag"
+         draggable="true"
+         @dragstart="onDragStart"
+         @dragend.prevent="onDragEnd"
+         @drag="onDrag">
         <slot>
             <div class="label">
                 {{ tag.label }}
@@ -22,11 +26,27 @@
             tag: {
                 type: Object,
                 default: () => ({})
+            },
+            index: {
+                type: Number,
+                required: true
             }
+        },
+        data() {
+            return {};
         },
         methods: {
             onRemove() {
                 this.$emit('on-remove', this.tag.id);
+            },
+            onDragStart(e) {
+                this.$emit('dragstart', e, this.index);
+            },
+            onDragEnd(e) {
+                this.$emit('dragend', e);
+            },
+            onDrag(e) {
+                this.$emit('drag', e);
             }
         }
     };

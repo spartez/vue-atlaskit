@@ -1,15 +1,22 @@
 <template>
     <div ref="target">
         <TextField :is-focused="focused" :is-invalid="isInvalid" :is-loading="isLoading"
-                   class="text-field" select @mousedown.prevent="onMouseDown">
-            <div class="flex-wrapper" :gap="multi && !!selected.length">
-                <template v-if="multi">
+                   class="text-field" select @click="click"
+                   @mousedown="mousedown = true" @mouseup="mousedown = false">
+            <div ref="list" class="flex-wrapper" :gap="multi && !!selected.length"
+                 @dragover.prevent>
+                <template v-if=" multi">
                     <Tag v-for="(tag,i) in selected" :key="`${tag.id}-${i}`" :tag="tag"
+                         :index="i"
+                         @dragend="onDragEnd"
+                         @drag="handleDrag"
+                         @dragstart="onDragStart"
                          @on-remove="onRemove">
                         <slot name="tag" :tag="tag"/>
                     </Tag>
                 </template>
-                <input ref="input" class="search" :value="search"
+                <input ref="input" key="input" class="search"
+                       :value="search"
                        :disabled="isLoading" :style="{width: currentWidth}"
                        @keydown.down.prevent="onNextSuggestion"
                        @keydown.up.prevent="onPreviousSuggestion"
@@ -58,6 +65,7 @@
     import Popper from '../Popper/Popper';
     import Tag from './Tag';
     import Icons from './Icons';
+
 
     const INPUT_WIDTH = '5px';
 
@@ -136,7 +144,12 @@
                 currentSuggestionIndex: undefined,
                 currentWidth: INPUT_WIDTH,
                 isDirty: false,
-                selectWidth: 'auto'
+                selectWidth: 'auto',
+                mousedown: false,
+                dragging: false,
+                draggedElement: undefined,
+                prevIndex: undefined,
+                nextIndex: undefined
             };
         },
         computed: {
@@ -220,6 +233,7 @@
         },
         methods: {
             onFocus(e) {
+                console.log('focus');
                 if (this.isLoading) return;
                 this.$refs.input.focus();
                 this.focused = true;
@@ -228,14 +242,23 @@
             },
 
             onBlur(e) {
+                console.log('blur');
                 this.search = '';
-                this.closeOptions();
+                if (!this.mousedown || this.dragging) {
+                    this.closeOptions();
+                }
                 this.$emit('blur', e);
             },
 
-            onMouseDown() {
-                this.isOpen = !this.isOpen;
-                this.$refs.input.focus();
+            click() {
+                console.log('click');
+                if (this.isOpen) {
+                    this.isOpen = false;
+                    this.closeOptions();
+                } else {
+                    this.$refs.input.focus();
+                    this.isOpen = true;
+                }
             },
 
             onEsc() {
@@ -360,6 +383,32 @@
                 if (this.$refs.menu) {
                     this.$refs.menu.update();
                 }
+            },
+            handleDrag(e) {
+                const x = e.clientX;
+                const y = e.clientY;
+                this.draggedElement.classList.add('ghost');
+                const el = document.elementFromPoint(x, y);
+                let swapItem = el === null ? this.draggedElement : el.closest('[draggable="true"]');
+                if (swapItem) {
+                    swapItem = swapItem !== this.draggedElement.nextSibling ? swapItem : swapItem.nextSibling;
+                    this.$refs.list.insertBefore(this.draggedElement, swapItem);
+                }
+            },
+            onDragEnd() {
+                this.dragging = false;
+                const nextIndex = [...this.$refs.list.children].indexOf(this.draggedElement);
+                this.draggedElement.classList.remove('ghost');
+                const list = [...this.selected];
+                const [item] = list.splice(this.prevIndex, 1);
+                list.splice(nextIndex, 0, item);
+                this.$emit('input', list.map(e => e.value));
+            },
+            onDragStart(e, index) {
+                this.dragging = true;
+                this.onBlur(e);
+                this.draggedElement = e.target;
+                this.prevIndex = index;
             }
         }
     };
@@ -410,4 +459,9 @@
         margin-top: 4px;
     }
 
+    .ghost {
+        opacity: .4;
+        background-color: #fff;
+        pointer-events: none;
+    }
 </style>
