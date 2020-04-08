@@ -7,6 +7,7 @@ export const createPerson = ({
 } = {}) => {
     const person = {
         name,
+        displayName: name,
         avatar,
         key: key || faker.helpers.slugify(name).toLowerCase(),
         username: key || faker.helpers.slugify(name).toLowerCase()

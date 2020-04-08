@@ -6,7 +6,7 @@
                 <template v-if="multi">
                     <Tag v-for="(tag,i) in selected" :key="`${tag.id}-${i}`" :tag="tag"
                          @on-remove="onRemove">
-                        <slot name="tag" :tag="tag" />
+                        <slot name="tag" :tag="tag"/>
                     </Tag>
                 </template>
                 <input ref="input" class="search" :value="search"
@@ -20,8 +20,8 @@
                        @keyup.esc="onEsc"
                        @keydown.delete="removeOption">
             </div>
-            <div v-if="!multi && !selected.length" class="text">
-                <slot v-if="!search && selected.value && $scopedSlots['selected']" name="selected" :selected="selected.value"/>
+            <div v-if="!selected.length" class="text">
+                <slot v-if="!search && selected.value && $scopedSlots['selected'] && !multi" name="selected" :selected="selected.value"/>
                 <span v-else :placeholder="!search && !selected.label">
                     {{ input }}
                 </span>
@@ -41,7 +41,7 @@
                         :style="{width: selectWidth}"
                         :has-suggestions="hasSuggestions"
                         :no-options-message="noOptionsMessage"
-                        :placeholder="placeholder"
+                        :placeholder="searchPromptText"
                         @mouseover="onMouseOverSuggestion"
                         @option-selected="onOptionSelected">
                 <slot slot="option" slot-scope="{option, isCurrent}" name="option"
@@ -75,6 +75,10 @@
                 default: () => []
             },
             placeholder: {
+                type: String,
+                default: 'Type to search...'
+            },
+            searchPromptText: {
                 type: String,
                 default: 'Type to search...'
             },

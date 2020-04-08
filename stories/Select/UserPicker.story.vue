@@ -1,6 +1,6 @@
 <template>
     <div class="wrapper">
-        <UserPicker v-model="value" :get-users="getUsers"/>
+        <UserPicker v-model="value" :initial-options="[initialOptions]" :get-users="getUsers"/>
         <p>{{ value }}</p>
         <br>
         <UserPicker v-model="users" :multi="true" :get-users="getUsers"/>
@@ -12,7 +12,8 @@
     import UserPicker from '@/components/Select/UserPicker';
     import { createPersonsList } from '../api-mocks/people';
 
-    const list = createPersonsList({}, 50);
+    const list = createPersonsList({}, 2);
+    const [initialOptions] = list;
     const getUsers = query => new Promise((resolve) => {
         setTimeout(() => {
             const results = list.filter(user => user.name
@@ -29,7 +30,8 @@
             return {
                 value: undefined,
                 users: [],
-                getUsers
+                getUsers,
+                initialOptions
             };
         }
 

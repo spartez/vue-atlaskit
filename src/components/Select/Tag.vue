@@ -5,7 +5,7 @@
                 {{ tag.label }}
             </div>
         </slot>
-        <div class="remove-tag" @mousedown.prevent.stop @click="onRemove">
+        <div class="remove-tag" @mousedown.prevent.stop @click.stop="onRemove">
             <EditorCloseIcon primary-color="#000" size="xsmall"/>
         </div>
     </div>

@@ -4,9 +4,10 @@
             :async="true"
             :multi="multi"
             :is-fetching="isFetching"
-            placeholder="Type to search..."
+            :placeholder="placeholder"
             :normalizer="normalizer"
             v-on="$listeners"
+            @open="loadInitialOptions"
             @search-change="debouncedGetUsers">
         <div slot="option" slot-scope="{option}" class="label">
             <UserRenderer tag="span" :user="option"/>
@@ -40,6 +41,22 @@
             multi: {
                 type: Boolean,
                 default: false
+            },
+            mapper: {
+                type: Function,
+                default: list => list
+            },
+            placeholder: {
+                type: String,
+                default: 'Type to search...'
+            },
+            searchPromptText: {
+                type: String,
+                default: 'Type to search...'
+            },
+            initialOptions: {
+                type: Array,
+                default: () => []
             }
         },
         data() {
@@ -53,11 +70,15 @@
             this.debouncedGetUsers = pDebounce(this.onSearchChange, 200);
         },
         methods: {
+            loadInitialOptions() {
+                this.users = this.initialOptions;
+            },
+
             async onSearchChange(query) {
                 if (!query) return;
                 this.isFetching = true;
                 const { data: users } = await this.getUsers(query);
-                this.users = users;
+                this.users = this.mapper(users);
                 this.isFetching = false;
             },
 
