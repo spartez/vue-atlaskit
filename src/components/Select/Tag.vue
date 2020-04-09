@@ -5,7 +5,8 @@
                 {{ tag.label }}
             </div>
         </slot>
-        <div class="remove-tag" @mousedown.prevent.stop @click.stop="onRemove">
+        <div v-if="!tag.disabled" class="remove-tag" @mousedown.prevent.stop
+             @click.stop="onRemove">
             <EditorCloseIcon primary-color="#000" size="xsmall"/>
         </div>
     </div>
@@ -43,6 +44,10 @@
     border-radius: 2px;
     margin: 4px 2px 0 2px;
     cursor: pointer;
+}
+
+.tag:last-of-type{
+    margin-right: 5px;
 }
 
 .label {

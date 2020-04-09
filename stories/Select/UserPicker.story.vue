@@ -12,7 +12,7 @@
     import UserPicker from '@/components/Select/UserPicker';
     import { createPersonsList } from '../api-mocks/people';
 
-    const list = createPersonsList({}, 2);
+    const list = createPersonsList({}, 50);
     const [initialOptions] = list;
     const getUsers = query => new Promise((resolve) => {
         setTimeout(() => {

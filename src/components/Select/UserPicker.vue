@@ -86,7 +86,8 @@
                 return {
                     id: user.key,
                     label: user.name,
-                    value: user
+                    value: user,
+                    disabled: user.disabled
                 };
             }
         }

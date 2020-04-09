@@ -95,7 +95,9 @@
             },
             normalizer: {
                 type: Function,
-                default: value => ({ id: value, label: value, value })
+                default: value => ({
+                    id: value, label: value, value, disabled: false
+                })
             },
             isLoading: {
                 type: Boolean,
@@ -172,7 +174,11 @@
             },
 
             isAnyOptionSelected() {
-                return (this.multi && !!this.selected.length) || !!this.selected.value;
+                return (this.multi && !!this.selected.filter(o => !o.disabled).length) || !!this.selected.value;
+            },
+
+            disabledOptions() {
+                return this.multi && this.selected.filter(o => o.disabled).map(o => o.value);
             }
         },
         watch: {
@@ -243,7 +249,7 @@
             },
 
             onClear() {
-                const empty = this.multi ? [] : undefined;
+                const empty = this.multi ? [...this.disabledOptions] : undefined;
                 this.$emit('input', empty);
                 this.isOpen = false;
                 this.$nextTick(() => this.$refs.input.focus());
@@ -269,7 +275,7 @@
             onRemove(id) {
                 if (!this.selected.length) return;
                 const selected = this.selected
-                    .filter(option => option.id !== id)
+                    .filter(option => option.id !== id || option.disabled)
                     .map(option => option.value);
                 this.updatePopperPosition();
                 this.$emit('input', selected);

@@ -4,6 +4,7 @@
             <Select v-model="value"
                     :multi="true"
                     :options="options"
+                    :normalizer="normalizer"
                     placeholder="select item"/>
         </div>
         <table>
@@ -39,6 +40,14 @@
                 value: [city],
                 isLoading: false
             };
+        },
+        methods: {
+            normalizer(value) {
+                const disabled = value === city;
+                return ({
+                    id: value, label: value, value, disabled
+                });
+            }
         }
     };
 </script>
