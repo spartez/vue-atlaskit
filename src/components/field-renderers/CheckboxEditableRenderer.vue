@@ -6,7 +6,7 @@
                 @save-requested="onSaveRequested">
         <Checkbox slot="editor" slot-scope="props" size="large"
                   class="checkbox"
-                  :value="props.value"
+                  :checked="props.value"
                   :is-focused="props.isFocused"
                   :is-invalid="props.isInvalid"
                   :disabled="props.isLoading"

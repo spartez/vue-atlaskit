@@ -7,7 +7,7 @@
                :disabled="disabled" @focus="onFocus"
                @blur="onBlur">
         <CheckboxIcon class="icon"/>
-        <span v-if="$slots['default']" class="label"><slot/></span>
+        <span v-if="$slots['default']" class="input-label"><slot/></span>
     </label>
 </template>
 
@@ -102,7 +102,7 @@ input[type="checkbox"] {
     outline: none;
 }
 
-.label {
+.input-label {
     padding: 2px 4px;
 }
 
