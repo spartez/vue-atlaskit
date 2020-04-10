@@ -1,8 +1,8 @@
 <template>
     <div ref="target">
         <TextField :is-focused="focused" :is-invalid="isInvalid" :is-loading="isLoading"
-                   class="text-field" select @click="click"
-                   @mousedown="mousedown = true" @mouseup="mousedown = false">
+                   class="text-field" select tabindex="-1"
+                   @click="click">
             <div ref="list" class="flex-wrapper" :gap="multi && !!selected.length"
                  @dragover.prevent>
                 <template v-if=" multi">
@@ -145,8 +145,6 @@
                 currentWidth: INPUT_WIDTH,
                 isDirty: false,
                 selectWidth: 'auto',
-                mousedown: false,
-                dragging: false,
                 draggedElement: undefined,
                 prevIndex: undefined,
                 nextIndex: undefined
@@ -233,32 +231,25 @@
         },
         methods: {
             onFocus(e) {
-                console.log('focus');
                 if (this.isLoading) return;
-                this.$refs.input.focus();
                 this.focused = true;
-                this.isOpen = true;
+                if (!this.$refs.target.contains(e.relatedTarget)) {
+                    this.isOpen = true;
+                }
                 this.$emit('focus', e);
             },
 
             onBlur(e) {
-                console.log('blur');
-                this.search = '';
-                if (!this.mousedown || this.dragging) {
+                if (!this.$refs.target.contains(e.relatedTarget)) {
+                    this.search = '';
                     this.closeOptions();
+                    this.$emit('blur', e);
                 }
-                this.$emit('blur', e);
             },
 
             click() {
-                console.log('click');
-                if (this.isOpen) {
-                    this.isOpen = false;
-                    this.closeOptions();
-                } else {
-                    this.$refs.input.focus();
-                    this.isOpen = true;
-                }
+                this.isOpen = !this.isOpen;
+                this.$refs.input.focus();
             },
 
             onEsc() {
@@ -403,10 +394,11 @@
                 const [item] = list.splice(this.prevIndex, 1);
                 list.splice(nextIndex, 0, item);
                 this.$emit('input', list.map(e => e.value));
+                this.$refs.input.focus();
             },
             onDragStart(e, index) {
                 this.dragging = true;
-                this.onBlur(e);
+                this.isOpen = false;
                 this.draggedElement = e.target;
                 this.prevIndex = index;
             }
@@ -429,6 +421,7 @@
         flex-wrap: wrap;
         padding: 6px 45px 6px 6px;
         justify-content: normal;
+        outline: none;
     }
 
     .text-field input {

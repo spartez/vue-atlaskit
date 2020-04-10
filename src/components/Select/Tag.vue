@@ -3,6 +3,7 @@
          draggable="true"
          @dragstart="onDragStart"
          @dragend.prevent="onDragEnd"
+         @transitionend="onTransitionEnd"
          @drag="onDrag">
         <slot>
             <div class="label">
@@ -37,6 +38,12 @@
         },
         methods: {
             onRemove() {
+                this.$el.style.width = getComputedStyle(this.$el).width;
+                requestAnimationFrame(() => {
+                    this.$el.style.width = 0;
+                });
+            },
+            onTransitionEnd() {
                 this.$emit('on-remove', this.tag.id);
             },
             onDragStart(e) {
@@ -64,9 +71,11 @@
     border-radius: 2px;
     margin: 4px 2px 0 2px;
     cursor: pointer;
+    transition: width 260ms ease-out;
+    overflow: hidden;
 }
 
-.tag:last-of-type{
+.tag:last-of-type {
     margin-right: 5px;
 }
 
@@ -83,7 +92,7 @@
 
 .remove-tag {
     display: flex;
-    height: 20px;
+    height: 100%;
     align-items: center;
     padding-left: 2px;
     padding-right: 2px;
