@@ -6,17 +6,18 @@
                type="checkbox" :is-invalid="isInvalid"
                :disabled="disabled" @focus="onFocus"
                @blur="onBlur">
-        <CheckboxIcon class="icon"/>
+        <CheckboxIcon v-if="!indeterminate" class="icon"/>
+        <CheckboxIndeterminateIcon v-else class="indeterminate"/>
         <span v-if="$slots['default']" class="input-label"><slot/></span>
     </label>
 </template>
 
 <script>
-    import CheckboxIcon from '../Icon/CheckboxIcon';
+    import { CheckboxIndeterminateIcon, CheckboxIcon } from '../Icon';
 
     export default {
         name: 'Checkbox',
-        components: { CheckboxIcon },
+        components: { CheckboxIcon, CheckboxIndeterminateIcon },
         model: {
             prop: 'checked',
             event: 'input'
@@ -27,7 +28,7 @@
                 default: false
             },
             value: {
-                type: String,
+                type: [String, Object],
                 default: undefined
             },
             checked: {
@@ -39,6 +40,10 @@
                 default: false
             },
             isInvalid: {
+                type: Boolean,
+                default: false
+            },
+            indeterminate: {
                 type: Boolean,
                 default: false
             }
@@ -145,7 +150,7 @@ input[disabled] + .icon >>> rect {
     opacity: .5;
 }
 
->>> rect {
+:not(.indeterminate) >>> rect {
     transition: 0.2s ease-in-out;
     stroke-width: 2px;
 }
