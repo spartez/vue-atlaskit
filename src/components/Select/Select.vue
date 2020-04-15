@@ -1,5 +1,5 @@
 <template>
-    <div ref="target">
+    <div ref="target" class="select">
         <TextField :is-focused="focused" :is-invalid="isInvalid" :is-loading="isLoading"
                    class="text-field" select tabindex="-1"
                    @click="click">
@@ -8,6 +8,8 @@
                 <template v-if=" multi">
                     <Tag v-for="(tag,i) in selected" :key="`${tag.id}-${i}`" :tag="tag"
                          :index="i"
+                         :count="selected.length"
+                         :min="min"
                          @dragend="onDragEnd"
                          @drag="handleDrag"
                          @dragstart="onDragStart"
@@ -15,7 +17,7 @@
                         <slot name="tag" :tag="tag"/>
                     </Tag>
                 </template>
-                <input ref="input" key="input" class="search"
+                <input ref="input" class="search"
                        :value="search"
                        :disabled="isLoading" :style="{width: currentWidth}"
                        @keydown.down.prevent="onNextSuggestion"
@@ -34,9 +36,9 @@
                 </span>
             </div>
             <Icons :is-selected="isAnyOptionSelected" :is-fetching="isFetching"
-                   @clear="onClear"/>
+                   :createable="createable" :is-clearable="showClearIcon" @clear="onClear"/>
         </TextField>
-        <Popper v-if="isOpen && !isDirty" ref="menu" offset="0,0"
+        <Popper v-if="shouldOpenMenu" ref="menu" offset="0,0"
                 :target-element="$refs.target"
                 :boundaries-element="boundariesElement"
                 placement="bottom-start">
@@ -134,6 +136,26 @@
             noOptionsMessage: {
                 type: String,
                 default: 'No options'
+            },
+            createable: {
+                type: Boolean,
+                default: false
+            },
+            isClearable: {
+                type: Boolean,
+                default: true
+            },
+            isValidOption: {
+                type: Function,
+                default: () => true
+            },
+            min: {
+                type: Number,
+                default: 0
+            },
+            max: {
+                type: Number,
+                default: Infinity
             }
         },
         data() {
@@ -188,8 +210,43 @@
                 return (this.multi && !!this.selected.filter(o => !o.disabled).length) || !!this.selected.value;
             },
 
-            disabledOptions() {
+            disabled() {
                 return this.multi && this.selected.filter(o => o.disabled).map(o => o.value);
+            },
+
+            shouldBackspaceRemoveOption() {
+                return !this.isClearable || (this.multi && this.selected.length === 0);
+            },
+
+            canRemoveLastTag() {
+                return !this.search && this.selected.length > this.min;
+            },
+
+            canClearSelectedOption() {
+                return !this.search && !this.multi && this.selected;
+            },
+
+            canCreateTag() {
+                return this.createable && this.search && this.selected.length < this.max;
+            },
+
+            shouldOpenMenu() {
+                return this.isOpen && !this.isDirty && !this.createable;
+            },
+
+            nonClearableOptions() {
+                if (this.multi) {
+                    const min = this.selected.slice(0, this.min).map(o => o.value);
+                    return [...new Set([...this.disabled, ...min])];
+                }
+                return undefined;
+            },
+
+            showClearIcon() {
+                if (this.multi) {
+                    return this.selected.length > this.min;
+                }
+                return this.isClearable;
             }
         },
         watch: {
@@ -263,8 +320,7 @@
             },
 
             onClear() {
-                const empty = this.multi ? [...this.disabledOptions] : undefined;
-                this.$emit('input', empty);
+                this.$emit('input', this.nonClearableOptions);
                 this.isOpen = false;
                 this.$nextTick(() => this.$refs.input.focus());
             },
@@ -297,11 +353,11 @@
             },
 
             removeOption() {
-                if (this.multi && this.selected.length === 0) return;
-                if (!this.search && this.selected.length > 0) {
-                    const lastItemId = this.selected[this.selected.length - 1].id;
-                    this.onRemove(lastItemId);
-                } else if (!this.search && this.selected) {
+                if (this.shouldBackspaceRemoveOption) return;
+                if (this.canRemoveLastTag) {
+                    const { id } = this.selected[this.selected.length - 1];
+                    this.onRemove(id);
+                } else if (this.canClearSelectedOption) {
                     this.$emit('input', undefined);
                 }
             },
@@ -343,6 +399,15 @@
             },
 
             onSuggestionSelected(e) {
+                if (this.canCreateTag) {
+                    if (!this.isValidOption(this.search)) {
+                        this.$emit('error');
+                        return;
+                    }
+                    const selected = this.multi ? [...this.selected.map(o => o.value), this.search] : this.search;
+                    this.search = '';
+                    this.$emit('input', selected);
+                }
                 // if current index is undefined, means we don't want to select any value, just submit
                 if (this.currentSuggestionIndex === undefined) {
                     this.$emit('confirm', e);
@@ -456,5 +521,9 @@
         opacity: .4;
         background-color: #fff;
         pointer-events: none;
+    }
+
+    .select ~ .select {
+        margin-top: 20px;
     }
 </style>

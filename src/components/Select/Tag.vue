@@ -3,14 +3,13 @@
          draggable="true"
          @dragstart="onDragStart"
          @dragend.prevent="onDragEnd"
-         @transitionend="onTransitionEnd"
          @drag="onDrag">
         <slot>
             <div class="label">
                 {{ tag.label }}
             </div>
         </slot>
-        <div v-if="!tag.disabled" class="remove-tag" @mousedown.prevent.stop
+        <div v-if="shouldShowRemoveButton" class="remove-tag" @mousedown.prevent.stop
              @click.stop="onRemove">
             <EditorCloseIcon primary-color="#000" size="xsmall"/>
         </div>
@@ -31,19 +30,26 @@
             index: {
                 type: Number,
                 required: true
+            },
+            count: {
+                type: Number,
+                required: true
+            },
+            min: {
+                type: Number,
+                default: 0
             }
         },
         data() {
             return {};
         },
+        computed: {
+            shouldShowRemoveButton() {
+                return this.min !== this.count && !this.tag.disabled;
+            }
+        },
         methods: {
             onRemove() {
-                this.$el.style.width = getComputedStyle(this.$el).width;
-                requestAnimationFrame(() => {
-                    this.$el.style.width = 0;
-                });
-            },
-            onTransitionEnd() {
                 this.$emit('on-remove', this.tag.id);
             },
             onDragStart(e) {
@@ -71,7 +77,6 @@
     border-radius: 2px;
     margin: 4px 2px 0 2px;
     cursor: pointer;
-    transition: width 260ms ease-out;
     overflow: hidden;
 }
 
@@ -87,7 +92,7 @@
     box-sizing: border-box;
     border-radius: 2px;
     overflow: hidden;
-    padding: 2px 4px 2px 6px;
+    padding: 2px 6px 2px 6px;
 }
 
 .remove-tag {

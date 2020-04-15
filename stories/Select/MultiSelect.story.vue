@@ -1,24 +1,23 @@
 <template>
     <div class="wrapper">
-        <div>
-            <Select v-model="value"
-                    :multi="true"
+        <div class="row">
+            <h3>Basic</h3>
+            <Select v-model="basic"
+                    multi
+                    :min="3"
                     :options="options"
-                    :normalizer="normalizer"
                     placeholder="select item"/>
         </div>
-        <table>
-            <thead>
-                <tr>
-                    <th>value</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>{{ value }}</td>
-                </tr>
-            </tbody>
-        </table>
+        <div>
+            <h3>Min & Max Selected Options - Createable</h3>
+            <Select v-model="minmax"
+                    multi
+                    createable
+                    :is-valid-option="validateTimer"
+                    :min="1"
+                    :max="3"
+                    placeholder="select item"/>
+        </div>
     </div>
 </template>
 
@@ -37,7 +36,8 @@
         data() {
             return {
                 options: cities,
-                value: [city],
+                basic: [],
+                minmax: ['Initial option'],
                 isLoading: false
             };
         },
@@ -47,6 +47,9 @@
                 return ({
                     id: value, label: value, value, disabled
                 });
+            },
+            validateTimer(value) {
+                return /^\d+$/.test(value);
             }
         }
     };
@@ -54,5 +57,9 @@
 <style scoped>
   .wrapper {
       padding: 20px;
+  }
+
+  .row {
+      margin-bottom: 100px;
   }
 </style>

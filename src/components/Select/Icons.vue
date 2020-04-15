@@ -1,10 +1,10 @@
 <template>
     <div class="icons">
         <Spinner v-if="isFetching" class="spinner-icon" size="icon"/>
-        <Clear v-if="isSelected && !isFetching" size="xsmall" class="clear-icon"
+        <Clear v-if="shouldShowClearIcon" size="xsmall" class="clear-icon"
                primary-color="#A5ADBA"
-               @mousedown.native.stop.prevent="onClear"/>
-        <Caret size="xsmall"/>
+               @click.native="onClear"/>
+        <Caret v-if="!createable" size="xsmall"/>
     </div>
 </template>
 
@@ -24,6 +24,19 @@
             isSelected: {
                 type: Boolean,
                 default: false
+            },
+            createable: {
+                type: Boolean,
+                default: false
+            },
+            isClearable: {
+                type: Boolean,
+                default: false
+            }
+        },
+        computed: {
+            shouldShowClearIcon() {
+                return this.isSelected && !this.isFetching && this.isClearable;
             }
         },
         methods: {
