@@ -6,6 +6,7 @@
                   :current-suggestion-id="currentSuggestionId"
                   :expand-level="2"
                   :multi="multi"
+                  @current="liftCurrentNodeInstance"
                   @highlight="onMouseOver"
                   @input="onOptionSelected"/>
             <div v-if="!hasSuggestions" class="no-options">
@@ -60,12 +61,14 @@
             }
         },
         methods: {
-            onOptionSelected(option) {
-                console.log(option);
-                this.$emit('option-selected', option);
+            onOptionSelected(option, ancestors) {
+                this.$emit('option-selected', option, ancestors);
             },
             onMouseOver(id) {
                 this.$emit('mouseover', id);
+            },
+            liftCurrentNodeInstance(node) {
+                this.$emit('current', node);
             }
         }
     };

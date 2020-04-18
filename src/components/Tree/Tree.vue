@@ -8,6 +8,7 @@
               :expand-level="expandLevel"
               :multi="multi"
               :hovered="hovered"
+              @current="liftCurrentNodeInstance"
               @input="onSelect"
               @highlight="highlight">
             <template v-slot:label="{node}">
@@ -59,7 +60,6 @@
         watch: {
             currentSuggestionId: {
                 handler(index) {
-                    // console.log(index);
                     this.hovered = index;
                 },
                 immediate: true
@@ -69,12 +69,12 @@
             this.visibleNodes = [...this.$refs.tree.querySelectorAll('input[type="checkbox"]')];
         },
         methods: {
-            onSelect(selected) {
+            onSelect(selected, ancestors = []) {
                 if (this.multi) {
                     this.$emit('input', selected);
                 } else {
                     const [node] = selected;
-                    this.$emit('input', node);
+                    this.$emit('input', node, ancestors);
                 }
             },
             highlight(id) {
@@ -82,6 +82,9 @@
             },
             onMouseOut() {
                 this.hovered = undefined;
+            },
+            liftCurrentNodeInstance(node) {
+                this.$emit('current', node);
             }
         }
     };

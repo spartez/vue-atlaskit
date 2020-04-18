@@ -1,5 +1,6 @@
 <template>
-    <div class="node-label" :current="current" :style="{ 'padding-left': `${indent}px` }"
+    <div ref="label" class="node-label" :current="current"
+         :style="{ 'padding-left': `${indent}px` }"
          :indent-left="$slots['chevron']">
         <slot name="chevron"/>
         <Checkbox v-model="checked"
@@ -64,6 +65,19 @@
                     return (this.level - 1) * LIST_NESTING_MARGIN;
                 }
                 return this.level * LIST_NESTING_MARGIN;
+            }
+        },
+        watch: {
+            current(isCurrent) {
+                if (isCurrent) {
+                    this.$emit('current');
+                    this.$nextTick(() => {
+                        if (!this.$refs.label) return;
+                        const isMicrosoftBrowser = new RegExp(['MSIE ', 'Edge/'].join('|')).test(navigator.userAgent);
+                        if (isMicrosoftBrowser) return;
+                        this.$refs.label.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+                    });
+                }
             }
         }
     };

@@ -8,9 +8,6 @@
                 <template v-if=" multi">
                     <Tag v-for="(tag,i) in selected" :key="`${tag.id}-${i}`" :tag="tag"
                          :index="i"
-                         @dragend="onDragEnd"
-                         @drag="handleDrag"
-                         @dragstart="onDragStart"
                          @on-remove="onRemove">
                         <slot name="tag" :tag="tag"/>
                     </Tag>
@@ -20,6 +17,8 @@
                        :disabled="isLoading" :style="{width: currentWidth}"
                        @keydown.down.prevent="onNextSuggestion"
                        @keydown.up.prevent="onPreviousSuggestion"
+                       @keydown.right.prevent="expandNode"
+                       @keydown.left.prevent="collapseNode"
                        @keydown.enter="onSuggestionSelected"
                        @input="onInput"
                        @focus="onFocus"
@@ -28,7 +27,9 @@
                        @keydown.delete="removeOption">
             </div>
             <div v-if="!selected.length" class="text">
-                <slot v-if="!search && selected && $scopedSlots['selected'] && !multi" name="selected" :selected="selected"/>
+                <slot v-if="!search && selected && $scopedSlots['selected'] && !multi" name="selected"
+                      :ancestors="ancestors"
+                      :selected="selected"/>
                 <span v-else :placeholder="!search && !selected.label">
                     {{ input }}
                 </span>
@@ -50,6 +51,7 @@
                         :has-suggestions="hasSuggestions"
                         :no-options-message="noOptionsMessage"
                         :placeholder="searchPromptText"
+                        @current="setCurrentSelectedNode"
                         @mouseover="onMouseOverSuggestion"
                         @option-selected="onOptionSelected">
                 <slot slot="option" slot-scope="{option, isCurrent}" name="option"
@@ -77,7 +79,7 @@
         props: {
             value: {
                 type: [Object, Array],
-                default: () => ({})
+                default: () => ({ id: null, label: '', value: '' })
             },
             options: {
                 type: Array,
@@ -104,7 +106,7 @@
             },
             normalizer: {
                 type: Function,
-                default: value => ({
+                default: (value = '') => ({
                     id: value, label: value, value, disabled: false
                 })
             },
@@ -154,7 +156,9 @@
                 prevIndex: undefined,
                 nextIndex: undefined,
                 visibleNodesIds: [],
-                index: undefined
+                index: undefined,
+                currentNode: undefined,
+                ancestors: []
             };
         },
         computed: {
@@ -217,10 +221,7 @@
                     const { width } = this.$refs.target.getBoundingClientRect();
                     this.selectWidth = `${width}px`;
                     this.$emit('open');
-                    this.$nextTick(() => {
-                        const visibleNodes = Array.from(this.$refs.menu.$el.querySelectorAll('input[type="checkbox"]'));
-                        this.visibleNodesIds = visibleNodes.map(node => node.value);
-                    });
+                    this.updateVisibleNodes();
                 }
             },
 
@@ -278,7 +279,8 @@
                 this.$nextTick(() => this.$refs.input.focus());
             },
 
-            onOptionSelected(option) {
+            onOptionSelected(option, ancestors) {
+                this.ancestors = ancestors;
                 this.search = '';
                 this.focused = true;
                 if (this.multi) {
@@ -387,33 +389,6 @@
                     this.$refs.menu.update();
                 }
             },
-            handleDrag(e) {
-                const x = e.clientX;
-                const y = e.clientY;
-                this.draggedElement.classList.add('ghost');
-                const el = document.elementFromPoint(x, y);
-                let swapItem = el === null ? this.draggedElement : el.closest('[draggable="true"]');
-                if (swapItem) {
-                    swapItem = swapItem !== this.draggedElement.nextSibling ? swapItem : swapItem.nextSibling;
-                    this.$refs.list.insertBefore(this.draggedElement, swapItem);
-                }
-            },
-            onDragEnd() {
-                this.dragging = false;
-                const nextIndex = [...this.$refs.list.children].indexOf(this.draggedElement);
-                this.draggedElement.classList.remove('ghost');
-                const list = [...this.selected];
-                const [item] = list.splice(this.prevIndex, 1);
-                list.splice(nextIndex, 0, item);
-                this.$emit('input', list.map(e => e.value));
-                this.$refs.input.focus();
-            },
-            onDragStart(e, index) {
-                this.dragging = true;
-                this.isOpen = false;
-                this.draggedElement = e.target;
-                this.prevIndex = index;
-            },
 
             getChildNodes(children = []) {
                 return children.reduce((nodes, node) => {
@@ -422,6 +397,28 @@
                     }
                     return [...nodes, node];
                 }, []);
+            },
+            setCurrentSelectedNode(node) {
+                this.currentNode = node;
+            },
+            expandNode() {
+                if (this.currentNode) {
+                    this.currentNode.expanded = true;
+                    this.updateVisibleNodes();
+                }
+            },
+            collapseNode() {
+                if (this.currentNode) {
+                    this.currentNode.expanded = false;
+                    this.updateVisibleNodes();
+                }
+            },
+
+            updateVisibleNodes() {
+                this.$nextTick(() => {
+                    const visibleNodes = Array.from(this.$refs.menu.$el.querySelectorAll('input[type="checkbox"]'));
+                    this.visibleNodesIds = visibleNodes.map(node => node.value);
+                });
             }
         }
     };

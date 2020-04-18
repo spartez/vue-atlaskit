@@ -7,16 +7,17 @@
                       :selected="highlight"
                       :hovered="hovered"
                       :level="level"
+                      @current="onCurrent"
                       @mouseenter.native="onMouseEnter">
             <div v-if="hasChildNodes" slot="chevron" class="icon"
-                 :expanded="expanded" @click="toggleExpand">
+                 :expanded="state.expanded" @click="toggleExpand">
                 <ChevronRightIcon/>
             </div>
             <slot name="label" :node="info">
                 {{ node.label }}
             </slot>
         </NodeCheckbox>
-        <ul v-if="hasChildNodes && expanded" class="sub-tree">
+        <ul v-if="hasChildNodes && state.expanded" class="sub-tree">
             <Node v-for="child in node.children"
                   :key="child.id"
                   :selected="selected"
@@ -28,6 +29,7 @@
                   :expand-level="expandLevel"
                   :current="current"
                   :hovered="hovered"
+                  @current="liftCurrentNodeInstance"
                   @input="onSelect"
                   @highlight="onHover">
                 <template v-slot:label="{node}">
@@ -85,7 +87,9 @@
         },
         data() {
             return {
-                expanded: this.level < this.expandLevel
+                state: {
+                    expanded: this.level < this.expandLevel
+                }
             };
         },
         computed: {
@@ -123,7 +127,8 @@
                     // single-select
                     if (!this.multi) {
                         const option = selected[selected.length - 1];
-                        this.$emit('input', option ? [option] : []);
+                        const value = option ? [option] : [];
+                        this.$emit('input', value, this.parentNodes);
                         return;
                     }
                     // multi-select
@@ -148,11 +153,11 @@
             }
         },
         methods: {
-            onSelect(nodes) {
+            onSelect(nodes, ancestors = []) {
                 if (this.checkIfAllChildrenSelected(nodes)) {
-                    this.$emit('input', [...nodes, this.node]);
+                    this.$emit('input', [...nodes, this.node], ancestors);
                 } else {
-                    this.$emit('input', nodes.filter(n => n.id !== this.node.id));
+                    this.$emit('input', nodes.filter(n => n.id !== this.node.id), ancestors);
                 }
             },
             deselectChildNodes(selected) {
@@ -165,7 +170,7 @@
                 return this.hasChildNodes && this.childNodesIds.every(id => selected.map(n => n.id).includes(id));
             },
             toggleExpand() {
-                this.expanded = !this.expanded;
+                this.state.expanded = !this.state.expanded;
             },
             getChildNodes(children = []) {
                 return children.reduce((nodes, node) => {
@@ -180,6 +185,12 @@
             },
             onHover(id) {
                 this.$emit('highlight', id);
+            },
+            onCurrent() {
+                this.$emit('current', this.state);
+            },
+            liftCurrentNodeInstance(node) {
+                this.$emit('current', node);
             }
         }
     };

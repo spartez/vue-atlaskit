@@ -1,7 +1,11 @@
 <template>
     <div>
         <h1>Tree Select</h1>
-        <TreeSelect v-model="value" :options="nodes" placeholder="Select item"/>
+        <TreeSelect v-model="value" :options="nodes" placeholder="Select item">
+            <template v-slot:selected="{selected,ancestors}">
+                <span>{{ buildPath(selected,ancestors) }}</span>
+            </template>
+        </TreeSelect>
         <div style="padding: 20px;">
             {{ value }}
         </div>
@@ -9,7 +13,7 @@
         <TreeSelect v-model="selected" :multi="true" :options="nodes"
                     placeholder="Select item"/>
         <div style="padding: 20px;">
-            {{ value }}
+            {{ selected }}
         </div>
     </div>
 </template>
@@ -50,6 +54,14 @@
                     }
                 ]
             };
+        },
+        methods: {
+            buildPath(selected, ancestors) {
+                if (!ancestors.length) {
+                    return selected.label;
+                }
+                return `${ancestors.map(n => n.label).join('/')}/${selected.label}`;
+            }
         }
     };
 </script>
