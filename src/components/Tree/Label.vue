@@ -13,7 +13,7 @@
 </template>
 
 <script>
-    import Checkbox from '@/components/Checkbox/Checkbox';
+    import Checkbox from '../Checkbox/Checkbox';
 
     const LIST_NESTING_MARGIN = '24';
 
