@@ -37,6 +37,8 @@ import BulletListLoader from './components/ContentLoader/BulletListLoader';
 import ListWithImageLoader from './components/ContentLoader/ListWithImageLoader';
 import Avatar from './components/Avatar/Avatar';
 import Badge from './components/Badge/Badge';
+import Tree from './components/Tree/Tree';
+import TreeSelect from './components/Select/TreeSelect/TreeSelect';
 import '@atlaskit/css-reset/dist/bundle.css';
 
 export {
@@ -73,7 +75,9 @@ export {
     BulletListLoader,
     ListWithImageLoader,
     Avatar,
-    Badge
+    Badge,
+    Tree,
+    TreeSelect
 };
 export * from './components/Icon';
 export * from './components/field-renderers';

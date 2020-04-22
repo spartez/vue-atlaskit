@@ -6,10 +6,10 @@
                   :rx="3" :ry="3"
                   :width="24" :height="24"/>
             <rect :x="32" y="2"
-                  :rx="6" :ry="6"
+                  :rx="3" :ry="3"
                   :width="80" :height="12"/>
             <rect :x="32" :y="19"
-                  :rx="8" :ry="8"
+                  :rx="3" :ry="3"
                   :width="100" :height="16"/>
         </ContentLoader>
     </div>

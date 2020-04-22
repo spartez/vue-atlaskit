@@ -20,8 +20,8 @@
                 <rect v-if="!$slots['default']"
                       x="0"
                       y="0"
-                      rx="5"
-                      ry="5"
+                      rx="3"
+                      ry="3"
                       width="100%"
                       height="100%"/>
                 <slot/>
