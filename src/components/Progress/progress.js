@@ -1,6 +1,9 @@
 export default class ProgressBar {
     constructor({
-        backgroundColor = '#0052CC', transition = 'width 0.1s, opacity 0.1s', zIndex = '999999', height = '3px'
+        backgroundColor = '#0052CC',
+        transition = 'all 0.5s ease-out',
+        zIndex = '999999',
+        height = '3px'
     } = {}) {
         this.el = null;
         this.timer = null;
@@ -46,7 +49,7 @@ export default class ProgressBar {
         setTimeout(() => {
             document.body.removeChild(this.el);
             this.reset();
-        }, 200);
+        }, 300);
     }
 
     reset() {
@@ -65,12 +68,14 @@ export default class ProgressBar {
             return;
         }
         if (typeof increment !== 'number') {
-            if (this.progress >= 0 && this.progress < 0.2) {
+            if (this.progress >= 0 && this.progress < 0.01) {
+                increment = 0.01;
+            } else if (this.progress >= 0.01 && this.progress < 0.3) {
                 increment = 0.1;
-            } else if (this.progress >= 0.2 && this.progress < 0.5) {
-                increment = 0.04;
+            } else if (this.progress >= 0.3 && this.progress < 0.5) {
+                increment = 0.05;
             } else if (this.progress >= 0.5 && this.progress < 0.8) {
-                increment = 0.02;
+                increment = 0.03;
             } else if (this.progress >= 0.8 && this.progress < 0.99) {
                 increment = 0.005;
             } else {
