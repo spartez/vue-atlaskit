@@ -49,6 +49,10 @@
                 type: Boolean,
                 default: false
             },
+            appendToBody: {
+                type: Boolean,
+                default: false
+            },
             noOptionsMessage: {
                 type: String,
                 default: undefined
@@ -61,6 +65,11 @@
         computed: {
             selectedId() {
                 return !Array.isArray(this.selected) ? this.selected.id : undefined;
+            }
+        },
+        mounted() {
+            if (this.appendToBody) {
+                document.body.appendChild(this.$el);
             }
         },
         methods: {

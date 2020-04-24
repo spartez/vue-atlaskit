@@ -46,6 +46,7 @@
                         :current-suggestion-index="currentSuggestionIndex"
                         :is-fetching="isFetching"
                         :async="async"
+                        :append-to-body="appendToBody"
                         :contains-query="!!search"
                         :style="{width: selectWidth}"
                         :has-suggestions="hasSuggestions"
@@ -156,6 +157,10 @@
             max: {
                 type: Number,
                 default: Infinity
+            },
+            appendToBody: {
+                type: Boolean,
+                default: false
             }
         },
         data() {

@@ -4,9 +4,9 @@
                :node="node"
                :hovered="hovered"
                :level="level"
-               @mouseenter.native="$emit('highlight', node.id)">
+               @mouseenter.native="$emit('highlight', node.id.toString())">
             <div v-if="hasChildNodes" slot="chevron" class="icon"
-                 :expanded="isExpanded" @click="$emit('toggle-expand',node.id)">
+                 :expanded="isExpanded" @click="$emit('toggle-expand',node.id.toString())">
                 <ChevronRightIcon/>
             </div>
             <slot name="label">
@@ -91,7 +91,7 @@
                 return [...this.ancestors, ...id ? [{ id, label }] : []];
             },
             isExpanded() {
-                return this.hasChildNodes && this.expanded.includes(this.node.id);
+                return this.hasChildNodes && this.expanded.includes(this.node.id.toString());
             },
             hasChildNodes() {
                 return !!(this.node.children && this.node.children.length);

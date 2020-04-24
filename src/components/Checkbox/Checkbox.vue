@@ -28,7 +28,7 @@
                 default: false
             },
             value: {
-                type: [String, Object],
+                type: [String, Object, Number],
                 default: undefined
             },
             checked: {

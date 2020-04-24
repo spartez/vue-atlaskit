@@ -48,7 +48,7 @@
                 }
             },
             current() {
-                return this.hovered === this.node.id;
+                return this.hovered === this.node.id.toString();
             },
             indent() {
                 if (this.$slots.chevron) {

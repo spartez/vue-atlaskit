@@ -28,7 +28,7 @@
                 </span>
             </div>
             <Icons :is-selected="isAnyOptionSelected" :is-fetching="isFetching"
-                   @clear="onClear"/>
+                   :is-clearable="isClearable" @clear="onClear"/>
         </TextField>
         <Popper v-if="isOpen && !isDirty" ref="menu" offset="0,0"
                 :target-element="$refs.target"
@@ -112,7 +112,7 @@
                 type: String,
                 default: 'No options'
             },
-            tree: {
+            isClearable: {
                 type: Boolean,
                 default: true
             }
@@ -290,7 +290,7 @@
                     return;
                 }
                 e.preventDefault();
-                const option = this.nodes.find(node => node.id === this.currentSuggestionId);
+                const option = this.nodes.find(node => node.id.toString() === this.currentSuggestionId);
                 this.currentSuggestionId = undefined;
                 this.$nextTick(() => {
                     this.$refs.input.focus();

@@ -38,6 +38,7 @@ import ListWithImageLoader from './components/ContentLoader/ListWithImageLoader'
 import Avatar from './components/Avatar/Avatar';
 import Badge from './components/Badge/Badge';
 import Tree from './components/Tree/Tree';
+import InfiniteScroll from './components/common/InfiniteScroll';
 import TreeSelect from './components/Select/TreeSelect/TreeSelect';
 import '@atlaskit/css-reset/dist/bundle.css';
 
@@ -77,7 +78,8 @@ export {
     Avatar,
     Badge,
     Tree,
-    TreeSelect
+    TreeSelect,
+    InfiniteScroll
 };
 export * from './components/Icon';
 export * from './components/field-renderers';
