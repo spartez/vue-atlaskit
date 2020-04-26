@@ -20,7 +20,7 @@
                        @keydown.delete="removeOption">
             </div>
             <div v-if="!selected.length" class="text">
-                <slot v-if="!search && selected.value && $scopedSlots['selected']" name="selected"
+                <slot v-if="!search && selected && $scopedSlots['selected']" name="selected"
                       :ancestors="ancestors"
                       :selected="selected"/>
                 <span v-else :placeholder="!search && !selected.label">
@@ -290,11 +290,10 @@
                     return;
                 }
                 e.preventDefault();
-                const option = this.nodes.find(node => node.id.toString() === this.currentSuggestionId);
+                EventBus.$emit('remote-select');
                 this.currentSuggestionId = undefined;
                 this.$nextTick(() => {
                     this.$refs.input.focus();
-                    this.onOptionSelected(option);
                 });
             },
 

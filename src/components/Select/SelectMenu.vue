@@ -70,6 +70,9 @@
         mounted() {
             if (this.appendToBody) {
                 document.body.appendChild(this.$el);
+                setTimeout(() => {
+                    this.$emit('update-popper-position');
+                }, 0);
             }
         },
         methods: {

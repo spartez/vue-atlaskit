@@ -14,6 +14,7 @@
 
 <script>
     import Checkbox from '../Checkbox/Checkbox';
+    import { EventBus } from '../event-bus';
 
     const LIST_NESTING_MARGIN = '24';
 
@@ -69,6 +70,13 @@
                     });
                 }
             }
+        },
+        mounted() {
+            EventBus.$on('remote-select', () => {
+                if (this.current) {
+                    this.$emit('input', this.node.id);
+                }
+            });
         }
     };
 </script>

@@ -52,6 +52,7 @@
                         :has-suggestions="hasSuggestions"
                         :no-options-message="noOptionsMessage"
                         :placeholder="searchPromptText"
+                        @update-popper-position="updatePopperPosition"
                         @mouseover="onMouseOverSuggestion"
                         @option-selected="onOptionSelected">
                 <slot slot="option" slot-scope="{option, isCurrent}" name="option"
