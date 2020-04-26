@@ -1,6 +1,6 @@
 <template>
     <div class="wrapper">
-        <div>
+        <FieldGroup class="async-select" label="Async Select">
             <Select v-model="value"
                     :options="options"
                     :is-fetching="isFetching"
@@ -18,7 +18,7 @@
                     <span>{{ selected.name }}</span>
                 </div>
             </Select>
-        </div>
+        </FieldGroup>
         <table>
             <thead>
                 <tr>
@@ -38,6 +38,7 @@
     import pDebounce from 'p-debounce';
     import Select from '@/components/Select/Select';
     import { createPersonsList } from '../api-mocks/people';
+    import FieldGroup from '../../src/components/Form/FieldGroup';
 
     const list = createPersonsList({}, 50);
     const getUsers = query => new Promise((resolve) => {
@@ -52,6 +53,7 @@
 
     export default {
         components: {
+            FieldGroup,
             Select
         },
         data() {
@@ -81,6 +83,10 @@
 <style scoped>
   .wrapper {
       padding: 20px;
+  }
+
+  .async-select {
+      max-width: 250px;
   }
 
   .label {

@@ -1,7 +1,8 @@
 <template>
     <div>
-        <Input v-model="search"/>
-        <h1>One item can be selected</h1>
+        <FieldGroup class="search" label="Search">
+            <Input v-model="search"/>
+        </FieldGroup>
         <Tree v-model="selected" :search="search" :nodes="nodes"/>
         <div style="padding: 20px;">
             {{ selected }}
@@ -12,10 +13,11 @@
 <script>
     import Tree from '@/components/Tree/Tree';
     import Input from '@/components/Form/Input';
+    import FieldGroup from '../../src/components/Form/FieldGroup';
 
     export default {
         name: 'TreeStory',
-        components: { Tree, Input },
+        components: { FieldGroup, Tree, Input },
         data() {
             return {
                 selected: undefined,
@@ -52,5 +54,7 @@
 </script>
 
 <style scoped>
-
+.search {
+    max-width: 250px;
+}
 </style>

@@ -1,6 +1,5 @@
 <template>
-    <div>
-        <h1>Tree Select</h1>
+    <FieldGroup class="treeselect" label="TreeSelect">
         <TreeSelect v-model="value" :options="nodes" placeholder="Select item">
             <template v-slot:selected="{selected,ancestors}">
                 <span>{{ buildPath(selected,ancestors) }}</span>
@@ -9,15 +8,16 @@
         <div style="padding: 20px;">
             {{ value }}
         </div>
-    </div>
+    </FieldGroup>
 </template>
 
 <script>
     import TreeSelect from '@/components/Select/TreeSelect/TreeSelect';
+    import FieldGroup from '../../src/components/Form/FieldGroup';
 
     export default {
         name: 'TreeStory',
-        components: { TreeSelect },
+        components: { FieldGroup, TreeSelect },
         data() {
             return {
                 value: undefined,
@@ -59,3 +59,8 @@
         }
     };
 </script>
+<style scoped>
+    .treeselect {
+        max-width: 400px;
+    }
+</style>

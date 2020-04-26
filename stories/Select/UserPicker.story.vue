@@ -1,9 +1,12 @@
 <template>
     <div class="wrapper">
-        <UserPicker v-model="value" :initial-options="[initialOptions]" :get-users="getUsers"/>
+        <FieldGroup class="picker single" label="Single User">
+            <UserPicker v-model="value" :initial-options="[initialOptions]" :get-users="getUsers"/>
+        </FieldGroup>
         <p>{{ value }}</p>
-        <br>
-        <UserPicker v-model="users" :multi="true" :get-users="getUsers"/>
+        <FieldGroup class="picker multi" label="Many Users">
+            <UserPicker v-model="users" :multi="true" :get-users="getUsers"/>
+        </FieldGroup>
         <p>{{ users }}</p>
     </div>
 </template>
@@ -11,6 +14,7 @@
 <script>
     import UserPicker from '@/components/Select/UserPicker';
     import { createPersonsList } from '../api-mocks/people';
+    import FieldGroup from '../../src/components/Form/FieldGroup';
 
     const list = createPersonsList({}, 50);
     const [initialOptions] = list;
@@ -25,7 +29,7 @@
 
     export default {
         name: 'UserPickerStory',
-        components: { UserPicker },
+        components: { FieldGroup, UserPicker },
         data() {
             return {
                 value: undefined,
@@ -41,5 +45,13 @@
 <style scoped>
   .wrapper {
       padding: 20px;
+  }
+
+  .picker.single {
+      max-width: 250px;
+  }
+
+  .picker.multi {
+      max-width: 550px;
   }
 </style>

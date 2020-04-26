@@ -1,12 +1,12 @@
 <template>
     <div class="wrapper">
-        <div>
+        <FieldGroup class="createable" label="Createable">
             <Select v-model="value"
                     :normalizer="normalizer"
                     createable
                     multi
                     placeholder="Type something and press enter..."/>
-        </div>
+        </FieldGroup>
         <table>
             <thead>
                 <tr>
@@ -26,12 +26,14 @@
     import Select from '@/components/Select/Select';
     import faker from 'faker';
     import { many } from '../api-mocks/helpers';
+    import FieldGroup from '../../src/components/Form/FieldGroup';
 
     const cities = many(faker.address.city)({}, 10);
     const [city] = cities;
 
     export default {
         components: {
+            FieldGroup,
             Select
         },
         data() {
@@ -50,5 +52,9 @@
 <style scoped>
   .wrapper {
       padding: 20px;
+  }
+
+  .createable {
+      max-width: 500px;
   }
 </style>
