@@ -2,16 +2,25 @@
     <div ref="menu" class="select-menu" tabindex="-1"
          @mousedown.prevent>
         <div class="select-menu-inner">
-            <SelectOption v-for="(option,index) in options" :key="`${option.id}-${index}`" :selected-id="selectedId"
-                          :option="option" :index="index"
-                          :current-suggestion-index="currentSuggestionIndex"
-                          @mouseover="onMouseOver"
-                          @option-selected="onOptionSelected">
-                <slot slot="option" slot-scope="{option, isCurrent}" name="option"
-                      :is-current="isCurrent"
-                      :option="option"/>
+            <SelectOption
+                v-for="(option, index) in options"
+                :key="`${option.id}-${index}`"
+                :selected-id="selectedId"
+                :option="option"
+                :index="index"
+                :current-suggestion-index="currentSuggestionIndex"
+                @mouseover="onMouseOver"
+                @option-selected="onOptionSelected">
+                <slot
+                    slot="option"
+                    slot-scope="{ option, isCurrent }"
+                    name="option"
+                    :is-current="isCurrent"
+                    :option="option"/>
             </SelectOption>
-            <div v-if="!hasSuggestions" class="no-options">
+            <div
+                v-if="!hasSuggestions"
+                class="no-options">
                 {{ !containsQuery && async ? placeholder : noOptionsMessage }}
             </div>
         </div>
@@ -88,27 +97,28 @@
 
 <style scoped>
 .select-menu {
-    background-color: rgb(255, 255, 255);
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 0px 1px, rgba(0, 0, 0, 0.1) 0px 4px 11px;
-    margin-bottom: 8px;
-    margin-top: 8px;
-    box-sizing: border-box;
-    border-radius: 4px;
-    width: 100%;
-    position: absolute;
-    z-index: 1000;
+  background-color: rgb(255, 255, 255);
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 0px 1px,
+    rgba(0, 0, 0, 0.1) 0px 4px 11px;
+  margin-bottom: 8px;
+  margin-top: 8px;
+  box-sizing: border-box;
+  border-radius: 4px;
+  width: 100%;
+  position: absolute;
+  z-index: 1000;
 }
 
 .select-menu-inner {
-    max-height: 300px;
-    overflow-y: auto;
-    padding-bottom: 8px;
-    padding-top: 8px;
-    box-sizing: border-box;
+  max-height: 300px;
+  overflow-y: auto;
+  padding-bottom: 8px;
+  padding-top: 8px;
+  box-sizing: border-box;
 }
 
 .no-options {
-    padding: 6px 12px;
-    text-align: center;
+  padding: 6px 12px;
+  text-align: center;
 }
 </style>

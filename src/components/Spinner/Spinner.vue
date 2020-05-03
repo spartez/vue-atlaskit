@@ -1,11 +1,12 @@
 <template>
     <div class="spinner" :size="size">
-        <svg focusable="false"
-             :size="dimensions.px"
-             :height="dimensions.px"
-             :width="dimensions.px"
-             :viewBox="`0 0 ${dimensions.px} ${dimensions.px}`">
-            <circle :cx="origin" :cy="origin" :r="dimensions.radius"/>
+        <svg
+            focusable="false"
+            :size="dimensions.px"
+            :height="dimensions.px"
+            :width="dimensions.px"
+            :viewBox="`0 0 ${dimensions.px} ${dimensions.px}`">
+            <circle :cx="origin" :cy="origin" :r="dimensions.radius" />
         </svg>
     </div>
 </template>
@@ -107,7 +108,8 @@ svg {
     right: 0;
     bottom: 0;
     left: 0;
-    animation: 0.86s cubic-bezier(0.4, 0.15, 0.6, 0.85) infinite spinnerRotateAnimation;
+    animation: 0.86s cubic-bezier(0.4, 0.15, 0.6, 0.85) infinite
+        spinnerRotateAnimation;
     fill: none;
     stroke: currentColor;
     stroke-linecap: round;
