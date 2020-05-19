@@ -14,7 +14,10 @@
     "jest": "jest",
     "test:watch": "jest --verbose --watchAll --notify",
     "build-storybook": "build-storybook -c .storybook -o docs",
-    "generate-icons": "node build/generate-icons.js"
+    "generate-icons": "node build/generate-icons.js",
+    "cypress:test": "wait-on http://localhost:6006 && cypress run",
+    "cypress:run": "cypress run",
+    "cypress:open": "cypress open"
   },
   "sideEffects": [
     "*.css"
@@ -38,8 +41,10 @@
     "babel-jest": "^24.7.1",
     "babel-loader": "^8.0.5",
     "babel-preset-vue": "^2.0.2",
+    "cypress": "^4.5.0",
     "eslint": "^5.16.0",
     "eslint-import-resolver-alias": "^1.1.2",
+    "eslint-plugin-cypress": "^2.10.3",
     "eslint-plugin-import": "^2.17.1",
     "eslint-plugin-jest": "^22.4.1",
     "faker": "^4.1.0",
