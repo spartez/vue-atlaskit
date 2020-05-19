@@ -20,7 +20,7 @@
         data() {
             faker.seed(1);
             return {
-                value: `${faker.random.number()}${faker.random.number()}${faker.random.number()}${faker.random.number()}`
+                value: faker.random.number() * 1234
             };
         }
     };

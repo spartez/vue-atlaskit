@@ -18,7 +18,7 @@
         components: { NumberFloatRenderer },
         data() {
             return {
-                value: (Math.random() * 1000).toString()
+                value: Math.random() * 1000
             };
         }
     };

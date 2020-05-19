@@ -19,7 +19,7 @@
         components: { NumberFloatRenderer, InlineEdit },
         props: {
             value: {
-                type: String,
+                type: Number,
                 default: undefined
             },
             editable: {
