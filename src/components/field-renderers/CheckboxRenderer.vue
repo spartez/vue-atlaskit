@@ -1,6 +1,6 @@
 <template>
     <span class="input-label">
-        <Checked v-if="!!parseInt(value)" size="small" primary-color="#36B37E"/>
+        <Checked v-if="value" size="small" primary-color="#36B37E"/>
         <span v-else class="icon"/>
         <span v-if="label">{{ label }}</span>
     </span>
@@ -14,8 +14,8 @@
         components: { Checked },
         props: {
             value: {
-                type: String,
-                default: '0'
+                type: Boolean,
+                default: false
             },
             label: {
                 type: String,

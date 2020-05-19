@@ -24,7 +24,7 @@
         data() {
             faker.seed(1);
             return {
-                value: '0'
+                value: true
             };
         },
         methods: {

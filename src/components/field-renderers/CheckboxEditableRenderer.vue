@@ -1,6 +1,6 @@
 <template>
     <InlineEdit v-if="editable"
-                :value="boolean"
+                :value="value"
                 offset="0,0"
                 class="checkbox-edit"
                 @save-requested="onSaveRequested">
@@ -32,23 +32,17 @@
         components: { CheckboxRenderer, InlineEdit, Checkbox },
         props: {
             value: {
-                type: String,
-                default: '0'
+                type: Boolean,
+                default: false
             },
             editable: {
                 type: Boolean,
                 default: true
             }
         },
-        computed: {
-            boolean() {
-                return !!parseInt(this.value, 10);
-            }
-        },
         methods: {
             onSaveRequested(value, callback) {
-                const payload = value ? '1' : '0';
-                this.$emit('save-requested', payload, callback);
+                this.$emit('save-requested', value, callback);
             }
         }
     };
