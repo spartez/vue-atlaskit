@@ -1,5 +1,6 @@
 import { shallowMount } from '@vue/test-utils';
-import Button from 'components/Button/Button';
+import Button from '@/components/Button/Button';
+import Spinner from '@/components/Spinner/Spinner';
 
 
 describe('Button', () => {
@@ -7,6 +8,11 @@ describe('Button', () => {
         const component = shallowMount(Button, { slots: { default: 'Click me!' } });
 
         expect(component.find({ ref: 'label' }).text()).toBe('Click me!');
+    });
+
+    it('renders spinner if passed loading prop', () => {
+        const component = shallowMount(Button, { propsData: { isLoading: true }, slots: { default: 'Click me!' } });
+        expect(component.find(Spinner).exists()).toBe(true);
     });
 
     it('emits click event on button click', () => {

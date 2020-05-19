@@ -1,5 +1,5 @@
 import { shallowMount } from '@vue/test-utils';
-import Input from 'components/Form/Input';
+import Input from '@/components/Form/Input';
 
 
 describe('Input', () => {

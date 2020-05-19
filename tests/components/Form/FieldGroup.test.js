@@ -1,5 +1,5 @@
 import { shallowMount } from '@vue/test-utils';
-import FieldGroup from 'components/Form/FieldGroup';
+import FieldGroup from '@/components/Form/FieldGroup';
 
 
 describe('FieldGroup', () => {
