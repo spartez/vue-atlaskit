@@ -10,6 +10,7 @@
                          :index="i"
                          :count="selected.length"
                          :min="min"
+                         data-cy="tag"
                          @dragend="onDragEnd"
                          @drag="handleDrag"
                          @dragstart="onDragStart"
@@ -52,6 +53,7 @@
                         :has-suggestions="hasSuggestions"
                         :no-options-message="noOptionsMessage"
                         :placeholder="searchPromptText"
+                        data-cy="select-menu"
                         @update-popper-position="updatePopperPosition"
                         @mouseover="onMouseOverSuggestion"
                         @option-selected="onOptionSelected">

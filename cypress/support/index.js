@@ -15,6 +15,7 @@
 
 // Import commands.js using ES2015 syntax:
 import './commands';
-
+// A Cypress plugin to add a tab command
+require('cypress-plugin-tab');
 // Alternatively you can use CommonJS syntax:
 // require('./commands')

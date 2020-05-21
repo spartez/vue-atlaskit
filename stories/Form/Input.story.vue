@@ -1,6 +1,6 @@
 <template>
     <div>
-        <FieldGroup label="Label" required>
+        <FieldGroup data-cy="field-group" label="Label" required>
             <Input v-model="message" should-fit-container placeholder="Click here to input"/>
             The message is: {{ message }}
         </FieldGroup>

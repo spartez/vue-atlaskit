@@ -2,8 +2,10 @@
     <div>
         <h3>Simple dropdown</h3>
         <p>
-            <Dropdown label="Drop down menu">
-                <DropdownItem>First item</DropdownItem>
+            <Dropdown data-cy="simple-dropdown" label="Drop down menu">
+                <DropdownItem data-cy="simple-dropdown-item">
+                    First item
+                </DropdownItem>
                 <DropdownItem>Second item</DropdownItem>
                 <DropdownItem>Lorem ipsum dolor sit amet consectetur adipisicing elit</DropdownItem>
             </Dropdown>

@@ -3,9 +3,9 @@
         <FieldGroup class="multiselect" label="MultiSelect">
             <Select v-model="basic"
                     multi
-                    :min="3"
                     :options="options"
-                    placeholder="select item"/>
+                    placeholder="select item"
+                    data-cy="multiselect-simple"/>
         </FieldGroup>
         <FieldGroup class="mutliselect" label="MinMax options set, only numbers">
             <Select v-model="minmax"

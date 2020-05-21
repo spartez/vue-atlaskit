@@ -1,6 +1,6 @@
 <template>
     <div>
-        <Button @click="showDialog">
+        <Button data-cy="show-modal" @click="showDialog">
             Show Dialog
         </Button>
         <Modal v-if="show" heading="Modal Basic" auto-focus
