@@ -10,7 +10,8 @@
     "storybook": "start-storybook -p 9001 -s ./public -c .storybook",
     "lint": "eslint src --ext .js,.vue",
     "lint-fix": "eslint src --fix --ext .js,.vue",
-    "test": "npm run lint && jest --verbose --coverage",
+    "test": "npm run lint && jest --verbose",
+    "jest": "jest",
     "test:watch": "jest --verbose --watchAll --notify",
     "build-storybook": "build-storybook -c .storybook -o docs",
     "generate-icons": "node build/generate-icons.js"
@@ -32,7 +33,7 @@
     "@betit/rollup-plugin-rename-extensions": "^0.1.0",
     "@spartez/eslint-config-vue": "^1.0.3",
     "@storybook/vue": "^5.1.9",
-    "@vue/test-utils": "^1.0.0-beta.29",
+    "@vue/test-utils": "^1.0.3",
     "babel-core": "^7.0.0-bridge.0",
     "babel-jest": "^24.7.1",
     "babel-loader": "^8.0.5",
