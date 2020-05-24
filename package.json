@@ -10,11 +10,13 @@
     "storybook": "start-storybook -p 9001 -s ./public -c .storybook",
     "lint": "eslint src --ext .js,.vue",
     "lint-fix": "eslint src --fix --ext .js,.vue",
-    "test": "npm run lint && jest --verbose",
-    "jest": "jest",
+    "test": "npm run lint && jest && concurrently 'npm run storybook' 'npm run cypress:test' -k -s first",
     "test:watch": "jest --verbose --watchAll --notify",
     "build-storybook": "build-storybook -c .storybook -o docs",
-    "generate-icons": "node build/generate-icons.js"
+    "generate-icons": "node build/generate-icons.js",
+    "cypress:test": "wait-on http://localhost:9001 && cypress run",
+    "cypress:run": "cypress run",
+    "cypress:open": "cypress open"
   },
   "sideEffects": [
     "*.css"
@@ -38,8 +40,12 @@
     "babel-jest": "^24.7.1",
     "babel-loader": "^8.0.5",
     "babel-preset-vue": "^2.0.2",
+    "concurrently": "^5.2.0",
+    "cypress": "^4.5.0",
+    "cypress-plugin-tab": "^1.0.5",
     "eslint": "^5.16.0",
     "eslint-import-resolver-alias": "^1.1.2",
+    "eslint-plugin-cypress": "^2.10.3",
     "eslint-plugin-import": "^2.17.1",
     "eslint-plugin-jest": "^22.4.1",
     "faker": "^4.1.0",
@@ -61,7 +67,8 @@
     "vue-jest": "^3.0.4",
     "vue-loader": "^15.7.0",
     "vue-svg-loader": "^0.12.0",
-    "vue-template-compiler": "^2.6.10"
+    "vue-template-compiler": "^2.6.10",
+    "wait-on": "^5.0.0"
   },
   "peerDependencies": {
     "vue": "~2.5.18"

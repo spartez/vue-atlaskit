@@ -3,12 +3,13 @@
          @mousedown.prevent>
         <div class="select-menu-inner">
             <SelectOption
-                v-for="(option, index) in options"
-                :key="`${option.id}-${index}`"
+                v-for="(item, index) in options"
+                :key="`${item.id}-${index}`"
                 :selected-id="selectedId"
-                :option="option"
+                :option="item"
                 :index="index"
                 :current-suggestion-index="currentSuggestionIndex"
+                data-cy="select-option"
                 @mouseover="onMouseOver"
                 @option-selected="onOptionSelected">
                 <slot
@@ -20,6 +21,7 @@
             </SelectOption>
             <div
                 v-if="!hasSuggestions"
+                data-cy="no-options"
                 class="no-options">
                 {{ !containsQuery && async ? placeholder : noOptionsMessage }}
             </div>

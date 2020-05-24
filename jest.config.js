@@ -4,6 +4,7 @@ module.exports = {
         'node_modules',
         'src'
     ],
+    testMatch: ['**/?(*.)+(test).[jt]s?(x)'],
     moduleFileExtensions: [
         'js',
         'vue'

@@ -9,9 +9,7 @@
             v-on="listeners">
         <span class="wrapper" tabindex="-1" :icon-is-only-child="iconIsOnlyChild">
             <slot v-if="!isLoading" name="icon-before"/>
-            <span v-if="this.$slots.default" ref="label" class="label">
-                <slot/>
-            </span>
+            <span v-if="this.$slots.default" ref="label" class="label"><slot/></span>
             <slot v-if="!isLoading" name="icon-after"/>
             <Spinner v-if="isLoading" :size="spacing === 'default' ? 'small' : 'icon'"/>
         </span>

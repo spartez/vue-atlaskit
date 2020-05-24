@@ -1,5 +1,5 @@
 <template>
-    <div class="input-wrapper" v-on="$listeners">
+    <div class="input-wrapper" data-cy="input-wrapper" v-on="$listeners">
         <slot/>
     </div>
 </template>

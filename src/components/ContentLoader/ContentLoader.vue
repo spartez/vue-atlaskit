@@ -89,7 +89,8 @@
                 default: 1
             },
             uniqueKey: {
-                type: String
+                type: String,
+                default: ''
             },
             animate: {
                 type: Boolean,
