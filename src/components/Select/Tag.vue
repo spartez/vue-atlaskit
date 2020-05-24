@@ -6,7 +6,8 @@
                 {{ tag.label }}
             </div>
         </slot>
-        <div v-if="shouldShowRemoveButton" ref="remove"class="remove-tag" data-cy="remove-tag"
+        <div v-if="shouldShowRemoveButton" ref="remove" class="remove-tag"
+             data-cy="remove-tag"
              @mousedown.prevent.stop
              @click.stop="onRemove">
             <EditorCloseIcon primary-color="#000" size="xsmall" />
