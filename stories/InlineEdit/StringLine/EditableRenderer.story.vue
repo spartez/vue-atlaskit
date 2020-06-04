@@ -2,11 +2,11 @@
     <div>
         <h5>Editable:</h5>
         <p>
-            <StringLineEditableRenderer :value="value" @save-requested="onSave"/>
+            <StringLineEditableRenderer data-cy="editable" :value="value" @save-requested="onSave"/>
         </p>
         <h5>Editable - callback with error:</h5>
         <p>
-            <StringLineEditableRenderer :value="value" @save-requested="onSaveError"/>
+            <StringLineEditableRenderer data-cy="editable-error" :value="value" @save-requested="onSaveError"/>
         </p>
         <h5>Limited width:</h5>
         <p class="limited-width">
@@ -14,7 +14,7 @@
         </p>
         <h5>Non-editable:</h5>
         <p>
-            <StringLineEditableRenderer :value="value" :editable="false"/>
+            <StringLineEditableRenderer data-cy="non-editable" :value="value" :editable="false"/>
         </p>
     </div>
 </template>

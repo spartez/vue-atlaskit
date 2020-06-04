@@ -1,23 +1,23 @@
 <template>
     <div>
-        <Toggle v-model="regular"/>
-        <Toggle size="large" v-model="large"/>
+        <Toggle v-model="regular" data-cy="toggle"/>
+        <Toggle v-model="large" size="large"/>
     </div>
 </template>
 
 <script>
-    import Toggle from '@/components/Toggle/Toggle'
+    import Toggle from '@/components/Toggle/Toggle';
 
     export default {
-        name: "Toggle.story",
+        name: 'ToggleStory',
         components: { Toggle },
         data() {
             return {
                 regular: false,
                 large: false
-            }
+            };
         }
-    }
+    };
 </script>
 
 <style scoped>
