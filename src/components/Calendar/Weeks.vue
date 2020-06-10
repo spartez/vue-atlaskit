@@ -8,7 +8,7 @@
         <tbody>
             <tr v-for="(week,i) in weeks" :key="i" class="week">
                 <Day v-for="day in week" :key="day.date.getDate()" :day="day"
-                     @date-selected="onDateSelected"/>
+                     data-cy="day" @date-selected="onDateSelected"/>
             </tr>
         </tbody>
     </table>

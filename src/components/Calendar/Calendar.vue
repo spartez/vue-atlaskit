@@ -2,6 +2,7 @@
     <div ref="calendar" class="calendar" tabindex="-1">
         <CalendarHeader :month="month" :year="year" :decade="decade"
                         :current-interval="currentInterval"
+                        data-cy="header"
                         @change-interval="onIntervalChange"
                         @next="onNext" @prev="onPrev"/>
         <Weeks v-if="currentInterval === 'days'" :weeks="weeks" :disabled-range="disabledRange"

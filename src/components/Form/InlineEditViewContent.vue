@@ -1,9 +1,10 @@
 <template>
     <div tabindex="0" prevent-outline
+         data-cy="view-content"
          @keyup.enter="onEnter"
          @click="onClick"
          @mousedown="onMouseDown">
-        <div class="label" tabindex="-1">
+        <div class="label" data-cy="label" tabindex="-1">
             <slot/>
             <div class="pencil-icon">
                 <EditFilledIcon size="xsmall"/>

@@ -6,9 +6,11 @@
                @change="toggle">
         <div class="slide" :size="size">
             <div class="slide-inner">
-                <EditorDoneIcon v-if="value" :size="iconSize" primary-color="White"
+                <EditorDoneIcon v-if="value" data-cy="done" :size="iconSize"
+                                primary-color="White"
                                 class="done"/>
-                <CrossIcon v-else :size="iconSize" primary-color="White"
+                <CrossIcon v-else data-cy="cross" :size="iconSize"
+                           primary-color="White"
                            class="close"/>
             </div>
         </div>

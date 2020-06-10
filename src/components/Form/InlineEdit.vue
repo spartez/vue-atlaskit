@@ -217,13 +217,7 @@
         margin: -2px;
     }
 
-    .error-dialog {
-        color: #091E42;
-        font-size: 14px;
-        box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.31) 0px 0px 1px;
-        background: rgb(255, 255, 255);
-        border-radius: 3px;
-        padding: 4px 10px;
-        z-index: 10000;
+    input{
+        font-family: inherit;
     }
 </style>

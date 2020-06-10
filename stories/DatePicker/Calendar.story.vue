@@ -2,7 +2,7 @@
     <div class="wrapper">
         <h3>Normal view</h3>
         <p>
-            <Calendar :value="date"/>
+            <Calendar data-cy="calendar" :value="date"/>
         </p>
         <h3>Disabled past dates</h3>
         <p>
