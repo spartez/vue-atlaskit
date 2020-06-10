@@ -22,10 +22,6 @@
     export default {
         name: 'UserRenderer',
         props: {
-            baseUrl: {
-                type: String,
-                default: ''
-            },
             user: {
                 type: Object,
                 default: undefined
@@ -45,11 +41,10 @@
             alt: {
                 type: String,
                 default: undefined
-            }
-        },
-        computed: {
-            link() {
-                return `${this.baseUrl}/secure/ViewProfile.jspa?&name=${this.user.name}`;
+            },
+            link: {
+                type: String,
+                default: '#'
             }
         },
         methods: {
@@ -83,7 +78,7 @@
         font-size: 85%;
     }
 
-    [appearance='micro'] .avatar{
+    [appearance='micro'] .avatar {
         height: 16px;
         width: 16px;
     }

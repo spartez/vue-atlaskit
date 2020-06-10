@@ -1,6 +1,7 @@
 <template>
     <div class="outer" :style="`zIndex: ${zIndex}`">
-        <div class="wrapper" :size="size">
+        <component :is="tag" :href="link" target="_top"
+                   class="wrapper" :size="size">
             <img v-if="avatar" :src="avatar" alt="avatar">
             <svg v-else viewBox="0 0 128 128" version="1.1"
                  xmlns="http://www.w3.org/2000/svg">
@@ -17,7 +18,7 @@
             </svg>
             <component :is="presence" v-if="presence" :size="size"
                        class="presence" primary-color="green"/>
-        </div>
+        </component>
     </div>
 </template>
 
@@ -47,6 +48,14 @@
             zIndex: {
                 type: Number,
                 default: 999
+            },
+            tag: {
+                type: String,
+                default: 'div'
+            },
+            link: {
+                type: String,
+                default: '#'
             }
         }
     };
@@ -65,6 +74,26 @@
     position: relative;
     background-color: #fff;
     border-radius: 50%;
+    z-index: 999;
+}
+
+.wrapper::after {
+    background-color: transparent;
+    bottom: 2px;
+    content: " ";
+    left: 2px;
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    right: 2px;
+    top: 2px;
+    border-radius: 50%;
+    transition: opacity 200ms ease 0s;
+}
+
+.wrapper:hover::after{
+    background-color: rgba(9, 30, 66, 0.36);
+    opacity: 1;
 }
 
 img {

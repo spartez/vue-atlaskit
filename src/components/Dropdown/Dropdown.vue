@@ -12,7 +12,7 @@
                :target-element="$refs['dropdown-container']"
                :boundaries-element="boundariesElement"
                :position-fixed="positionFixed"
-               placement="bottom-start">
+               :placement="placement">
             <div class="dropdown-menu" @click="onMenuClick">
                 <slot/>
             </div>
@@ -53,6 +53,10 @@
             positionFixed: {
                 type: Boolean,
                 default: false
+            },
+            placement: {
+                type: String,
+                default: 'bottom-start'
             }
         },
         data() {
