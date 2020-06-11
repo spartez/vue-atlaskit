@@ -20,23 +20,17 @@
                 @focus="props.focus"
                 @cancel="props.cancel">
             <div slot="option" slot-scope="{option}" class="label">
-                <UserRenderer :tag="tag" :base-url="baseUrl"
-                              :user="option"
-                              :avatar-only="avatarOnly"/>
+                <UserRenderer :tag="tag" :user="option" :avatar-only="avatarOnly"/>
             </div>
             <div slot="selected" slot-scope="{selected}" class="label">
-                <UserRenderer :tag="tag" :base-url="baseUrl"
-                              :user="selected"
-                              :avatar-only="avatarOnly"/>
+                <UserRenderer :tag="tag" :user="selected" :avatar-only="avatarOnly"/>
             </div>
         </Select>
         <slot>
-            <UserRenderer :tag="tag" :base-url="baseUrl" :user="user"
-                          :avatar-only="avatarOnly"/>
+            <UserRenderer :tag="tag" :user="user" :avatar-only="avatarOnly"/>
         </slot>
     </InlineEdit>
     <UserRenderer v-else :tag="tag" :user="user"
-                  :base-url="baseUrl"
                   :avatar-only="avatarOnly"/>
 </template>
 
@@ -66,10 +60,6 @@
             loadOptions: {
                 type: Function,
                 required: true
-            },
-            baseUrl: {
-                type: String,
-                default: ''
             },
             tag: {
                 type: String,
