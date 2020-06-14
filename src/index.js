@@ -41,6 +41,7 @@ import Tree from './components/Tree/Tree';
 import ColorPicker from './components/ColorPicker/ColorPicker';
 import InfiniteScroll from './components/common/InfiniteScroll';
 import TreeSelect from './components/Select/TreeSelect/TreeSelect';
+import ProgressBar from './components/ProgressBar/ProgressBar';
 import '@atlaskit/css-reset/dist/bundle.css';
 
 export {
@@ -81,7 +82,8 @@ export {
     Tree,
     TreeSelect,
     InfiniteScroll,
-    ColorPicker
+    ColorPicker,
+    ProgressBar
 };
 export * from './components/Icon';
 export * from './components/field-renderers';

@@ -44,10 +44,15 @@
                 cancel: 'Cancel'
             };
         },
-        created() {
-            const [submit, cancel] = this.actions;
-            this.submit = submit;
-            this.cancel = cancel;
+        watch: {
+            actions: {
+                handler(actions = ['Continue', 'Cancel']) {
+                    const [submit, cancel] = actions;
+                    this.submit = submit;
+                    this.cancel = cancel;
+                },
+                immediate: true
+            }
         },
         methods: {
             onCancel() {
