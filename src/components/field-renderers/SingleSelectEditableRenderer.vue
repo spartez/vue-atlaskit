@@ -9,6 +9,7 @@
                 :is-focused="props.isFocused"
                 :is-loading="props.isLoading"
                 :placeholder="placeholder"
+                :append-to-body="appendToBody"
                 @input="props.input"
                 @blur="props.blur"
                 @confirm="props.confirm"
@@ -42,6 +43,10 @@
             placeholder: {
                 type: String,
                 default: ''
+            },
+            appendToBody: {
+                type: Boolean,
+                default: false
             }
         },
         data() {
