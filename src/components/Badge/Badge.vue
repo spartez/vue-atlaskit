@@ -27,6 +27,11 @@
         box-sizing: border-box;
     }
 
+    span:empty::after {
+        display: inline-block;
+        content: '-';
+    }
+
     [appearance = 'added'] {
         background-color: rgb(227, 252, 239);
         color: rgb(0, 102, 68);
