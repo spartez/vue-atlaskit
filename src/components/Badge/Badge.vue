@@ -7,8 +7,8 @@
         name: 'Badge',
         props: {
             value: {
-                type: String,
-                default: 'default'
+                type: [String, Number],
+                default: '-'
             }
         }
     };
