@@ -8,6 +8,7 @@
                 :is-invalid="props.isInvalid"
                 :is-focused="props.isFocused"
                 :is-loading="props.isLoading"
+                :placeholder="placeholder"
                 @input="props.input"
                 @blur="props.blur"
                 @confirm="props.confirm"
@@ -37,6 +38,10 @@
             allowedValues: {
                 type: Array,
                 default: () => []
+            },
+            placeholder: {
+                type: String,
+                default: ''
             }
         },
         data() {
