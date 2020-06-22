@@ -1,6 +1,7 @@
 <template>
     <div tabindex="0" prevent-outline
          data-cy="view-content"
+         class="view-content"
          @keyup.enter="onEnter"
          @click="onClick"
          @mousedown="onMouseDown">
@@ -68,13 +69,17 @@
         padding: 6px;
     }
 
+    [align="end"] > .label {
+        justify-content: flex-end;
+    }
+
     [compact] > .label {
         padding: 0;
     }
 
     :focus > .label {
         border: 2px solid #4C9AFF;
-        background: #fff;
+        background: transparent;
     }
 
     .label:hover {
@@ -88,6 +93,10 @@
         font-size: initial;
         opacity: 0;
         display: inline-flex;
+    }
+
+    .view-content:not([icon]) .pencil-icon {
+        display: none;
     }
 
     .label:hover .pencil-icon {

@@ -17,13 +17,14 @@
                   :content-height="contentHeight">
                 <TextField :is-focused="isFocused" :is-invalid="!!error"
                            :is-loading="isLoading"
+                           :style="{ minWidth: `${contentWidth}px` }"
                            :is-disabled="isLoading" :compact="compact"
                            @click.stop
                            @hook:beforeMount="beforeTextFieldMount">
                     <input ref="input" v-model="editingValue"
-                           :style="{ minWidth: `${contentWidth}px` }"
                            :type="type" :step="step" class="input"
                            :maxlength="maxlength" :disabled="isLoading"
+                           :align="align"
                            @keyup="onKeyUp"
                            @keydown.meta.enter="onKeyUp"
                            @focus="onFocus"
@@ -31,12 +32,12 @@
                 </TextField>
             </slot>
             <InlineEditViewContent v-else ref="value" :compact="compact"
-                                   :pencil-style="pencilStyle"
-                                   @edit-requested="onEditRequested">
+                                   :icon="icon"
+                                   :align="align" @edit-requested="onEditRequested">
                 <slot/>
             </InlineEditViewContent>
         </div>
-        <Popper v-if="isEditing && !isLoading" ref="buttons" :offset="offset"
+        <Popper v-if="isEditing && !isLoading && confirm" ref="buttons" :offset="offset"
                 :target-element="$refs['text-field']">
             <InlineEditButtons @confirm="confirmEditedValue" @cancel="cancelInlineEdit"
                                @blur="onBlur"/>
@@ -86,13 +87,21 @@
                 type: Boolean,
                 default: false
             },
-            pencilStyle: {
-                type: String,
-                default: undefined
-            },
             offset: {
                 type: String,
                 default: '0,5'
+            },
+            confirm: {
+                type: Boolean,
+                default: true
+            },
+            icon: {
+                type: Boolean,
+                default: true
+            },
+            align: {
+                type: String,
+                default: undefined
             }
         },
         data() {
@@ -136,6 +145,9 @@
                 this.editingValue = value;
             },
             onBlur(event) {
+                if (!this.confirm) {
+                    this.confirmEditedValue();
+                }
                 const focusWithinComponent = this.$refs.container.contains(event.relatedTarget);
 
                 if (!this.isEditing || this.isLoading) return;
@@ -217,7 +229,11 @@
         margin: -2px;
     }
 
-    input{
+    input {
         font-family: inherit;
+    }
+
+    input[align="end"] {
+        text-align: right;
     }
 </style>

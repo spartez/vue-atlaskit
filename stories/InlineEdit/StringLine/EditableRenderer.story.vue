@@ -16,6 +16,12 @@
         <p>
             <StringLineEditableRenderer data-cy="non-editable" :value="value" :editable="false"/>
         </p>
+        <h5>Without confirmation:</h5>
+        <p>
+            <StringLineEditableRenderer :value="value" :confirm="false" align="end"
+                                        :icon="false"
+                                        @save-requested="onSave"/>
+        </p>
     </div>
 </template>
 

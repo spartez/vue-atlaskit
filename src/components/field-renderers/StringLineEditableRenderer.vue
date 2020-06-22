@@ -1,6 +1,9 @@
 <template>
     <InlineEdit v-if="editable"
                 :value="value"
+                :confirm="confirm"
+                :icon="icon"
+                :align="align"
                 @save-requested="onSaveRequested">
         <slot>
             <StringLineRenderer :value="value"/>
@@ -24,6 +27,18 @@
             editable: {
                 type: Boolean,
                 default: true
+            },
+            confirm: {
+                type: Boolean,
+                default: true
+            },
+            icon: {
+                type: Boolean,
+                default: true
+            },
+            align: {
+                type: String,
+                default: undefined
             }
         },
         methods: {
