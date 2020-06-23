@@ -20,6 +20,7 @@
         <p>
             <StringLineEditableRenderer :value="value" :confirm="false" align="end"
                                         :icon="false"
+                                        pattern="[0-9\.]"
                                         @save-requested="onSave"/>
         </p>
     </div>

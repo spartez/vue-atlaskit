@@ -4,6 +4,7 @@
                 :confirm="confirm"
                 :icon="icon"
                 :align="align"
+                :pattern="pattern"
                 @save-requested="onSaveRequested">
         <slot>
             <StringLineRenderer :value="value"/>
@@ -39,6 +40,10 @@
             align: {
                 type: String,
                 default: undefined
+            },
+            pattern: {
+                type: String,
+                default: ''
             }
         },
         methods: {

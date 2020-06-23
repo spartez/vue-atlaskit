@@ -27,6 +27,7 @@
                            :align="align"
                            @keyup="onKeyUp"
                            @keydown.meta.enter="onKeyUp"
+                           @keydown.exact="validate"
                            @focus="onFocus"
                            @blur="onBlur">
                 </TextField>
@@ -55,6 +56,8 @@
 
     const ENTER = 13;
     const ESC = 27;
+    const BACKSPACE = 8;
+    const TAB = 9;
     const Status = { VALIDATION_ERROR: 422 };
 
     export default {
@@ -102,6 +105,10 @@
             align: {
                 type: String,
                 default: undefined
+            },
+            pattern: {
+                type: String,
+                default: ''
             }
         },
         data() {
@@ -216,6 +223,16 @@
                 const { width, height } = this.$refs.value.$el.getBoundingClientRect();
                 this.contentWidth = width;
                 this.contentHeight = height;
+            },
+            validate(e) {
+                if (!this.pattern) return;
+                if (![TAB, BACKSPACE].includes(e.keyCode) && !this.isValidId(e.key)) {
+                    e.preventDefault();
+                }
+            },
+            isValidId(key) {
+                const pattern = new RegExp(this.pattern);
+                return pattern.test(key);
             }
         }
     };
