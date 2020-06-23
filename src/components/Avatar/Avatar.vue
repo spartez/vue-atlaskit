@@ -2,7 +2,8 @@
     <div class="outer" :style="`zIndex: ${zIndex}`">
         <component :is="tag" :href="link" target="_top"
                    class="wrapper" :size="size">
-            <img v-if="avatar" :src="avatar" alt="avatar">
+            <img v-if="avatar && !error" draggable="false" :src="avatar"
+                 alt="avatar" @error="error = true">
             <svg v-else viewBox="0 0 128 128" version="1.1"
                  xmlns="http://www.w3.org/2000/svg">
                 <g>
@@ -57,6 +58,11 @@
                 type: String,
                 default: '#'
             }
+        },
+        data() {
+            return {
+                error: false
+            };
         }
     };
 </script>
@@ -91,7 +97,7 @@
     transition: opacity 200ms ease 0s;
 }
 
-.wrapper:hover::after{
+.wrapper:hover::after {
     background-color: rgba(9, 30, 66, 0.36);
     opacity: 1;
 }
@@ -101,6 +107,7 @@ img {
     height: 100%;
     width: 100%;
     background: rgba(9, 30, 66, 0.13);
+    user-select: none;
 }
 
 .wrapper[size='xxlarge'] {
