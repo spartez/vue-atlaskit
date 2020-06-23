@@ -1,7 +1,7 @@
 <template>
     <div>
         <div v-for="presence in presences" :key="presence">
-            <Avatar v-for="size in sizes" :key="size" avatar="avatar"
+            <Avatar v-for="size in sizes" :key="size" :avatar="avatar"
                     :size="size" :presence="presence"/>
         </div>
     </div>
