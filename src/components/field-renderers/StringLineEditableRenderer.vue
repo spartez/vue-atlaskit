@@ -5,6 +5,7 @@
                 :icon="icon"
                 :align="align"
                 :pattern="pattern"
+                :type="type"
                 @save-requested="onSaveRequested">
         <slot>
             <StringLineRenderer :value="value"/>
@@ -44,6 +45,10 @@
             pattern: {
                 type: String,
                 default: ''
+            },
+            type: {
+                type: String,
+                default: 'text'
             }
         },
         methods: {
