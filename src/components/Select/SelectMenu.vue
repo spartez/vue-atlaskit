@@ -26,6 +26,9 @@
                 {{ !containsQuery && async ? placeholder : noOptionsMessage }}
             </div>
         </div>
+        <div v-if="$slots.default" @mouseover="resetIndex">
+            <slot/>
+        </div>
     </div>
 </template>
 
@@ -92,6 +95,9 @@
             },
             onMouseOver(index) {
                 this.$emit('mouseover', index);
+            },
+            resetIndex() {
+                this.$emit('mouseover', undefined);
             }
         }
     };
@@ -99,28 +105,28 @@
 
 <style scoped>
 .select-menu {
-  background-color: rgb(255, 255, 255);
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 0px 1px,
+    background-color: rgb(255, 255, 255);
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 0px 1px,
     rgba(0, 0, 0, 0.1) 0px 4px 11px;
-  margin-bottom: 8px;
-  margin-top: 8px;
-  box-sizing: border-box;
-  border-radius: 4px;
-  width: 100%;
-  position: absolute;
-  z-index: 1000;
+    margin-bottom: 8px;
+    margin-top: 8px;
+    box-sizing: border-box;
+    border-radius: 4px;
+    width: 100%;
+    position: absolute;
+    z-index: 1000;
 }
 
 .select-menu-inner {
-  max-height: 300px;
-  overflow-y: auto;
-  padding-bottom: 8px;
-  padding-top: 8px;
-  box-sizing: border-box;
+    max-height: 300px;
+    overflow-y: auto;
+    padding-bottom: 8px;
+    padding-top: 8px;
+    box-sizing: border-box;
 }
 
 .no-options {
-  padding: 6px 12px;
-  text-align: center;
+    padding: 6px 12px;
+    text-align: center;
 }
 </style>

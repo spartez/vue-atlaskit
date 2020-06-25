@@ -1,7 +1,7 @@
 <template>
     <div ref="target" class="select">
         <TextField :is-focused="focused" :is-invalid="isInvalid" :is-loading="isLoading"
-                   class="text-field" select tabindex="-1"
+                   class="text-field" :select="select" tabindex="-1"
                    @click="click">
             <div ref="list" class="flex-wrapper" :gap="multi && !!selected.length"
                  @dragover.prevent>
@@ -37,7 +37,9 @@
                 </span>
             </div>
             <Icons :is-selected="isAnyOptionSelected" :is-fetching="isFetching"
-                   :createable="createable" :is-clearable="showClearIcon" @clear="onClear"/>
+                   :createable="createable" :is-clearable="showClearIcon" @clear="onClear">
+                <slot name="icon"/>
+            </Icons>
         </TextField>
         <Popper v-if="shouldOpenMenu" ref="menu" offset="0,0"
                 :target-element="$refs.target"
@@ -60,6 +62,7 @@
                 <slot slot="option" slot-scope="{option, isCurrent}" name="option"
                       :is-current="isCurrent"
                       :option="option"/>
+                <slot name="custom-action"/>
             </SelectMenu>
         </Popper>
     </div>
@@ -164,6 +167,10 @@
             appendToBody: {
                 type: Boolean,
                 default: false
+            },
+            select: {
+                type: Boolean,
+                default: true
             }
         },
         data() {

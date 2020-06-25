@@ -48,7 +48,7 @@
             },
             zIndex: {
                 type: Number,
-                default: 999
+                default: 0
             },
             tag: {
                 type: String,
