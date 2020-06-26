@@ -10,6 +10,7 @@ import Toggle from './components/Toggle/Toggle';
 import Tooltip from './components/Tooltip/Tooltip';
 import Modal from './components/Modal/Modal';
 import DatePicker from './components/Calendar/DatePicker';
+import DateRangePicker from './components/Calendar/DateRangePicker';
 import Select from './components/Select/Select';
 import UserPicker from './components/Select/UserPicker';
 import Popper from './components/Popper/Popper';
@@ -83,7 +84,8 @@ export {
     TreeSelect,
     InfiniteScroll,
     ColorPicker,
-    ProgressBar
+    ProgressBar,
+    DateRangePicker
 };
 export * from './components/Icon';
 export * from './components/field-renderers';
