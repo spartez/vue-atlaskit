@@ -305,14 +305,14 @@
             onFocus(e) {
                 if (this.isLoading) return;
                 this.focused = true;
-                if (!this.$refs.target.contains(e.relatedTarget)) {
+                if (this.$refs.target && !this.$refs.target.contains(e.relatedTarget)) {
                     this.isOpen = true;
                 }
                 this.$emit('focus', e);
             },
 
             onBlur(e) {
-                if (!this.$refs.target.contains(e.relatedTarget)) {
+                if (this.$refs.target && !this.$refs.target.contains(e.relatedTarget)) {
                     this.search = '';
                     this.closeOptions();
                     this.$emit('blur', e);
