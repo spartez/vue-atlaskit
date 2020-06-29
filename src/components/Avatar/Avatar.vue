@@ -1,7 +1,7 @@
 <template>
     <div class="outer" :style="`zIndex: ${zIndex}`">
         <component :is="tag" :href="link" target="_top"
-                   class="wrapper" :size="size">
+                   class="wrapper" :size="size" :style="style">
             <img v-if="avatar && !error" draggable="false" :src="avatar"
                  alt="avatar" @error="error = true">
             <svg v-else viewBox="0 0 128 128" version="1.1"
@@ -57,12 +57,21 @@
             link: {
                 type: String,
                 default: '#'
+            },
+            outline: {
+                type: String,
+                default: '#fff'
             }
         },
         data() {
             return {
                 error: false
             };
+        },
+        computed: {
+            style() {
+                return ({ 'background-color': this.outline });
+            }
         }
     };
 </script>
@@ -78,7 +87,6 @@
     display: inline-block;
     box-sizing: border-box;
     position: relative;
-    background-color: #fff;
     border-radius: 50%;
     z-index: 999;
 }
