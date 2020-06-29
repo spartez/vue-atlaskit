@@ -86,7 +86,6 @@
 .label {
     box-sizing: border-box;
     position: absolute;
-    z-index: 999999;
     padding: 2px 10px;
     font-size: 12px;
     font-weight: 400;
