@@ -313,6 +313,9 @@
 
             onBlur(e) {
                 if (this.$refs.target && !this.$refs.target.contains(e.relatedTarget)) {
+                    if (this.canCreateTag) {
+                        this.createTag();
+                    }
                     this.search = '';
                     this.closeOptions();
                     this.$emit('blur', e);
@@ -419,9 +422,7 @@
                         this.$emit('error');
                         return;
                     }
-                    const selected = this.multi ? [...this.selected.map(o => o.value), this.search] : this.search;
-                    this.search = '';
-                    this.$emit('input', selected);
+                    this.createTag();
                 }
                 // if current index is undefined, means we don't want to select any value, just submit
                 if (this.currentSuggestionIndex === undefined) {
@@ -455,6 +456,13 @@
                     this.$refs.menu.update();
                 }
             },
+
+            createTag() {
+                const selected = this.multi ? [...this.selected.map(o => o.value), this.search] : this.search;
+                this.search = '';
+                this.$emit('input', selected);
+            },
+
             handleDrag(e) {
                 const x = e.clientX;
                 const y = e.clientY;
