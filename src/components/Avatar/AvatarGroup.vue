@@ -1,9 +1,15 @@
 <template>
     <div class="avatar-group">
-        <Avatar v-for="(user,i) in visible" :key="user.key" tag="a"
-                class="avatar" :title="user.displayName"
-                :size="size" :z-index="count - i" :avatar="user.avatar"
-                :link="user.avatar"/>
+        <transition-group class="participants" name="participant">
+            <Tooltip v-for="(user,i) in visible" :key="user.key" class="tooltip"
+                     :append-to-body="true" :label="user.displayName">
+                <div class="avatar-wrapper">
+                    <Avatar tag="a" class="avatar" :size="size"
+                            :link="user.link"
+                            :z-index="count - i" :avatar="user.avatar" :presence="user.presence"/>
+                </div>
+            </Tooltip>
+        </transition-group>
         <div class="wrapper">
             <Dropdown v-if="collapsed.length > 0" placement="bottom-end">
                 <div slot="trigger" slot-scope="{ toggle, isOpen }" class="trigger"
@@ -13,8 +19,11 @@
                     </div>
                 </div>
                 <DropdownItem v-for="user in collapsed" :key="user.key">
-                    <a class="user-link" :href="user.avatar">
-                        <UserRenderer :user="user"/>
+                    <a class="list-item" :href="user.link" target="_blank">
+                        <Avatar tag="a" :link="user.link" class="user-list-avatar"
+                                size="small"
+                                :avatar="user.avatar" :presence="user.presence"/>
+                        <span class="user-name">{{ user.displayName }}</span>
                     </a>
                 </DropdownItem>
             </Dropdown>
@@ -24,14 +33,14 @@
 
 <script>
     import Avatar from './Avatar';
+    import Tooltip from '../Tooltip/Tooltip';
     import Dropdown from '../Dropdown/Dropdown';
     import DropdownItem from '../Dropdown/DropdownItem';
-    import UserRenderer from '../field-renderers/UserRenderer';
 
     export default {
         name: 'AvatarGroup',
         components: {
-            Avatar, Dropdown, DropdownItem, UserRenderer
+            Avatar, Dropdown, DropdownItem, Tooltip
         },
         props: {
             users: {
@@ -44,7 +53,7 @@
             },
             limit: {
                 type: Number,
-                default: 4
+                default: 5
             }
         },
         computed: {
@@ -153,8 +162,38 @@
     width: 20px;
 }
 
-a.user-link {
-    text-decoration: none;
+.list-item {
+    display: flex;
+    outline: none;
+    align-items: center;
     color: inherit;
+    text-decoration: none;
+}
+
+.user-list-avatar {
+    margin-right: 8px;
+}
+
+.user-name {
+    text-overflow: ellipsis;
+    margin-right: 8px;
+}
+
+.participant-enter, .participant-leave-to {
+    opacity: 0;
+    transform: translateY(-50px);
+}
+
+.participant-leave-active {
+    position: absolute;
+}
+
+.avatar {
+    transition: all .5s;
+}
+
+.tooltip{
+    transition: all .5s;
+    display: inline-block;
 }
 </style>

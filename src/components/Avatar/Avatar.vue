@@ -1,6 +1,6 @@
 <template>
     <div class="outer" :style="`zIndex: ${zIndex}`">
-        <component :is="tag" :href="link" target="_top"
+        <component :is="tag" :href="link" target="_blank"
                    class="wrapper" :size="size" :style="style">
             <img v-if="avatar && !error" draggable="false" :src="avatar"
                  alt="avatar" @error="error = true">
@@ -89,6 +89,7 @@
     position: relative;
     border-radius: 50%;
     z-index: 999;
+    outline: none;
 }
 
 .wrapper::after {

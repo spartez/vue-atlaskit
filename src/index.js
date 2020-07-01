@@ -37,6 +37,7 @@ import AvatarNameLoader from './components/ContentLoader/AvatarNameLoader';
 import BulletListLoader from './components/ContentLoader/BulletListLoader';
 import ListWithImageLoader from './components/ContentLoader/ListWithImageLoader';
 import Avatar from './components/Avatar/Avatar';
+import AvatarGroup from './components/Avatar/AvatarGroup';
 import Badge from './components/Badge/Badge';
 import Tree from './components/Tree/Tree';
 import ColorPicker from './components/ColorPicker/ColorPicker';
@@ -85,7 +86,8 @@ export {
     InfiniteScroll,
     ColorPicker,
     ProgressBar,
-    DateRangePicker
+    DateRangePicker,
+    AvatarGroup
 };
 export * from './components/Icon';
 export * from './components/field-renderers';
