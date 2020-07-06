@@ -64,6 +64,10 @@
             tag: {
                 type: String,
                 default: 'span'
+            },
+            mapper: {
+                type: Function,
+                default: list => list
             }
         },
         data() {
@@ -80,7 +84,7 @@
             async onSearchChange(query) {
                 this.isFetching = true;
                 const { data: users } = await this.loadOptions(query);
-                this.users = users;
+                this.users = this.mapper(users);
                 this.isFetching = false;
             },
 

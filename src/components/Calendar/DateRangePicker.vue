@@ -61,7 +61,7 @@
     import format from 'date-fns/format';
     import {
         fromUnixTime, parse, isValid, isBefore, isAfter, startOfWeek, endOfWeek,
-        startOfMonth, endOfMonth, subMonths, subWeeks, subDays, startOfYear, endOfYear, subYears
+        startOfMonth, endOfMonth, subMonths, subWeeks, subDays, startOfYear, endOfYear, subYears, getTime
     } from 'date-fns';
     import TextField from '../Form/TextField';
     import Calendar from './Calendar';
@@ -290,7 +290,7 @@
                 return undefined;
             },
             setRange(from, to) {
-                this.$emit('input', { from, to });
+                this.$emit('input', { from: getTime(from), to: getTime(to) });
                 this.isOpen = false;
             },
             isInputFromFocused() {
