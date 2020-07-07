@@ -94,8 +94,8 @@
 
             normalizer(user) {
                 return {
-                    id: user.key,
-                    label: user.name,
+                    id: user && user.key,
+                    label: user && user.name,
                     value: user
                 };
             }
