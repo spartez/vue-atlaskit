@@ -6,6 +6,7 @@ import { terser } from 'rollup-plugin-terser';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 import css from 'rollup-plugin-css-only';
 import renameExtensions from '@betit/rollup-plugin-rename-extensions';
+import json from '@rollup/plugin-json';
 
 const plugins = [
     peerDepsExternal(),
@@ -25,7 +26,8 @@ const plugins = [
     babel({
         exclude: 'node_modules/**'
     }),
-    terser()
+    terser(),
+    json()
 ];
 
 export default [
