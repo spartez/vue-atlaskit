@@ -1,25 +1,20 @@
 /* eslint-disable */
 import { Mark } from 'tiptap';
+import { em } from '@atlaskit/adf-schema'
 import { toggleMark, markInputRule, markPasteRule } from 'tiptap-commands';
 
-export default class Code extends Mark {
+export default class Italic extends Mark {
     get name() {
-        return 'code';
+        return 'em';
     }
 
     get schema() {
-        return {
-            excludes: '_',
-            parseDOM: [
-                { tag: 'code' }, { tag: 'tt' }
-            ],
-            toDOM: () => ['tt', 0]
-        };
+        return em;
     }
 
     keys({ type }) {
         return {
-            'Mod-`': toggleMark(type)
+            'Mod-i': toggleMark(type)
         };
     }
 
@@ -29,13 +24,15 @@ export default class Code extends Mark {
 
     inputRules({ type }) {
         return [
-            markInputRule(/(?:`)([^`]+)(?:`)$/, type)
+            markInputRule(/(?:^|[^_])(_([^_]+)_)$/, type),
+            markInputRule(/(?:^|[^*])(\*([^*]+)\*)$/, type)
         ];
     }
 
     pasteRules({ type }) {
         return [
-            markPasteRule(/(?:`)([^`]+)(?:`)/g, type)
+            markPasteRule(/_([^_]+)_/g, type),
+            markPasteRule(/\*([^*]+)\*/g, type)
         ];
     }
 }

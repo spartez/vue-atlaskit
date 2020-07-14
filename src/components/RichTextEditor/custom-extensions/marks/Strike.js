@@ -1,5 +1,6 @@
 /* eslint-disable */
 import { Mark } from 'tiptap';
+import { strike } from '@atlaskit/adf-schema'
 import { toggleMark, markInputRule, markPasteRule } from 'tiptap-commands';
 
 export default class Strike extends Mark {
@@ -8,24 +9,7 @@ export default class Strike extends Mark {
     }
 
     get schema() {
-        return {
-            parseDOM: [
-                {
-                    tag: 's'
-                },
-                {
-                    tag: 'del'
-                },
-                {
-                    tag: 'strike'
-                },
-                {
-                    style: 'text-decoration',
-                    getAttrs: value => value === 'line-through'
-                }
-            ],
-            toDOM: () => ['del', 0]
-        };
+        return strike;
     }
 
     keys({ type }) {

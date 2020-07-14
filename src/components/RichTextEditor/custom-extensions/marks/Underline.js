@@ -1,5 +1,6 @@
 /* eslint-disable */
 import { Mark } from 'tiptap';
+import { underline } from '@atlaskit/adf-schema'
 import { toggleMark } from 'tiptap-commands';
 
 export default class Underline extends Mark {
@@ -8,21 +9,7 @@ export default class Underline extends Mark {
     }
 
     get schema() {
-        return {
-            parseDOM: [
-                {
-                    tag: 'u'
-                },
-                {
-                    tag: 'ins'
-                },
-                {
-                    style: 'text-decoration',
-                    getAttrs: value => value === 'underline'
-                }
-            ],
-            toDOM: () => ['ins', 0]
-        };
+        return underline;
     }
 
     keys({ type }) {

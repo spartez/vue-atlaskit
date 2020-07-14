@@ -37,41 +37,17 @@
 
                     <Button
                         appearance="subtle"
-                        :class="{ 'is-active': isActive.heading({ level: 1 }) }"
+                        :is-selected="isActive.bulletList()"
                         spacing="none"
-                        @click="commands.heading({ level: 1 })">
-                        H1
-                    </Button>
-
-                    <Button
-                        appearance="subtle"
-                        :class="{ 'is-active': isActive.heading({ level: 2 }) }"
-                        spacing="none"
-                        @click="commands.heading({ level: 2 })">
-                        H2
-                    </Button>
-
-                    <Button
-                        appearance="subtle"
-                        :class="{ 'is-active': isActive.heading({ level: 3 }) }"
-                        spacing="none"
-                        @click="commands.heading({ level: 3 })">
-                        H3
-                    </Button>
-
-                    <Button
-                        appearance="subtle"
-                        :is-selected="isActive.bullet_list()"
-                        spacing="none"
-                        @click="commands.bullet_list">
+                        @click="commands.bulletList">
                         <EditorBulletListIcon slot="icon-before"/>
                     </Button>
 
                     <Button
                         appearance="subtle"
-                        :is-selected="isActive.ordered_list()"
+                        :is-selected="isActive.orderedList()"
                         spacing="none"
-                        @click="commands.ordered_list">
+                        @click="commands.orderedList">
                         <EditorNumberListIcon slot="icon-before"/>
                     </Button>
 
@@ -102,24 +78,7 @@
 
 <script>
     import { Editor, EditorContent, EditorMenuBar } from 'tiptap';
-    import {
-        Blockquote,
-        CodeBlock,
-        HardBreak,
-        Heading,
-        OrderedList,
-        BulletList,
-        ListItem,
-        TodoItem,
-        TodoList,
-        Link,
-        History,
-        Placeholder,
-        Table, TableCell, TableHeader, TableRow
-    } from 'tiptap-extensions';
-    import { defaultSchema } from '@atlaskit/adf-schema';
-    import { JSONTransformer } from '@atlaskit/editor-json-transformer';
-    import { JIRATransformer } from '@atlaskit/editor-jira-transformer';
+
     import {
         EditorBoldIcon,
         EditorItalicIcon,
@@ -131,39 +90,7 @@
         EditorStrikethroughIcon
     } from '../Icon';
     import Button from '../Button/Button';
-
-    import Bold from './custom-extensions/Bold';
-    import Italic from './custom-extensions/Italic';
-    import Strike from './custom-extensions/Strike';
-    import Code from './custom-extensions/Code';
-    import Underline from './custom-extensions/Underline';
-
-
-    const jiraTransformer = new JIRATransformer(defaultSchema);
-    const adfTransformer = new JSONTransformer();
-
-    const extensions = [
-        new Blockquote(),
-        new BulletList(),
-        new CodeBlock(),
-        new HardBreak(),
-        new Heading({ levels: [1, 2, 3] }),
-        new ListItem(),
-        new OrderedList(),
-        new TodoItem(),
-        new TodoList(),
-        new Link(),
-        new Bold(),
-        new Code(),
-        new Italic(),
-        new Strike(),
-        new Underline(),
-        new History(),
-        new Table(),
-        new TableCell(),
-        new TableHeader(),
-        new TableRow()
-    ];
+    import { extensions, Placeholder } from './extensions';
 
     export default {
         components: {
@@ -210,12 +137,16 @@
                 updated: false,
                 editor: new Editor({
                     editable: this.editable,
+                    useBuiltInExtensions: false,
                     extensions: [...extensions, new Placeholder({ emptyNodeText: this.placeholder })],
                     onFocus: this.onFocus,
-                    content: this.content,
-                    onUpdate: ({ getHTML }) => {
+                    content: this.value,
+                    onUpdate: ({ getJSON }) => {
                         this.updated = true;
-                        this.$emit('input', this.getADF(getHTML()));
+                        const json = JSON.parse(JSON.stringify(getJSON(), (k, v) => (v != null ? v : undefined)));
+                        this.$emit('input', {
+                            ...json, version: 1
+                        });
                     }
                 })
             };
@@ -232,7 +163,13 @@
                         this.updated = false;
                         return;
                     }
-                    if (this.editor) this.editor.setContent(value);
+                    if (this.editor) {
+                        try {
+                            this.editor.setContent(value);
+                        } catch (e) {
+                            this.editor.setContent(e.message);
+                        }
+                    }
                 },
                 immediate: true
             }
@@ -246,10 +183,6 @@
                 if (!this.editable) {
                     this.$emit('edit-requested');
                 }
-            },
-            getADF(html) {
-                const pmNode = jiraTransformer.parse(html);
-                return adfTransformer.encode(pmNode);
             }
         }
     };
