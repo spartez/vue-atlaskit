@@ -23,6 +23,7 @@ import IssueStatusRenderer from './IssueStatusRenderer';
 import IssueTypeRenderer from './IssueTypeRenderer';
 import IssueRenderer from './IssueRenderer';
 import LinkedIssuesList from './LinkedIssuesList';
+import RichTextEditableRenderer from './RichTextEditableRenderer';
 
 
 export {
@@ -50,5 +51,6 @@ export {
     IssueStatusRenderer,
     IssueTypeRenderer,
     IssueRenderer,
-    LinkedIssuesList
+    LinkedIssuesList,
+    RichTextEditableRenderer
 };

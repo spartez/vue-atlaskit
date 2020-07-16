@@ -2,7 +2,7 @@
     <TextField :is-focused="focused" :is-invalid="isInvalid" :is-loading="isLoading"
                :disabled="isLoading">
         <textarea ref="textarea"
-                  v-model="editingValue"
+                  v-model="text"
                   v-bind="$attrs"
                   :rows="rows"
                   :disabled="isLoading"
@@ -56,7 +56,6 @@
         },
         data() {
             return {
-                editingValue: this.value,
                 currentHeight: this.height,
                 focused: this.isFocused
             };
@@ -65,12 +64,17 @@
             listeners() {
                 const { input, ...listeners } = this.$listeners;
                 return listeners;
+            },
+            text: {
+                get() {
+                    return this.value;
+                },
+                set(value) {
+                    this.$emit('input', value);
+                }
             }
         },
         watch: {
-            editingValue() {
-                this.$emit('input', this.editingValue);
-            },
             isFocused: {
                 handler() {
                     this.focused = this.isFocused;

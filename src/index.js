@@ -44,6 +44,8 @@ import ColorPicker from './components/ColorPicker/ColorPicker';
 import InfiniteScroll from './components/common/InfiniteScroll';
 import TreeSelect from './components/Select/TreeSelect/TreeSelect';
 import ProgressBar from './components/ProgressBar/ProgressBar';
+import RichTextEditor from './components/RichTextEditor/RichTextEditor';
+import Tag from './components/Tag/Tag';
 import '@atlaskit/css-reset/dist/bundle.css';
 
 export {
@@ -87,7 +89,9 @@ export {
     ColorPicker,
     ProgressBar,
     DateRangePicker,
-    AvatarGroup
+    AvatarGroup,
+    RichTextEditor,
+    Tag
 };
 export * from './components/Icon';
 export * from './components/field-renderers';

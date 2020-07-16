@@ -33,6 +33,7 @@
     "@babel/core": "^7.4.3",
     "@babel/preset-env": "^7.4.3",
     "@betit/rollup-plugin-rename-extensions": "^0.1.0",
+    "@rollup/plugin-json": "^4.1.0",
     "@spartez/eslint-config-vue": "^1.0.3",
     "@storybook/vue": "^5.1.9",
     "@vue/test-utils": "^1.0.3",
@@ -86,8 +87,10 @@
     }
   },
   "dependencies": {
+    "@atlaskit/adf-schema": "^12.0.0",
     "date-fns": "^2.0.0-beta.2",
     "popper.js": "^1.15.0",
+    "tiptap": "^1.27.1",
     "vue-promised": "^1.2.0"
   }
 }
