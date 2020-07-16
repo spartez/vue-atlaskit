@@ -1,5 +1,5 @@
 <template>
-    <component :is="type" ref="content" :contenteditable="view.editable.toString()"
+    <component :is="type" ref="content" :contenteditable="editable.toString()"
                class="code-block"/>
 </template>
 
@@ -10,6 +10,9 @@
         computed: {
             type() {
                 return this.node.type.name === 'code' ? 'span' : 'div';
+            },
+            editable() {
+                return this.view.editable;
             }
         }
     };

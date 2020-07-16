@@ -4,13 +4,14 @@
 
 <script>
     import RichTextEditableRenderer from '@/components/field-renderers/RichTextEditableRenderer';
+    import json from './edit';
 
     export default {
         name: 'RichTextEditableRendererStory',
         components: { RichTextEditableRenderer },
         data() {
             return {
-                value: '<p>adasdadasd</p>'
+                value: json
             };
         },
         methods: {

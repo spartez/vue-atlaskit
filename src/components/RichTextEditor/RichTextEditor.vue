@@ -152,10 +152,8 @@
             };
         },
         watch: {
-            editable() {
-                this.editor.setOptions({
-                    editable: this.editable
-                });
+            editable(editable) {
+                this.editor.setOptions({ editable });
             },
             value: {
                 handler(value) {
