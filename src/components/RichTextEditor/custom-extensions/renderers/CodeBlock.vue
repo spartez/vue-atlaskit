@@ -1,13 +1,12 @@
 <template>
-    <component :is="type" class="code-block">
-        <span>{{ node.textContent }}</span>
-    </component>
+    <component :is="type" ref="content" :contenteditable="view.editable.toString()"
+               class="code-block"/>
 </template>
 
 <script>
     export default {
         name: 'CodeBlock',
-        props: ['node'],
+        props: ['node', 'view'],
         computed: {
             type() {
                 return this.node.type.name === 'code' ? 'span' : 'div';

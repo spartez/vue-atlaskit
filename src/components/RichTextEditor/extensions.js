@@ -51,6 +51,9 @@ import Paragraph from './custom-extensions/nodes/Paragraph';
 import Text from './custom-extensions/nodes/Text';
 import Doc from './custom-extensions/nodes/Doc';
 import Placeholder from './custom-extensions/nodes/Placeholder';
+import InlineCard from './custom-extensions/nodes/InlineCard';
+
+import History from './custom-extensions/extensions/History';
 
 export { Placeholder };
 
@@ -107,5 +110,7 @@ export const extensions = [
     new Extension(),
     new NestedExpand(),
     new Unsupportedblock(),
-    new Mention()
+    new Mention(),
+    new InlineCard(),
+    new History()
 ];

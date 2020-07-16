@@ -1,6 +1,7 @@
 /* eslint-disable */
 import { Mark } from 'tiptap';
 import { code } from '@atlaskit/adf-schema'
+import { toggleMark } from 'tiptap-commands';
 import Renderer from '../renderers/CodeBlock'
 
 

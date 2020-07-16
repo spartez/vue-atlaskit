@@ -90,8 +90,12 @@
     "@atlaskit/adf-schema": "^12.0.0",
     "date-fns": "^2.0.0-beta.2",
     "popper.js": "^1.15.0",
+    "prosemirror-history": "^1.1.3",
+    "prosemirror-schema-list": "^1.1.2",
+    "prosemirror-utils": "^0.9.6",
     "prosemirror-view": "^1.15.2",
     "tiptap": "^1.27.1",
+    "tiptap-commands": "^1.14.1",
     "vue-promised": "^1.2.0"
   }
 }

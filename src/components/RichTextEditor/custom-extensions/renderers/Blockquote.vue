@@ -1,13 +1,11 @@
 <template>
-    <blockquote>
-        {{ node.textContent }}
-    </blockquote>
+    <blockquote ref="content" :contenteditable="view.editable.toString()"/>
 </template>
 
 <script>
     export default {
         name: 'Blockquote',
-        props: ['node']
+        props: ['node', 'view']
     };
 </script>
 

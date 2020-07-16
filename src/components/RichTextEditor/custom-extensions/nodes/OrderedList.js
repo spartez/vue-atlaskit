@@ -1,7 +1,8 @@
 /* eslint-disable */
 import { Node } from 'tiptap';
-import { wrappingInputRule, toggleList } from 'tiptap-commands';
+import { wrappingInputRule } from 'tiptap-commands';
 import { orderedList } from '@atlaskit/adf-schema';
+import { toggleList } from "../commands/toggleList";
 
 
 export default class OrderedList extends Node {
@@ -14,12 +15,12 @@ export default class OrderedList extends Node {
     }
 
     commands({ type, schema }) {
-        return () => toggleList(type, schema.nodes.list_item);
+        return () => toggleList(type, schema.nodes.listItem);
     }
 
     keys({ type, schema }) {
         return {
-            'Shift-Ctrl-9': toggleList(type, schema.nodes.list_item)
+            'Shift-Ctrl-9': toggleList(type, schema.nodes.listItem)
         };
     }
 
@@ -34,3 +35,5 @@ export default class OrderedList extends Node {
         ];
     }
 }
+
+
