@@ -17,5 +17,9 @@
 import './commands';
 // A Cypress plugin to add a tab command
 require('cypress-plugin-tab');
+
+Cypress.Screenshot.defaults({
+    screenshotOnRunFailure: false
+});
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
