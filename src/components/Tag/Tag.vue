@@ -1,6 +1,6 @@
 <template>
     <div class="tag" :color="color">
-        <component :is="tag" class="text" href="">
+        <component :is="tag" class="text" :href="link">
             {{ label }}
         </component>
     </div>
