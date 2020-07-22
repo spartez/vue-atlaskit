@@ -46,6 +46,7 @@ import TreeSelect from './components/Select/TreeSelect/TreeSelect';
 import ProgressBar from './components/ProgressBar/ProgressBar';
 import RichTextEditor from './components/RichTextEditor/RichTextEditor';
 import Tag from './components/Tag/Tag';
+import CustomSingleSelectEditableRenderer from './components/field-renderers/CustomSingleSelectEditableRenderer';
 import '@atlaskit/css-reset/dist/bundle.css';
 
 export {
@@ -91,6 +92,7 @@ export {
     DateRangePicker,
     AvatarGroup,
     RichTextEditor,
+    CustomSingleSelectEditableRenderer,
     Tag
 };
 export * from './components/Icon';
