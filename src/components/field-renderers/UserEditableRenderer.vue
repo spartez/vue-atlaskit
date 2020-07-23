@@ -6,6 +6,7 @@
         <Select slot="editor" slot-scope="props"
                 :value="props.value"
                 :options="users"
+                :is-clearable="clearable"
                 :async="true"
                 placeholder="Type to search..."
                 :normalizer="normalizer"
@@ -13,6 +14,7 @@
                 :is-focused="props.isFocused"
                 :is-loading="props.isLoading"
                 :is-fetching="isFetching"
+                @open="loadInitialOptions"
                 @search-change="debouncedGetUsers"
                 @input="props.input"
                 @blur="props.blur"
@@ -68,6 +70,14 @@
             mapper: {
                 type: Function,
                 default: list => list
+            },
+            initialOptions: {
+                type: Array,
+                default: () => []
+            },
+            clearable: {
+                type: Boolean,
+                default: true
             }
         },
         data() {
@@ -98,6 +108,10 @@
                     label: user && user.name,
                     value: user
                 };
+            },
+
+            loadInitialOptions() {
+                this.users = this.initialOptions;
             }
         }
     };
