@@ -1,6 +1,7 @@
 <template>
     <InlineEdit v-if="editable"
                 :value="value"
+                :icon="icon"
                 pencil-style="floating"
                 @save-requested="onSaveRequested">
         <slot>
@@ -34,6 +35,10 @@
                 default: undefined
             },
             editable: {
+                type: Boolean,
+                default: true
+            },
+            icon: {
                 type: Boolean,
                 default: true
             }
