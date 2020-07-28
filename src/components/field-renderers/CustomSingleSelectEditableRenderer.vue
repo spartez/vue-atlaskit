@@ -1,6 +1,7 @@
 <template>
     <InlineEdit v-if="editable"
                 :value="value"
+                :confirm="confirm"
                 @save-requested="onSaveRequested">
         <Select slot="editor" slot-scope="props"
                 :value="props.value"
@@ -61,6 +62,10 @@
                 default: value => ({
                     id: value, label: value, value, disabled: false
                 })
+            },
+            confirm: {
+                type: Boolean,
+                default: true
             }
         },
         data() {

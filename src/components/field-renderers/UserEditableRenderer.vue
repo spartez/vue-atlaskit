@@ -2,6 +2,7 @@
     <InlineEdit v-if="editable && !avatarOnly"
                 :value="user"
                 class="user-inline-edit"
+                :confirm="confirm"
                 @save-requested="onSaveRequested">
         <Select slot="editor" slot-scope="props"
                 :value="props.value"
@@ -76,6 +77,10 @@
                 default: () => []
             },
             clearable: {
+                type: Boolean,
+                default: true
+            },
+            confirm: {
                 type: Boolean,
                 default: true
             }

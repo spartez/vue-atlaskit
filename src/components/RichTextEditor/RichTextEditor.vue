@@ -202,7 +202,7 @@
 }
 
 .editor-content {
-    padding: 12px 6px;
+    padding: 12px 8px;
 }
 
 .editor[is-editing] .editor-content {
