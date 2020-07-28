@@ -146,7 +146,7 @@
                         const json = getJSON();
                         const { content } = json;
                         if (Array.isArray(content) && content.length === 1 && !Object.prototype.hasOwnProperty.call(content[0], 'content')) {
-                            this.$emit('input', '');
+                            this.$emit('input', null);
                         } else {
                             const doc = JSON.parse(JSON.stringify(json, (k, v) => (v != null ? v : undefined)));
                             this.$emit('input', {
