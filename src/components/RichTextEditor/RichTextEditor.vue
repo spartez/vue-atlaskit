@@ -143,10 +143,15 @@
                     content: this.value,
                     onUpdate: ({ getJSON }) => {
                         this.updated = true;
-                        const json = JSON.parse(JSON.stringify(getJSON(), (k, v) => (v != null ? v : undefined)));
-                        this.$emit('input', {
-                            ...json, version: 1
-                        });
+                        const { content } = getJSON();
+                        if (Array.isArray(content) && content.length === 1 && !Object.prototype.hasOwnProperty.call(content[0], 'content')) {
+                            this.$emit('input', '');
+                        } else {
+                            const json = JSON.parse(JSON.stringify(content, (k, v) => (v != null ? v : undefined)));
+                            this.$emit('input', {
+                                ...json, version: 1
+                            });
+                        }
                     }
                 })
             };

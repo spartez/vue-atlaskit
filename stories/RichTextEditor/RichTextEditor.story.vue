@@ -1,6 +1,6 @@
 <template>
     <div class="rich-text-editor">
-        <RichTextEditor :value="json"/>
+        <RichTextEditor v-model="json"/>
     </div>
 </template>
 
