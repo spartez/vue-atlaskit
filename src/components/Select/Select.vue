@@ -1,5 +1,5 @@
 <template>
-    <div ref="target" class="select">
+    <div ref="target" class="select" :disabled="isDisabled">
         <TextField :is-focused="focused" :is-invalid="isInvalid" :is-loading="isLoading"
                    class="text-field" :select="select" tabindex="-1"
                    @click="click">
@@ -171,6 +171,10 @@
             select: {
                 type: Boolean,
                 default: true
+            },
+            isDisabled: {
+                type: Boolean,
+                default: false
             }
         },
         data() {
@@ -543,6 +547,15 @@
     .ghost {
         opacity: .4;
         background-color: #fff;
+        pointer-events: none;
+    }
+
+    .select[disabled] {
+        opacity: 0.7;
+        cursor: not-allowed;
+    }
+
+    .select[disabled] .text-field {
         pointer-events: none;
     }
 
