@@ -70,6 +70,10 @@
             zIndex: {
                 type: Number,
                 default: 999
+            },
+            closeOnEsc: {
+                type: Boolean,
+                default: true
             }
         },
         data() {
@@ -78,14 +82,14 @@
             };
         },
         beforeMount() {
-            document.addEventListener('keyup', this.closeOnEsc);
+            document.addEventListener('keyup', this.onEsc);
         },
         beforeDestroy() {
-            document.removeEventListener('keyup', this.closeOnEsc);
+            document.removeEventListener('keyup', this.onEsc);
         },
         methods: {
-            closeOnEsc(e) {
-                if (e.keyCode === ESC && !this.pending) {
+            onEsc(e) {
+                if (e.keyCode === ESC && this.closeOnEsc && !this.pending) {
                     this.$emit('cancel');
                 }
             },

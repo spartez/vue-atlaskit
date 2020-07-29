@@ -4,7 +4,8 @@
                 :is-loading="pending" :appearance="appearance">
             {{ submit }}
         </Button>
-        <Button appearance="subtle" :is-disabled="pending" @click="onCancel">
+        <Button v-if="cancel" appearance="subtle" :is-disabled="pending"
+                @click="onCancel">
             {{ cancel }}
         </Button>
     </div>
