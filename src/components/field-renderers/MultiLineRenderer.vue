@@ -16,6 +16,11 @@
 </script>
 
 <style scoped>
+    .multi-line-wrapper {
+        text-overflow: ellipsis;
+        overflow: hidden;
+    }
+
     .multi-line-wrapper:empty::after {
         content: '\feff';
         visibility: hidden;

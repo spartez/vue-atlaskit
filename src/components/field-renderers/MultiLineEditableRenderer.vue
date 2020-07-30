@@ -12,6 +12,8 @@
                   :is-focused="isFocused"
                   :is-invalid="isInvalid"
                   :is-loading="isLoading"
+                  :submit-on-enter="submitOnEnter"
+                  @confirm="confirm"
                   @keydown.meta.enter="confirm"
                   @keyup.esc="cancel"
                   @input="input"
@@ -41,6 +43,10 @@
             icon: {
                 type: Boolean,
                 default: true
+            },
+            submitOnEnter: {
+                type: Boolean,
+                default: false
             }
         },
         methods: {

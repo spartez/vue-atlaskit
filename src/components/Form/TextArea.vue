@@ -17,6 +17,7 @@
 <script>
     import TextField from './TextField';
 
+    const ENTER = 13;
     export default {
         name: 'TextArea',
         components: { TextField },
@@ -52,6 +53,10 @@
             rows: {
                 type: String,
                 default: '1'
+            },
+            submitOnEnter: {
+                type: Boolean,
+                default: false
             }
         },
         data() {
@@ -99,7 +104,11 @@
                 this.focused = true;
                 this.$emit('focus', event);
             },
-            resize() {
+            resize(e) {
+                if (this.submitOnEnter && e.keyCode === ENTER) {
+                    this.$emit('confirm');
+                    return;
+                }
                 if (this.height === 'auto') {
                     this.currentHeight = 'auto';
                     this.$nextTick(() => {
@@ -118,6 +127,8 @@
         overflow: auto;
         resize: vertical;
         font-family: inherit;
+        font-weight: inherit;
+        font-size: inherit;
         color: inherit;
     }
 
