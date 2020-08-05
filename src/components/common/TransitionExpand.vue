@@ -12,16 +12,13 @@
                 element.style.height = 'auto';
             },
             enter(element) {
-                const { width } = getComputedStyle(element);
                 /* eslint-disable no-param-reassign */
-                element.style.width = width;
                 element.style.position = 'absolute';
                 element.style.visibility = 'hidden';
                 element.style.height = 'auto';
                 /* eslint-enable */
                 const { height } = getComputedStyle(element);
                 /* eslint-disable no-param-reassign */
-                element.style.width = null;
                 element.style.position = null;
                 element.style.visibility = null;
                 element.style.height = 0;
@@ -53,17 +50,9 @@
 </script>
 
 <style scoped>
-* {
-    will-change: height;
-    transform: translateZ(0);
-    backface-visibility: hidden;
-    perspective: 1000px;
-}
-
 .expand-enter-active,
 .expand-leave-active {
     transition: all 0.3s ease-in-out;
-    overflow: hidden;
 }
 
 .expand-enter,
