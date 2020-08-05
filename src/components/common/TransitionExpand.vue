@@ -12,6 +12,8 @@
                 element.style.height = 'auto';
             },
             enter(element) {
+                /* eslint-disable no-unused-vars */
+                const { width } = getComputedStyle(element);
                 /* eslint-disable no-param-reassign */
                 element.style.position = 'absolute';
                 element.style.visibility = 'hidden';
