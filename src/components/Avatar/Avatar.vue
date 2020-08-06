@@ -1,7 +1,6 @@
 <template>
     <div class="outer" :style="`zIndex: ${zIndex}`">
-        <img v-if="hat" class="hat-image" :size="size"
-             :src="hat">
+        <slot name="avatar-header"/>
         <component :is="tag" :href="link" target="_blank"
                    class="wrapper" :size="size" :style="style">
             <img v-if="avatar && !error" draggable="false" :src="avatar"
@@ -21,6 +20,7 @@
             </svg>
             <component :is="presence" v-if="presence" :size="size"
                        class="presence" primary-color="green"/>
+            <slot name="avatar-footer"/>
         </component>
     </div>
 </template>
@@ -63,10 +63,6 @@
             outline: {
                 type: String,
                 default: '#fff'
-            },
-            hat: {
-                type: String,
-                default: ''
             }
         },
         data() {
@@ -130,23 +126,9 @@ img {
     width: 132px;
 }
 
-.hat-image[size='xxlarge'] {
-    height: 114px;
-    width: 114px;
-    margin-top: -57px;
-    margin-left: 8px;
-}
-
 .wrapper[size='xlarge'] {
     height: 100px;
     width: 100px;
-}
-
-.hat-image[size='xlarge'] {
-    height: 88px;
-    width: 88px;
-    margin-top: -44px;
-    margin-left: 8px;
 }
 
 .wrapper[size='large'] {
@@ -154,45 +136,19 @@ img {
     width: 44px;
 }
 
-.hat-image[size='large'] {
-    height: 40px;
-    width: 40px;
-    margin-top: -20px;
-    margin-left: 2px;
-}
-
 .wrapper[size='medium'] {
     height: 36px;
     width: 36px;
-}
-
-.hat-image[size='medium'] {
-    height: 32px;
-    width: 32px;
-    margin-top: -16px;
-    margin-left: 2px;
 }
 
 .wrapper[size='small'] {
     height: 28px;
     width: 28px;
 }
-.hat-image[size='small'] {
-    height: 24px;
-    width: 24px;
-    margin-top: -14px;
-    margin-left: 2px;
-}
 
 .wrapper[size='xsmall'] {
     height: 20px;
     width: 20px;
-}
-
-.hat-image[size='xsmall'] {
-    height: 20px;
-    width: 20px;
-    margin-top: -10px;
 }
 
 svg {
@@ -226,12 +182,5 @@ g {
 [size='medium'] .presence, [size='small'] .presence {
     bottom: 0;
     right: 0;
-}
-
-.hat-image {
-    position: absolute;
-    z-index: 99999;
-    border-radius: 0;
-    background: none;
 }
 </style>

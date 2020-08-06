@@ -5,7 +5,6 @@
                      :append-to-body="true" :label="user.displayName">
                 <div class="avatar-wrapper">
                     <Avatar tag="a" class="avatar" :size="size"
-                            :hat="user.hat"
                             :link="user.link"
                             :z-index="count - i" :avatar="user.avatar" :presence="user.presence"/>
                 </div>
