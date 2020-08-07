@@ -6,6 +6,7 @@
                 <div class="avatar-wrapper">
                     <Avatar tag="a" class="avatar" :size="size"
                             :link="user.link"
+                            :status="user.status"
                             :z-index="count - i" :avatar="user.avatar" :presence="user.presence"/>
                 </div>
             </Tooltip>
@@ -22,6 +23,7 @@
                     <a class="list-item" :href="user.link" target="_blank">
                         <Avatar tag="a" :link="user.link" class="user-list-avatar"
                                 size="small"
+                                :status="user.status"
                                 :avatar="user.avatar" :presence="user.presence"/>
                         <span class="user-name">{{ user.displayName }}</span>
                     </a>
