@@ -2,6 +2,7 @@
     <div>
         <div v-for="presence in presences" :key="presence">
             <Avatar v-for="size in sizes" :key="size" :avatar="avatar"
+                    status="approved"
                     :size="size" :presence="presence"/>
         </div>
     </div>

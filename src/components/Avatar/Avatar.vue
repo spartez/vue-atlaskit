@@ -18,6 +18,8 @@
                     </g>
                 </g>
             </svg>
+            <component :is="status" v-if="status" class="status"
+                       :size="size"/>
             <component :is="presence" v-if="presence" :size="size"
                        class="presence" primary-color="green"/>
             <slot name="avatar-footer"/>
@@ -27,13 +29,13 @@
 
 <script>
     import {
-        Online, Busy, Offline, Focus
-    } from './PresenceIcons';
+        Online, Busy, Offline, Focus, Approved, Declined
+    } from './Icons';
 
     export default {
         name: 'Avatar',
         components: {
-            Online, Busy, Offline, Focus
+            Online, Busy, Offline, Focus, Approved, Declined
         },
         props: {
             size: {
@@ -63,6 +65,10 @@
             outline: {
                 type: String,
                 default: '#fff'
+            },
+            status: {
+                type: String,
+                default: ''
             }
         },
         data() {
@@ -160,12 +166,12 @@ g {
     fill: rgb(255, 255, 255);
 }
 
-.presence {
+.presence, .status {
     pointer-events: none;
     position: absolute;
 }
 
-[size='xxlarge'] .presence, [size='xsmall'] .presence {
+[size='xxlarge'] .presence, [size='xxlarge'] .status, [size='xsmall'] .presence, [size='xsmall'] .status {
     display: none;
 }
 
@@ -174,13 +180,28 @@ g {
     right: 7px;
 }
 
+[size='xlarge'] .status {
+    top: 7px;
+    right: 7px;
+}
+
 [size='large'] .presence {
     bottom: 1px;
     right: 1px;
 }
 
+[size='large'] .status {
+    top: 1px;
+    right: 1px;
+}
+
 [size='medium'] .presence, [size='small'] .presence {
     bottom: 0;
+    right: 0;
+}
+
+[size='medium'] .status, [size='small'] .status {
+    top: 0;
     right: 0;
 }
 </style>
