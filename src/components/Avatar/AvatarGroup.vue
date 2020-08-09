@@ -1,35 +1,53 @@
 <template>
     <div class="avatar-group">
-        <transition-group class="participants" name="participant">
-            <Tooltip v-for="(user,i) in visible" :key="user.key" class="tooltip"
-                     :append-to-body="true" :label="user.displayName">
-                <div class="avatar-wrapper">
-                    <Avatar tag="a" class="avatar" :size="size"
+        <transition-group name="participant" tag="div" class="avatar-group-inner"
+                          :over-limit="isOverLimit"
+                          @before-leave="beforeLeave">
+            <div v-if="$slots.before" key="slot-before" class="avatar-wrapper"
+                 :style="{ zIndex: count + 1 }">
+                <slot name="before"/>
+            </div>
+            <div v-for="(user,i) in visible" :key="user.key" class="avatar-wrapper"
+                 :data-index="i" :style="{ zIndex: count - i }" :last="i === count - 1">
+                <Tooltip :key="user.key" class="tooltip"
+                         :append-to-body="true" :label="user.displayName">
+                    <Avatar :key="user.key" :tag="user.link ? 'a' : 'span'"
+                            class="avatar"
+                            :size="size"
                             :link="user.link"
                             :status="user.status"
-                            :z-index="count - i" :avatar="user.avatar" :presence="user.presence"/>
-                </div>
-            </Tooltip>
-        </transition-group>
-        <div class="wrapper">
-            <Dropdown v-if="collapsed.length > 0" placement="bottom-end">
+                            :avatar="user.avatar" :presence="user.presence"/>
+                </Tooltip>
+            </div>
+            <Dropdown v-if="isOverLimit" key="dropdown"
+                      placement="bottom-end"
+                      :position-fixed="dropdownPositionFixed"
+                      class="dropdown-wrapper">
                 <div slot="trigger" slot-scope="{ toggle, isOpen }" class="trigger"
                      :size="size" :open="isOpen">
                     <div class="more" @click="toggle">
-                        <span>+{{ collapsed.length }}</span>
+                        <transition :name="counterUp ? 'counter-up' : 'counter-down'">
+                            <span :key="collapsedCount" class="collapsed-count">+{{ collapsedCount }}</span>
+                        </transition>
                     </div>
                 </div>
-                <DropdownItem v-for="user in collapsed" :key="user.key">
-                    <a class="list-item" :href="user.link" target="_blank">
-                        <Avatar tag="a" :link="user.link" class="user-list-avatar"
+                <DropdownItem v-for="collapsedUser in collapsed" :key="collapsedUser.key">
+                    <a v-if="collapsedUser.link" class="list-item" :href="collapsedUser.link"
+                       target="_blank">
+                        <Avatar tag="a" :link="collapsedUser.link" class="user-list-avatar"
                                 size="small"
-                                :status="user.status"
-                                :avatar="user.avatar" :presence="user.presence"/>
-                        <span class="user-name">{{ user.displayName }}</span>
+                                :avatar="collapsedUser.avatar" :presence="collapsedUser.presence"/>
+                        <span class="user-name">{{ collapsedUser.displayName }}</span>
                     </a>
+                    <div v-else class="list-item">
+                        <Avatar tag="a" :link="collapsedUser.link" class="user-list-avatar"
+                                size="small"
+                                :avatar="collapsedUser.avatar" :presence="collapsedUser.presence"/>
+                        <span class="user-name">{{ collapsedUser.displayName }}</span>
+                    </div>
                 </DropdownItem>
             </Dropdown>
-        </div>
+        </transition-group>
     </div>
 </template>
 
@@ -56,9 +74,21 @@
             limit: {
                 type: Number,
                 default: 5
+            },
+            dropdownPositionFixed: {
+                type: Boolean,
+                default: false
             }
         },
+        data() {
+            return {
+                counterUp: true
+            };
+        },
         computed: {
+            isOverLimit() {
+                return this.users && this.users.length > this.limit;
+            },
             count() {
                 return this.visible.length;
             },
@@ -66,7 +96,21 @@
                 return this.users ? this.users.slice(0, this.limit) : [];
             },
             collapsed() {
-                return this.users ? this.users.slice(this.limit) : [];
+                return this.users ? this.users.slice(this.limit - 1) : [];
+            },
+            collapsedCount() {
+                return this.collapsed.length;
+            }
+        },
+        watch: {
+            collapsedCount(value, prevValue) {
+                this.counterUp = value > prevValue;
+            }
+        },
+        methods: {
+            beforeLeave(el) {
+                el.style.left = `${el.offsetLeft}px`;
+                el.style.top = `${el.offsetTop}px`;
             }
         }
     };
@@ -74,9 +118,19 @@
 
 <style scoped>
 .avatar-group {
-    display: flex;
-    line-height: 1;
+    line-height: 0;
+}
+
+.avatar-group-inner {
+    position: relative;
+    display: inline-flex;
     margin-right: 8px;
+}
+
+.dropdown-wrapper {
+    position: absolute;
+    right: -8px;
+    z-index: 1;
 }
 
 .avatar {
@@ -86,6 +140,7 @@
 
 .trigger {
     background-color: #fff;
+    border-radius: 50%;
     padding: 2px;
     box-sizing: border-box;
 }
@@ -181,21 +236,42 @@
     margin-right: 8px;
 }
 
-.participant-enter, .participant-leave-to {
+.avatar-wrapper, .dropdown-wrapper {
+    transition: all .2s;
+}
+
+.avatar-wrapper.participant-enter, .avatar-wrapper.participant-leave-to {
     opacity: 0;
     transform: translateY(-50px);
 }
 
-.participant-leave-active {
+[over-limit] .avatar-wrapper.participant-enter[last], [over-limit] .avatar-wrapper.participant-leave-to[last] {
+    transform: none;
+}
+
+.avatar-wrapper.participant-leave-active {
     position: absolute;
 }
 
-.avatar {
-    transition: all .5s;
+.dropdown-wrapper.participant-enter, .dropdown-wrapper.participant-leave-to {
+    opacity: 0;
 }
 
-.tooltip{
-    transition: all .5s;
-    display: inline-block;
+.collapsed-count {
+    transition: all .2s;
+}
+
+.counter-up-enter, .counter-down-leave-to {
+    opacity: 0;
+    transform: translateY(-15px);
+}
+
+.counter-up-leave-to, .counter-down-enter {
+    opacity: 0;
+    transform: translateY(15px);
+}
+
+.counter-up-leave-active, .counter-down-leave-active {
+    position: absolute;
 }
 </style>
