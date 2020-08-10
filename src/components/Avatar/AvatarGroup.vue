@@ -35,13 +35,13 @@
                     <a v-if="collapsedUser.link" class="list-item" :href="collapsedUser.link"
                        target="_blank">
                         <Avatar tag="a" :link="collapsedUser.link" class="user-list-avatar"
-                                size="small"
+                                size="small" :status="collapsedUser.status"
                                 :avatar="collapsedUser.avatar" :presence="collapsedUser.presence"/>
                         <span class="user-name">{{ collapsedUser.displayName }}</span>
                     </a>
                     <div v-else class="list-item">
                         <Avatar tag="a" :link="collapsedUser.link" class="user-list-avatar"
-                                size="small"
+                                size="small" :status="collapsedUser.status"
                                 :avatar="collapsedUser.avatar" :presence="collapsedUser.presence"/>
                         <span class="user-name">{{ collapsedUser.displayName }}</span>
                     </div>
