@@ -22,6 +22,7 @@
             <Dropdown v-if="isOverLimit" key="dropdown"
                       placement="bottom-end"
                       :position-fixed="dropdownPositionFixed"
+                      :append-to-body="appendToBody"
                       class="dropdown-wrapper">
                 <div slot="trigger" slot-scope="{ toggle, isOpen }" class="trigger"
                      :size="size" :open="isOpen">
@@ -76,6 +77,10 @@
                 default: 5
             },
             dropdownPositionFixed: {
+                type: Boolean,
+                default: false
+            },
+            appendToBody: {
                 type: Boolean,
                 default: false
             }
@@ -243,6 +248,10 @@
 .avatar-wrapper.participant-enter, .avatar-wrapper.participant-leave-to {
     opacity: 0;
     transform: translateY(-50px);
+}
+
+[over-limit] [last] {
+    opacity: 0;
 }
 
 [over-limit] .avatar-wrapper.participant-enter[last], [over-limit] .avatar-wrapper.participant-leave-to[last] {

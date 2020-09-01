@@ -57,6 +57,10 @@
             placement: {
                 type: String,
                 default: 'bottom-start'
+            },
+            appendToBody: {
+                type: Boolean,
+                default: false
             }
         },
         data() {
@@ -69,6 +73,9 @@
                 if (value) {
                     document.addEventListener('click', this.onOutsideClick);
                     document.addEventListener('keydown', this.onKeyDown);
+                    if (this.appendToBody) {
+                        document.body.appendChild(this.$refs.menu.$el);
+                    }
                     this.$emit('open');
                 } else {
                     document.removeEventListener('click', this.onOutsideClick);
