@@ -27,6 +27,7 @@
                   :search="search"
                   @toggle-expand="onToggleExpand"
                   @input="onSelect"
+                  @expand="onExpand"
                   @highlight="onHover">
                 <template v-slot:label="{node}">
                     <slot :node="node" name="label"/>
@@ -129,6 +130,9 @@
             if (this.level < this.expandLevel && this.hasChildNodes) {
                 this.$emit('toggle-expand', this.node.id);
             }
+            if (this.checked) {
+                this.$emit('expand', this.parentNodes.map(node => node.id));
+            }
         },
         methods: {
             onSelect(id, ancestors = []) {
@@ -153,6 +157,9 @@
                     .toString()
                     .toLowerCase()
                     .includes(this.search.toLowerCase().trim());
+            },
+            onExpand(ids) {
+                this.$emit('expand', ids);
             }
         }
     };

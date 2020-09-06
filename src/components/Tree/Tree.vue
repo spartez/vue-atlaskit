@@ -11,6 +11,7 @@
               :hovered="hovered"
               @toggle-expand="onToggleExpand"
               @input="onSelect"
+              @expand="onExpand"
               @highlight="highlight">
             <template v-slot:label="{node}">
                 <slot :node="node" name="label"/>
@@ -110,6 +111,11 @@
                     }
                     return [...nodes, node];
                 }, []);
+            },
+            onExpand(ids) {
+                this.$nextTick(() => {
+                    this.expanded = [...new Set([...this.expanded, ...ids])];
+                });
             }
         }
     };
