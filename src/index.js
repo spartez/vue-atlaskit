@@ -47,6 +47,9 @@ import ProgressBar from './components/ProgressBar/ProgressBar';
 import RichTextEditor from './components/RichTextEditor/RichTextEditor';
 import Tag from './components/Tag/Tag';
 import TransitionExpand from './components/common/TransitionExpand';
+import Spotlight from './components/Spotlight/Spotlight';
+import SpotlightContext from './components/Spotlight/SpotlightContext';
+import SpotlightOverlay from './components/Spotlight/SpotlightOverlay';
 import CustomSingleSelectEditableRenderer from './components/field-renderers/CustomSingleSelectEditableRenderer';
 import '@atlaskit/css-reset/dist/bundle.css';
 
@@ -95,7 +98,10 @@ export {
     RichTextEditor,
     CustomSingleSelectEditableRenderer,
     TransitionExpand,
-    Tag
+    Tag,
+    SpotlightOverlay,
+    SpotlightContext,
+    Spotlight
 };
 export * from './components/Icon';
 export * from './components/field-renderers';
