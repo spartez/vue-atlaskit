@@ -13,7 +13,7 @@
                         Prev
                     </button>
                     <button ref="next" @click="next">
-                        {{ lastStep ? 'Got it!' : 'Next' }}
+                        {{ lastStep ? 'Finish' : 'Next' }}
                     </button>
                 </div>
             </div>
