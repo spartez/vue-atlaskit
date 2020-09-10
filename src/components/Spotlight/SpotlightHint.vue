@@ -1,7 +1,7 @@
 <template>
     <transition name="fade-in" mode="out-in">
         <div v-if="hasMessage" ref="message" class="spotlight-message">
-            <div class="content">
+            <div ref="content" class="content">
                 <slot/>
             </div>
             <div class="footer">
@@ -62,6 +62,7 @@
             }
         },
         mounted() {
+            document.body.appendChild(this.$refs.message);
             this.initPopper();
             if (this.$refs.next) this.$refs.next.focus();
         },
@@ -97,6 +98,7 @@
 <style scoped>
 
     .spotlight-message {
+        z-index: 9999999;
         color: rgb(255, 255, 255);
         max-width: 330px;
         box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.31) 0px 0px 1px;
