@@ -46,6 +46,7 @@
                     this.currentStep += 1;
                 } else {
                     this.currentStep = undefined;
+                    this.$emit('finished');
                     window.removeEventListener('keyup', this.handleKeyPress);
                 }
             },

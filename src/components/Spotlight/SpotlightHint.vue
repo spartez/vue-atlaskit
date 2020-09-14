@@ -62,7 +62,9 @@
             }
         },
         mounted() {
-            document.body.appendChild(this.$refs.message);
+            if (this.hasMessage) {
+                document.body.appendChild(this.$refs.message);
+            }
             this.initPopper();
             if (this.$refs.next) this.$refs.next.focus();
         },
