@@ -109,6 +109,8 @@ input[type="checkbox"] {
 
 .input-label {
     padding: 2px 4px;
+    display: flex;
+    flex-grow: 1;
 }
 
 input:checked + .icon >>> rect {
