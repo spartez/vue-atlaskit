@@ -12,10 +12,13 @@
                :target-element="$refs['dropdown-container']"
                :boundaries-element="boundariesElement"
                :position-fixed="positionFixed"
-               :placement="placement">
-            <div class="dropdown-menu" @click="onMenuClick">
-                <slot/>
-            </div>
+               :placement="placement"
+               @click.native="onMenuClick">
+            <slot name="dropdown-menu">
+                <div class="dropdown-menu">
+                    <slot/>
+                </div>
+            </slot>
         </Popup>
     </div>
 </template>
@@ -71,12 +74,14 @@
         watch: {
             open(value) {
                 if (value) {
-                    document.addEventListener('click', this.onOutsideClick);
-                    document.addEventListener('keydown', this.onKeyDown);
-                    if (this.appendToBody) {
-                        document.body.appendChild(this.$refs.menu.$el);
-                    }
-                    this.$emit('open');
+                    setTimeout(() => {
+                        document.addEventListener('click', this.onOutsideClick);
+                        document.addEventListener('keydown', this.onKeyDown);
+                        if (this.appendToBody) {
+                            document.body.appendChild(this.$refs.menu.$el);
+                        }
+                        this.$emit('open');
+                    }, 0);
                 } else {
                     document.removeEventListener('click', this.onOutsideClick);
                     document.removeEventListener('keydown', this.onKeyDown);
@@ -120,5 +125,6 @@
         padding: 4px 0;
         max-width: 300px;
         max-height: 400px;
+        overflow: auto;
     }
 </style>

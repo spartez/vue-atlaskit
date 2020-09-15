@@ -4,7 +4,8 @@
             :placement="placement"
             :offset="offset"
             :boundaries-element="boundariesElement"
-            :position-fixed="positionFixed">
+            :position-fixed="positionFixed"
+            spotlight-skip>
         <div class="popup">
             <slot/>
         </div>
@@ -62,6 +63,5 @@
         z-index: 400;
         border-radius: 3px;
         flex: 1 1 auto;
-        overflow: auto;
     }
 </style>

@@ -92,7 +92,7 @@
                         const zindex = document.defaultView.getComputedStyle(parent, null).getPropertyValue('z-index');
                         const transition = document.defaultView.getComputedStyle(parent, null).getPropertyValue('transition');
                         const parentPosition = document.defaultView.getComputedStyle(parent, null).getPropertyValue('position');
-                        const skip = elements.includes(parent);
+                        const skip = elements.includes(parent) || parent.hasAttribute('spotlight-skip');
                         if ((parseInt(zindex, 10) || transition) && !skip) {
                             parent.classList.add('spotlight-parentfix');
                         }
