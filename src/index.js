@@ -51,6 +51,7 @@ import Spotlight from './components/Spotlight/Spotlight';
 import SpotlightContext from './components/Spotlight/SpotlightContext';
 import SpotlightOverlay from './components/Spotlight/SpotlightOverlay';
 import CustomSingleSelectEditableRenderer from './components/field-renderers/CustomSingleSelectEditableRenderer';
+import Flag from './components/Flag/Flag';
 import '@atlaskit/css-reset/dist/bundle.css';
 
 export {
@@ -101,7 +102,8 @@ export {
     Tag,
     SpotlightOverlay,
     SpotlightContext,
-    Spotlight
+    Spotlight,
+    Flag
 };
 export * from './components/Icon';
 export * from './components/field-renderers';
