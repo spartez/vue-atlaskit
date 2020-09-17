@@ -56,6 +56,10 @@
                     this.currentStep -= 1;
                 }
             },
+            close() {
+                this.currentStep = undefined;
+                window.removeEventListener('keyup', this.handleKeyPress);
+            },
             registerSpotlight(component) {
                 const { step } = component;
                 const spotlight = this.spotlights.find(spot => spot.step === step);
@@ -122,8 +126,7 @@
                         this.prev();
                         break;
                     case ESC:
-                        this.currentStep = undefined;
-                        window.removeEventListener('keyup', this.handleKeyPress);
+                        this.close();
                         break;
                     default:
                 }

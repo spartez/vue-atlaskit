@@ -1,6 +1,10 @@
 <template>
     <transition name="fade-in" mode="out-in">
         <div v-if="hasMessage" ref="message" class="spotlight-message">
+            <CrossIcon class="close-icon" :primary-color="color" size="small"
+                       @click.native="onClose"
+                       @mouseenter.native="onEnter"
+                       @mouseleave.native="onLeave"/>
             <div ref="content" class="content">
                 <slot/>
             </div>
@@ -23,9 +27,13 @@
 
 <script>
     import Popper from 'popper.js';
+    import { CrossIcon } from '../Icon';
 
     export default {
         name: 'SpotlightHint',
+        components: {
+            CrossIcon
+        },
         props: {
             targetElement: {
                 type: HTMLElement,
@@ -50,7 +58,8 @@
         },
         data() {
             return {
-                popper: undefined
+                popper: undefined,
+                color: '#fff'
             };
         },
         computed: {
@@ -92,6 +101,15 @@
             },
             next() {
                 this.$emit('next');
+            },
+            onEnter() {
+                this.color = '#998DD9';
+            },
+            onLeave() {
+                this.color = '#fff';
+            },
+            onClose() {
+                this.$emit('close');
             }
         }
     };
@@ -108,10 +126,10 @@
         background: rgb(101, 84, 192);
         overflow: auto;
         border-radius: 3px;
-        padding: 16px 20px;
+        padding: 25px 40px 20px 20px;
     }
 
-    .spotlight-message > *{
+    .spotlight-message > * {
 
     }
 
@@ -153,7 +171,19 @@
         box-shadow: #998DD9 0 0 0 2px;
     }
 
-    .content h4{
+    .content h4 {
         color: #FFF;
+    }
+
+    .close-icon {
+        position: absolute;
+        top: 0;
+        right: 0;
+        transform: translate(-50%, 50%);
+    }
+
+    .close-icon:hover {
+        transition: all ease-in-out 0.2s;
+        cursor: pointer;
     }
 </style>

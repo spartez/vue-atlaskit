@@ -45,7 +45,8 @@
                     key: `spotlight-hint-${this.$spotlight.currentStep}-${index}`,
                     on: {
                         next: this.$spotlight.next,
-                        prev: this.$spotlight.prev
+                        prev: this.$spotlight.prev,
+                        close: this.$spotlight.close
                     }
                 });
             }));
