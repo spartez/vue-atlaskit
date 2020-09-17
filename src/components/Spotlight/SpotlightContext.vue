@@ -2,6 +2,7 @@
 
     const ARROW_RIGHT = 39;
     const ARROW_LEFT = 37;
+    const ESC = 27;
 
     export default {
         name: 'SpotlightContext',
@@ -119,6 +120,10 @@
                         break;
                     case ARROW_LEFT:
                         this.prev();
+                        break;
+                    case ESC:
+                        this.currentStep = undefined;
+                        window.removeEventListener('keyup', this.handleKeyPress);
                         break;
                     default:
                 }
