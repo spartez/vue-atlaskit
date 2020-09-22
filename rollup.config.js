@@ -1,12 +1,12 @@
-import resolve from 'rollup-plugin-node-resolve';
-import commonjs from 'rollup-plugin-commonjs';
-import babel from 'rollup-plugin-babel';
+import resolve from '@rollup/plugin-node-resolve';
+import commonjs from '@rollup/plugin-commonjs';
+import babel from '@rollup/plugin-babel';
+import json from '@rollup/plugin-json';
 import vue from 'rollup-plugin-vue';
 import { terser } from 'rollup-plugin-terser';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 import css from 'rollup-plugin-css-only';
 import renameExtensions from '@betit/rollup-plugin-rename-extensions';
-import json from '@rollup/plugin-json';
 
 const plugins = [
     peerDepsExternal(),
@@ -20,13 +20,12 @@ const plugins = [
         mappings: { '.vue': '.vue.js' }
     }),
     vue({
-        css: false,
-        compileTemplate: true // Explicitly convert template to render function
+        css: false
     }),
     babel({
+        babelHelpers: 'bundled',
         exclude: 'node_modules/**'
     }),
-    terser(),
     json()
 ];
 
@@ -36,11 +35,16 @@ export default [
         output: [
             {
                 format: 'es',
-                dir: 'dist/lib/'
+                dir: 'dist',
+                preserveModules: true,
+                preserveModulesRoot: 'src'
+            },
+            {
+                format: 'cjs',
+                file: 'dist/index.cjs.js'
             }
         ],
-        plugins,
-        preserveModules: true
+        plugins
     }, {
         input: 'src/index.umd.js',
         output: [
@@ -48,9 +52,15 @@ export default [
                 exports: 'named',
                 format: 'iife',
                 file: 'dist/index.min.js',
-                name: 'atlaskit'
+                name: 'atlaskit',
+                globals: {
+                    vue: 'Vue'
+                }
             }
         ],
-        plugins
+        plugins: [
+            ...plugins,
+            terser()
+        ]
     }
 ];
