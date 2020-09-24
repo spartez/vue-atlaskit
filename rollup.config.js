@@ -7,6 +7,7 @@ import { terser } from 'rollup-plugin-terser';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 import css from 'rollup-plugin-css-only';
 import renameExtensions from '@betit/rollup-plugin-rename-extensions';
+import nodeGlobals from 'rollup-plugin-node-globals';
 
 const plugins = [
     peerDepsExternal(),
@@ -21,10 +22,6 @@ const plugins = [
     }),
     vue({
         css: false
-    }),
-    babel({
-        babelHelpers: 'bundled',
-        exclude: 'node_modules/**'
     }),
     json()
 ];
@@ -44,15 +41,23 @@ export default [
                 file: 'dist/index.cjs.js'
             }
         ],
-        plugins
+        plugins: [
+            ...plugins,
+            babel({
+                babelHelpers: 'runtime',
+                exclude: 'node_modules/**',
+                plugins: ['@babel/plugin-transform-runtime']
+            })
+        ],
+        external: [/@babel\/runtime/]
     }, {
         input: 'src/index.umd.js',
         output: [
             {
                 exports: 'named',
-                format: 'iife',
+                format: 'umd',
                 file: 'dist/index.min.js',
-                name: 'atlaskit',
+                name: 'VueAtlaskit',
                 globals: {
                     vue: 'Vue'
                 }
@@ -60,6 +65,20 @@ export default [
         ],
         plugins: [
             ...plugins,
+            babel({
+                babelHelpers: 'bundled',
+                exclude: 'node_modules/**',
+                presets: [
+                    [
+                        '@babel/preset-env',
+                        {
+                            useBuiltIns: 'usage',
+                            corejs: 3
+                        }
+                    ]
+                ]
+            }),
+            nodeGlobals(),
             terser()
         ]
     }

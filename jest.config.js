@@ -10,7 +10,7 @@ module.exports = {
         'vue'
     ],
     moduleNameMapper: {
-        'components/(.*)$': '<rootDir>/src/components/$1'
+        '@/components/(.*)$': '<rootDir>/src/components/$1'
     },
     transform: {
         '.*\\.(vue)$': 'vue-jest',
