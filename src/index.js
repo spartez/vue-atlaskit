@@ -44,7 +44,7 @@ import ColorPicker from './components/ColorPicker/ColorPicker';
 import InfiniteScroll from './components/common/InfiniteScroll';
 import TreeSelect from './components/Select/TreeSelect/TreeSelect';
 import ProgressBar from './components/ProgressBar/ProgressBar';
-import RichTextEditor from './components/RichTextEditor/RichTextEditor';
+// import RichTextEditor from './components/RichTextEditor/RichTextEditor';
 import Tag from './components/Tag/Tag';
 import TransitionExpand from './components/common/TransitionExpand';
 import Spotlight from './components/Spotlight/Spotlight';
@@ -95,7 +95,7 @@ export {
     ProgressBar,
     DateRangePicker,
     AvatarGroup,
-    RichTextEditor,
+    // RichTextEditor,
     CustomSingleSelectEditableRenderer,
     TransitionExpand,
     Tag,

@@ -87,7 +87,7 @@
             }
         },
         mounted() {
-            EventBus.$on('remote-expand', () => this.onToggleExpand(this.currentSuggestionId));
+            EventBus.on('remote-expand', () => this.onToggleExpand(this.currentSuggestionId));
         },
         methods: {
             onSelect(id, ancestors = []) {

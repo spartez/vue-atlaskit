@@ -72,7 +72,7 @@
             }
         },
         mounted() {
-            EventBus.$on('remote-select', () => {
+            EventBus.on('remote-select', () => {
                 if (this.current) {
                     this.$emit('input', this.node.id);
                 }

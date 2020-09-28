@@ -290,7 +290,7 @@
                     return;
                 }
                 e.preventDefault();
-                EventBus.$emit('remote-select');
+                EventBus.emit('remote-select');
                 this.currentSuggestionId = undefined;
                 this.$nextTick(() => {
                     this.$refs.input.focus();
@@ -321,7 +321,7 @@
             },
 
             toggleExpand() {
-                EventBus.$emit('remote-expand');
+                EventBus.emit('remote-expand');
                 this.updateVisibleNodes();
             },
 

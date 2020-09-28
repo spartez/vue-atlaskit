@@ -11,6 +11,7 @@ import nodeGlobals from 'rollup-plugin-node-globals';
 
 const plugins = [
     peerDepsExternal(),
+    vue(),
     css({ output: 'dist/bundle.css' }),
     resolve({
         extensions: ['.js', '.json', '.vue']
@@ -19,9 +20,6 @@ const plugins = [
     renameExtensions({
         include: ['**/*.vue'],
         mappings: { '.vue': '.vue.js' }
-    }),
-    vue({
-        css: false
     }),
     json()
 ];
@@ -32,9 +30,9 @@ export default [
         output: [
             {
                 format: 'es',
-                dir: 'dist',
-                preserveModules: true,
-                preserveModulesRoot: 'src'
+                dir: 'dist'
+                // preserveModules: true,
+                // preserveModulesRoot: 'src'
             },
             {
                 format: 'cjs',
