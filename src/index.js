@@ -46,6 +46,7 @@ import TreeSelect from './components/Select/TreeSelect/TreeSelect';
 import ProgressBar from './components/ProgressBar/ProgressBar';
 import RichTextEditor from './components/RichTextEditor/RichTextEditor';
 import Tag from './components/Tag/Tag';
+import Flag from './components/Flag/Flag';
 import TransitionExpand from './components/common/TransitionExpand';
 import Spotlight from './components/Spotlight/Spotlight';
 import SpotlightContext from './components/Spotlight/SpotlightContext';
@@ -101,7 +102,8 @@ export {
     Tag,
     SpotlightOverlay,
     SpotlightContext,
-    Spotlight
+    Spotlight,
+    Flag
 };
 export * from './components/Icon';
 export * from './components/field-renderers';

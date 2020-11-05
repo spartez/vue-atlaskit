@@ -1,35 +1,40 @@
 <template>
-    <div class="notification" :appearance="appearance">
-        <div class="header">
-            <div class="icon">
-                <component :is="flag.name" :primary-color="flag.primary" :secondary-color="flag.secondary"
-                           class="icon"/>
+    <transition :name="leaveLeft ? 'flag-left' : 'flag'" appear>
+        <div class="notification" :appearance="appearance">
+            <div class="header">
+                <div class="icon">
+                    <component :is="flag.name" :primary-color="flag.primary" :secondary-color="flag.secondary"
+                               class="icon"/>
+                </div>
+                <span class="title">{{ title }}</span>
+                <ChevronDownIcon v-if="appearance !== 'default'" class="chevron" size="large"
+                                 :expanded="expanded" @click.native="onExpand"/>
+                <EditorCloseIcon v-else class="close" @click.native="$emit('close')"/>
             </div>
-            <span class="title">{{ title }}</span>
-            <ChevronDownIcon v-if="appearance !== 'default'" class="chevron" size="large"
-                             :expanded="expanded" @click.native="onExpand"/>
+            <slot>
+                <div class="content" :expanded="expanded">
+                    <div class="description">
+                        {{ description }}
+                    </div>
+                    <div class="actions">
+                        <a v-for="action in actions" :key="action" class="action"
+                           href="">{{ action }}</a>
+                    </div>
+                </div>
+            </slot>
         </div>
-        <div class="content" :expanded="expanded">
-            <div class="description">
-                {{ description }}
-            </div>
-            <div class="actions">
-                <a v-for="action in actions" :key="action" class="action"
-                   href="">{{ action }}</a>
-            </div>
-        </div>
-    </div>
+    </transition>
 </template>
 
 <script>
     import {
-        ChevronDownIcon, CheckCircleIcon, InfoIcon, WarningIcon, ErrorIcon
+        ChevronDownIcon, CheckCircleIcon, InfoIcon, WarningIcon, ErrorIcon, EditorCloseIcon
     } from '../Icon';
 
     export default {
         name: 'Flag',
         components: {
-            ChevronDownIcon, CheckCircleIcon, InfoIcon, WarningIcon, ErrorIcon
+            ChevronDownIcon, success: CheckCircleIcon, info: InfoIcon, warning: WarningIcon, error: ErrorIcon, EditorCloseIcon
         },
         props: {
             title: {
@@ -47,6 +52,14 @@
             appearance: {
                 type: String,
                 default: 'default'
+            },
+            type: {
+                type: String,
+                default: 'success'
+            },
+            leaveLeft: {
+                type: Boolean,
+                default: false
             }
         },
         data() {
@@ -58,15 +71,29 @@
             flag() {
                 switch (this.appearance) {
                     case 'info':
-                        return { name: 'InfoIcon', primary: '#fff', secondary: '#42526E' };
+                        return { name: this.appearance, primary: '#fff', secondary: '#42526E' };
                     case 'error':
-                        return { name: 'ErrorIcon', primary: '#fff', secondary: '#DE350B' };
+                        return { name: this.appearance, primary: '#fff', secondary: '#DE350B' };
                     case 'warning':
-                        return { name: 'WarningIcon', primary: '', secondary: '#FFC400' };
+                        return { name: this.appearance, primary: '', secondary: '#FFC400' };
                     case 'success':
-                        return { name: 'CheckCircleIcon', primary: '#fff', secondary: '#00875A' };
+                        return { name: this.appearance, primary: '#fff', secondary: '#00875A' };
                     default:
-                        return { name: 'CheckCircleIcon', primary: 'rgb(54, 179, 126)', secondary: '#fff    ' };
+                        return { name: this.type, primary: this.color, secondary: '#fff' };
+                }
+            },
+            color() {
+                switch (this.type) {
+                    case 'info':
+                        return '#6554c0';
+                    case 'error':
+                        return '#de350a';
+                    case 'warning':
+                        return '#ffab00';
+                    case 'success':
+                        return '#36b37e';
+                    default:
+                        return '#6554c0';
                 }
             }
         },
@@ -87,8 +114,8 @@
     z-index: 600;
     border-radius: 3px;
     padding: 16px;
-    transition: background-color 200ms ease 0s;
     max-width: 600px;
+    transition: all 0.5s;
 }
 
 .icon {
@@ -193,5 +220,19 @@
 
 .chevron[expanded="true"] {
     transform: rotateZ(180deg);
+}
+
+.flag-enter, .flag-leave-active {
+    opacity: 0;
+    transform: translateX(300px);
+}
+
+.flag-left-enter, .flag-left-leave-active {
+    opacity: 0;
+    transform: translateX(-300px);
+}
+
+.close{
+    cursor: pointer;
 }
 </style>
