@@ -1,5 +1,6 @@
 <template>
     <div class="rich-text-form">
+        <slot name="top" :insert="insertDocument"/>
         <div class="editor" :is-editing="editable">
             <editor-menu-bar v-if="editable && menu" v-slot="{ commands, isActive }" :editor="editor">
                 <div class="menu-bar">
@@ -66,6 +67,7 @@
                         @click="commands.code">
                         <EditorCodeIcon slot="icon-before"/>
                     </Button>
+                    <slot name="menu-bar" :insert="insertDocument"/>
                 </div>
             </editor-menu-bar>
             <editor-content class="editor-content" :editable="editable" :read-only="readOnly"
@@ -187,6 +189,16 @@
                 if (!this.editable) {
                     this.$emit('edit-requested');
                 }
+            },
+            insertDocument(json) {
+                const { selection: { from, to }, doc } = this.editor.state;
+                if (!doc.textContent) {
+                    this.editor.setContent(json);
+                } else {
+                    const node = this.editor.schema.nodeFromJSON(json);
+                    const transaction = this.editor.state.tr.replaceRangeWith(from, to, node);
+                    this.editor.view.dispatch(transaction);
+                }
             }
         }
     };
@@ -199,6 +211,7 @@
 
 .menu-bar {
     padding: 8px 8px 0px 20px;
+    display: flex;
 }
 
 .editor-content {
