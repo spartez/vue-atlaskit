@@ -109,5 +109,8 @@
     "tiptap": "^1.27.1",
     "tiptap-commands": "^1.14.1",
     "vue-promised": "^1.2.0"
+  },
+  "resolutions": {
+    "prosemirror-model": "1.8.2"
   }
 }
