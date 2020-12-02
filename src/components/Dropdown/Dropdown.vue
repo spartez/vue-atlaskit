@@ -3,7 +3,8 @@
         <slot v-if="$scopedSlots.trigger" name="trigger"
               :is-open="open"
               :toggle="onTriggerClick"/>
-        <Button v-else :is-selected="open" @click="onTriggerClick">
+        <Button v-else :is-selected="open" :appearance="appearance"
+                @click="onTriggerClick">
             {{ label }}
             <ChevronDownIcon slot="icon-after"/>
         </Button>
@@ -36,6 +37,10 @@
             label: {
                 type: String,
                 default: 'Dropdown'
+            },
+            appearance: {
+                type: String,
+                default: 'default'
             },
             boundariesElement: {
                 type: [String, HTMLElement, Function],
