@@ -1,11 +1,19 @@
 <template>
-    <div class="dropdown-item" v-on="$listeners">
+    <div class="dropdown-item" v-on="$listeners" @click="$emit('select',value)">
         <span class="dropdown-item-label">
             <slot/>
         </span>
     </div>
 </template>
-
+<script>
+    export default {
+        props: {
+            value: {
+                type: [Object, String, Number, Boolean]
+            }
+        }
+    };
+</script>
 <style scoped>
     .dropdown-item {
         align-items: center;
