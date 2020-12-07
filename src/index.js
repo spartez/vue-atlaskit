@@ -47,6 +47,7 @@ import ProgressBar from './components/ProgressBar/ProgressBar';
 import RichTextEditor from './components/RichTextEditor/RichTextEditor';
 import Tag from './components/Tag/Tag';
 import Flag from './components/Flag/Flag';
+import CopyToClipboard from './components/CopyToClipboard/CopyToClipboard';
 import TransitionExpand from './components/common/TransitionExpand';
 import Spotlight from './components/Spotlight/Spotlight';
 import SpotlightContext from './components/Spotlight/SpotlightContext';
@@ -103,7 +104,8 @@ export {
     SpotlightOverlay,
     SpotlightContext,
     Spotlight,
-    Flag
+    Flag,
+    CopyToClipboard
 };
 export * from './components/Icon';
 export * from './components/field-renderers';
