@@ -15,7 +15,7 @@
                :position-fixed="positionFixed"
                :placement="placement"
                @click.native="onMenuClick">
-            <slot name="dropdown-menu">
+            <slot name="dropdown-menu" :toggle="onTriggerClick">
                 <div class="dropdown-menu">
                     <slot/>
                 </div>
