@@ -84,6 +84,7 @@
                         document.addEventListener('keydown', this.onKeyDown);
                         if (this.appendToBody) {
                             document.body.appendChild(this.$refs.menu.$el);
+                            this.updatePopperPosition();
                         }
                         this.$emit('open');
                     }, 0);
@@ -115,6 +116,12 @@
             onKeyDown(event) {
                 if (event.keyCode === 27 && this.closeOnEsc) {
                     this.open = false;
+                }
+            },
+            updatePopperPosition() {
+                if (this.$refs.menu) {
+                    const [popper] = this.$refs.menu.$children;
+                    popper.update();
                 }
             }
         }
