@@ -1,6 +1,7 @@
 <template>
     <div class="rich-text-editable-renderer">
-        <RichTextEditor v-model="content" :editable="isEditing" @edit-requested="onEditRequested">
+        <RichTextEditor v-model="content" :editable="isEditing" :empty-field-text="emptyFieldText"
+                        @edit-requested="onEditRequested">
             <template v-slot:actions="{setContent}">
                 <div class="buttons">
                     <Button type="submit" :is-loading="isLoading" :is-disabled="isDisabled"
@@ -29,6 +30,10 @@
             value: {
                 type: [String, Object],
                 default: ''
+            },
+            emptyFieldText: {
+                type: String,
+                default: 'Click to add description...'
             }
         },
         data() {

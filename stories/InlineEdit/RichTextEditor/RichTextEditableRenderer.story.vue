@@ -1,5 +1,5 @@
 <template>
-    <RichTextEditableRenderer :value="value" @save-requested="onSaveRequested"/>
+    <RichTextEditableRenderer :value="value" :empty-field-text="emptyFieldText" @save-requested="onSaveRequested"/>
 </template>
 
 <script>
@@ -11,7 +11,8 @@
         components: { RichTextEditableRenderer },
         data() {
             return {
-                value: json
+                value: json,
+                emptyFieldText: 'Sample text...'
             };
         },
         methods: {

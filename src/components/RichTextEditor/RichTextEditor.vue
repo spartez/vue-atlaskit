@@ -1,5 +1,5 @@
 <template>
-    <div class="rich-text-form">
+    <div class="rich-text-form" :is-empty="!value" :is-editing="editable">
         <slot name="top" :insert="insertDocument"/>
         <div class="editor" :is-editing="editable">
             <editor-menu-bar v-if="editable && menu" v-slot="{ commands, isActive }" :editor="editor">
@@ -71,7 +71,7 @@
                 </div>
             </editor-menu-bar>
             <editor-content class="editor-content" :editable="editable" :read-only="readOnly"
-                            :editor="editor"
+                            :editor="editor" :data-text="emptyFieldText"
                             @click.native="onEditRequested"/>
         </div>
         <slot v-if="editable" name="actions" :setContent="editor.setContent"/>
@@ -132,6 +132,10 @@
             readOnly: {
                 type: Boolean,
                 default: false
+            },
+            emptyFieldText: {
+                type: String,
+                default: 'Click to add description...'
             }
         },
         data() {
@@ -216,6 +220,17 @@
 
 .editor-content {
     padding: 12px 8px;
+    position: relative;
+}
+
+[is-empty]:not([is-editing]) .editor-content::after {
+    display: block;
+    position: absolute;
+    padding: 12px 8px;
+    font-style: italic;
+    top: 0;
+    color: rgb(107, 119, 140);
+    content: attr(data-text);
 }
 
 .editor[is-editing] .editor-content {
