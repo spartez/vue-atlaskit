@@ -1,5 +1,11 @@
 <template>
-    <RichTextEditableRenderer :value="value" :empty-field-text="emptyFieldText" @save-requested="onSaveRequested"/>
+    <div>
+        <h5>Editable - callback with error:</h5>
+        <RichTextEditableRenderer :empty-field-text="emptyFieldText" @save-requested="onSaveError"/>
+
+        <h5>Editable:</h5>
+        <RichTextEditableRenderer :value="value" :empty-field-text="emptyFieldText" @save-requested="onSaveRequested"/>
+    </div>
 </template>
 
 <script>
@@ -19,6 +25,10 @@
             onSaveRequested(content, callback) {
                 this.value = content;
                 callback();
+            },
+
+            onSaveError(value, callback) {
+                setTimeout(() => callback(new Error('Something went wrong')), 100);
             }
         }
     };

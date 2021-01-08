@@ -1,6 +1,7 @@
 <template>
     <div class="rich-text-editable-renderer">
-        <RichTextEditor v-model="content" :editable="isEditing" :empty-field-text="emptyFieldText"
+        <RichTextEditor ref="editor" v-model="content" :editable="isEditing"
+                        :empty-field-text="emptyFieldText"
                         @edit-requested="onEditRequested">
             <template v-slot:actions="{setContent}">
                 <div class="buttons">
@@ -15,17 +16,20 @@
                 </div>
             </template>
         </RichTextEditor>
+        <InlineErrorMessage v-if="error" :error="error"
+                            :target-element="$refs['editor'].$el.querySelector('div.editor')"/>
     </div>
 </template>
 
 <script>
     import RichTextEditor from '../RichTextEditor/RichTextEditor';
+    import InlineErrorMessage from '../Form/InlineErrorMessage';
     import Button from '../Button/Button';
 
 
     export default {
         name: 'RichTextEditableRenderer',
-        components: { RichTextEditor, Button },
+        components: { RichTextEditor, InlineErrorMessage, Button },
         props: {
             value: {
                 type: [String, Object],
@@ -41,7 +45,8 @@
                 isEditing: false,
                 isLoading: false,
                 isDirty: false,
-                content: undefined
+                content: undefined,
+                error: undefined
             };
         },
         computed: {
@@ -68,18 +73,27 @@
                 this.isEditing = false;
                 this.isLoading = false;
                 this.isDirty = false;
+                this.error = undefined;
                 this.content = this.value;
+            },
+            saveInlineEdit(error) {
+                this.isLoading = false;
+                if (error) {
+                    this.error = error;
+                    return;
+                }
+                this.onCancel();
             },
             onSave() {
                 this.isLoading = true;
-                this.$emit('save-requested', this.content, this.onCancel);
+                this.$emit('save-requested', this.content, this.saveInlineEdit);
             }
         }
     };
 </script>
 
 <style scoped>
-.buttons {
-    padding: 10px 0;
-}
+    .buttons {
+        padding: 10px 0;
+    }
 </style>
