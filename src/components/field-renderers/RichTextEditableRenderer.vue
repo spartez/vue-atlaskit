@@ -1,7 +1,6 @@
 <template>
-    <div class="rich-text-editable-renderer">
-        <RichTextEditor ref="editor" v-model="content" :editable="isEditing"
-                        :empty-field-text="emptyFieldText"
+    <div ref="editor" class="rich-text-editable-renderer">
+        <RichTextEditor v-model="content" :editable="isEditing" :empty-field-text="emptyFieldText"
                         @edit-requested="onEditRequested">
             <template v-slot:actions="{setContent}">
                 <div class="buttons">
@@ -16,8 +15,7 @@
                 </div>
             </template>
         </RichTextEditor>
-        <InlineErrorMessage v-if="error" :error="error"
-                            :target-element="$refs['editor'].$el.querySelector('div.editor')"/>
+        <InlineErrorMessage v-if="error" :error="error" :target-element="$refs['editor']"/>
     </div>
 </template>
 
