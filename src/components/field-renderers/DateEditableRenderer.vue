@@ -2,6 +2,7 @@
     <InlineEdit v-if="editable"
                 :value="timestamp"
                 type="date"
+                :placement="placement"
                 @save-requested="onSaveRequested">
         <DatePicker slot="editor" slot-scope="props"
                     :value="props.value"
@@ -34,6 +35,10 @@
             editable: {
                 type: Boolean,
                 default: true
+            },
+            placement: {
+                type: String,
+                default: 'right'
             }
         },
         computed: {

@@ -1,6 +1,7 @@
 <template>
     <InlineEdit v-if="editable"
                 :value="link"
+                :placement="placement"
                 @save-requested="onSaveRequested">
         <slot>
             <HyperlinkRenderer :link="link"/>
@@ -24,6 +25,10 @@
             editable: {
                 type: Boolean,
                 default: true
+            },
+            placement: {
+                type: String,
+                default: 'right'
             }
         },
         methods: {

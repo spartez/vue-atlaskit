@@ -3,6 +3,7 @@
                 :value="user"
                 class="user-inline-edit"
                 :confirm="confirm"
+                :placement="placement"
                 @save-requested="onSaveRequested">
         <Select slot="editor" slot-scope="props"
                 :value="props.value"
@@ -55,6 +56,10 @@
             editable: {
                 type: Boolean,
                 default: true
+            },
+            placement: {
+                type: String,
+                default: 'right'
             },
             avatarOnly: {
                 type: Boolean,

@@ -6,6 +6,7 @@
                 :align="align"
                 :pattern="pattern"
                 :type="type"
+                :placement="placement"
                 @save-requested="onSaveRequested">
         <slot>
             <StringLineRenderer :value="value"/>
@@ -29,6 +30,10 @@
             editable: {
                 type: Boolean,
                 default: true
+            },
+            placement: {
+                type: String,
+                default: 'right'
             },
             confirm: {
                 type: Boolean,

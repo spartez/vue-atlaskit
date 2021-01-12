@@ -2,6 +2,7 @@
     <InlineEdit v-if="editable"
                 :value="value"
                 :confirm="confirm"
+                :placement="placement"
                 @save-requested="onSaveRequested">
         <Select slot="editor" slot-scope="props"
                 :value="props.value"
@@ -40,6 +41,10 @@
             editable: {
                 type: Boolean,
                 default: true
+            },
+            placement: {
+                type: String,
+                default: 'right'
             },
             value: {
                 type: [String, Object],

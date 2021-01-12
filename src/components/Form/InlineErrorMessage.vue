@@ -1,5 +1,5 @@
 <template>
-    <Popper :target-element="targetElement" placement="right"
+    <Popper :target-element="targetElement" :placement="placement"
             :flip-behavior="['right', 'top-end']">
         <div ref="error-dialog" class="error-dialog">
             <template v-if="error.fieldErrors">
@@ -28,6 +28,10 @@
             targetElement: {
                 type: HTMLElement,
                 required: true
+            },
+            placement: {
+                type: String,
+                default: 'right'
             }
         }
     };

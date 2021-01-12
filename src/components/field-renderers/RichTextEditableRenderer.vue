@@ -15,7 +15,8 @@
                 </div>
             </template>
         </RichTextEditor>
-        <InlineErrorMessage v-if="error" :error="error" :target-element="$refs['editor']"/>
+        <InlineErrorMessage v-if="error" :error="error" :target-element="$refs['editor']"
+                            :placement="placement"/>
     </div>
 </template>
 
@@ -36,6 +37,10 @@
             emptyFieldText: {
                 type: String,
                 default: 'Click to add description...'
+            },
+            placement: {
+                type: String,
+                default: 'right'
             }
         },
         data() {

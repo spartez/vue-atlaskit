@@ -43,7 +43,8 @@
             <InlineEditButtons @confirm="confirmEditedValue" @cancel="cancelInlineEdit"
                                @blur="onBlur"/>
         </Popper>
-        <InlineErrorMessage v-if="isValidationError" :error="error" :target-element="$refs['text-field']"/>
+        <InlineErrorMessage v-if="isValidationError" :error="error" :target-element="$refs['text-field']"
+                            :placement="placement"/>
     </div>
 </template>
 
@@ -109,6 +110,10 @@
             pattern: {
                 type: String,
                 default: ''
+            },
+            placement: {
+                type: String,
+                default: 'right'
             }
         },
         data() {
