@@ -3,6 +3,7 @@
                 :value="value"
                 :icon="icon"
                 pencil-style="floating"
+                :placement="placement"
                 @save-requested="onSaveRequested">
         <slot>
             <MultiLineRenderer :value="value"/>
@@ -39,6 +40,10 @@
             editable: {
                 type: Boolean,
                 default: true
+            },
+            placement: {
+                type: String,
+                default: 'right'
             },
             icon: {
                 type: Boolean,

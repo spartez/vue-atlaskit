@@ -3,6 +3,7 @@
                 :value="value"
                 type="number"
                 step="1"
+                :placement="placement"
                 @save-requested="onSaveRequested">
         <slot>
             <NumberLongRenderer :value="value"/>
@@ -26,6 +27,10 @@
             editable: {
                 type: Boolean,
                 default: true
+            },
+            placement: {
+                type: String,
+                default: 'right'
             }
         },
         methods: {

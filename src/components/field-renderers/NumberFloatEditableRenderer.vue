@@ -2,6 +2,7 @@
     <InlineEdit v-if="editable"
                 :value="value"
                 type="number"
+                :placement="placement"
                 @save-requested="onSaveRequested">
         <slot>
             <NumberFloatRenderer :value="value"/>
@@ -25,6 +26,10 @@
             editable: {
                 type: Boolean,
                 default: true
+            },
+            placement: {
+                type: String,
+                default: 'right'
             }
         },
         methods: {

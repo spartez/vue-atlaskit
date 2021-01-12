@@ -3,6 +3,7 @@
                 :value="value"
                 offset="0,0"
                 class="checkbox-edit"
+                :placement="placement"
                 @save-requested="onSaveRequested">
         <Checkbox slot="editor" slot-scope="props" size="large"
                   class="checkbox"
@@ -38,6 +39,10 @@
             editable: {
                 type: Boolean,
                 default: true
+            },
+            placement: {
+                type: String,
+                default: 'right'
             }
         },
         methods: {
