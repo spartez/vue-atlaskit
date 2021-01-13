@@ -49,6 +49,12 @@
         overflow: hidden;
     }
 
+    span[size="xxsmall"],
+    span[size="xxsmall"] > svg {
+        width: 14px;
+        height: 14px;
+    }
+
     span[size="xsmall"],
     span[size="xsmall"] > svg {
         width: 16px;

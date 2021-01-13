@@ -7,6 +7,7 @@ import TextArea from './components/Form/TextArea';
 import FieldGroup from './components/Form/FieldGroup';
 import Checkbox from './components/Checkbox/Checkbox';
 import Toggle from './components/Toggle/Toggle';
+import LockSwitch from './components/Toggle/LockSwitch';
 import Tooltip from './components/Tooltip/Tooltip';
 import Modal from './components/Modal/Modal';
 import DatePicker from './components/Calendar/DatePicker';
@@ -105,7 +106,8 @@ export {
     SpotlightContext,
     Spotlight,
     Flag,
-    CopyToClipboard
+    CopyToClipboard,
+    LockSwitch
 };
 export * from './components/Icon';
 export * from './components/field-renderers';

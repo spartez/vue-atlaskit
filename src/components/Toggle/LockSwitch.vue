@@ -6,24 +6,24 @@
                @change="toggle">
         <div class="slide" :size="size">
             <div class="slide-inner">
-                <EditorDoneIcon v-if="value" data-cy="done" :size="iconSize"
+                <LockFilledIcon v-if="value" :size="iconSize"
                                 primary-color="White"
                                 class="done"/>
-                <CrossIcon v-else data-cy="cross" :size="iconSize"
-                           primary-color="White"
-                           class="close"/>
+                <UnlockFilledIcon v-else :size="iconSize"
+                                  primary-color="White"
+                                  class="close"/>
             </div>
         </div>
     </label>
 </template>
 
 <script>
-    import EditorDoneIcon from '../Icon/EditorDoneIcon';
-    import CrossIcon from '../Icon/CrossIcon';
+    import LockFilledIcon from '../Icon/LockFilledIcon';
+    import UnlockFilledIcon from '../Icon/UnlockFilledIcon';
 
     export default {
-        name: 'Toggle',
-        components: { CrossIcon, EditorDoneIcon },
+        name: 'LockSwitch',
+        components: { LockFilledIcon, UnlockFilledIcon },
         props: {
             value: {
                 type: [Number, String, Boolean],
@@ -43,7 +43,7 @@
         },
         computed: {
             iconSize() {
-                return this.size === 'large' ? 'small' : 'xsmall';
+                return this.size === 'large' ? 'xsmall' : 'xxsmall';
             }
         },
         created() {
@@ -72,7 +72,7 @@ label {
 
 .slide {
     background-clip: content-box;
-    background-color: rgb(107, 119, 140);
+    background-color: #6B778C;
     display: block;
     height: 16px;
     position: relative;
@@ -113,7 +113,7 @@ input:focus + .slide {
 }
 
 input:checked + .slide {
-    background-color: rgb(0, 135, 90);
+    background-color: #0052CC;
 }
 
 input:checked + .slide::before {
@@ -131,7 +131,7 @@ input:checked + .slide[size="large"]::before {
 
 .close {
     padding-left: 0;
-    padding-right: 2px;
+    padding-right: 3px;
 }
 
 .slide-inner {
@@ -148,7 +148,7 @@ input:checked + .slide > .slide-inner {
 }
 
 input:checked + .slide:hover {
-    background-color: rgb(54, 179, 126);
+    background-color: #0065FF;
 }
 
 input:not(:checked) + .slide:hover {
