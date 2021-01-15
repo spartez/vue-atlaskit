@@ -137,7 +137,7 @@ strong {
     transition: all 0.4s;
 }
 
-.slide-right-enter {
+.slide-right-enter-from {
     opacity: 0;
     transform: translate(300px, -50%);
 }
@@ -147,7 +147,7 @@ strong {
     transform: translate(-300px, -50%);
 }
 
-.slide-left-enter {
+.slide-left-enter-from {
     opacity: 0;
     transform: translate(-300px, -50%);
 }
@@ -157,7 +157,7 @@ strong {
     transform: translate(300px, -50%);
 }
 
-.slide-top-enter {
+.slide-top-enter-from {
     opacity: 0;
     transform: translate(-50%, -100%);
 }

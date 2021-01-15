@@ -70,7 +70,7 @@
                     return fromUnixTime(this.value / MILISECONDS_IN_SECOND);
                 },
                 set(date) {
-                    this.$emit('input', date);
+                    this.$emit('update:value', date);
                 }
             },
             formattedDate() {
@@ -82,7 +82,7 @@
             listeners() {
                 const {
                     focus, blur, input, ...listeners
-                } = this.$listeners;
+                } = this.$attrs;
                 return listeners;
             }
         },

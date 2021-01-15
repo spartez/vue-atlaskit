@@ -1,6 +1,6 @@
 <template>
     <div ref="dropdown-container" class="dropdown-container">
-        <slot v-if="$scopedSlots.trigger" name="trigger"
+        <slot v-if="$slots.trigger" name="trigger"
               :is-open="open"
               :toggle="onTriggerClick"/>
         <Button v-else :is-selected="open" :appearance="appearance"

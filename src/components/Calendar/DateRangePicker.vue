@@ -127,9 +127,9 @@
                 },
                 set(date) {
                     if (this.value.to && isAfter(date, this.value.to)) {
-                        this.$emit('input', { from: this.value.to, to: date });
+                        this.$emit('update:value', { from: this.value.to, to: date });
                     } else {
-                        this.$emit('input', { from: date, to: this.value.to });
+                        this.$emit('update:value', { from: date, to: this.value.to });
                     }
                 }
             },
@@ -142,9 +142,9 @@
                 },
                 set(date) {
                     if (this.value.from && isBefore(date, this.value.from)) {
-                        this.$emit('input', { from: date, to: this.value.from });
+                        this.$emit('update:value', { from: date, to: this.value.from });
                     } else {
-                        this.$emit('input', { from: this.value.from, to: date });
+                        this.$emit('update:value', { from: this.value.from, to: date });
                     }
                 }
             },
@@ -169,7 +169,7 @@
             listeners() {
                 const {
                     focus, blur, input, ...listeners
-                } = this.$listeners;
+                } = this.$attrs;
                 return listeners;
             },
             placeholderDate() {
@@ -290,7 +290,7 @@
                 return undefined;
             },
             setRange(from, to) {
-                this.$emit('input', { from: getTime(from), to: getTime(to) });
+                this.$emit('update:value', { from: getTime(from), to: getTime(to) });
                 this.isOpen = false;
             },
             isInputFromFocused() {

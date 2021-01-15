@@ -7,23 +7,23 @@ import TextArea from './components/Form/TextArea';
 import FieldGroup from './components/Form/FieldGroup';
 import Checkbox from './components/Checkbox/Checkbox';
 import Toggle from './components/Toggle/Toggle';
-// import LockSwitch from './components/Toggle/LockSwitch';
-// import Tooltip from './components/Tooltip/Tooltip';
+import LockSwitch from './components/Toggle/LockSwitch';
+import Tooltip from './components/Tooltip/Tooltip';
 import Modal from './components/Modal/Modal';
-// import DatePicker from './components/Calendar/DatePicker';
-// import DateRangePicker from './components/Calendar/DateRangePicker';
+import DatePicker from './components/Calendar/DatePicker';
+import DateRangePicker from './components/Calendar/DateRangePicker';
 // import Select from './components/Select/Select';
 // import UserPicker from './components/Select/UserPicker';
 // import Popper from './components/Popper/Popper';
 import Lozenge from './components/Lozenge/Lozenge';
 // import Popup from './components/common/Popup';
-// import Dropdown from './components/Dropdown/Dropdown';
-// import DropdownGroup from './components/Dropdown/DropdownGroup';
-// import DropdownItem from './components/Dropdown/DropdownItem';
-// import DropdownCheckboxItem from './components/Dropdown/DropdownCheckboxItem';
-// import Menu from './components/Menu/Menu';
-// import MenuSection from './components/Menu/MenuSection';
-// import MenuItem from './components/Menu/MenuItem';
+import Dropdown from './components/Dropdown/Dropdown';
+import DropdownGroup from './components/Dropdown/DropdownGroup';
+import DropdownItem from './components/Dropdown/DropdownItem';
+import DropdownCheckboxItem from './components/Dropdown/DropdownCheckboxItem';
+import Menu from './components/Menu/Menu';
+import MenuSection from './components/Menu/MenuSection';
+import MenuItem from './components/Menu/MenuItem';
 // import InlineDialog from './components/InlineDialog/InlineDialog';
 // import SectionMessage from './components/SectionMessage/SectionMessage';
 // import Table from './components/Table/Table';
@@ -39,7 +39,7 @@ import Lozenge from './components/Lozenge/Lozenge';
 // import ListWithImageLoader from './components/ContentLoader/ListWithImageLoader';
 // import Avatar from './components/Avatar/Avatar';
 // import AvatarGroup from './components/Avatar/AvatarGroup';
-// import Badge from './components/Badge/Badge';
+import Badge from './components/Badge/Badge';
 // import Tree from './components/Tree/Tree';
 // import ColorPicker from './components/ColorPicker/ColorPicker';
 // import InfiniteScroll from './components/common/InfiniteScroll';
@@ -66,16 +66,16 @@ export {
     TextField,
     Checkbox,
     Toggle,
-    // Tooltip,
+    Tooltip,
     Modal,
-    // DatePicker,
+    DatePicker,
     // Select,
     // Popper,
     Lozenge,
     // UserPicker,
     // Popup,
-    // Dropdown, DropdownGroup, DropdownItem, DropdownCheckboxItem,
-    // Menu, MenuItem, MenuSection,
+    Dropdown, DropdownGroup, DropdownItem, DropdownCheckboxItem,
+    Menu, MenuItem, MenuSection,
     // InlineDialog,
     // SectionMessage,
     // Table,
@@ -90,13 +90,13 @@ export {
     // BulletListLoader,
     // ListWithImageLoader,
     // Avatar,
-    // Badge,
+    Badge,
     // Tree,
     // TreeSelect,
     // InfiniteScroll,
     // ColorPicker,
     // ProgressBar,
-    // DateRangePicker,
+    DateRangePicker,
     // AvatarGroup,
     // RichTextEditor,
     // CustomSingleSelectEditableRenderer,
@@ -107,7 +107,7 @@ export {
     // Spotlight,
     // Flag,
     // CopyToClipboard,
-    // LockSwitch
+    LockSwitch
 };
 export * from './components/Icon';
 // export * from './components/field-renderers';

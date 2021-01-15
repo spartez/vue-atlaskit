@@ -92,7 +92,7 @@ input:-moz-placeholder {
     display: flex;
 }
 
-.input-wrapper[disabled] {
+.input-wrapper[disabled=true] {
     pointer-events: none;
     background-color: #F4F5F7;
 }
@@ -101,18 +101,18 @@ input:-moz-placeholder {
     background-color: #ebecf0;
 }
 
-.input-wrapper[select=true]:not([is-focused=true]):not([disabled]):hover {
+.input-wrapper[select=true]:not([is-focused=true]):not([disabled=true]):hover {
     background-color: #ebecf0;
     border-color: #ebecf0;
     cursor: pointer;
 }
 
-.input-wrapper[is-focused=true]:not([disabled]):not([is-loading=true]) {
+.input-wrapper[is-focused=true]:not([disabled=true]):not([is-loading=true]) {
     background-color: #ffffff;
     border-color: #4c9aff;
 }
 
-.input-wrapper[is-invalid=true]:not([disabled]):not([is-loading=true]) {
+.input-wrapper[is-invalid=true]:not([disabled=true]):not([is-loading=true]) {
     border-color: #de350b;
     animation: shake .5s linear;
 }

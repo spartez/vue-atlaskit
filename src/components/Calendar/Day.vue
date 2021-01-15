@@ -53,26 +53,26 @@
     width: 100%;
 }
 
-[highlighted] {
+[highlighted=true] {
     background-color: rgb(244, 245, 247);
 }
 
-[range-start] [selected] {
+[range-start=true] [selected=true] {
     border-radius: 3px 0 0 3px;
 }
 
-[range-end] [selected] {
+[range-end=true] [selected=true] {
     border-radius: 0 3px 3px 0;
 }
 
-[today] {
+[today=true] {
     font-weight: 500;
     background-color: transparent;
     position: relative;
     color: #0052CC;
 }
 
-[today]::after {
+[today=true]::after {
     background-color: #0052CC;
     bottom: 2px;
     content: "";
@@ -83,7 +83,7 @@
     right: 2px;
 }
 
-[is-not-same-month]:not([today]) {
+[is-not-same-month=true]:not([today=true]) {
     color: #cacaca;
 }
 </style>

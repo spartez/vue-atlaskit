@@ -1,3 +1,8 @@
+<template>
+    <span ref="element">
+        <slot/>
+    </span>
+</template>
 <script>
     import Popper from 'popper.js';
 
@@ -43,9 +48,8 @@
         },
         methods: {
             initPopper() {
-                const [defaultSlot] = this.$slots.default;
                 const boundariesElement = typeof this.boundariesElement === 'function' ? this.boundariesElement() : this.boundariesElement;
-                this.popper = new Popper(this.targetElement, defaultSlot.elm, {
+                this.popper = new Popper(this.targetElement, this.$refs.element, {
                     placement: this.placement,
                     positionFixed: this.positionFixed,
                     modifiers: {
@@ -64,10 +68,6 @@
                     this.popper.update();
                 }
             }
-        },
-        render() {
-            const [defaultSlot] = this.$slots.default;
-            return defaultSlot;
         }
     };
 </script>
