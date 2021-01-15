@@ -10,7 +10,7 @@
                 :index="index"
                 :current-suggestion-index="currentSuggestionIndex"
                 data-cy="select-option"
-                @mouseover="onMouseOver"
+                @hover="onMouseOver"
                 @option-selected="onOptionSelected">
                 <slot
                     slot="option"
@@ -26,7 +26,7 @@
                 {{ !containsQuery && async ? placeholder : noOptionsMessage }}
             </div>
         </div>
-        <div v-if="$slots.default()" @mouseover="resetIndex">
+        <div v-if="$slots.default" @mouseover="resetIndex">
             <slot/>
         </div>
     </div>
@@ -94,12 +94,10 @@
                 this.$emit('option-selected', option);
             },
             onMouseOver(index) {
-                console.log(index)
-                this.$emit('mouseover', index);
+                this.$emit('hover', index);
             },
             resetIndex() {
-
-                this.$emit('mouseover', undefined);
+                this.$emit('hover', undefined);
             }
         }
     };

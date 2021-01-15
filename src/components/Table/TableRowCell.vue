@@ -49,14 +49,14 @@
         white-space: nowrap;
     }
 
-    .table-row-cell[sticky-left] {
+    .table-row-cell[sticky-left=true] {
         position: sticky;
         left: 0;
         z-index: 2;
         background: white;
     }
 
-    .table-row-cell[sticky-right] {
+    .table-row-cell[sticky-right=true] {
         position: sticky;
         right: 0;
         z-index: 2;

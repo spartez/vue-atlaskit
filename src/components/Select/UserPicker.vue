@@ -6,7 +6,8 @@
             :is-fetching="isFetching"
             :placeholder="placeholder"
             :normalizer="normalizer"
-            v-on="$listeners"
+            v-on="$attrs"
+            @update:value="onInput"
             @open="loadInitialOptions"
             @search-change="debouncedGetUsers">
         <div slot="option" slot-scope="{option}" class="label">
@@ -89,6 +90,10 @@
                     value: user,
                     disabled: user.disabled
                 };
+            },
+
+            onInput(users) {
+                this.$emit('update:value', users)
             }
         }
     };

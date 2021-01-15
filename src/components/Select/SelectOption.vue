@@ -57,7 +57,7 @@
                 this.$emit('option-selected', this.option);
             },
             onMouseOver() {
-                this.$emit('mouseover', this.index);
+                this.$emit('hover', this.index);
             }
         }
     };
@@ -84,9 +84,5 @@
 .select-option[current=true] {
   background-color: #ebecf0;
   color: inherit;
-}
-
-.select-option[isSelected=true] {
-  background-color: #42526e;
 }
 </style>

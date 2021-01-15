@@ -31,7 +31,7 @@
                        @keydown.delete="removeOption">
             </div>
             <div v-if="!selected.length" class="text">
-                <slot v-if="!search && selected.value && $scopedSlots['selected'] && !multi" name="selected" :selected="selected.value"/>
+                <slot v-if="!search && selected.value && $slots['selected'] && !multi" name="selected" :selected="selected.value"/>
                 <span v-else :placeholder="!search && !selected.label">
                     {{ input }}
                 </span>
@@ -57,7 +57,7 @@
                         :placeholder="searchPromptText"
                         data-cy="select-menu"
                         @update-popper-position="updatePopperPosition"
-                        @mouseover="onMouseOverSuggestion"
+                        @hover="onMouseOverSuggestion"
                         @option-selected="onOptionSelected">
                 <slot slot="option" slot-scope="{option, isCurrent}" name="option"
                       :is-current="isCurrent"

@@ -106,7 +106,7 @@
         margin-left: 6px;
     }
 
-    .issue[resolved] .issue-key {
+    .issue[resolved=true] .issue-key {
         text-decoration: line-through;
     }
 

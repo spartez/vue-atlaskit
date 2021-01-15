@@ -73,28 +73,28 @@
         display: flex;
     }
 
-    .table-header-cell[sticky-header] {
+    .table-header-cell[sticky-header=true] {
         position: sticky;
         top: 0;
         z-index: 10;
         background: white;
     }
 
-    .table-header-cell[sticky-left] {
+    .table-header-cell[sticky-left=true] {
         position: sticky;
         left: 0;
         z-index: 20;
         background: white;
     }
 
-    .table-header-cell[sticky-right] {
+    .table-header-cell[sticky-right=true] {
         position: sticky;
         right: 0;
         z-index: 20;
         background: white;
     }
 
-    .table-header-cell[sortable]:hover {
+    .table-header-cell[sortable=true]:hover {
         background-color: rgb(244, 245, 247);
         cursor: pointer;
     }

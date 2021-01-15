@@ -164,7 +164,7 @@
     transition: box-shadow 200ms ease 0s;
 }
 
-.trigger[open] {
+.trigger[open=true] {
     background-color: rgb(38, 132, 255);
     border-radius: 50%;
 }
@@ -250,11 +250,11 @@
     transform: translateY(-50px);
 }
 
-[over-limit] [last] {
+[over-limit=true] [last=true] {
     opacity: 0;
 }
 
-[over-limit] .avatar-wrapper.participant-enter[last], [over-limit] .avatar-wrapper.participant-leave-to[last] {
+[over-limit=true] .avatar-wrapper.participant-enter[last=true], [over-limit=true] .avatar-wrapper.participant-leave-to[last=true] {
     transform: none;
 }
 

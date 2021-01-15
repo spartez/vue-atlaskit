@@ -98,11 +98,11 @@
         background: rgba(9, 30, 66, 0.08);
     }
 
-    .image-container[loading]::after {
+    .image-container[loading=true]::after {
         opacity: 1;
     }
 
-    .image-container[loading] .image {
+    .image-container[loading=true] .image {
         opacity: .5;
     }
 
@@ -127,7 +127,7 @@
         opacity: 1;
     }
 
-    .image-container[loading] .actions {
+    .image-container[loading=true] .actions {
         display: none;
     }
 
@@ -135,7 +135,7 @@
         color: white;
     }
 
-    .actions >>> button[appearance="subtle"]:not([selected]):not([disabled]):active {
+    .actions >>> button[appearance="subtle"]:not([selected=true]):not([disabled=true]):active {
         color: white;
     }
 

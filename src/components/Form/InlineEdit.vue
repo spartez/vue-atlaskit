@@ -247,7 +247,7 @@
         margin: -8px;
     }
 
-    .content-editable[compact] {
+    .content-editable[compact=true] {
         margin: -2px;
     }
 

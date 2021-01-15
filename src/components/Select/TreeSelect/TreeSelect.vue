@@ -20,7 +20,7 @@
                        @keydown.delete="removeOption">
             </div>
             <div v-if="!selected.length" class="text">
-                <slot v-if="!search && selected && $scopedSlots['selected']" name="selected"
+                <slot v-if="!search && selected && $slots['selected']" name="selected"
                       :ancestors="ancestors"
                       :selected="selected"/>
                 <span v-else :placeholder="!search && !selected.label">
@@ -369,11 +369,11 @@
         flex-wrap: wrap;
     }
 
-    .flex-wrapper[gap] {
+    .flex-wrapper[gap=true] {
         margin-top: -4px;
     }
 
-    .text [placeholder] {
+    .text [placeholder=true] {
         color: rgb(122, 134, 154);
     }
 
@@ -383,7 +383,7 @@
         z-index: 3;
     }
 
-    [gap] .search {
+    [gap=true] .search {
         margin-top: 4px;
     }
 

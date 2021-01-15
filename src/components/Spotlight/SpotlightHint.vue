@@ -64,7 +64,7 @@
         },
         computed: {
             hasMessage() {
-                return this.$scopedSlots.default;
+                return this.$slots.default;
             },
             lastStep() {
                 return this.step === this.total;
