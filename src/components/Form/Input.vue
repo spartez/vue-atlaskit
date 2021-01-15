@@ -12,6 +12,7 @@
 <script>
     import TextField from './TextField';
 
+
     export default {
         name: 'Input',
         components: {
@@ -62,7 +63,7 @@
                     return this.value;
                 },
                 set(val) {
-                    this.$emit('input', val);
+                    this.$emit('update:value', val);
                 }
             }
         },

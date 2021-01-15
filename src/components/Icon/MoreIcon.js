@@ -1,4 +1,5 @@
 import IconWrapper from './IconWrapper';
+            import { h } from 'vue'
 
 export default {
     name: 'MoreIcon',
@@ -13,8 +14,8 @@ export default {
             type: String
         }
     },
-    render(h) {
+    render() {
         // eslint-disable-next-line max-len
-        return h(IconWrapper, { props: { ...this.$props }, domProps: { innerHTML: '<svg viewBox="0 0 24 24"><g fill="currentColor" fill-rule="evenodd"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></g></svg>' } });
+        return h(IconWrapper, { ...this.$props ,  innerHTML: '<svg viewBox="0 0 24 24"><g fill="currentColor" fill-rule="evenodd"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></g></svg>'  });
     }
 };

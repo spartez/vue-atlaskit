@@ -10,8 +10,9 @@ import renameExtensions from '@betit/rollup-plugin-rename-extensions';
 import nodeGlobals from 'rollup-plugin-node-globals';
 
 const plugins = [
-    peerDepsExternal(),
+    vue(),
     css({ output: 'dist/bundle.css' }),
+    peerDepsExternal(),
     resolve({
         extensions: ['.js', '.json', '.vue']
     }),
@@ -19,9 +20,6 @@ const plugins = [
     renameExtensions({
         include: ['**/*.vue'],
         mappings: { '.vue': '.vue.js' }
-    }),
-    vue({
-        css: false
     }),
     json()
 ];

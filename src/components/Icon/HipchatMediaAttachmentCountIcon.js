@@ -1,4 +1,5 @@
 import IconWrapper from './IconWrapper';
+            import { h } from 'vue'
 
 export default {
     name: 'HipchatMediaAttachmentCountIcon',
@@ -13,8 +14,8 @@ export default {
             type: String
         }
     },
-    render(h) {
+    render() {
         // eslint-disable-next-line max-len
-        return h(IconWrapper, { props: { ...this.$props }, domProps: { innerHTML: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="5" fill="currentColor" fill-rule="evenodd"/></svg>' } });
+        return h(IconWrapper, { ...this.$props ,  innerHTML: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="5" fill="currentColor" fill-rule="evenodd"/></svg>'  });
     }
 };

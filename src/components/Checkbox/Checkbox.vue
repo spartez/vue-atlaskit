@@ -20,7 +20,6 @@
         components: { CheckboxIcon, CheckboxIndeterminateIcon },
         model: {
             prop: 'checked',
-            event: 'input'
         },
         props: {
             disabled: {
@@ -57,7 +56,7 @@
                     return this.checked;
                 },
                 set(value) {
-                    this.$emit('input', value);
+                    this.$emit('update:checked', value);
                 }
             }
         },
@@ -141,15 +140,15 @@ input + .icon >>> path {
     fill: #fafbfc;
 }
 
-input:not([is-invalid]):focus + .icon >>> rect {
+input:not([is-invalid=true]):focus + .icon >>> rect {
     stroke: #4c9aff;
 }
 
-input[is-invalid] + .icon >>> rect {
+input[is-invalid=true] + .icon >>> rect {
     stroke: #FF5630;
 }
 
-input[disabled] + .icon >>> rect {
+input[disabled=true] + .icon >>> rect {
     opacity: .5;
 }
 

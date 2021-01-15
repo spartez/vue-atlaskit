@@ -53,7 +53,7 @@
         methods: {
             toggle() {
                 if (this.disabled) return;
-                this.$emit('input', !this.value);
+                this.$emit('update:value', !this.value);
             }
         }
     };

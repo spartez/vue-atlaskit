@@ -1,4 +1,4 @@
-import { shallowMount, mount } from '@vue/test-utils';
+import { mount, mount } from '@vue/test-utils';
 import InlineEdit from '@/components/Form/InlineEdit';
 import InlineEditViewContent from '@/components/Form/InlineEditViewContent';
 import InlineEditButtons from '@/components/Form/InlineEditButtons';
@@ -6,21 +6,21 @@ import InlineErrorMessage from '@/components/Form/InlineErrorMessage';
 import TextField from '@/components/Form/TextField';
 
 const stubs = { InlineEditViewContent };
-const propsData = { value: 'MackBook' };
+const props = { value: 'MackBook' };
 
 describe('InlineEdit', () => {
     it('should emit event on enter', async () => {
-        const component = shallowMount(InlineEdit, { propsData, stubs });
+        const component = mount(InlineEdit, { props, stubs });
         const inlineEditViewContent = component.findComponent(InlineEditViewContent);
 
         inlineEditViewContent.trigger('click');
 
         expect(component.vm.isEditing).toBe(true);
-        expect(component.vm.editingValue).toBe(propsData.value);
+        expect(component.vm.editingValue).toBe(props.value);
     });
 
     it('should show input on editing request', async () => {
-        const component = shallowMount(InlineEdit, { propsData });
+        const component = mount(InlineEdit, { props });
         component.setData({ isEditing: true });
 
         const viewContent = component.findComponent(InlineEditViewContent);
@@ -33,7 +33,7 @@ describe('InlineEdit', () => {
     });
 
     it('should render action buttons', async () => {
-        const component = mount(InlineEdit, { propsData });
+        const component = mount(InlineEdit, { props });
         component.setData({ isEditing: true });
 
         await component.vm.$nextTick();
@@ -43,17 +43,17 @@ describe('InlineEdit', () => {
     });
 
     it('should cancel inline editing', () => {
-        const component = shallowMount(InlineEdit, { propsData });
+        const component = mount(InlineEdit, { props });
         component.setData({ isEditing: true, editingValue: 'Some changed value' });
 
         component.vm.cancelInlineEdit();
 
         expect(component.vm.isEditing).toBe(false);
-        expect(component.vm.editingValue).toBe(propsData.value);
+        expect(component.vm.editingValue).toBe(props.value);
     });
 
     it('should set the state to dirty', async () => {
-        const component = shallowMount(InlineEdit, { propsData });
+        const component = mount(InlineEdit, { props });
         const editingValue = 'Some changed value';
         component.setData({ isEditing: true, editingValue });
 
@@ -63,7 +63,7 @@ describe('InlineEdit', () => {
     });
 
     it('should set the state to not dirty', () => {
-        const component = shallowMount(InlineEdit, { propsData });
+        const component = mount(InlineEdit, { props });
         const editingValue = 'Some changed value';
         component.setData({ isEditing: true, editingValue });
 
@@ -74,7 +74,7 @@ describe('InlineEdit', () => {
     });
 
     it('should handle the validation error', async () => {
-        const component = shallowMount(InlineEdit, { propsData });
+        const component = mount(InlineEdit, { props });
         component.setData({ isEditing: true });
 
         const error = new Error('Validation error');
@@ -93,7 +93,7 @@ describe('InlineEdit', () => {
     });
 
     it('should not render validation dialog when error is different type', () => {
-        const component = shallowMount(InlineEdit, { propsData });
+        const component = mount(InlineEdit, { props });
         component.setData({ isEditing: true });
 
         const error = new Error('Asset not found');
@@ -110,8 +110,8 @@ describe('InlineEdit', () => {
     });
 
     it('should return from confirmEditedValue method if value didn\'t change', () => {
-        const component = shallowMount(InlineEdit, { propsData });
-        component.setData({ isEditing: true, editingValue: propsData.value });
+        const component = mount(InlineEdit, { props });
+        component.setData({ isEditing: true, editingValue: props.value });
 
         component.vm.confirmEditedValue();
 
@@ -120,7 +120,7 @@ describe('InlineEdit', () => {
     });
 
     it('should emit save-requested event on confirm if value changed', async () => {
-        const component = shallowMount(InlineEdit, { propsData });
+        const component = mount(InlineEdit, { props });
         const editingValue = 'changed value';
         component.setData({ isEditing: true, editingValue });
 

@@ -26,7 +26,7 @@
                 {{ !containsQuery && async ? placeholder : noOptionsMessage }}
             </div>
         </div>
-        <div v-if="$slots.default" @mouseover="resetIndex">
+        <div v-if="$slots.default()" @mouseover="resetIndex">
             <slot/>
         </div>
     </div>
@@ -94,9 +94,11 @@
                 this.$emit('option-selected', option);
             },
             onMouseOver(index) {
+                console.log(index)
                 this.$emit('mouseover', index);
             },
             resetIndex() {
+
                 this.$emit('mouseover', undefined);
             }
         }

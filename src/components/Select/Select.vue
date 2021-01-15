@@ -342,7 +342,7 @@
             },
 
             onClear() {
-                this.$emit('input', this.nonClearableOptions);
+                this.$emit('update:value', this.nonClearableOptions);
                 this.isOpen = false;
                 this.$nextTick(() => this.$refs.input.focus());
             },
@@ -354,7 +354,7 @@
                 const selected = this.multi
                     ? [...this.selected.map(e => e.value), option.value]
                     : option.value;
-                this.$emit('input', selected);
+                this.$emit('update:value', selected);
             },
 
             onInput({ target }) {
@@ -370,7 +370,7 @@
                     .filter(option => option.id !== id || option.disabled)
                     .map(option => option.value);
                 this.updatePopperPosition();
-                this.$emit('input', selected);
+                this.$emit('update:value', selected);
                 this.$nextTick(() => this.updatePopperPosition());
             },
 
@@ -380,7 +380,7 @@
                     const { id } = this.selected[this.selected.length - 1];
                     this.onRemove(id);
                 } else if (this.canClearSelectedOption) {
-                    this.$emit('input', undefined);
+                    this.$emit('update:value', undefined);
                 }
             },
 
@@ -464,7 +464,7 @@
             createTag() {
                 const selected = this.multi ? [...this.selected.map(o => o.value), this.search] : this.search;
                 this.search = '';
-                this.$emit('input', selected);
+                this.$emit('update:value', selected);
             },
 
             handleDrag(e) {
@@ -485,7 +485,7 @@
                 const list = [...this.selected];
                 const [item] = list.splice(this.prevIndex, 1);
                 list.splice(nextIndex, 0, item);
-                this.$emit('input', list.map(e => e.value));
+                this.$emit('update:value', list.map(e => e.value));
                 this.$refs.input.focus();
             },
             onDragStart(e, index) {
@@ -526,11 +526,11 @@
         flex-wrap: wrap;
     }
 
-    .flex-wrapper[gap] {
+    .flex-wrapper[gap=true] {
         margin-top: -4px;
     }
 
-    .text [placeholder] {
+    .text [placeholder=true] {
         color: rgb(122, 134, 154);
     }
 
@@ -540,7 +540,7 @@
         z-index: 3;
     }
 
-    [gap] .search {
+    [gap=true] .search {
         margin-top: 4px;
     }
 
@@ -550,12 +550,12 @@
         pointer-events: none;
     }
 
-    .select[disabled] {
+    .select[disabled=true] {
         opacity: 0.7;
         cursor: not-allowed;
     }
 
-    .select[disabled] .text-field {
+    .select[disabled=true] .text-field {
         pointer-events: none;
     }
 

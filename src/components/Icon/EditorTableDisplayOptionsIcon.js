@@ -1,4 +1,5 @@
 import IconWrapper from './IconWrapper';
+            import { h } from 'vue'
 
 export default {
     name: 'EditorTableDisplayOptionsIcon',
@@ -13,8 +14,8 @@ export default {
             type: String
         }
     },
-    render(h) {
+    render() {
         // eslint-disable-next-line max-len
-        return h(IconWrapper, { props: { ...this.$props }, domProps: { innerHTML: '<svg viewBox="0 0 24 24"><path d="M7 6h10a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1zm3 10h6v-5h-6v5z" fill="currentColor"/></svg>' } });
+        return h(IconWrapper, { ...this.$props ,  innerHTML: '<svg viewBox="0 0 24 24"><path d="M7 6h10a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1zm3 10h6v-5h-6v5z" fill="currentColor"/></svg>'  });
     }
 };

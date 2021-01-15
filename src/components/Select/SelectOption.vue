@@ -76,17 +76,17 @@
   overflow: hidden;
 }
 
-.select-option[selected] {
+.select-option[selected=true] {
   background-color: #42526e;
   color: #fff;
 }
 
-.select-option[current] {
+.select-option[current=true] {
   background-color: #ebecf0;
   color: inherit;
 }
 
-.select-option[isSelected] {
+.select-option[isSelected=true] {
   background-color: #42526e;
 }
 </style>

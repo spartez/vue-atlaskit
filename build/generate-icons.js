@@ -23,6 +23,7 @@ function camelize(str) {
 
 function componentTemplate({ componentName, svg }) {
     return `import IconWrapper from './IconWrapper';
+            import { h } from 'vue'
 
 export default {
     name: '${componentName}',
@@ -37,9 +38,9 @@ export default {
             type: String
         }
     },
-    render(h) {
+    render() {
         // eslint-disable-next-line max-len
-        return h(IconWrapper, { props: { ...this.$props }, domProps: { innerHTML: '${svg}' } });
+        return h(IconWrapper, { ...this.$props ,  innerHTML: '${svg}'  });
     }
 };
 `;

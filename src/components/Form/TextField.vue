@@ -1,5 +1,5 @@
 <template>
-    <div class="input-wrapper" data-cy="input-wrapper" v-on="$listeners">
+    <div class="input-wrapper" data-cy="input-wrapper" v-bind="$attrs">
         <slot/>
     </div>
 </template>
@@ -27,8 +27,8 @@
     margin: 0;
 }
 
-.input-wrapper[compact] > input,
-.input-wrapper[compact] > textarea {
+.input-wrapper[compact=true] > input,
+.input-wrapper[compact=true] > textarea {
     padding: 0;
 }
 
@@ -78,12 +78,12 @@ input:-moz-placeholder {
     background-color: #fafbfc;
 }
 
-.input-wrapper[select]:not([is-loading]) {
+.input-wrapper[select=true]:not([is-loading=true]) {
     background-color: #F4F5F7;
     border-color: #F4F5F7;
 }
 
-.input-wrapper[editable]:not([is-focused]) {
+.input-wrapper[editable=true]:not([is-focused=true]) {
     border: transparent;
     background-color: inherit;
 }
@@ -101,23 +101,23 @@ input:-moz-placeholder {
     background-color: #ebecf0;
 }
 
-.input-wrapper[select]:not([is-focused]):not([disabled]):hover {
+.input-wrapper[select=true]:not([is-focused=true]):not([disabled]):hover {
     background-color: #ebecf0;
     border-color: #ebecf0;
     cursor: pointer;
 }
 
-.input-wrapper[is-focused]:not([disabled]):not([is-loading]) {
+.input-wrapper[is-focused=true]:not([disabled]):not([is-loading=true]) {
     background-color: #ffffff;
     border-color: #4c9aff;
 }
 
-.input-wrapper[is-invalid]:not([disabled]):not([is-loading]) {
+.input-wrapper[is-invalid=true]:not([disabled]):not([is-loading=true]) {
     border-color: #de350b;
     animation: shake .5s linear;
 }
 
-.input-wrapper[is-loading] {
+.input-wrapper[is-loading=true] {
     background-color: white;
     animation: loading 1s linear infinite;
     background-image: linear-gradient(90deg, rgba(9, 30, 66, 0.08) 30%, rgba(9, 30, 66, 0.16) 50%, rgba(9, 30, 66, 0.08) 70%);

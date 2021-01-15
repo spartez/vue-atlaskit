@@ -1,4 +1,4 @@
-import { mount, shallowMount } from '@vue/test-utils';
+import { mount, mount } from '@vue/test-utils';
 import Select from '@/components/Select/Select';
 import SelectMenu from '@/components/Select/SelectMenu';
 import TextField from '@/components/Form/TextField';
@@ -41,7 +41,7 @@ describe('Select', () => {
     });
 
     it('input gets focused on select click', async () => {
-        const component = mount(Select, { propsData: { value: 'foo', options } });
+        const component = mount(Select, { props: { value: 'foo', options } });
         component.find(TextField).trigger('click');
         await component.vm.$nextTick();
 
@@ -54,7 +54,7 @@ describe('Select', () => {
 
     it('hide options list on input blur', async () => {
         const component = mount(Select, {
-            propsData: { isFocused: true, value: 'foo', options }
+            props: { isFocused: true, value: 'foo', options }
         });
         const input = component.find('input');
         await component.vm.$nextTick();
@@ -69,7 +69,7 @@ describe('Select', () => {
     });
 
     it('options list are visible on select click', async () => {
-        const component = mount(Select, { propsData: { value: 'foo', options } });
+        const component = mount(Select, { props: { value: 'foo', options } });
         component.find(TextField).trigger('click');
         await component.vm.$nextTick();
 
@@ -80,15 +80,15 @@ describe('Select', () => {
 
     it('should preselect passed array of options', () => {
         const [a, b] = options;
-        const component = shallowMount(Select, { propsData: { value: [a, b], options, multi: true } });
+        const component = mount(Select, { props: { value: [a, b], options, multi: true } });
 
         expect(component.findAll(Tag).at(0).props('tag').label).toBe(a);
         expect(component.findAll(Tag).at(1).props('tag').label).toBe(b);
     });
 
     test('should reset search input after option selected', () => {
-        const component = shallowMount(Select, {
-            propsData: {
+        const component = mount(Select, {
+            props: {
                 value: undefined,
                 options
             }
@@ -102,8 +102,8 @@ describe('Select', () => {
     });
 
     test('input should be emitted after each select passing the selected option', () => {
-        const component = shallowMount(Select, {
-            propsData: {
+        const component = mount(Select, {
+            props: {
                 value: null,
                 options
             }
@@ -115,8 +115,8 @@ describe('Select', () => {
     });
 
     test('input should be emitted after removing an option, passing the undefined value', () => {
-        const component = shallowMount(Select, {
-            propsData: {
+        const component = mount(Select, {
+            props: {
                 value: ['foo'],
                 options
             }
@@ -129,7 +129,7 @@ describe('Select', () => {
     test('should preselect passed array of values', () => {
         const selected = ['1', '2'];
         const component = mount(Select, {
-            propsData: {
+            props: {
                 value: selected,
                 options: ['1', '2', '3'],
                 multi: true
@@ -155,7 +155,7 @@ describe('Select', () => {
         const customNormalizer = option => ({ id: option.id, label: option.id, value: option });
         const selected = [{ id: '3' }, { id: '2' }];
         const component = mount(Select, {
-            propsData: {
+            props: {
                 value: selected,
                 options: [{ id: '1' }, { id: '2' }, { id: '3' }],
                 normalizer: customNormalizer,
@@ -179,8 +179,8 @@ describe('Select', () => {
 
 
     test('should preselect passed simple value', () => {
-        const component = shallowMount(Select, {
-            propsData: {
+        const component = mount(Select, {
+            props: {
                 value: '1',
                 options: ['1', '2', '3']
             }
@@ -191,8 +191,8 @@ describe('Select', () => {
     });
 
     test('should preselect passed object', () => {
-        const component = shallowMount(Select, {
-            propsData: {
+        const component = mount(Select, {
+            props: {
                 value: { id: '2' },
                 options: [{ id: '1' }, { id: '2' }, { id: '3' }],
                 normalizer
@@ -203,8 +203,8 @@ describe('Select', () => {
     });
 
     test('should have visible clear icon when option is selected', () => {
-        const component = shallowMount(Select, {
-            propsData: {
+        const component = mount(Select, {
+            props: {
                 value: '1',
                 options: ['1', '2', '3']
             },
@@ -215,8 +215,8 @@ describe('Select', () => {
     });
 
     test('should hide clear icon when option is selected and is-clearable is set to false', () => {
-        const component = shallowMount(Select, {
-            propsData: {
+        const component = mount(Select, {
+            props: {
                 value: '1',
                 options: ['1', '2', '3'],
                 isClearable: false
@@ -228,8 +228,8 @@ describe('Select', () => {
     });
 
     test('should add values to selected array', () => {
-        const component = shallowMount(Select, {
-            propsData: {
+        const component = mount(Select, {
+            props: {
                 multi: true,
                 value: ['foo'],
                 options
@@ -241,8 +241,8 @@ describe('Select', () => {
     });
 
     test('should add objects to selected array', () => {
-        const component = shallowMount(Select, {
-            propsData: {
+        const component = mount(Select, {
+            props: {
                 value: [{ id: '1' }],
                 options: [{ id: '1' }, { id: '2' }, { id: '3' }],
                 multi: true
@@ -254,8 +254,8 @@ describe('Select', () => {
     });
 
     test('should remove already selected object', () => {
-        const component = shallowMount(Select, {
-            propsData: {
+        const component = mount(Select, {
+            props: {
                 value: [{ id: '2' }],
                 options: [{ id: '1' }, { id: '2' }, { id: '3' }],
                 normalizer,
@@ -267,8 +267,8 @@ describe('Select', () => {
     });
 
     test('should should push new value when createable is set to true', () => {
-        const component = shallowMount(Select, {
-            propsData: {
+        const component = mount(Select, {
+            props: {
                 multi: true,
                 createable: true,
                 value: ['1']
@@ -280,8 +280,8 @@ describe('Select', () => {
     });
 
     test('should prevent pushing new values when max number of options is reached', () => {
-        const component = shallowMount(Select, {
-            propsData: {
+        const component = mount(Select, {
+            props: {
                 multi: true,
                 createable: true,
                 max: 1,

@@ -1,13 +1,13 @@
-import { shallowMount } from '@vue/test-utils';
+import { mount } from '@vue/test-utils';
 import TextArea from '../../../src/components/Form/TextArea';
 
-const propsData = {
+const props = {
     value: 'ABC', maxlength: 5, rows: '10', placeholder: 'Placeholder'
 };
 
 describe('TextArea', () => {
     it('contains properly configured textarea', () => {
-        const component = shallowMount(TextArea, { propsData });
+        const component = mount(TextArea, { props });
 
         expect(component.find('textarea').attributes()).toEqual({
             auto: 'true',
@@ -19,13 +19,13 @@ describe('TextArea', () => {
     });
 
     it('emits focus event on textarea focus', () => {
-        const component = shallowMount(TextArea, { propsData });
+        const component = mount(TextArea, { props });
         component.find('textarea').trigger('focus');
         expect(component.emitted('focus')).toBeTruthy();
     });
 
     it('emits blur event on textarea blur', () => {
-        const component = shallowMount(TextArea, { propsData });
+        const component = mount(TextArea, { props });
         component.find('textarea').trigger('blur');
         expect(component.emitted('blur')).toBeTruthy();
     });

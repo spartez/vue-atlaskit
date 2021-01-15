@@ -1,3 +1,8 @@
+<template>
+    <span :style="{color: primaryColor, fill: secondaryColor}" :size="size">
+        <slot/>
+    </span>
+</template>
 <script>
     export default {
         name: 'IconWrapper',
@@ -14,16 +19,6 @@
                 type: String,
                 default: '#fff'
             }
-        },
-        render(h) {
-            return h(
-                'span',
-                {
-                    style: { color: this.primaryColor, fill: this.secondaryColor },
-                    attrs: { size: this.size },
-                    on: { ...this.$listeners }
-                }, [this.$slots.default]
-            );
         }
     };
 </script>

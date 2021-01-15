@@ -6,10 +6,10 @@
             :selected="isSelected"
             :loading="isLoading"
             :spacing="spacing"
-            v-on="listeners">
+            v-bind="$attrs">
         <span class="wrapper" tabindex="-1" :icon-is-only-child="iconIsOnlyChild">
             <slot v-if="!isLoading" name="icon-before"/>
-            <span v-if="this.$slots.default" ref="label" class="label"><slot/></span>
+            <span v-if="$slots.default" ref="label" class="label"><slot/></span>
             <slot v-if="!isLoading" name="icon-after"/>
             <Spinner v-if="isLoading" :size="spacing === 'default' ? 'small' : 'icon'"/>
         </span>
@@ -36,9 +36,6 @@
             iconIsOnlyChild() {
                 return !!(this.$slots['icon-after'] && !this.$slots['icon-before'] && !this.$slots.default)
                     || (!this.$slots['icon-after'] && this.$slots['icon-before'] && !this.$slots.default);
-            },
-            listeners() {
-                return this.$listeners;
             }
         },
         mounted() {
@@ -117,16 +114,16 @@ span.label {
 }
 
 span.label,
-button[loading],
-button[loading] span.wrapper {
+button[loading=true],
+button[loading=true] span.wrapper {
     pointer-events: none;
 }
 
-button[loading] span.label {
+button[loading=true] span.label {
     opacity: 0;
 }
 
-button[loading] >>> .spinner {
+button[loading=true] :deep(.spinner) {
     display: flex;
     position: absolute;
     left: 50%;
@@ -134,7 +131,7 @@ button[loading] >>> .spinner {
     transform: translate(-50%, -50%);
 }
 
-button[loading][selected] >>> .spinner {
+button[loading=true][selected=true] :deep(.spinner) {
     color: #FFF;
 }
 
@@ -148,17 +145,17 @@ button[appearance="default"] {
     color: #505F79;
 }
 
-button[appearance="default"]:not([disabled]):not([selected]):hover {
+button[appearance="default"]:not([disabled=true]):not([selected=true]):hover {
     background: #efeff2;
 }
 
-button[appearance="default"]:not([disabled]):not([selected]):active {
+button[appearance="default"]:not([disabled=true]):not([selected=true]):active {
     /*background: #d2e6ff;*/
     background-color: rgba(179, 212, 255, 0.6);
     color: #0052CC;
 }
 
-button[appearance="default"]:active >>> svg {
+button[appearance="default"]:active :deep(svg) {
     color: #0052CC;
 }
 
@@ -168,15 +165,15 @@ button[appearance="primary"] {
     color: #FFFFFF;
 }
 
-button[appearance="primary"]:not([disabled]):not([selected]):hover {
+button[appearance="primary"]:not([disabled=true]):not([selected=true]):hover {
     background: #0065FF;
 }
 
-button[appearance="primary"]:not([disabled]):not([selected]):active {
+button[appearance="primary"]:not([disabled=true]):not([selected=true]):active {
     background: #0747A6;
 }
 
-button[appearance="primary"][loading] >>> .spinner {
+button[appearance="primary"][loading=true] :deep(.spinner) {
     color: #FFF;
 }
 
@@ -186,12 +183,12 @@ button[appearance="link"] {
     color: #0052CC;
 }
 
-button[appearance="link"]:not([disabled]):not([selected]):hover {
+button[appearance="link"]:not([disabled=true]):not([selected=true]):hover {
     color: #0065FF;
     text-decoration: underline;
 }
 
-button[appearance="link"]:not([disabled]):not([selected]):active {
+button[appearance="link"]:not([disabled=true]):not([selected=true]):active {
     text-decoration: none;
     color: #0747A6;
 }
@@ -202,11 +199,11 @@ button[appearance="subtle"] {
     color: #505F79;
 }
 
-button[appearance="subtle"]:not([disabled]):not([selected]):hover {
+button[appearance="subtle"]:not([disabled=true]):not([selected=true]):hover {
     background-color: rgba(9, 30, 66, 0.08);
 }
 
-button[appearance="subtle"]:not([disabled]):not([selected]):active {
+button[appearance="subtle"]:not([disabled=true]):not([selected=true]):active {
     background: rgba(179, 212, 255, 0.6);
     color: #0052CC;
 }
@@ -217,12 +214,12 @@ button[appearance="subtle-link"] {
     color: #6B778C;
 }
 
-button[appearance="subtle-link"]:not([disabled]):not([selected]):hover {
+button[appearance="subtle-link"]:not([disabled=true]):not([selected=true]):hover {
     text-decoration: underline;
     color: #8993A4;
 }
 
-button[appearance="subtle-link"]:not([disabled]):not([selected]):active {
+button[appearance="subtle-link"]:not([disabled=true]):not([selected=true]):active {
     text-decoration: none;
     color: #505F79;
 }
@@ -237,20 +234,20 @@ button:focus[appearance="warning"] {
     box-shadow: #FF8B00 0 0 0 2px;
 }
 
-button[appearance="warning"]:not([disabled]):not([selected]):hover {
+button[appearance="warning"]:not([disabled=true]):not([selected=true]):hover {
     background: #FFC400;
 }
 
-button[appearance="warning"]:not([disabled]):not([selected]):active,
-button[appearance="warning"][selected],
-button[appearance="warning"][selected]:hover {
+button[appearance="warning"]:not([disabled=true]):not([selected=true]):active,
+button[appearance="warning"][selected=true],
+button[appearance="warning"][selected=true]:hover {
     background: #FF991F;
     color: #172B4D;
 }
 
-button[appearance="warning"]:active >>> svg,
-button[appearance="warning"][selected] >>> svg,
-button[appearance="warning"][selected]:hover >>> svg {
+button[appearance="warning"]:active :deep(svg),
+button[appearance="warning"][selected=true] :deep(svg),
+button[appearance="warning"][selected=true]:hover :deep(svg) {
     color: #172B4D;
 }
 
@@ -264,49 +261,49 @@ button:focus[appearance="danger"] {
     box-shadow: #FF8F73 0 0 0 2px;
 }
 
-button[appearance="danger"]:not([disabled]):not([selected]):hover {
+button[appearance="danger"]:not([disabled=true]):not([selected=true]):hover {
     background: #FF5630;
 }
 
-button[appearance="danger"]:not([disabled]):not([selected]):active,
-button[appearance="danger"][selected],
-button[appearance="danger"][selected]:hover {
+button[appearance="danger"]:not([disabled=true]):not([selected=true]):active,
+button[appearance="danger"][selected=true],
+button[appearance="danger"][selected=true]:hover {
     background: #BF2600;
 }
 
-button[appearance="danger"][loading] >>> .spinner {
+button[appearance="danger"][loading=true] :deep(.spinner) {
     color: #FFF;
 }
 
-button[selected],
-button[selected]:hover,
-button[selected]:active {
+button[selected=true],
+button[selected=true]:hover,
+button[selected=true]:active {
     background: #253858;
     color: rgb(244, 245, 247);
     text-decoration: none;
 }
 
-button[selected] >>> svg,
-button[selected]:hover >>> svg,
-button[selected]:active >>> svg {
+button[selected=true] :deep(svg),
+button[selected=true]:hover :deep(svg),
+button[selected=true]:active :deep(svg) {
     color: rgb(244, 245, 247);
 }
 
-button[disabled] span.wrapper,
-button[disabled] >>> svg {
+button[disabled=true] span.wrapper,
+button[disabled=true] :deep(svg) {
     color: rgb(165, 173, 186);
     pointer-events: none;
 }
 
-button[disabled] {
+button[disabled=true] {
     cursor: not-allowed;
 }
 
-button[loading][disabled] >>> .spinner {
+button[loading=true][disabled=true] :deep(.spinner) {
     color: #172B4D;
 }
 
-button[disabled]:not([appearance="subtle-link"]):not([appearance="link"]):not([appearance="subtle"]) {
+button[disabled=true]:not([appearance="subtle-link"]):not([appearance="link"]):not([appearance="subtle"]) {
     background: rgba(9, 30, 66, 0.04);
 }
 
