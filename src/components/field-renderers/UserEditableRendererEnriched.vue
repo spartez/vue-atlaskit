@@ -4,7 +4,7 @@
         <UserEditableRenderer slot-scope="{ value }" :user="value"
                               :load-options="user.getUsers"
                               :editable="editable"
-                              v-on="$listeners"/>
+                              v-on="$attrs"/>
         <template slot="loader-shape">
             <circle cx="12" cy="12"
                     :r="12"/>
@@ -18,7 +18,7 @@
         <component :is="editable ? 'UserEditableRenderer' : 'UserRenderer'"
                    slot="error-message" :user="{ key: user.value }"
                    :editable="true"
-                   v-on="$listeners">
+                   v-on="$attrs">
             <div class="user-error">
                 <div class="avatar">
                     <CrossIcon size="small"/>

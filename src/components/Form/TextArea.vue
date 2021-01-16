@@ -67,7 +67,7 @@
         },
         computed: {
             listeners() {
-                const { input, ...listeners } = this.$listeners;
+                const { input, ...listeners } = this.$attrs;
                 return listeners;
             },
             text: {

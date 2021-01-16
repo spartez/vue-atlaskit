@@ -48,7 +48,7 @@
             if (!this.$spotlight) return;
             this.$spotlight.registerSpotlight(this);
         },
-        beforeDestroy() {
+        beforeUnmount() {
             if (!this.$spotlight) return;
             this.$spotlight.unRegisterSpotlight(this);
         },

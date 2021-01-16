@@ -24,7 +24,7 @@
         async mounted() {
             this.createObserver();
         },
-        beforeDestroy() {
+        beforeUnmount() {
             this.observer.disconnect();
         },
         methods: {

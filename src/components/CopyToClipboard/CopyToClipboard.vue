@@ -47,7 +47,7 @@
                 return this.copied ? 'Copied' : this.label;
             }
         },
-        beforeDestroy() {
+        beforeUnmount() {
             clearTimeout(this.timeout);
         },
         methods: {

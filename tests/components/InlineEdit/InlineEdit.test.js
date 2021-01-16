@@ -1,4 +1,4 @@
-import { mount, mount } from '@vue/test-utils';
+import { mount } from '@vue/test-utils';
 import InlineEdit from '@/components/Form/InlineEdit';
 import InlineEditViewContent from '@/components/Form/InlineEditViewContent';
 import InlineEditButtons from '@/components/Form/InlineEditButtons';

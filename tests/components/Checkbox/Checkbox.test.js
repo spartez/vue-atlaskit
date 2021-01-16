@@ -7,7 +7,7 @@ describe('Checkbox', () => {
         const component = mount(Checkbox, { props: { checked: false } });
         const input = component.find('input');
         input.trigger('click');
-        const [emitted] = component.emitted('input');
+        const [emitted] = component.emitted('update:checked');
         expect(emitted).toEqual([true]);
     });
 
@@ -23,7 +23,7 @@ describe('Checkbox', () => {
         const component = mount(Checkbox, { props: { disabled: true } });
         const input = component.find('input');
         input.trigger('click');
-        expect(input.attributes('disabled')).toBe('disabled');
+        expect(input.attributes('disabled')).toBe(true);
         expect(component.emitted('focus')).toBeFalsy();
     });
 });

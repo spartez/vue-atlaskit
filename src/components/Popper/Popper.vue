@@ -43,7 +43,7 @@
                 this.initPopper();
             });
         },
-        beforeDestroy() {
+        beforeUnmount() {
             setTimeout(() => this.popper.destroy(), this.transitionDelay);
         },
         methods: {

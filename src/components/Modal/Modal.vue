@@ -84,7 +84,7 @@
         beforeMount() {
             document.addEventListener('keyup', this.onEsc);
         },
-        beforeDestroy() {
+        beforeUnmount() {
             document.removeEventListener('keyup', this.onEsc);
         },
         methods: {

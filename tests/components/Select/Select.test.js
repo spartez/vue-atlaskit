@@ -1,4 +1,4 @@
-import { mount, mount } from '@vue/test-utils';
+import { mount } from '@vue/test-utils';
 import Select from '@/components/Select/Select';
 import SelectMenu from '@/components/Select/SelectMenu';
 import TextField from '@/components/Form/TextField';
@@ -42,7 +42,7 @@ describe('Select', () => {
 
     it('input gets focused on select click', async () => {
         const component = mount(Select, { props: { value: 'foo', options } });
-        component.find(TextField).trigger('click');
+        component.findComponent(TextField).trigger('click');
         await component.vm.$nextTick();
 
         const input = component.find('input').element;
@@ -58,7 +58,7 @@ describe('Select', () => {
         });
         const input = component.find('input');
         await component.vm.$nextTick();
-        const menu = component.find(SelectMenu);
+        const menu = component.findComponent(SelectMenu);
 
         expect(menu.exists()).toBeTruthy();
 
@@ -70,10 +70,10 @@ describe('Select', () => {
 
     it('options list are visible on select click', async () => {
         const component = mount(Select, { props: { value: 'foo', options } });
-        component.find(TextField).trigger('click');
+        component.findComponent(TextField).trigger('click');
         await component.vm.$nextTick();
 
-        const menu = component.find(SelectMenu);
+        const menu = component.findComponent(SelectMenu);
 
         expect(menu.exists()).toBeTruthy();
     });
@@ -82,8 +82,8 @@ describe('Select', () => {
         const [a, b] = options;
         const component = mount(Select, { props: { value: [a, b], options, multi: true } });
 
-        expect(component.findAll(Tag).at(0).props('tag').label).toBe(a);
-        expect(component.findAll(Tag).at(1).props('tag').label).toBe(b);
+        expect(component.findAllComponents(Tag)[0].props('tag').label).toBe(a);
+        expect(component.findAllComponents(Tag)[1].props('tag').label).toBe(b);
     });
 
     test('should reset search input after option selected', () => {
@@ -111,7 +111,7 @@ describe('Select', () => {
         const [selected] = options;
 
         component.vm.onOptionSelected(normalizer(selected));
-        expect(component.emitted('input')).toEqual([['foo']]);
+        expect(component.emitted('update:value')).toEqual([['foo']]);
     });
 
     test('input should be emitted after removing an option, passing the undefined value', () => {
@@ -123,7 +123,7 @@ describe('Select', () => {
         });
 
         component.vm.removeOption();
-        expect(component.emitted('input')).toEqual([[undefined]]);
+        expect(component.emitted('update:value')).toEqual([[undefined]]);
     });
 
     test('should preselect passed array of values', () => {
@@ -139,14 +139,12 @@ describe('Select', () => {
         expect(component.vm.selected).toEqual(normalized);
         expect(
             component
-                .findAllComponents(Tag)
-                .at(0)
+                .findAllComponents(Tag)[0]
                 .text()
         ).toContainEqual('1');
         expect(
             component
-                .findAllComponents(Tag)
-                .at(1)
+                .findAllComponents(Tag)[1]
                 .text()
         ).toContainEqual('2');
     });
@@ -165,14 +163,12 @@ describe('Select', () => {
         expect(component.vm.selected).toEqual(selected.map(o => customNormalizer(o)));
         expect(
             component
-                .findAllComponents(Tag)
-                .at(0)
+                .findAllComponents(Tag)[0]
                 .text()
         ).toContainEqual('3');
         expect(
             component
-                .findAllComponents(Tag)
-                .at(1)
+                .findAllComponents(Tag)[1]
                 .text()
         ).toContainEqual('2');
     });
@@ -237,7 +233,7 @@ describe('Select', () => {
         });
         const [, selected] = options;
         component.vm.onOptionSelected(normalizer(selected));
-        expect(component.emitted('input')).toEqual([[['foo', 'bar']]]);
+        expect(component.emitted('update:value')).toEqual([[['foo', 'bar']]]);
     });
 
     test('should add objects to selected array', () => {
@@ -250,7 +246,7 @@ describe('Select', () => {
             }
         });
         component.vm.onOptionSelected(normalizer({ id: '2' }));
-        expect(component.emitted('input')).toEqual([[[{ id: '1' }, { id: '2' }]]]);
+        expect(component.emitted('update:value')).toEqual([[[{ id: '1' }, { id: '2' }]]]);
     });
 
     test('should remove already selected object', () => {
@@ -263,7 +259,7 @@ describe('Select', () => {
             }
         });
         component.vm.onRemove('2');
-        expect(component.emitted('input')).toEqual([[[]]]);
+        expect(component.emitted('update:value')).toEqual([[[]]]);
     });
 
     test('should should push new value when createable is set to true', () => {
@@ -276,7 +272,7 @@ describe('Select', () => {
         });
         component.vm.search = 'TEST';
         component.vm.onSuggestionSelected();
-        expect(component.emitted('input')).toEqual([[['1', 'TEST']]]);
+        expect(component.emitted('update:value')).toEqual([[['1', 'TEST']]]);
     });
 
     test('should prevent pushing new values when max number of options is reached', () => {
@@ -290,6 +286,6 @@ describe('Select', () => {
         });
         component.vm.search = 'TEST';
         component.vm.onSuggestionSelected();
-        expect(component.emitted('input')).toBeFalsy();
+        expect(component.emitted('update:value')).toBeFalsy();
     });
 });

@@ -66,7 +66,7 @@
                 }
             }
         },
-        beforeDestroy() {
+        beforeUnmount() {
             document.removeEventListener('click', this.onOutsideClick);
         },
         methods: {

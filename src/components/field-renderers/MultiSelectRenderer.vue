@@ -56,7 +56,7 @@
             window.addEventListener('resize', this.onResize);
             this.checkOverflow();
         },
-        beforeDestroy() {
+        beforeUnmount() {
             window.removeEventListener('resize', this.onResize);
         },
         updated() {

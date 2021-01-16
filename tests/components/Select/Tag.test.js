@@ -11,7 +11,7 @@ describe('Tag', () => {
                 tag, index: 1, count: 2, min: 0
             }
         });
-        const remove = component.find({ ref: 'remove' });
+        const remove = component.find('.remove-tag');
 
         expect(remove.exists()).toBeTruthy();
     });
@@ -23,7 +23,7 @@ describe('Tag', () => {
                 tag, index: 1, count: 1, min: 1
             }
         });
-        const remove = component.find({ ref: 'remove' });
+        const remove = component.find('.remove-tag');
 
         expect(remove.exists()).toBeFalsy();
     });
@@ -35,7 +35,7 @@ describe('Tag', () => {
                 tag, index: 1, count: 2, min: 0
             }
         });
-        const remove = component.find({ ref: 'remove' });
+        const remove = component.find('.remove-tag');
 
         expect(remove.exists()).toBeFalsy();
     });

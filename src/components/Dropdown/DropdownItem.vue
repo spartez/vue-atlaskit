@@ -1,5 +1,5 @@
 <template>
-    <div class="dropdown-item" v-on="$listeners" @click="$emit('select',value)">
+    <div class="dropdown-item" v-on="$attrs" @click="$emit('select',value)">
         <span class="dropdown-item-label">
             <slot/>
         </span>

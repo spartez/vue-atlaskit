@@ -20,7 +20,7 @@ describe('Input', () => {
         component.find('input').element.value = 'Typed value';
         component.find('input').trigger('input');
 
-        const [value] = component.emitted('input');
+        const [value] = component.emitted('update:value');
 
         expect(value).toEqual(['Typed value']);
     });
