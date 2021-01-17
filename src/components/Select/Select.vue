@@ -59,9 +59,11 @@
                         @update-popper-position="updatePopperPosition"
                         @hover="onMouseOverSuggestion"
                         @option-selected="onOptionSelected">
-                <slot slot="option" slot-scope="{option, isCurrent}" name="option"
-                      :is-current="isCurrent"
-                      :option="option"/>
+                <template v-slot:option="{option, isCurrent}">
+                    <slot name="option"
+                          :is-current="isCurrent"
+                          :option="option"/>
+                </template>
                 <slot name="custom-action"/>
             </SelectMenu>
         </Popper>

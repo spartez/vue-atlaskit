@@ -24,14 +24,16 @@
                       :position-fixed="dropdownPositionFixed"
                       :append-to-body="appendToBody"
                       class="dropdown-wrapper">
-                <div slot="trigger" slot-scope="{ toggle, isOpen }" class="trigger"
-                     :size="size" :open="isOpen">
+                <template v-slot:trigger="{toggle,isOpen}">
+                    <div class="trigger"
+                         :size="size" :open="isOpen">
                     <div class="more" @click="toggle">
                         <transition :name="counterUp ? 'counter-up' : 'counter-down'">
                             <span :key="collapsedCount" class="collapsed-count">+{{ collapsedCount }}</span>
                         </transition>
                     </div>
-                </div>
+                    </div>
+                </template>
                 <DropdownItem v-for="collapsedUser in collapsed" :key="collapsedUser.key">
                     <a v-if="collapsedUser.link" class="list-item" :href="collapsedUser.link"
                        target="_blank">

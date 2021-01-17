@@ -5,12 +5,14 @@
                       :value="row[column.id]"
                       :sticky-left="stickyLeft && index === 0"
                       :sticky-right="stickyRight && index === (columns.length - 1)">
-            <slot slot-scope="props" :name="column.id" :row="row"
-                  v-bind="props">
-                <span class="table-row-cell-value">
-                    {{ row[column.id] }}
-                </span>
-            </slot>
+            <template v-slot:default="props">
+                <slot :name="column.id" :row="row"
+                      v-bind="props">
+                    <span class="table-row-cell-value">
+                        {{ row[column.id] }}
+                    </span>
+                </slot>
+            </template>
         </TableRowCell>
     </tr>
 </template>

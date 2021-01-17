@@ -1,6 +1,6 @@
 <template>
     <Promised v-if="isPromise(value)" :promise="value" :pending-delay="pendingDelay">
-        <template slot="combined" slot-scope="{ isPending, isDelayOver, data, error }">
+        <template v-slot:combined="{ isPending, isDelayOver, data, error }">
             <ContentLoader v-if="(isDelayOver && isPending)"
                            :width="width" :height="height"
                            :preserve-aspect-ratio="preserveAspectRatio"

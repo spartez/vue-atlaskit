@@ -10,15 +10,21 @@
             @update:value="onInput"
             @open="loadInitialOptions"
             @search-change="debouncedGetUsers">
-        <div slot="option" slot-scope="{option}" class="label">
-            <UserRenderer tag="span" :user="option"/>
-        </div>
-        <div slot="selected" slot-scope="{selected}" class="label">
-            <UserRenderer tag="span" :user="selected"/>
-        </div>
-        <div slot="tag" slot-scope="{tag}" class="user-tag">
-            <UserRenderer appearance="micro" tag="span" :user="tag.value"/>
-        </div>
+        <template v-slot:option="{option}">
+            <div class="label">
+                <UserRenderer tag="span" :user="option"/>
+            </div>
+        </template>
+        <template v-slot:selected="{selected}">
+            <div class="label">
+                <UserRenderer tag="span" :user="selected"/>
+            </div>
+        </template>
+        <template v-slot:tag="{tag}">
+            <div class="user-tag">
+                <UserRenderer appearance="micro" tag="span" :user="tag.value"/>
+            </div>
+        </template>
     </Select>
 </template>
 
