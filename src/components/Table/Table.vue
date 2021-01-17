@@ -194,7 +194,7 @@
         z-index: 200;
     }
 
-    .table-wrapper .busy-glass[busy] {
+    .table-wrapper .busy-glass[busy=true] {
         display: flex;
         align-items: center;
         justify-content: center;
