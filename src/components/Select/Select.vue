@@ -509,7 +509,7 @@
         overflow: hidden;
     }
 
-    .text-field {
+    .text-field.input-wrapper {
         flex-wrap: wrap;
         padding: 6px 45px 6px 6px;
         justify-content: normal;
