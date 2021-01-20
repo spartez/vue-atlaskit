@@ -272,7 +272,11 @@
             isFocused: {
                 handler(isFocused) {
                     if (isFocused) {
-                        this.$nextTick(() => this.$refs.input.focus());
+                        this.$nextTick(() => {
+                            if (this.$refs.input) {
+                                this.$refs.input.focus();
+                            }
+                        });
                     }
                 },
                 immediate: true
@@ -456,7 +460,9 @@
             },
 
             updatePopperPosition() {
+                console.log('asdasdadasdasdas');
                 if (this.$refs.menu) {
+                    debugger;
                     this.$refs.menu.update();
                 }
             },
