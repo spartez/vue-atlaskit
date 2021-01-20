@@ -3,11 +3,13 @@
             :options="users"
             :async="true"
             :multi="multi"
+            :is-focused="isFocused"
             :is-fetching="isFetching"
             :placeholder="placeholder"
             :normalizer="normalizer"
             v-on="$listeners"
             @open="loadInitialOptions"
+            @confirm="onConfirm"
             @search-change="debouncedGetUsers">
         <div slot="option" slot-scope="{option}" class="label">
             <UserRenderer tag="span" :user="option"/>
@@ -39,6 +41,10 @@
                 default: undefined
             },
             multi: {
+                type: Boolean,
+                default: false
+            },
+            isFocused: {
                 type: Boolean,
                 default: false
             },
@@ -89,6 +95,10 @@
                     value: user,
                     disabled: user.disabled
                 };
+            },
+
+            onConfirm() {
+                this.$emit('confirm');
             }
         }
     };

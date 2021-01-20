@@ -421,17 +421,17 @@
             },
 
             onSuggestionSelected(e) {
+                // if current index is undefined, means we don't want to select any value, just submit
+                if (this.currentSuggestionIndex === undefined && !this.canCreateTag) {
+                    this.$emit('confirm', e);
+                    return;
+                }
                 if (this.canCreateTag) {
                     if (!this.isValidOption(this.search)) {
                         this.$emit('error');
                         return;
                     }
                     this.createTag();
-                }
-                // if current index is undefined, means we don't want to select any value, just submit
-                if (this.currentSuggestionIndex === undefined) {
-                    this.$emit('confirm', e);
-                    return;
                 }
                 e.preventDefault();
 

@@ -266,7 +266,7 @@ describe('Select', () => {
         expect(component.emitted('input')).toEqual([[[]]]);
     });
 
-    test('should should push new value when createable is set to true', () => {
+    test('should push new value when createable is set to true', () => {
         const component = shallowMount(Select, {
             propsData: {
                 multi: true,
@@ -275,7 +275,7 @@ describe('Select', () => {
             }
         });
         component.vm.search = 'TEST';
-        component.vm.onSuggestionSelected();
+        component.vm.onSuggestionSelected({ preventDefault: () => ({}) });
         expect(component.emitted('input')).toEqual([[['1', 'TEST']]]);
     });
 
