@@ -460,9 +460,7 @@
             },
 
             updatePopperPosition() {
-                console.log('asdasdadasdasdas');
                 if (this.$refs.menu) {
-                    debugger;
                     this.$refs.menu.update();
                 }
             },
