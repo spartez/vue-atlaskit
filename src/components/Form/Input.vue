@@ -71,11 +71,18 @@
                 if (this.allowedValues) {
                     this.input = this.input.replace(new RegExp(this.allowedValues, 'g'), '');
                 }
-            }
-        },
-        mounted() {
-            if (this.autoFocus) {
-                this.$refs.input.focus();
+            },
+            autoFocus: {
+                handler(isFocused) {
+                    if (isFocused) {
+                        this.$nextTick(() => {
+                            if (this.$refs.input) {
+                                this.$refs.input.focus();
+                            }
+                        });
+                    }
+                },
+                immediate: true
             }
         },
         methods: {
