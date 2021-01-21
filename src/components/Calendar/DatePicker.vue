@@ -9,7 +9,8 @@
                    @focus="onFocus" @blur="onBlur">
             <CalendarIcon class="icon" size="small" @mousedown.native.prevent/>
         </TextField>
-        <Popup :is-open="isOpen" :target-element="$refs['date-picker']" placement="bottom-start">
+        <Popup :is-open="isOpen" :target-element="$refs['date-picker']" placement="bottom-start"
+               data-cy="select-menu">
             <Calendar :value="selectedDate" @date-selected="onDateSelected"/>
         </Popup>
     </div>
