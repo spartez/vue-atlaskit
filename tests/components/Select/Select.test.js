@@ -54,7 +54,9 @@ describe('Select', () => {
 
     it('hide options list on input blur', async () => {
         const component = mount(Select, {
-            propsData: { isFocused: true, value: 'foo', options }
+            propsData: {
+                isFocused: true, value: 'foo', options, openOnFocus: true
+            }
         });
         const input = component.find('input');
         await component.vm.$nextTick();

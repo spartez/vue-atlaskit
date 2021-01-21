@@ -175,6 +175,10 @@
             isDisabled: {
                 type: Boolean,
                 default: false
+            },
+            openOnFocus: {
+                type: Boolean,
+                default: false
             }
         },
         data() {
@@ -313,7 +317,7 @@
             onFocus(e) {
                 if (this.isLoading) return;
                 this.focused = true;
-                if (this.$refs.target && !this.$refs.target.contains(e.relatedTarget)) {
+                if (this.openOnFocus && this.$refs.target && !this.$refs.target.contains(e.relatedTarget)) {
                     this.isOpen = true;
                 }
                 this.$emit('focus', e);
@@ -513,7 +517,7 @@
         overflow: hidden;
     }
 
-    .text-field.input-wrapper {
+    .text-field {
         flex-wrap: wrap;
         padding: 6px 45px 6px 6px;
         justify-content: normal;

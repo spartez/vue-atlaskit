@@ -6,6 +6,7 @@
         <Select slot="editor" slot-scope="props"
                 :value="props.value"
                 :multi="true"
+                :open-on-focus="true"
                 :options="options"
                 :is-invalid="props.isInvalid"
                 :is-focused="props.isFocused"

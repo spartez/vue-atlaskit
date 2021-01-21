@@ -8,6 +8,7 @@
         <Select slot="editor" slot-scope="props"
                 :value="props.value"
                 :options="users"
+                :open-on-focus="true"
                 :is-clearable="clearable"
                 :async="true"
                 placeholder="Type to search..."

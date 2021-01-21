@@ -8,6 +8,7 @@
                 :value="props.value"
                 :options="options"
                 :normalizer="normalizer"
+                :open-on-focus="true"
                 :is-invalid="props.isInvalid"
                 :is-focused="props.isFocused"
                 :is-loading="props.isLoading"
