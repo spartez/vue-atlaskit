@@ -145,11 +145,11 @@ button[appearance="default"] {
     color: #505F79;
 }
 
-button[appearance="default"]:not([disabled=true]):not([selected=true]):hover {
+button[appearance="default"]:not([disabled]):not([selected=true]):hover {
     background: #efeff2;
 }
 
-button[appearance="default"]:not([disabled=true]):not([selected=true]):active {
+button[appearance="default"]:not([disabled]):not([selected=true]):active {
     /*background: #d2e6ff;*/
     background-color: rgba(179, 212, 255, 0.6);
     color: #0052CC;
@@ -165,11 +165,11 @@ button[appearance="primary"] {
     color: #FFFFFF;
 }
 
-button[appearance="primary"]:not([disabled=true]):not([selected=true]):hover {
+button[appearance="primary"]:not([disabled]):not([selected=true]):hover {
     background: #0065FF;
 }
 
-button[appearance="primary"]:not([disabled=true]):not([selected=true]):active {
+button[appearance="primary"]:not([disabled]):not([selected=true]):active {
     background: #0747A6;
 }
 
@@ -183,12 +183,12 @@ button[appearance="link"] {
     color: #0052CC;
 }
 
-button[appearance="link"]:not([disabled=true]):not([selected=true]):hover {
+button[appearance="link"]:not([disabled]):not([selected=true]):hover {
     color: #0065FF;
     text-decoration: underline;
 }
 
-button[appearance="link"]:not([disabled=true]):not([selected=true]):active {
+button[appearance="link"]:not([disabled]):not([selected=true]):active {
     text-decoration: none;
     color: #0747A6;
 }
@@ -199,11 +199,11 @@ button[appearance="subtle"] {
     color: #505F79;
 }
 
-button[appearance="subtle"]:not([disabled=true]):not([selected=true]):hover {
+button[appearance="subtle"]:not([disabled]):not([selected=true]):hover {
     background-color: rgba(9, 30, 66, 0.08);
 }
 
-button[appearance="subtle"]:not([disabled=true]):not([selected=true]):active {
+button[appearance="subtle"]:not([disabled]):not([selected=true]):active {
     background: rgba(179, 212, 255, 0.6);
     color: #0052CC;
 }
@@ -214,12 +214,12 @@ button[appearance="subtle-link"] {
     color: #6B778C;
 }
 
-button[appearance="subtle-link"]:not([disabled=true]):not([selected=true]):hover {
+button[appearance="subtle-link"]:not([disabled]):not([selected=true]):hover {
     text-decoration: underline;
     color: #8993A4;
 }
 
-button[appearance="subtle-link"]:not([disabled=true]):not([selected=true]):active {
+button[appearance="subtle-link"]:not([disabled]):not([selected=true]):active {
     text-decoration: none;
     color: #505F79;
 }
@@ -234,11 +234,11 @@ button:focus[appearance="warning"] {
     box-shadow: #FF8B00 0 0 0 2px;
 }
 
-button[appearance="warning"]:not([disabled=true]):not([selected=true]):hover {
+button[appearance="warning"]:not([disabled]):not([selected=true]):hover {
     background: #FFC400;
 }
 
-button[appearance="warning"]:not([disabled=true]):not([selected=true]):active,
+button[appearance="warning"]:not([disabled]):not([selected=true]):active,
 button[appearance="warning"][selected=true],
 button[appearance="warning"][selected=true]:hover {
     background: #FF991F;
@@ -261,11 +261,11 @@ button:focus[appearance="danger"] {
     box-shadow: #FF8F73 0 0 0 2px;
 }
 
-button[appearance="danger"]:not([disabled=true]):not([selected=true]):hover {
+button[appearance="danger"]:not([disabled]):not([selected=true]):hover {
     background: #FF5630;
 }
 
-button[appearance="danger"]:not([disabled=true]):not([selected=true]):active,
+button[appearance="danger"]:not([disabled]):not([selected=true]):active,
 button[appearance="danger"][selected=true],
 button[appearance="danger"][selected=true]:hover {
     background: #BF2600;
@@ -289,21 +289,21 @@ button[selected=true]:active :deep(svg) {
     color: rgb(244, 245, 247);
 }
 
-button[disabled=true] span.wrapper,
-button[disabled=true] :deep(svg) {
+button[disabled] span.wrapper,
+button[disabled] :deep(svg) {
     color: rgb(165, 173, 186);
     pointer-events: none;
 }
 
-button[disabled=true] {
+button[disabled] {
     cursor: not-allowed;
 }
 
-button[loading=true][disabled=true] :deep(.spinner) {
+button[loading=true][disabled] :deep(.spinner) {
     color: #172B4D;
 }
 
-button[disabled=true]:not([appearance="subtle-link"]):not([appearance="link"]):not([appearance="subtle"]) {
+button[disabled]:not([appearance="subtle-link"]):not([appearance="link"]):not([appearance="subtle"]) {
     background: rgba(9, 30, 66, 0.04);
 }
 

@@ -5,6 +5,7 @@
             :offset="offset"
             :boundaries-element="boundariesElement"
             :position-fixed="positionFixed"
+            class="popper"
             spotlight-skip>
         <div class="popup">
             <slot/>
@@ -63,5 +64,9 @@
         z-index: 400;
         border-radius: 3px;
         flex: 1 1 auto;
+    }
+
+    .popper {
+        z-index: 10000;
     }
 </style>
