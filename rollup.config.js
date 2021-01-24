@@ -1,13 +1,27 @@
+import fs from 'fs';
+import path from 'path';
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import babel from '@rollup/plugin-babel';
 import json from '@rollup/plugin-json';
 import vue from 'rollup-plugin-vue';
-import { terser } from 'rollup-plugin-terser';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 import css from 'rollup-plugin-css-only';
 import renameExtensions from '@betit/rollup-plugin-rename-extensions';
-import nodeGlobals from 'rollup-plugin-node-globals';
+
+const ROOT_DIR = 'src/components/';
+
+const components = fs
+    .readdirSync(ROOT_DIR)
+    .filter((f) =>
+        fs.statSync(path.join(ROOT_DIR, f)).isDirectory()
+    );
+const entries = {
+    index: 'src/index.js',
+    ...components.reduce((entry, name) => {
+        return { [name]: ROOT_DIR + name + '/index.js', ...entry }
+    }, [])
+};
 
 const plugins = [
     vue(),
@@ -26,18 +40,12 @@ const plugins = [
 
 export default [
     {
-        input: 'src/index.js',
+        input: entries,
         output: [
             {
-                format: 'es',
+                format: 'esm',
                 dir: 'dist',
-                preserveModules: true,
-                preserveModulesRoot: 'src'
             },
-            {
-                format: 'cjs',
-                file: 'dist/index.cjs.js'
-            }
         ],
         plugins: [
             ...plugins,
@@ -48,36 +56,5 @@ export default [
             })
         ],
         external: [/@babel\/runtime/]
-    }, {
-        input: 'src/index.umd.js',
-        output: [
-            {
-                exports: 'named',
-                format: 'umd',
-                file: 'dist/index.min.js',
-                name: 'VueAtlaskit',
-                globals: {
-                    vue: 'Vue'
-                }
-            }
-        ],
-        plugins: [
-            ...plugins,
-            babel({
-                babelHelpers: 'bundled',
-                exclude: 'node_modules/**',
-                presets: [
-                    [
-                        '@babel/preset-env',
-                        {
-                            useBuiltIns: 'usage',
-                            corejs: 3
-                        }
-                    ]
-                ]
-            }),
-            nodeGlobals(),
-            terser()
-        ]
     }
 ];

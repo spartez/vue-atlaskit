@@ -345,3 +345,4 @@ export { default as WatchFilledIcon } from './WatchFilledIcon';
 export { default as WatchIcon } from './WatchIcon';
 export { default as WorldSmallIcon } from './WorldSmallIcon';
 export { default as WorldIcon } from './WorldIcon';
+export { default as IconWrapper } from './IconWrapper';

@@ -1,55 +1,42 @@
-import Button from './components/Button/Button';
-import Spinner from './components/Spinner/Spinner';
-import IconWrapper from './components/Icon/IconWrapper';
-import Input from './components/Form/Input';
-import TextField from './components/Form/TextField';
-import TextArea from './components/Form/TextArea';
-import FieldGroup from './components/Form/FieldGroup';
-import Checkbox from './components/Checkbox/Checkbox';
-import Toggle from './components/Toggle/Toggle';
-import LockSwitch from './components/Toggle/LockSwitch';
-import Tooltip from './components/Tooltip/Tooltip';
-import Modal from './components/Modal/Modal';
-import DatePicker from './components/Calendar/DatePicker';
-import DateRangePicker from './components/Calendar/DateRangePicker';
-import Lozenge from './components/Lozenge/Lozenge';
-import Dropdown from './components/Dropdown/Dropdown';
-import DropdownGroup from './components/Dropdown/DropdownGroup';
-import DropdownItem from './components/Dropdown/DropdownItem';
-import DropdownCheckboxItem from './components/Dropdown/DropdownCheckboxItem';
-import Menu from './components/Menu/Menu';
-import MenuSection from './components/Menu/MenuSection';
-import MenuItem from './components/Menu/MenuItem';
-import Badge from './components/Badge/Badge';
-import Popup from './components/common/Popup';
-import Select from './components/Select/Select';
-import UserPicker from './components/Select/UserPicker';
-import Popper from './components/Popper/Popper';
-import InlineDialog from './components/InlineDialog/InlineDialog';
-import SectionMessage from './components/SectionMessage/SectionMessage';
-import Table from './components/Table/Table';
-import Progress from './components/Progress/progress';
-import ContentLoader from './components/ContentLoader/ContentLoader';
-import PromisedContentLoader from './components/common/PromisedContentLoader';
-import TableLoader from './components/ContentLoader/TableLoader';
-import PageDetailsLoader from './components/ContentLoader/PageDetailsLoader';
-import AvatarDetailsLoader from './components/ContentLoader/AvatarDetailsLoader';
-import FolderPathLoader from './components/ContentLoader/FolderPathLoader';
-import AvatarNameLoader from './components/ContentLoader/AvatarNameLoader';
-import BulletListLoader from './components/ContentLoader/BulletListLoader';
-import ListWithImageLoader from './components/ContentLoader/ListWithImageLoader';
-import Avatar from './components/Avatar/Avatar';
-import AvatarGroup from './components/Avatar/AvatarGroup';
+import { Button } from './components/Button';
+import { Spinner } from './components/Spinner';
+import { IconWrapper } from './components/Icon';
+import { Input, TextArea, TextField, FieldGroup } from './components/Form';
+import { Checkbox } from './components/Checkbox';
+import { Toggle, LockSwitch } from './components/Toggle';
+import { Tooltip } from './components/Tooltip';
+import { Modal } from './components/Modal';
+import { DatePicker, DateRangePicker } from './components/Calendar';
+import { Lozenge } from './components/Lozenge';
+import { Dropdown, DropdownGroup, DropdownCheckboxItem, DropdownItem } from './components/Dropdown';
+import { Menu, MenuItem, MenuSection } from './components/Menu';
+import { Badge } from './components/Badge';
+import { Select, UserPicker } from './components/Select';
+import { Popper } from './components/Popper';
+import { InlineDialog } from './components/InlineDialog';
+import { SectionMessage } from './components/SectionMessage';
+import { Table } from './components/Table';
+import { Progress } from './components/Progress';
+import {
+    ContentLoader,
+    ListWithImageLoader,
+    AvatarNameLoader,
+    TableLoader,
+    AvatarDetailsLoader,
+    BulletListLoader,
+    FolderPathLoader,
+    PageDetailsLoader,
+} from './components/ContentLoader';
+import { Avatar, AvatarGroup } from './components/Avatar';
 // import Tree from './components/Tree/Tree';
-import ColorPicker from './components/ColorPicker/ColorPicker';
-import InfiniteScroll from './components/common/InfiniteScroll';
+import { ColorPicker } from './components/ColorPicker';
+import { InfiniteScroll, PromisedContentLoader, Popup, TransitionExpand } from './components/common';
 // import TreeSelect from './components/Select/TreeSelect/TreeSelect';
-import ProgressBar from './components/ProgressBar/ProgressBar';
+import { ProgressBar } from './components/ProgressBar';
 // import RichTextEditor from './components/RichTextEditor/RichTextEditor';
-import Tag from './components/Tag/Tag';
-import Flag from './components/Flag/Flag';
-import CopyToClipboard from './components/CopyToClipboard/CopyToClipboard';
-// import TransitionExpand from './components/common/TransitionExpand';
+import { Tag } from './components/Tag';
+import { Flag } from './components/Flag';
+import { CopyToClipboard } from './components/CopyToClipboard';
 // import Spotlight from './components/Spotlight/Spotlight';
 // import SpotlightContext from './components/Spotlight/SpotlightContext';
 // import SpotlightOverlay from './components/Spotlight/SpotlightOverlay';
@@ -91,17 +78,17 @@ export {
     ListWithImageLoader,
     Avatar,
     Badge,
-    // Tree,
-    // TreeSelect,
     InfiniteScroll,
     ColorPicker,
     ProgressBar,
     DateRangePicker,
     AvatarGroup,
+    TransitionExpand,
+    Tag,
+    // Tree,
+    // TreeSelect,
     // RichTextEditor,
     // CustomSingleSelectEditableRenderer,
-    // TransitionExpand,
-    Tag,
     // SpotlightOverlay,
     // SpotlightContext,
     // Spotlight,
@@ -110,4 +97,4 @@ export {
     LockSwitch
 };
 export * from './components/Icon';
-// export * from './components/field-renderers';
+export * from './components/field-renderers';

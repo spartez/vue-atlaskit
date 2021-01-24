@@ -23,7 +23,7 @@ import IssueStatusRenderer from './IssueStatusRenderer';
 import IssueTypeRenderer from './IssueTypeRenderer';
 import IssueRenderer from './IssueRenderer';
 import LinkedIssuesList from './LinkedIssuesList';
-import RichTextEditableRenderer from './RichTextEditableRenderer';
+// import RichTextEditableRenderer from './RichTextEditableRenderer';
 import MultiLineEditableRenderer from './MultiLineEditableRenderer';
 import MultiLineRenderer from './MultiLineRenderer';
 
@@ -54,7 +54,7 @@ export {
     IssueTypeRenderer,
     IssueRenderer,
     LinkedIssuesList,
-    RichTextEditableRenderer,
+    // RichTextEditableRenderer,
     MultiLineRenderer,
     MultiLineEditableRenderer
 };
