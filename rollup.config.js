@@ -44,7 +44,25 @@ export default [
         output: [
             {
                 format: 'esm',
-                dir: 'dist',
+                dir: 'dist/esm',
+            },
+        ],
+        plugins: [
+            ...plugins,
+            babel({
+                babelHelpers: 'runtime',
+                exclude: 'node_modules/**',
+                plugins: ['@babel/plugin-transform-runtime']
+            })
+        ],
+        external: [/@babel\/runtime/]
+    },
+    {
+        input: entries,
+        output: [
+            {
+                format: 'cjs',
+                dir: 'dist/cjs',
             },
         ],
         plugins: [
