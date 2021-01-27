@@ -7,7 +7,7 @@
                    v-on="listeners" @keydown.enter="onEnter"
                    @input="onInput" @keyup.esc="onEsc"
                    @focus="onFocus" @blur="onBlur">
-            <CalendarIcon class="icon" size="small" @mousedown.native.prevent/>
+            <CalendarIcon class="icon" size="small" :disabled-range="disabledRange" @mousedown.native.prevent/>
         </TextField>
         <Popup :is-open="isOpen" :target-element="$refs['date-picker']" placement="bottom-start">
             <Calendar :value="selectedDate" @date-selected="onDateSelected"/>
@@ -50,7 +50,14 @@
             dateFormat: {
                 type: String,
                 default: 'dd/MM/y'
-            }
+            },
+            disabledRange: {
+                type: Object,
+                default: () => ({
+                    from: undefined,
+                    to: undefined
+                })
+            },
         },
         data() {
             return {

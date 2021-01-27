@@ -22,7 +22,7 @@
         </TextField>
         <Popup :is-open="isOpen" :target-element="$refs['date-picker']" placement="bottom-start">
             <div class="date-range">
-                <Calendar :value="dateRange" :range-value="true" :visible-date="visibleDate"
+                <Calendar :value="dateRange" :disabled-range="disabledRange" :range-value="true" :visible-date="visibleDate"
                           @date-selected="onDateSelected"/>
                 <div v-if="showQuickRanges" class="quick-ranges" tabindex="-1">
                     <DropdownGroup label="Quick ranges">
@@ -101,7 +101,14 @@
             showQuickRanges: {
                 type: Boolean,
                 default: true
-            }
+            },
+            disabledRange: {
+                type: Object,
+                default: () => ({
+                    from: undefined,
+                    to: undefined
+                })
+            },
         },
         data() {
             return {
