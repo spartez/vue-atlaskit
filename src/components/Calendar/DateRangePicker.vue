@@ -18,7 +18,8 @@
                    v-on="listeners" @keydown.enter="onEnter"
                    @input="onInputTo" @keyup.esc="onEsc"
                    @focus="onFocus" @blur="onBlur">
-            <CalendarIcon class="icon" size="small" @mousedown.native.prevent/>
+            <CalendarIcon class="icon" size="small" :disabled-range="disabledRange"
+                          @mousedown.native.prevent/>
         </TextField>
         <Popup :is-open="isOpen" :target-element="$refs['date-picker']" placement="bottom-start">
             <div class="date-range">
@@ -101,6 +102,13 @@
             showQuickRanges: {
                 type: Boolean,
                 default: true
+            },
+            disabledRange: {
+                type: Object,
+                default: () => ({
+                    from: undefined,
+                    to: undefined
+                })
             }
         },
         data() {

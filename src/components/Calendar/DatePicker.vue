@@ -11,7 +11,7 @@
         </TextField>
         <Popup :is-open="isOpen" :target-element="$refs['date-picker']" placement="bottom-start"
                data-cy="select-menu">
-            <Calendar :value="selectedDate" @date-selected="onDateSelected"/>
+            <Calendar :value="selectedDate" :disabled-range="disabledRange" @date-selected="onDateSelected"/>
         </Popup>
     </div>
 </template>
@@ -51,6 +51,13 @@
             dateFormat: {
                 type: String,
                 default: 'dd/MM/y'
+            },
+            disabledRange: {
+                type: Object,
+                default: () => ({
+                    from: undefined,
+                    to: undefined
+                })
             }
         },
         data() {
