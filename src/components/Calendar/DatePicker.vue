@@ -7,10 +7,10 @@
                    v-on="listeners" @keydown.enter="onEnter"
                    @input="onInput" @keyup.esc="onEsc"
                    @focus="onFocus" @blur="onBlur">
-            <CalendarIcon class="icon" size="small" :disabled-range="disabledRange" @mousedown.native.prevent/>
+            <CalendarIcon class="icon" size="small" @mousedown.native.prevent/>
         </TextField>
         <Popup :is-open="isOpen" :target-element="$refs['date-picker']" placement="bottom-start">
-            <Calendar :value="selectedDate" @date-selected="onDateSelected"/>
+            <Calendar :value="selectedDate" :disabled-range="disabledRange" @date-selected="onDateSelected"/>
         </Popup>
     </div>
 </template>
