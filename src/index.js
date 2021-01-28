@@ -48,6 +48,8 @@ import ProgressBar from './components/ProgressBar/ProgressBar';
 import RichTextEditor from './components/RichTextEditor/RichTextEditor';
 import Tag from './components/Tag/Tag';
 import Flag from './components/Flag/Flag';
+import Breadcrumbs from './components/Breadcrumbs/Breadcrumbs';
+import BreadcrumbItem from './components/Breadcrumbs/BreadcrumbItem';
 import CopyToClipboard from './components/CopyToClipboard/CopyToClipboard';
 import TransitionExpand from './components/common/TransitionExpand';
 import Spotlight from './components/Spotlight/Spotlight';
@@ -107,7 +109,9 @@ export {
     Spotlight,
     Flag,
     CopyToClipboard,
-    LockSwitch
+    LockSwitch,
+    BreadcrumbItem,
+    Breadcrumbs
 };
 export * from './components/Icon';
 export * from './components/field-renderers';
