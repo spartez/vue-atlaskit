@@ -123,6 +123,7 @@ input:-moz-placeholder {
     background-image: linear-gradient(90deg, rgba(9, 30, 66, 0.08) 30%, rgba(9, 30, 66, 0.16) 50%, rgba(9, 30, 66, 0.08) 70%);
     background-size: 300%;
     background-position: 0% 0%;
+    pointer-events: none;
 }
 
 @keyframes loading {

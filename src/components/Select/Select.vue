@@ -20,7 +20,7 @@
                 </template>
                 <input ref="input" class="search"
                        :value="search"
-                       :disabled="isLoading" :style="{width: currentWidth}"
+                       :style="{width: currentWidth}"
                        @keydown.down.prevent="onNextSuggestion"
                        @keydown.up.prevent="onPreviousSuggestion"
                        @keydown.enter="onSuggestionSelected"
@@ -306,6 +306,12 @@
             isFetching(isFetching) {
                 if (!isFetching) {
                     this.isDirty = false;
+                }
+            },
+
+            isLoading(next, prev) {
+                if (!next && prev && this.$refs.input) {
+                    this.$refs.input.blur();
                 }
             },
 
