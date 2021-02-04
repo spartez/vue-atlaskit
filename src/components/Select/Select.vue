@@ -179,6 +179,10 @@
             openOnFocus: {
                 type: Boolean,
                 default: false
+            },
+            confirm: {
+                type: Boolean,
+                default: true
             }
         },
         data() {
@@ -369,6 +373,9 @@
                     ? [...this.selected.map(e => e.value), option.value]
                     : option.value;
                 this.$emit('input', selected);
+                if (!this.confirm && this.$refs.input) {
+                    this.$nextTick(() => this.$refs.input.blur());
+                }
             },
 
             onInput({ target }) {

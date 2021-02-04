@@ -5,6 +5,11 @@
             <UserEditableRenderer :user="user" :load-options="loadOptions"
                                   @save-requested="onSave"/>
         </p>
+        <h5>Confirm false:</h5>
+        <p>
+            <UserEditableRenderer :user="user" :load-options="loadOptions" :confirm="false"
+                                  @save-requested="onSave"/>
+        </p>
         <h5>Editable - callback with error:</h5>
         <p>
             <UserEditableRenderer :user="user" :load-options="loadOptions"

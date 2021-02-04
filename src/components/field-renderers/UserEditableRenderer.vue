@@ -17,6 +17,7 @@
                 :is-focused="props.isFocused"
                 :is-loading="props.isLoading"
                 :is-fetching="isFetching"
+                :confirm="confirm"
                 @open="loadInitialOptions"
                 @search-change="debouncedGetUsers"
                 @input="props.input"
