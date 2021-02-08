@@ -16,6 +16,10 @@
             baz
         </Checkbox>
         <p>value: {{ checkedValues }}</p>
+        <h3>Disabled</h3>
+        <Checkbox v-model="checked" :disabled="true">
+            Basic Checkbox
+        </Checkbox>
     </div>
 </template>
 
@@ -27,7 +31,7 @@
         components: { Checkbox },
         data() {
             return {
-                checked: false,
+                checked: true,
                 checkedValues: []
             };
         }

@@ -1,6 +1,6 @@
 <template>
     <label ref="checkbox" class="checkbox-wrapper" :for="id"
-           tabindex="-1">
+           tabindex="-1" :disabled="disabled">
         <input :id="id" ref="input" v-model="isChecked"
                :value="value"
                type="checkbox" :is-invalid="isInvalid"
@@ -124,15 +124,15 @@ input + .icon >>> rect {
     stroke: #dfe1e6;
 }
 
-label:hover input:not(:checked) + .icon >>> rect {
+label:hover input:not(:checked):not(:disabled) + .icon >>> rect {
     fill: #EBECF0;
 }
 
-label:hover input:not(:checked) + .icon >>> path {
+label:hover input:not(:checked):not(:disabled) + .icon >>> path {
     fill: #EBECF0;
 }
 
-label:hover input:checked + .icon >>> rect {
+label:hover input:checked:not(:disabled) + .icon >>> rect {
     color: #0065ff;
     stroke: #0065ff;
 }
@@ -149,8 +149,18 @@ input[is-invalid] + .icon >>> rect {
     stroke: #FF5630;
 }
 
-input[disabled] + .icon >>> rect {
-    opacity: .5;
+input:checked[disabled] + .icon >>> rect {
+    stroke: #f4f5f7;
+    color: #f4f5f7;
+}
+
+input:checked[disabled] + .icon >>> path {
+    fill: #a5adba;
+}
+
+label[disabled], label[disabled] input {
+    cursor: not-allowed;
+    color: rgb(151, 160, 175);
 }
 
 :not(.indeterminate) >>> rect {

@@ -2,6 +2,8 @@
     <div>
         <Toggle v-model="regular" data-cy="toggle"/>
         <Toggle v-model="large" size="large"/>
+        <Toggle v-model="disabled" disabled data-cy="toggle"/>
+        <Toggle v-model="disabled" disabled size="large"/>
     </div>
 </template>
 
@@ -14,7 +16,8 @@
         data() {
             return {
                 regular: false,
-                large: false
+                large: false,
+                disabled: true
             };
         }
     };

@@ -1,17 +1,18 @@
 <template>
-    <label :for="id">
+    <label :for="id" :disabled="disabled">
         <input :id="id"
+               :disabled="disabled"
                type="checkbox"
                :checked="value"
                @change="toggle">
         <div class="slide" :size="size">
             <div class="slide-inner">
                 <EditorDoneIcon v-if="value" data-cy="done" :size="iconSize"
-                                primary-color="White"
+                                :primary-color="color"
                                 class="done"/>
-                <CrossIcon v-else data-cy="cross" :size="iconSize"
-                           primary-color="White"
-                           class="close"/>
+                <EditorCloseIcon v-else data-cy="cross" :size="iconSize"
+                                 :primary-color="color"
+                                 class="close"/>
             </div>
         </div>
     </label>
@@ -19,11 +20,11 @@
 
 <script>
     import EditorDoneIcon from '../Icon/EditorDoneIcon';
-    import CrossIcon from '../Icon/CrossIcon';
+    import EditorCloseIcon from '../Icon/EditorCloseIcon';
 
     export default {
         name: 'Toggle',
-        components: { CrossIcon, EditorDoneIcon },
+        components: { EditorCloseIcon, EditorDoneIcon },
         props: {
             value: {
                 type: [Number, String, Boolean],
@@ -44,6 +45,9 @@
         computed: {
             iconSize() {
                 return this.size === 'large' ? 'small' : 'xsmall';
+            },
+            color() {
+                return this.disabled ? 'rgb(165, 173, 186)' : 'white';
             }
         },
         created() {
@@ -147,11 +151,19 @@ input:checked + .slide > .slide-inner {
     flex-direction: row;
 }
 
-input:checked + .slide:hover {
+input:checked:not(:disabled) + .slide:hover {
     background-color: rgb(54, 179, 126);
 }
 
-input:not(:checked) + .slide:hover {
+input:not(:checked):not(:disabled) + .slide:hover {
     background-color: rgb(165, 173, 186);
+}
+
+label[disabled] .slide {
+    cursor: not-allowed;
+}
+
+label[disabled] input + .slide {
+    background-color: rgb(244, 245, 247);
 }
 </style>
