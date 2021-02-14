@@ -106,12 +106,14 @@
             columns: {
                 handler() {
                     this.$nextTick(() => {
-                        this.$refs.table.style.gridTemplateColumns = this.columns.map((column) => {
-                            const width = column.width || this.defaultColumnWidth;
-                            const minWidth = column.minWidth || column.width || this.defaultColumnMinWidth;
-                            return `minmax(${withPxSuffix(minWidth)}, ${withPxSuffix(width)})`;
-                        }).join(' ');
-                        this.tableWidth = this.$refs.table.offsetWidth;
+                        if (this.$refs.table) {
+                            this.$refs.table.style.gridTemplateColumns = this.columns.map((column) => {
+                                const width = column.width || this.defaultColumnWidth;
+                                const minWidth = column.minWidth || column.width || this.defaultColumnMinWidth;
+                                return `minmax(${withPxSuffix(minWidth)}, ${withPxSuffix(width)})`;
+                            }).join(' ');
+                            this.tableWidth = this.$refs.table.offsetWidth;
+                        }
                     });
                 },
                 immediate: true
@@ -190,7 +192,7 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background: rgba(255,255,255,0.5);
+        background: rgba(255, 255, 255, 0.5);
         z-index: 200;
     }
 
