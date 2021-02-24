@@ -17,8 +17,8 @@
                         {{ description }}
                     </div>
                     <div class="actions">
-                        <a v-for="action in actions" :key="action" class="action"
-                           href="">{{ action }}</a>
+                        <a v-for="action in actions" :key="action.content" class="action"
+                           @click="onClick(action)">{{ action.content }}</a>
                     </div>
                 </div>
             </slot>
@@ -100,6 +100,14 @@
         methods: {
             onExpand() {
                 this.expanded = !this.expanded;
+            },
+            onClick(action) {
+                if (action.href) {
+                    window.open(action.href, '_blank');
+                } else if (action.handler) {
+                    action.handler();
+                }
+                this.$emit('close');
             }
         }
     };
@@ -187,6 +195,7 @@
     border-radius: 3px;
     font-weight: bold;
     outline: none;
+    cursor: pointer;
 }
 
 [appearance="warning"] .action {
@@ -232,7 +241,7 @@
     transform: translateX(-300px);
 }
 
-.close{
+.close {
     cursor: pointer;
 }
 </style>

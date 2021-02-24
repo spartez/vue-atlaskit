@@ -41,7 +41,7 @@
             return {
                 title: 'Welcome to the jungle',
                 description: 'We got fun and games. We got everything you want honey, we know the names.',
-                actions: ['Show me', 'No thanks'],
+                actions: [{ content: 'Show me', href: 'http://google.com' }, { content: 'No thanks' }],
                 appearances: ['error', 'info', 'success', 'warning'],
                 value: '',
                 show: true
