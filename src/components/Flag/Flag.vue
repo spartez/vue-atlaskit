@@ -134,16 +134,13 @@
 
 .header {
     display: flex;
-    align-items: center;
     height: 32px;
 }
 
 .title {
     font-weight: 600;
-    text-overflow: ellipsis;
-    white-space: nowrap;
     flex: 1 1 0%;
-    overflow: hidden;
+    line-height: 1.5;
 }
 
 .content {
