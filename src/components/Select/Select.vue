@@ -1,7 +1,7 @@
 <template>
     <div ref="target" class="select" :disabled="isDisabled">
         <TextField :is-focused="focused" :is-invalid="isInvalid" :is-loading="isLoading"
-                   class="text-field" :select="select" tabindex="-1"
+                   class="select-wrapper" :select="select" tabindex="-1"
                    @click="click">
             <div ref="list" class="flex-wrapper" :gap="multi && !!selected.length"
                  @dragover.prevent>
@@ -530,14 +530,14 @@
         overflow: hidden;
     }
 
-    .text-field {
+    .select-wrapper {
         flex-wrap: wrap;
         padding: 6px 45px 6px 6px;
         justify-content: normal;
         outline: none;
     }
 
-    .text-field input {
+    .select-wrapper input {
         padding: 0;
     }
 
