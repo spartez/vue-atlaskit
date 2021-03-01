@@ -104,10 +104,10 @@
             onClick(action) {
                 if (action.href) {
                     window.open(action.href, '_blank');
-                } else if (action.handler) {
+                }
+                if (action.handler) {
                     action.handler();
                 }
-                this.$emit('close');
             }
         }
     };
