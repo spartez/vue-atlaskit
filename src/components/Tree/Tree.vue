@@ -54,7 +54,8 @@
             return {
                 hovered: undefined,
                 expanded: [],
-                initialExpandedState: []
+                initialExpandedState: [],
+                onToggleExpandListener: undefined
             };
         },
         computed: {
@@ -87,7 +88,11 @@
             }
         },
         mounted() {
-            EventBus.$on('remote-expand', () => this.onToggleExpand(this.currentSuggestionId));
+            this.onToggleExpandListener = () => this.onToggleExpand(this.currentSuggestionId);
+            EventBus.$on('remote-expand', this.onToggleExpandListener);
+        },
+        destroyed() {
+            EventBus.$off('remote-expand', this.onToggleExpandListener);
         },
         methods: {
             onSelect(id, ancestors = []) {
