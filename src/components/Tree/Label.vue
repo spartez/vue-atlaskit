@@ -39,6 +39,11 @@
                 default: 1
             }
         },
+        data: function data() {
+            return {
+                remoteSelectEventListener: undefined
+            };
+        },
         computed: {
             checked: {
                 get() {
@@ -72,11 +77,15 @@
             }
         },
         mounted() {
-            EventBus.$on('remote-select', () => {
+            this.remoteSelectEventListener = () => {
                 if (this.current) {
                     this.$emit('input', this.node.id);
                 }
-            });
+            };
+            EventBus.$on('remote-select', this.remoteSelectEventListener);
+        },
+        destroyed() {
+            EventBus.$off('remote-select', this.remoteSelectEventListener);
         }
     };
 </script>
