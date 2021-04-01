@@ -183,6 +183,10 @@
             confirm: {
                 type: Boolean,
                 default: true
+            },
+            dropdownWidth: {
+                type: Number,
+                default: undefined
             }
         },
         data() {
@@ -301,7 +305,7 @@
                     this.currentSuggestionIndex = undefined;
                     this.$emit('close');
                 } else {
-                    const { width } = this.$refs.target.getBoundingClientRect();
+                    const width = this.dropdownWidth || this.$refs.target.getBoundingClientRect().width;
                     this.selectWidth = `${width}px`;
                     this.$emit('open');
                 }
@@ -530,7 +534,7 @@
         overflow: hidden;
     }
 
-    .select-wrapper {
+    .select .select-wrapper {
         flex-wrap: wrap;
         padding: 6px 45px 6px 6px;
         justify-content: normal;
