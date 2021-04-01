@@ -29,7 +29,7 @@
                 return this.$slots.message;
             },
             target() {
-                return this.$slots.default[0];
+                return this.$slots.default ? this.$slots.default[0] : document.body;
             },
             currentStep() {
                 return this.$spotlight && this.$spotlight.currentSpotlight && this.$spotlight.currentSpotlight.step;

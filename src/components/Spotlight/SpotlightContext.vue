@@ -83,7 +83,7 @@
                 this.overlay = overlay;
             },
             addClasses(targets) {
-                const elements = targets.map(target => target.elm);
+                const elements = targets.map(target => target.elm || document.body);
                 elements.forEach((element) => {
                     element.classList.add('spotlight-zindex');
                     const position = document.defaultView.getComputedStyle(element, null).getPropertyValue('position');
@@ -109,7 +109,7 @@
                 });
             },
             clearClasses(targets) {
-                const elements = targets.map(target => target.elm);
+                const elements = targets.map(target => target.elm || document.body);
 
                 elements.forEach((element) => {
                     element.classList.remove('spotlight-zindex', 'spotlight-relative');

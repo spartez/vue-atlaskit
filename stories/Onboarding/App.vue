@@ -5,8 +5,13 @@
                 Start Onboarding
             </Button>
         </div>
+        <Spotlight :step="1" placement="top-end" offset="-50%,-50%">
+            <div slot="message">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            </div>
+        </Spotlight>
         <FieldGroup label="Title" required>
-            <Spotlight :step="1">
+            <Spotlight :step="2">
                 <Input v-model="title" auto-focus/>
                 <div slot="message">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -14,7 +19,7 @@
             </Spotlight>
         </FieldGroup>
         <FieldGroup label="Folder" required>
-            <Spotlight :step="2">
+            <Spotlight :step="3">
                 <Input v-model="folder"/>
                 <div slot="message">
                     Curabitur efficitur lorem a velit iaculis vehicula.
@@ -22,7 +27,7 @@
             </Spotlight>
         </FieldGroup>
         <FieldGroup label="Type" required>
-            <Spotlight :step="3">
+            <Spotlight :step="4">
                 <Select v-model="type" :options="options" :selected="selected"/>
                 <div slot="message">
                     Curabitur fermentum quam turpis, eget condimentum quam consequat ac.
@@ -57,6 +62,7 @@
                 title: '',
                 folder: '',
                 selected: undefined,
+                type: undefined,
                 options: ['foo', 'bar', 'baz']
             };
         },
@@ -69,7 +75,7 @@
 </script>
 
 <style scoped>
-.wrapper{
+.wrapper {
     max-width: 50%;
 }
 </style>

@@ -35,7 +35,7 @@
                 return h(SpotlightHint, {
                     class: 'spotlight-hint',
                     props: {
-                        targetElement: target.elm,
+                        targetElement: target.elm || document.body,
                         step: this.$spotlight.currentStep,
                         total: this.$spotlight.lastStep,
                         placement,
