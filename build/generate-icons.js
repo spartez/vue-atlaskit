@@ -1,6 +1,6 @@
 const { resolve, relative, extname } = require('path');
 const {
-    readdir, stat, writeFile, readFile
+    readdir, stat, appendFile, readFile, writeFile
 } = require('fs').promises;
 const SVGO = require('svgo');
 
@@ -51,8 +51,8 @@ async function getOptimizedSvg(path) {
     return result.data;
 }
 
-async function generateIcons() {
-    const glyphsPath = resolve(__dirname, '..', 'node_modules/@atlaskit/icon/svgs');
+async function generateIcons(path) {
+    const glyphsPath = resolve(__dirname, '..', path);
     const sourcePath = resolve(__dirname, '..', 'src/components/Icon/index.js');
     const files = await getSvgFiles(glyphsPath);
 
@@ -77,7 +77,12 @@ async function generateIcons() {
     let fileContent = '// This file is generated automatically with \'npm run generate-icons\' script\n';
     fileContent += `${exports}\n`;
 
-    await writeFile(sourcePath, fileContent);
+    await appendFile(sourcePath, fileContent);
 }
 
-generateIcons();
+(async function createIcons() {
+    await generateIcons('node_modules/@atlaskit/icon/svgs');
+    await generateIcons('node_modules/@atlaskit/icon-object/svgs');
+    await generateIcons('node_modules/@atlaskit/icon-file-type/svgs');
+    await generateIcons('node_modules/@atlaskit/icon-priority/svgs');
+}());
