@@ -12,7 +12,7 @@ describe('Checkbox', () => {
     });
 
     it('check if input is focused when passing is-focued prop and focus event is emitted', async () => {
-        const component = shallowMount(Checkbox, { propsData: { isFocused: true } });
+        const component = shallowMount(Checkbox, { propsData: { checked: false, isFocused: true } });
         const input = component.find('input').element;
         await component.vm.$nextTick();
         expect(input).toBe(document.activeElement);
@@ -20,7 +20,7 @@ describe('Checkbox', () => {
     });
 
     it('check if input is disabled when passing disabled', async () => {
-        const component = shallowMount(Checkbox, { propsData: { disabled: true } });
+        const component = shallowMount(Checkbox, { propsData: { checked: false, disabled: true } });
         const input = component.find('input');
         input.trigger('click');
         expect(input.attributes('disabled')).toBe('disabled');

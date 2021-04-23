@@ -1,11 +1,18 @@
 <template>
     <div class="wrapper">
         <FieldGroup class="createable" label="Createable">
-            <Select v-model="value"
-                    :normalizer="normalizer"
-                    createable
-                    multi
-                    placeholder="Type something and press enter..."/>
+            <Select v-model="value" data-cy="simple" createable
+                    multi placeholder="Type something and press enter..."/>
+        </FieldGroup>
+        <FieldGroup class="createable" label="Limited number of tags">
+            <Select v-model="value" data-cy="limited" :max="3"
+                    createable multi placeholder="Maximum 3 elements.."/>
+        </FieldGroup>
+        <FieldGroup class="createable" label="Minimum number of elements, plus validation">
+            <Select v-model="minmax" data-cy="validated" multi
+                    createable :is-valid-option="validateTimer" :min="1"
+                    :max="3"
+                    placeholder="Select city..."/>
         </FieldGroup>
         <table>
             <thead>
@@ -24,12 +31,7 @@
 
 <script>
     import Select from '@/components/Select/Select';
-    import faker from 'faker';
-    import { many } from '../api-mocks/helpers';
     import FieldGroup from '../../src/components/Form/FieldGroup';
-
-    const cities = many(faker.address.city)({}, 10);
-    const [city] = cities;
 
     export default {
         components: {
@@ -38,13 +40,13 @@
         },
         data() {
             return {
-                value: [city],
-                cities
+                value: [],
+                minmax: ['10']
             };
         },
         methods: {
-            normalizer(v) {
-                return ({ id: v, label: v, value: v });
+            validateTimer(value) {
+                return /^\d+$/.test(value);
             }
         }
     };

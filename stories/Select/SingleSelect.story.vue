@@ -4,7 +4,7 @@
             <Select v-model="value" data-cy="input-component"
                     append-to-body
                     :options="options"
-                    placeholder="select item"/>
+                    placeholder="Select city..."/>
         </FieldGroup>
         <table>
             <thead>

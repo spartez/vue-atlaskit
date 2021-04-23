@@ -33,6 +33,19 @@ describe('SingleSelect', () => {
         cy.get('input').should('have.focus');
     });
 
+    it('should be able to select option with keyboard', () => {
+        cy.get('[data-cy=input-wrapper]').click();
+        cy.get('input').type('{downarrow}');
+        cy.get('input').type('{enter}');
+        cy.get('[data-cy=input-wrapper]').contains('Port Vaughn').should('be.visible');
+    });
+
+    it('should be able to select option on click', () => {
+        cy.get('[data-cy=input-wrapper]').click();
+        cy.get('[data-cy=select-option]').first().click();
+        cy.get('[data-cy=input-wrapper]').contains('Port Vaughn').should('be.visible');
+    });
+
     it('should search elements', () => {
         const [city] = cities;
         cy.get('[data-cy=input-wrapper]').click();
@@ -43,7 +56,7 @@ describe('SingleSelect', () => {
 
     it('should return no options when no items found', () => {
         cy.get('[data-cy=input-wrapper]').click();
-        cy.get('input').type('random text');
+        cy.get('input').type('Paris');
         cy.get('[data-cy=no-options]').should('be.visible');
     });
 });

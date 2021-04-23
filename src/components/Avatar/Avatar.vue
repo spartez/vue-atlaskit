@@ -169,6 +169,7 @@ g {
 .presence, .status {
     pointer-events: none;
     position: absolute;
+    z-index: 2;
 }
 
 [size='xxlarge'] .presence, [size='xxlarge'] .status, [size='xsmall'] .presence, [size='xsmall'] .status {

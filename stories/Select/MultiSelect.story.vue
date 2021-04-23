@@ -4,17 +4,8 @@
             <Select v-model="basic"
                     multi
                     :options="options"
-                    placeholder="select item"
+                    placeholder="Select city..."
                     data-cy="multiselect-simple"/>
-        </FieldGroup>
-        <FieldGroup class="mutliselect" label="MinMax options set, only numbers">
-            <Select v-model="minmax"
-                    multi
-                    createable
-                    :is-valid-option="validateTimer"
-                    :min="1"
-                    :max="3"
-                    placeholder="select item"/>
         </FieldGroup>
     </div>
 </template>
@@ -36,9 +27,7 @@
         data() {
             return {
                 options: cities,
-                basic: [],
-                minmax: ['10'],
-                isLoading: false
+                basic: []
             };
         },
         methods: {
@@ -47,9 +36,6 @@
                 return ({
                     id: value, label: value, value, disabled
                 });
-            },
-            validateTimer(value) {
-                return /^\d+$/.test(value);
             }
         }
     };

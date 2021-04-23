@@ -1,7 +1,8 @@
 <template>
     <div class="wrapper">
         <FieldGroup class="picker single" label="Single User">
-            <UserPicker v-model="value" :initial-options="[initialOptions]" :get-users="getUsers"/>
+            <UserPicker v-model="value" data-cy="single" :initial-options="[initialOptions]"
+                        :get-users="getUsers"/>
         </FieldGroup>
         <p>{{ value }}</p>
         <FieldGroup class="picker multi" label="Many Users">

@@ -10,6 +10,15 @@ const defaultNormalizer = option => ({ id: option, label: option, value: option 
 const normalizer = option => ({ id: option.id, label: option.id, value: option });
 const stubs = { Icons };
 
+global.document.createRange = () => ({
+    setStart: () => {},
+    setEnd: () => {},
+    commonAncestorContainer: {
+        nodeName: 'BODY',
+        ownerDocument: document
+    }
+});
+
 describe('Select', () => {
     beforeEach(() => {
         // eslint-disable-next-line no-unused-expressions
@@ -42,7 +51,7 @@ describe('Select', () => {
 
     it('input gets focused on select click', async () => {
         const component = mount(Select, { propsData: { value: 'foo', options } });
-        component.find(TextField).trigger('click');
+        component.findComponent(TextField).trigger('click');
         await component.vm.$nextTick();
 
         const input = component.find('input').element;
@@ -60,7 +69,7 @@ describe('Select', () => {
         });
         const input = component.find('input');
         await component.vm.$nextTick();
-        const menu = component.find(SelectMenu);
+        const menu = component.findComponent(SelectMenu);
 
         expect(menu.exists()).toBeTruthy();
 
@@ -72,10 +81,10 @@ describe('Select', () => {
 
     it('options list are visible on select click', async () => {
         const component = mount(Select, { propsData: { value: 'foo', options } });
-        component.find(TextField).trigger('click');
+        component.findComponent(TextField).trigger('click');
         await component.vm.$nextTick();
 
-        const menu = component.find(SelectMenu);
+        const menu = component.findComponent(SelectMenu);
 
         expect(menu.exists()).toBeTruthy();
     });
@@ -84,8 +93,8 @@ describe('Select', () => {
         const [a, b] = options;
         const component = shallowMount(Select, { propsData: { value: [a, b], options, multi: true } });
 
-        expect(component.findAll(Tag).at(0).props('tag').label).toBe(a);
-        expect(component.findAll(Tag).at(1).props('tag').label).toBe(b);
+        expect(component.findAllComponents(Tag).at(0).props('tag').label).toBe(a);
+        expect(component.findAllComponents(Tag).at(1).props('tag').label).toBe(b);
     });
 
     test('should reset search input after option selected', () => {

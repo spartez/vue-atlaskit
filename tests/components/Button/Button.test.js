@@ -12,7 +12,7 @@ describe('Button', () => {
 
     it('renders spinner if passed loading prop', () => {
         const component = shallowMount(Button, { propsData: { isLoading: true }, slots: { default: 'Click me!' } });
-        expect(component.find(Spinner).exists()).toBe(true);
+        expect(component.findComponent(Spinner).exists()).toBe(true);
     });
 
     it('emits click event on button click', () => {

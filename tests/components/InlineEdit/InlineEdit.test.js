@@ -8,6 +8,15 @@ import TextField from '@/components/Form/TextField';
 const stubs = { InlineEditViewContent };
 const propsData = { value: 'MackBook' };
 
+global.document.createRange = () => ({
+    setStart: () => {},
+    setEnd: () => {},
+    commonAncestorContainer: {
+        nodeName: 'BODY',
+        ownerDocument: document
+    }
+});
+
 describe('InlineEdit', () => {
     it('should emit event on enter', async () => {
         const component = shallowMount(InlineEdit, { propsData, stubs });

@@ -12,3 +12,6 @@ tests/
 docs/
 babel.config.js
 rollup.config.js
+build/
+cypress/
+cypress.json
