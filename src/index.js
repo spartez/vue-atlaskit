@@ -55,6 +55,7 @@ import TransitionExpand from './components/common/TransitionExpand';
 import Spotlight from './components/Spotlight/Spotlight';
 import SpotlightContext from './components/Spotlight/SpotlightContext';
 import SpotlightOverlay from './components/Spotlight/SpotlightOverlay';
+import CustomHint from './components/Spotlight/CustomHint';
 import CustomSingleSelectEditableRenderer from './components/field-renderers/CustomSingleSelectEditableRenderer';
 import '@atlaskit/css-reset/dist/bundle.css';
 
@@ -111,7 +112,8 @@ export {
     CopyToClipboard,
     LockSwitch,
     BreadcrumbItem,
-    Breadcrumbs
+    Breadcrumbs,
+    CustomHint
 };
 export * from './components/Icon';
 export * from './components/field-renderers';
