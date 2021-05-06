@@ -16,6 +16,7 @@
                             :size="size"
                             :link="user.link"
                             :status="user.status"
+                            :outline="borderColor"
                             :avatar="user.avatar" :presence="user.presence"/>
                 </Tooltip>
             </div>
@@ -24,8 +25,8 @@
                       :position-fixed="dropdownPositionFixed"
                       :append-to-body="appendToBody"
                       class="dropdown-wrapper">
-                <div slot="trigger" slot-scope="{ toggle, isOpen }" class="trigger"
-                     :size="size" :open="isOpen">
+                <div slot="trigger" slot-scope="{ toggle, isOpen }" :style="`border-color: ${borderColor}`"
+                     class="trigger" :size="size" :open="isOpen">
                     <div class="more" @click="toggle">
                         <transition :name="counterUp ? 'counter-up' : 'counter-down'">
                             <span :key="collapsedCount" class="collapsed-count">+{{ collapsedCount }}</span>
@@ -36,13 +37,13 @@
                     <a v-if="collapsedUser.link" class="list-item" :href="collapsedUser.link"
                        target="_blank">
                         <Avatar tag="a" :link="collapsedUser.link" class="user-list-avatar"
-                                size="small" :status="collapsedUser.status"
+                                size="small" :status="collapsedUser.status" :outline="borderColor"
                                 :avatar="collapsedUser.avatar" :presence="collapsedUser.presence"/>
                         <span class="user-name">{{ collapsedUser.displayName }}</span>
                     </a>
                     <div v-else class="list-item">
                         <Avatar tag="a" :link="collapsedUser.link" class="user-list-avatar"
-                                size="small" :status="collapsedUser.status"
+                                size="small" :status="collapsedUser.status" :outline="borderColor"
                                 :avatar="collapsedUser.avatar" :presence="collapsedUser.presence"/>
                         <span class="user-name">{{ collapsedUser.displayName }}</span>
                     </div>
@@ -71,6 +72,10 @@
             size: {
                 type: String,
                 default: 'medium'
+            },
+            borderColor: {
+                type: String,
+                default: '#fff'
             },
             limit: {
                 type: Number,
@@ -144,9 +149,9 @@
 }
 
 .trigger {
+    float: right;
     background-color: #fff;
     border-radius: 50%;
-    padding: 2px;
     box-sizing: border-box;
 }
 
@@ -170,19 +175,21 @@
 }
 
 .trigger {
+    border-width: 2px;
+    border-style: solid;
     position: relative;
 }
 
 .trigger::after {
     background-color: transparent;
-    bottom: 2px;
+    bottom: 0;
     content: " ";
-    left: 2px;
+    left: 0;
     opacity: 0;
     pointer-events: none;
     position: absolute;
-    right: 2px;
-    top: 2px;
+    right: 0;
+    top: 0;
     border-radius: 50%;
     transition: opacity 200ms ease 0s;
 }
