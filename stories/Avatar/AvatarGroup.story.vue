@@ -1,7 +1,14 @@
 <template>
     <div>
         <p>
-            <AvatarGroup :users="users" size="large" :limit="limit">
+            <FieldGroup label="Select color">
+                <ColorPicker v-model="borderColor"/>
+                border color: {{ borderColor }}
+            </FieldGroup>
+        </p>
+        <p>
+            <AvatarGroup :users="users" size="large" :limit="limit"
+                         :border-color="borderColor">
                 <div v-if="slot" slot="before" class="slot">
                     <PersonIcon size="large"/>
                 </div>
@@ -29,14 +36,19 @@
     import AvatarGroup from '@/components/Avatar/AvatarGroup';
     import Button from '@/components/Button/Button';
     import PersonIcon from '@/components/Icon/PersonIcon';
+    import ColorPicker from '@/components/ColorPicker/ColorPicker';
+    import FieldGroup from '@/components/Form/FieldGroup';
 
     const users = createPersonsList({}, 10);
 
     export default {
         name: 'AvatarGroupStory',
-        components: { AvatarGroup, Button, PersonIcon },
+        components: {
+            AvatarGroup, Button, PersonIcon, ColorPicker, FieldGroup
+        },
         data() {
             return {
+                borderColor: '#0052CC',
                 count: 6,
                 middle: true,
                 slot: false,
