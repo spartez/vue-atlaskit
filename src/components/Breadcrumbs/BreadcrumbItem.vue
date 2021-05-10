@@ -77,4 +77,8 @@ a {
 .breadcrumb:last-of-type:after {
     content: none;
 }
+
+.breadcrumb:last-child {
+    flex: 1 0 auto;
+}
 </style>

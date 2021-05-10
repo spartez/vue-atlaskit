@@ -10,9 +10,11 @@
             <BreadcrumbItem text="Agile Poker">
                 <IssuesIcon slot="icon" size="xsmall"/>
             </BreadcrumbItem>
-            <BreadcrumbItem text="Awesome Session Name">
-                <LockFilledIcon slot="icon" size="xsmall"/>
-            </BreadcrumbItem>
+            <Tooltip class="tooltip" label="Additional info">
+                <BreadcrumbItem text="Awesome Session Name">
+                    <LockFilledIcon slot="icon" size="xsmall"/>
+                </BreadcrumbItem>
+            </Tooltip>
         </Breadcrumbs>
     </div>
 </template>
@@ -20,12 +22,13 @@
 <script>
     import Breadcrumbs from '@/components/Breadcrumbs/Breadcrumbs';
     import BreadcrumbItem from '@/components/Breadcrumbs/BreadcrumbItem';
+    import Tooltip from '@/components/Tooltip/Tooltip';
     import { BoardIcon, IssuesIcon, LockFilledIcon } from '@/components/Icon';
 
     export default {
         name: 'BreadcrumbsStory',
         components: {
-            Breadcrumbs, BoardIcon, BreadcrumbItem, IssuesIcon, LockFilledIcon
+            Breadcrumbs, BoardIcon, BreadcrumbItem, IssuesIcon, LockFilledIcon, Tooltip
         },
         data() {
             return {
@@ -42,7 +45,3 @@
         }
     };
 </script>
-
-<style scoped>
-
-</style>
