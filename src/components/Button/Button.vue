@@ -236,7 +236,6 @@ button[appearance="warning"] {
 button:focus[appearance="warning"] {
     box-shadow: #FF8B00 0 0 0 2px;
 }
-
 button[appearance="warning"]:not([disabled]):not([selected]):hover {
     background: #FFC400;
 }
@@ -307,7 +306,7 @@ button[loading][disabled] >>> .spinner {
 }
 
 button[disabled]:not([appearance="subtle-link"]):not([appearance="link"]):not([appearance="subtle"]) {
-    background: rgba(9, 30, 66, 0.04);
+    background: rgb(245 246 248);
 }
 
 button::-moz-focus-inner,
