@@ -1,7 +1,9 @@
 <template>
     <div>
-        <h3>Simple</h3>
+        <h3>Between</h3>
         <Breadcrumbs :items="items"/>
+        <h3>Only last</h3>
+        <Breadcrumbs :wrap="false" :items="items"/>
         <h3>Custom</h3>
         <Breadcrumbs>
             <BreadcrumbItem text="Board">
@@ -35,7 +37,7 @@
                 items: [{
                     text: 'first'
                 }, {
-                    text: 'veeeeeeery long breadcrumb'
+                    text: 'veeeeeeery loooooong breadcrumb'
                 }, {
                     text: 'long breadcrumb'
                 }, {

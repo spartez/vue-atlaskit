@@ -1,5 +1,5 @@
 <template>
-    <div class="breadcrumb" :with-icon="$slots.icon">
+    <div class="breadcrumb" :with-icon="$slots.icon" :wrap="wrap">
         <span class="item">
             <slot name="icon"/>
             <a :href="link">{{ text }}</a>
@@ -18,6 +18,10 @@
             text: {
                 type: String,
                 default: ''
+            },
+            wrap: {
+                type: Boolean,
+                default: true
             }
         }
     };
@@ -43,6 +47,10 @@
 }
 
 .breadcrumb:first-of-type {
+    flex-shrink: 0;
+}
+
+.breadcrumb:not([wrap]) {
     flex-shrink: 0;
 }
 
@@ -78,7 +86,7 @@ a {
     content: none;
 }
 
-.breadcrumb:last-child {
+.breadcrumb[wrap]:last-child {
     flex: 1 0 auto;
 }
 </style>
