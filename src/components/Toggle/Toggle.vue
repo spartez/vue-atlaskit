@@ -4,6 +4,7 @@
                :disabled="disabled"
                type="checkbox"
                :checked="value"
+               :appearance="appearance"
                @change="toggle">
         <div class="slide" :size="size">
             <div class="slide-inner">
@@ -37,6 +38,10 @@
             size: {
                 type: String,
                 default: 'regular'
+            },
+            appearance: {
+                type: String,
+                default: 'default'
             }
         },
         data() {
@@ -116,8 +121,12 @@ input:focus + .slide {
     width: 16px;
 }
 
-input:checked + .slide {
+input:checked:not(:disabled)[appearance="default"] + .slide {
     background-color: rgb(0, 135, 90);
+}
+
+input:checked:not(:disabled)[appearance="primary"] + .slide {
+    background-color: #0052CC;
 }
 
 input:checked + .slide::before {
@@ -151,8 +160,12 @@ input:checked + .slide > .slide-inner {
     flex-direction: row;
 }
 
-input:checked:not(:disabled) + .slide:hover {
+input:checked:not(:disabled)[appearance="default"] + .slide:hover {
     background-color: rgb(54, 179, 126);
+}
+
+input:checked:not(:disabled)[appearance="primary"] + .slide:hover {
+    background-color: #0065FF;
 }
 
 input:not(:checked):not(:disabled) + .slide:hover {
