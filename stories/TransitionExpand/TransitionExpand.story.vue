@@ -1,10 +1,16 @@
 <template>
     <div>
-        <Button @click="toggle">
-            Toggle
-        </Button>
-        <TransitionExpand>
-            <div v-if="expanded">
+        <FieldGroup>
+            <Button @click="toggle">
+                Toggle
+            </Button>
+        </FieldGroup>
+        <FieldGroup>
+            <Checkbox v-model="enterTransition"/> Enter transition
+            <Checkbox v-model="leaveTransition"/> Leave transition
+        </FieldGroup>
+        <TransitionExpand :enter-transition="enterTransition" :leave-transition="leaveTransition">
+            <div v-if="expanded" class="content">
                 Magna aliquyam erat, sed diam voluptua. At vero eos et
                 accusam et justo duo dolores et ea rebum. Stet clita kasd
                 gubergren, no sea takimata sanctus est Lorem ipsum dolor
@@ -22,13 +28,19 @@
 <script>
     import TransitionExpand from '@/components/common/TransitionExpand';
     import Button from '@/components/Button/Button';
+    import Checkbox from '@/components/Checkbox/Checkbox';
+    import FieldGroup from '@/components/Form/FieldGroup';
 
     export default {
         name: 'TransitionExpandStory',
-        components: { TransitionExpand, Button },
+        components: {
+            TransitionExpand, Checkbox, Button, FieldGroup
+        },
         data() {
             return {
-                expanded: false
+                expanded: false,
+                enterTransition: true,
+                leaveTransition: true
             };
         },
         methods: {
@@ -40,5 +52,9 @@
 </script>
 
 <style scoped>
-
+    .content {
+        /* padding: 20px; */
+        background: lightblue;
+        overflow: hidden;
+    }
 </style>
