@@ -2,7 +2,9 @@
     <div class="breadcrumb" :with-icon="$slots.icon" :wrap="wrap">
         <span class="item">
             <slot name="icon"/>
-            <a :href="link">{{ text }}</a>
+            <slot name="link">
+                <a :href="link" :target="target">{{ text }}</a>
+            </slot>
         </span>
     </div>
 </template>
@@ -18,6 +20,10 @@
             text: {
                 type: String,
                 default: ''
+            },
+            target: {
+                type: String,
+                default: '_self'
             },
             wrap: {
                 type: Boolean,
