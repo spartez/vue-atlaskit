@@ -7,11 +7,27 @@
 <script>
     export default {
         name: 'TransitionExpand',
+        props: {
+            enterTransition: {
+                type: Boolean,
+                default: true
+            },
+            leaveTransition: {
+                type: Boolean,
+                default: true
+            }
+        },
         methods: {
             afterEnter(element) {
+                if (!this.enterTransition) {
+                    return;
+                }
                 element.style.height = 'auto';
             },
             enter(element) {
+                if (!this.enterTransition) {
+                    return;
+                }
                 /* eslint-disable no-unused-vars */
                 const { width } = getComputedStyle(element);
                 /* eslint-disable no-param-reassign */
@@ -35,6 +51,9 @@
                 });
             },
             leave(element) {
+                if (!this.leaveTransition) {
+                    return;
+                }
                 const { height } = getComputedStyle(element);
                 // eslint-disable-next-line no-param-reassign
                 element.style.height = height;
