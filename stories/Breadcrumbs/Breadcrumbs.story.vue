@@ -1,7 +1,5 @@
 <template>
     <div>
-        <h3>Between</h3>
-        <Breadcrumbs :items="items"/>
         <h3>Only last + Copy</h3>
         <Breadcrumbs :wrap="false" :copy="true" :items="items"/>
         <h3>Custom</h3>
@@ -9,14 +7,17 @@
             <BreadcrumbItem text="Board">
                 <BoardIcon slot="icon" size="xsmall"/>
             </BreadcrumbItem>
-            <BreadcrumbItem text="Agile Poker">
+            <BreadcrumbItem text="Agile Poooooooooooker">
                 <IssuesIcon slot="icon" size="xsmall"/>
             </BreadcrumbItem>
-            <Tooltip class="tooltip" label="Additional info">
-                <BreadcrumbItem text="Awesome Session Name">
-                    <LockFilledIcon slot="icon" size="xsmall"/>
-                </BreadcrumbItem>
-            </Tooltip>
+            <BreadcrumbItem class="last" text="Awesome Session Name">
+                <Tooltip slot="icon" label="Private session">
+                    <LockFilledIcon class="icon" size="small"/>
+                </Tooltip>
+                <Tooltip slot="link" label="Session" class="tooltip">
+                    <a href="#" target="_top" class="link">Session Name loooooong</a>
+                </Tooltip>
+            </BreadcrumbItem>
         </Breadcrumbs>
     </div>
 </template>
@@ -48,3 +49,8 @@
         }
     };
 </script>
+<style scoped>
+    .icon {
+        display: flex;
+    }
+</style>

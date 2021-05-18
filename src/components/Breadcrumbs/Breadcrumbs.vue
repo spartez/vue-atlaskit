@@ -3,7 +3,7 @@
         <div class="breadcrumbs">
             <slot>
                 <BreadcrumbItem v-for="item in items" :key="item.text" :link="item.link"
-                                :text="item.text" :wrap="wrap"/>
+                                :text="item.text"/>
             </slot>
         </div>
 
@@ -26,10 +26,6 @@
             items: {
                 type: Array,
                 default: () => []
-            },
-            wrap: {
-                type: Boolean,
-                default: true
             },
             copy: {
                 type: Boolean,
