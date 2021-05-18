@@ -34,8 +34,8 @@
     min-width: 50px;
     display: flex;
     align-items: center;
-    flex-shrink: 9999;
-    transition: all linear 0.2s;
+    flex-shrink: 10;
+    transition: all ease-out .3s;
 }
 
 .breadcrumb[with-icon] {
@@ -45,15 +45,12 @@
 .breadcrumb:hover {
     flex: 1 0 auto;
     opacity: 1;
-    transition: all linear 0.2s;
+    transition: all ease-out .3s;
 }
+
 
 .breadcrumb:first-of-type {
     flex-shrink: 0;
-}
-
-.breadcrumb:last-of-type {
-    flex-shrink: 2;
 }
 
 .item {
