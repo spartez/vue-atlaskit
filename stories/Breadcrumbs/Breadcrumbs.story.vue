@@ -2,8 +2,8 @@
     <div>
         <h3>Between</h3>
         <Breadcrumbs :items="items"/>
-        <h3>Only last</h3>
-        <Breadcrumbs :wrap="false" :items="items"/>
+        <h3>Only last + Copy</h3>
+        <Breadcrumbs :wrap="false" :copy="true" :items="items"/>
         <h3>Custom</h3>
         <Breadcrumbs>
             <BreadcrumbItem text="Board">
@@ -41,6 +41,7 @@
                 }, {
                     text: 'long breadcrumb'
                 }, {
+                    link: '#/last-item',
                     text: 'never ellipsis'
                 }]
             };
