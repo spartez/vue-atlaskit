@@ -1,8 +1,12 @@
 <template>
     <Tooltip :label="tooltip" :placement="placement" :spacing="spacing">
-        <Button :appearance="appearance" @click="onClick">
-            <slot><CopyIcon/></slot>
-        </Button>
+        <div @click="onClick">
+            <slot>
+                <Button :appearance="appearance">
+                    <CopyIcon/>
+                </Button>
+            </slot>
+        </div>
     </Tooltip>
 </template>
 
