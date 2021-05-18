@@ -1,8 +1,10 @@
 <template>
-    <div class="breadcrumb" :with-icon="$slots.icon" :wrap="wrap">
+    <div class="breadcrumb" :with-icon="$slots.icon">
         <span class="item">
             <slot name="icon"/>
-            <a :href="link">{{ text }}</a>
+            <slot name="link">
+                <a :href="link" :target="target">{{ text }}</a>
+            </slot>
         </span>
     </div>
 </template>
@@ -19,9 +21,9 @@
                 type: String,
                 default: ''
             },
-            wrap: {
-                type: Boolean,
-                default: true
+            target: {
+                type: String,
+                default: '_self'
             }
         }
     };
@@ -32,7 +34,7 @@
     min-width: 50px;
     display: flex;
     align-items: center;
-    flex-shrink: 1;
+    flex-shrink: 9999;
     transition: all linear 0.2s;
 }
 
@@ -50,10 +52,6 @@
     flex-shrink: 0;
 }
 
-.breadcrumb:not([wrap]) {
-    flex-shrink: 0;
-}
-
 .breadcrumb:last-of-type {
     flex-shrink: 2;
 }
@@ -64,12 +62,13 @@
     align-items: center;
 }
 
-a {
+.item >>> a {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
     color: rgb(107, 119, 140);
     margin-left: 5px;
+    display: block;
 }
 
 .breadcrumb:after {
@@ -86,7 +85,7 @@ a {
     content: none;
 }
 
-.breadcrumb[wrap]:last-child {
-    flex: 1 0 auto;
+.breadcrumb:last-child {
+    flex: 0 1 auto;
 }
 </style>
