@@ -42,15 +42,8 @@
     min-width: 60px;
 }
 
-.breadcrumb:hover {
-    flex: 1 0 auto;
-    opacity: 1;
-    transition: all ease-out .3s;
-}
-
-
 .breadcrumb:first-of-type {
-    flex-shrink: 0;
+    flex: 0 1 auto;
 }
 
 .item {
@@ -88,5 +81,11 @@
 
 .breadcrumb:last-child {
     flex: 0 1 auto;
+}
+
+.breadcrumb:hover {
+    flex: 1 0 auto;
+    opacity: 1;
+    transition: all ease-out .3s;
 }
 </style>
