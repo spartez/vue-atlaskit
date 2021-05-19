@@ -53,6 +53,9 @@
         },
         methods: {
             onMouseEnter() {
+                if (this.disabled) {
+                    return;
+                }
                 this.show = true;
                 if (this.appendToBody) {
                     this.$nextTick(() => {

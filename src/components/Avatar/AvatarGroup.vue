@@ -33,7 +33,7 @@
                         </transition>
                     </div>
                 </div>
-                <DropdownItem v-for="collapsedUser in collapsed" :key="collapsedUser.key">
+                <DropdownItem v-for="collapsedUser in collapsed" :key="collapsedUser.key" :non-link="!collapsedUser.link">
                     <a v-if="collapsedUser.link" class="list-item" :href="collapsedUser.link"
                        target="_blank">
                         <Avatar tag="a" :link="collapsedUser.link" class="user-list-avatar"
@@ -42,7 +42,7 @@
                         <span class="user-name">{{ collapsedUser.displayName }}</span>
                     </a>
                     <div v-else class="list-item">
-                        <Avatar tag="a" :link="collapsedUser.link" class="user-list-avatar"
+                        <Avatar tag="span" :link="collapsedUser.link" class="user-list-avatar"
                                 size="small" :status="collapsedUser.status" :outline="borderColor"
                                 :avatar="collapsedUser.avatar" :presence="collapsedUser.presence"/>
                         <span class="user-name">{{ collapsedUser.displayName }}</span>

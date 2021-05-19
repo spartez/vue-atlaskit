@@ -114,7 +114,7 @@
     transition: opacity 200ms ease 0s;
 }
 
-.wrapper:hover::after {
+a.wrapper:hover::after {
     background-color: rgba(9, 30, 66, 0.36);
     opacity: 1;
 }
