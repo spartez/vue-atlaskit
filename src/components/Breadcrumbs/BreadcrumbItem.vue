@@ -31,7 +31,7 @@
 
 <style scoped>
 .breadcrumb {
-    min-width: 50px;
+    min-width: 45px;
     display: flex;
     align-items: center;
     flex-shrink: 10;
@@ -64,8 +64,12 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     color: rgb(107, 119, 140);
-    margin-left: 5px;
+    margin-left: 0px;
     display: block;
+}
+
+[with-icon] >>> a {
+    margin-left: 5px;
 }
 
 .breadcrumb:after {
