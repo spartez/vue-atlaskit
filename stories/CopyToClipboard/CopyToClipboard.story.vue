@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div style="display: flex; align-items: center; gap:  20px">
         <CopyToClipboard text="text"/>
         <CopyToClipboard text="text" spacing="none" placement="right">
             <Button appearance="subtle">

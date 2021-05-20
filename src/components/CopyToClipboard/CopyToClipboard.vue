@@ -1,6 +1,6 @@
 <template>
     <Tooltip :label="tooltip" :placement="placement" :spacing="spacing">
-        <div @click="onClick">
+        <div class="content" @click="onClick">
             <slot>
                 <Button :appearance="appearance">
                     <CopyIcon/>
@@ -76,3 +76,9 @@
         }
     };
 </script>
+
+<style scoped>
+.content {
+    display: flex;
+}
+</style>
