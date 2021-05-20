@@ -7,9 +7,8 @@
             </slot>
         </div>
 
-        <CopyToClipboard v-if="copy" :text="lastItemLink" placement="bottom-start"
-                         class="copy-icon">
-            <CopyIcon/>
+        <CopyToClipboard v-if="copy" :text="lastItemLink" placement="bottom-start">
+            <CopyIcon class="copy-icon"/>
         </CopyToClipboard>
     </div>
 </template>
@@ -60,11 +59,10 @@
 }
 
 .copy-icon {
-    height: 24px;
-    transition: opacity 0.2s ease 0s, transform 0.2s ease 0s;
     opacity: 0;
-    transform: scale(0.8) translate(-6px, 1px);
     cursor: pointer;
+    transform: scale(0.8) translate(-6px, 1px);
+    transition: opacity 0.2s ease 0s, transform 0.2s ease 0s;
 }
 
 .wrapper:hover .copy-icon {
