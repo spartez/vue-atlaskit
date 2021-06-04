@@ -70,7 +70,7 @@
                     <slot name="menu-bar" :insert="insertDocument"/>
                 </div>
             </editor-menu-bar>
-            <editor-content class="editor-content" :editable="editable" :read-only="readOnly"
+            <editor-content class="editor-content" :editable="editable" :read-only="!editable"
                             :editor="editor" :data-text="emptyFieldText"
                             @click.native="onEditRequested"/>
         </div>
@@ -92,7 +92,9 @@
         EditorStrikethroughIcon
     } from '../Icon';
     import Button from '../Button/Button';
-    import { extensions, Placeholder } from './extensions';
+    import {
+        extensions, Placeholder, Image, Doc
+    } from './extensions';
 
     export default {
         components: {
@@ -129,13 +131,13 @@
                 type: Function,
                 default: () => ({})
             },
-            readOnly: {
-                type: Boolean,
-                default: false
-            },
             emptyFieldText: {
                 type: String,
                 default: 'Click to add description...'
+            },
+            baseUrl: {
+                type: String,
+                default: ''
             }
         },
         data() {
@@ -143,8 +145,7 @@
                 updated: false,
                 editor: new Editor({
                     editable: this.editable,
-                    useBuiltInExtensions: false,
-                    extensions: [...extensions, new Placeholder({ emptyNodeText: this.placeholder })],
+                    extensions: [new Doc(), new Image({ baseUrl: this.baseUrl }), ...extensions, new Placeholder({ emptyNodeText: this.placeholder })],
                     onFocus: this.onFocus,
                     content: this.value,
                     onUpdate: ({ getJSON }) => {

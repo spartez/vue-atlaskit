@@ -1,7 +1,7 @@
 <template>
     <div ref="editor" class="rich-text-editable-renderer">
         <RichTextEditor v-model="content" :editable="isEditing" :empty-field-text="emptyFieldText"
-                        @edit-requested="onEditRequested">
+                        :base-url="baseUrl" @edit-requested="onEditRequested">
             <template v-slot:actions="{setContent}">
                 <div class="buttons">
                     <Button type="submit" :is-loading="isLoading" :is-disabled="isDisabled"
@@ -41,6 +41,10 @@
             placement: {
                 type: String,
                 default: 'right'
+            },
+            baseUrl: {
+                type: String,
+                default: ''
             }
         },
         data() {

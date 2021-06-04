@@ -5,12 +5,14 @@
             {{ value }}
         </span>
         <Button v-if="hiddenValues.length > 0" ref="target" spacing="none"
+                :is-selected="isOpen"
                 @click="toggleDropdown">
             +{{ hiddenValues.length }}
         </Button>
-        <Popper v-if="isOpen" :target-element="$refs.target.$el" offset="0,5"
-                placement="right-start">
-            <div class="dropdown-list">
+        <Popper v-if="isOpen" ref="popper" :target-element="$refs.target.$el"
+                offset="0,5"
+                placement="bottom-end">
+            <div ref="dropdown" class="dropdown-list">
                 <div v-for="(value, i) in hiddenValues" :key="i" class="item"
                      :title="value">
                     {{ value }}
@@ -89,6 +91,7 @@
         display: flex;
         flex-direction: row;
         justify-content: flex-start;
+        align-items: center;
         overflow: hidden;
     }
 
@@ -130,6 +133,8 @@
     }
 
     .dropdown-list {
+        position: absolute;
+        z-index: 1;
         box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.31) 0px 0px 1px;
         box-sizing: border-box;
         background: rgb(255, 255, 255);

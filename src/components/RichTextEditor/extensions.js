@@ -55,10 +55,9 @@ import InlineCard from './custom-extensions/nodes/InlineCard';
 
 import History from './custom-extensions/extensions/History';
 
-export { Placeholder };
+export { Placeholder, Image, Doc };
 
 export const extensions = [
-    new Doc(),
     new Indentation(),
     new Paragraph(),
     new Text(),
@@ -103,7 +102,6 @@ export const extensions = [
     new HardBreak(),
     new DecisionList(),
     new DecisionItem(),
-    new Image(),
     new Rule(),
     new MediaGroup(),
     new EmbedCard(),
