@@ -4,7 +4,7 @@
         <span class="label-text">
             <slot/>
         </span>
-        <Button v-if="isMulti" class="only-button" appearance="subtle"
+        <Button v-if="isMulti && showOnlyButton" class="only-button" appearance="subtle"
                 spacing="none"
                 @click="onOnlyClicked">
             only
@@ -30,6 +30,10 @@
             value: {
                 type: String,
                 default: undefined
+            },
+            showOnlyButton: {
+                type: Boolean,
+                default: true
             }
         },
         computed: {

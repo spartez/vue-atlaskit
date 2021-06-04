@@ -65,7 +65,9 @@
             },
             onMouseLeave() {
                 if (this.appendToBody) {
-                    document.body.removeChild(this.$refs.label);
+                    if (this.$refs.label) {
+                        document.body.removeChild(this.$refs.label);
+                    }
                 }
                 this.show = false;
             },
