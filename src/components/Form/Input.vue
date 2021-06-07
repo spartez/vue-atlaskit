@@ -1,5 +1,5 @@
 <template>
-    <TextField :is-focused="isFocused">
+    <TextField :is-focused="isFocused" :is-invalid="isInvalid" :is-loading="isLoading">
         <input ref="input" v-model="input" :type="type"
                :placeholder="placeholder"
                :step="step"
@@ -50,6 +50,14 @@
             allowedValues: {
                 type: String,
                 default: ''
+            },
+            isInvalid: {
+                type: Boolean,
+                default: false
+            },
+            isLoading: {
+                type: Boolean,
+                default: false
             }
         },
         data() {
