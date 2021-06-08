@@ -1,6 +1,6 @@
 <template>
     <div class="field-group">
-        <span class="label field-group-label">{{ label }}</span>
+        <span v-if="label" class="label field-group-label">{{ label }}</span>
         <slot/>
         <div v-for="error in errors" ref="error" :key="error"
              class="error-message">
