@@ -7,6 +7,30 @@ const TabItem = content => ({
     }
 });
 
-const Tab = TabItem({ name: 'Tab' });
-const TabContent = TabItem({ name: 'TabContent' });
+const Tab = TabItem({
+    name: 'Tab',
+    props: {
+        id: {
+            type: Number,
+            required: true
+        },
+        disabled: {
+            type: Boolean,
+            default: false
+        },
+        stretch: {
+            type: Boolean,
+            default: false
+        }
+    }
+});
+const TabContent = TabItem({
+    name: 'TabContent',
+    props: {
+        id: {
+            type: Number,
+            required: true
+        }
+    }
+});
 export { TabContainer, Tab, TabContent };

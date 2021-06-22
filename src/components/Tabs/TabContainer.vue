@@ -8,10 +8,10 @@
             const { tabs, content } = slots();
             return [
                 h('nav', tabs.map(vnode => h(TabItem, {
-                    props: { ...vnode.data.attrs, selected: props.value },
+                    props: { ...vnode.componentOptions.propsData, selected: props.value },
                     on: { ...listeners }
                 }, [vnode]))),
-                h('span', [content.find(({ data }) => data.attrs.id === props.value)])
+                h('div', [content.find(({ componentOptions }) => componentOptions.propsData.id === props.value)])
             ];
         }
     };
@@ -23,7 +23,7 @@
         display: flex;
         font-weight: 500;
         padding: 0px;
-        margin: 0px;
+        margin: 0px -8px;
     }
 
     nav:before {
