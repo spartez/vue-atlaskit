@@ -1,5 +1,5 @@
 <script>
-    import TabItem from './TabItem';
+    import Tab from './Tab';
 
     export default {
         name: 'Tabs',
@@ -7,10 +7,15 @@
         render(h, { slots, props, listeners }) {
             const { tabs, content } = slots();
             return [
-                h('nav', tabs.map(vnode => h(TabItem, {
-                    props: { ...vnode.componentOptions.propsData, selected: props.value },
-                    on: { ...listeners }
-                }, [vnode]))),
+                h('nav', tabs.map((vnode) => {
+                    const { componentOptions, data: { attrs, staticClass } } = vnode;
+                    return h(Tab, {
+                        props: { ...componentOptions.propsData, selected: props.value },
+                        attrs: { ...attrs },
+                        class: { ...(staticClass && { [staticClass]: true }) },
+                        on: { ...listeners }
+                    }, [vnode]);
+                })),
                 h('div', [content.find(({ componentOptions }) => componentOptions.propsData.id === props.value)])
             ];
         }

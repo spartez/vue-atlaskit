@@ -1,13 +1,13 @@
 <template>
     <a href="#" :active="selected === id" :disabled="disabled"
-       :stretch="stretch" @click.prevent="onClick">
+       :stretch="stretch" :inactive="inactive" @click.prevent="onClick">
         <slot/>
     </a>
 </template>
 <script>
 
     export default {
-        name: 'Tab',
+        name: 'TabItem',
         props: {
             id: {
                 type: [String, Number],
@@ -24,6 +24,10 @@
             stretch: {
                 type: Boolean,
                 default: false
+            },
+            inactive: {
+                type: Boolean,
+                default: false
             }
         },
         data() {
@@ -33,7 +37,7 @@
         },
         methods: {
             onClick() {
-                if (!this.disabled) {
+                if (!this.disabled && !this.inactive) {
                     this.$emit('input', this.id);
                 }
             }
@@ -60,7 +64,7 @@
         flex-grow: 1;
     }
 
-    a:hover {
+    a:not([inactive]) hover {
         color: #0052CC;
     }
 
@@ -79,6 +83,11 @@
         right: 8px;
         border-bottom: 2px solid rgb(0, 82, 204);
         height: 0px;
+    }
+
+    [inactive] {
+        color: rgb(66, 82, 110);
+        cursor: default;
     }
 
     [disabled] {

@@ -7,11 +7,11 @@ const TabItem = content => ({
     }
 });
 
-const Tab = TabItem({
-    name: 'Tab',
+const TabHeader = TabItem({
+    name: 'TabHeader',
     props: {
         id: {
-            type: Number,
+            type: [String, Number],
             required: true
         },
         disabled: {
@@ -19,6 +19,10 @@ const Tab = TabItem({
             default: false
         },
         stretch: {
+            type: Boolean,
+            default: false
+        },
+        inactive: {
             type: Boolean,
             default: false
         }
@@ -33,4 +37,4 @@ const TabContent = TabItem({
         }
     }
 });
-export { TabContainer, Tab, TabContent };
+export { TabContainer, TabHeader, TabContent };

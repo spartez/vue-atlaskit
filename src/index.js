@@ -57,7 +57,7 @@ import SpotlightContext from './components/Spotlight/SpotlightContext';
 import SpotlightOverlay from './components/Spotlight/SpotlightOverlay';
 import CustomHint from './components/Spotlight/CustomHint';
 import CustomSingleSelectEditableRenderer from './components/field-renderers/CustomSingleSelectEditableRenderer';
-import { TabContainer, Tab, TabContent } from './components/Tabs';
+import { TabContainer, TabHeader, TabContent } from './components/Tabs';
 import '@atlaskit/css-reset/dist/bundle.css';
 
 export {
@@ -115,7 +115,7 @@ export {
     BreadcrumbItem,
     Breadcrumbs,
     CustomHint,
-    TabContainer, Tab, TabContent
+    TabContainer, TabHeader, TabContent
 };
 export * from './components/Icon';
 export * from './components/field-renderers';

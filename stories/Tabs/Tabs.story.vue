@@ -1,20 +1,24 @@
 <template>
     <div>
         <TabContainer v-model="active">
-            <Tab v-for="i in tabs" :id="i" :key="i"
-                 slot="tabs" :disabled="i === 4">
+            <TabHeader v-for="i in tabs" :id="i" :key="i"
+                       slot="tabs" :disabled="i === 4">
                 <TabItemContent :index="i"/>
-            </Tab>
+            </TabHeader>
+            <TabHeader id="custom" key="custom" slot="tabs"
+                       :inactive="true">
+                Inactive Tab
+            </TabHeader>
             <TabContent v-for="i in tabs" :id="i" slot="content"
                         :key="i">
                 <span class="content">Tab Content {{ i }}</span>
             </TabContent>
         </TabContainer>
         <TabContainer v-model="active">
-            <Tab v-for="i in tabs" :id="i" :key="i"
-                 slot="tabs" :disabled="i === 4">
+            <TabHeader v-for="i in tabs" :id="i" :key="i"
+                       slot="tabs" :disabled="i === 4">
                 Verrryyy Loooooong Tab {{ i }}
-            </Tab>
+            </TabHeader>
             <TabContent v-for="i in tabs" :id="i" slot="content"
                         :key="i">
                 <span class="content">Verrryyy Loooooong Tab Content {{ i }}</span>
@@ -25,13 +29,13 @@
 
 
 <script>
-    import { Tab, TabContent, TabContainer } from '@/components/Tabs';
+    import { TabHeader, TabContent, TabContainer } from '@/components/Tabs';
     import TabItemContent from './TabItemContent';
 
     export default {
         name: 'TabsStory',
         components: {
-            TabContainer, TabContent, Tab, TabItemContent
+            TabContainer, TabContent, TabHeader, TabItemContent
         },
         data() {
             return {
