@@ -25,6 +25,7 @@
         border-radius: 24px;
         padding: 2px 6px;
         box-sizing: border-box;
+        flex-shrink: 0;
     }
 
     span:empty::after {
