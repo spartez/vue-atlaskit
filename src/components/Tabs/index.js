@@ -32,7 +32,7 @@ const TabContent = TabItem({
     name: 'TabContent',
     props: {
         id: {
-            type: Number,
+            type: [String, Number],
             required: true
         }
     }

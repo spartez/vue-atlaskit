@@ -85,7 +85,7 @@
 
 <style scoped>
 .tooltip {
-    display: inline;
+    display: inline-block;
     min-width: 20px;
 }
 
