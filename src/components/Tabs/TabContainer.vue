@@ -5,7 +5,7 @@
         name: 'Tabs',
         functional: true,
         render(h, { slots, props, listeners }) {
-            const { tabs, content } = slots();
+            const { tabs = [], content = [] } = slots();
             return [
                 h('nav', tabs.map((vnode) => {
                     const { componentOptions, data: { attrs, staticClass } } = vnode;
