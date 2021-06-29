@@ -3,7 +3,7 @@ import TabContainer from './TabContainer';
 const TabItem = content => ({
     ...content,
     render() {
-        return this.$slots.default;
+        return this.$slots.default.filter(vnode => vnode.tag !== undefined);
     }
 });
 
