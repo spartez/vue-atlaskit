@@ -20,6 +20,7 @@
                 </template>
                 <input ref="input" class="search"
                        :value="search"
+                       :disabled="isDisabled"
                        :style="{width: currentWidth}"
                        @keydown.down.prevent="onNextSuggestion"
                        @keydown.up.prevent="onPreviousSuggestion"
@@ -580,7 +581,7 @@
         cursor: not-allowed;
     }
 
-    .select[disabled] .text-field {
+    .select[disabled] .select-wrapper {
         pointer-events: none;
     }
 
