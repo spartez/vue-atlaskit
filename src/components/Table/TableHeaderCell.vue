@@ -5,8 +5,11 @@
         :sticky-right="stickyRight"
         :sortable="column.sortable"
         @click="onClick">
-        <span class="table-header-label">
+        <span v-if="column.name" class="table-header-label">
             {{ column.name }}
+        </span>
+        <span v-else class="table-header-label">
+            <slot />
         </span>
         <template v-if="column.sortable">
             <ChevronDownIcon v-if="sorted && sortedDesc" size="small"/>

@@ -9,7 +9,11 @@
                                      :sticky-header="stickyHeader"
                                      :sorted="sortedBy === column.id"
                                      :sorted-desc="sortedDesc"
-                                     @sorted="onSorted(column)"/>
+                                     @sorted="onSorted(column)">
+                        <template v-slot:default>
+                            <slot :name="`Header${column.id}`"/>
+                        </template>
+                    </TableHeaderCell>
                 </tr>
             </thead>
             <tbody>
