@@ -1,27 +1,27 @@
 /* eslint-disable no-underscore-dangle */
-import Vue from 'vue';
 import TooltipContent from '../components/Tooltip/TooltipContent.vue';
 
-function createTooltip(el, props) {
-    const tooltipContainer = document.createElement('div');
-    document.body.appendChild(tooltipContainer);
-    return new Vue({
-        el: tooltipContainer,
-        data: {
-            show: true,
-            props
+function createTooltipComponent(el, componentInstance) {
+    return componentInstance.constructor.extend({
+        data() {
+            return {
+                show: true,
+                props: {}
+            };
         },
         computed: {
             disabled() {
                 return this.props.disabled;
             },
             isVisible() {
-                return this.show && !this.props.disabled && this.props.label;
+                return this.show && !this.props.disabled && Boolean(this.props.label);
             }
         },
         watch: {
-            disabled() {
-                this.$destroy();
+            disabled(value) {
+                if (value) {
+                    this.$destroy();
+                }
             }
         },
         destroyed() {
@@ -34,6 +34,9 @@ function createTooltip(el, props) {
                 setTimeout(() => {
                     this.$destroy();
                 }, 300);
+            },
+            update(newProps) {
+                this.props = newProps;
             }
         },
         render(h) {
@@ -50,8 +53,18 @@ function createTooltip(el, props) {
     });
 }
 
-function removeTooltip(el, immediate = false) {
-    el._tooltip.hide(immediate);
+function createTooltip(TooltipComponent, props) {
+    const tooltipContainer = document.createElement('div');
+    document.body.appendChild(tooltipContainer);
+
+    const tooltipInstance = new TooltipComponent();
+    tooltipInstance.update(props);
+    tooltipInstance.$mount(tooltipContainer);
+    return tooltipInstance;
+}
+
+function removeTooltip(el) {
+    el._tooltip.hide();
     el._tooltip = undefined;
 }
 
@@ -70,14 +83,15 @@ function getProps(binding) {
     };
 }
 
-export default Vue.directive('tooltip', {
-    bind(el, binding) {
+export default {
+    bind(el, binding, vnode) {
+        const TooltipComponent = createTooltipComponent(el, vnode.componentInstance);
         el._tooltipProps = getProps(binding);
         el.addEventListener('mouseenter', () => {
             if (el._tooltip || el._tooltipProps.disabled) {
                 return;
             }
-            el._tooltip = createTooltip(el, el._tooltipProps);
+            el._tooltip = createTooltip(TooltipComponent, el._tooltipProps);
         });
         el.addEventListener('mouseleave', () => {
             if (el._tooltip) {
@@ -88,7 +102,7 @@ export default Vue.directive('tooltip', {
     update(el, binding) {
         el._tooltipProps = getProps(binding);
         if (el._tooltip) {
-            el._tooltip.$data.props = el._tooltipProps;
+            el._tooltip.update(el._tooltipProps);
         }
     }
-});
+};
