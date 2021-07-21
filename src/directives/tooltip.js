@@ -1,8 +1,8 @@
 /* eslint-disable no-underscore-dangle */
 import TooltipContent from '../components/Tooltip/TooltipContent.vue';
 
-function createTooltipComponent(el, componentInstance) {
-    return componentInstance.constructor.extend({
+function createTooltipComponent(el, context) {
+    return context.$root.constructor.extend({
         data() {
             return {
                 show: true,
