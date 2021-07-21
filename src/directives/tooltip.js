@@ -85,7 +85,7 @@ function getProps(binding) {
 
 export default {
     bind(el, binding, vnode) {
-        const TooltipComponent = createTooltipComponent(el, vnode.componentInstance);
+        const TooltipComponent = createTooltipComponent(el, vnode.context);
         el._tooltipProps = getProps(binding);
         el.addEventListener('mouseenter', () => {
             if (el._tooltip || el._tooltipProps.disabled) {

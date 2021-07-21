@@ -41,6 +41,11 @@
                 Disable using empty label: label="{{ label }}"
             </Button>
         </div>
+        <div class="buttons-group">
+            <div v-tooltip="`I'm on a div`">
+                Tooltip on plain div
+            </div>
+        </div>
     </div>
 </template>
 
