@@ -7,8 +7,7 @@
             :placement="placement"
             :offset="offset"
             :with-delay="withDelay">
-            <span class="label"
-                  :disabled="disabled">
+            <span class="label">
                 {{ label }}
             </span>
         </Popper>
@@ -67,6 +66,8 @@
     background-color: #172b4d;
     border-radius: 3px;
     color: #ffffff;
+    top: 0;
+    left: 0;
 }
 
 .fade-enter-active,
