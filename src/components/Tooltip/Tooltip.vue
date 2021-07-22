@@ -69,7 +69,9 @@
                 this.show = false;
             },
             append() {
-                document.body.appendChild(this.$refs.popper.$el);
+                if (this.$refs.popper) {
+                    document.body.appendChild(this.$refs.popper.$el);
+                }
             }
         }
     };

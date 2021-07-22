@@ -1,4 +1,5 @@
 /* eslint-disable no-underscore-dangle */
+import Vue from 'vue';
 import TooltipContent from '../components/Tooltip/TooltipContent.vue';
 
 function createTooltipComponent(el, context) {
@@ -59,7 +60,9 @@ function createTooltip(TooltipComponent, props) {
 
     const tooltipInstance = new TooltipComponent();
     tooltipInstance.update(props);
-    tooltipInstance.$mount(tooltipContainer);
+    Vue.nextTick(() => {
+        tooltipInstance.$mount(tooltipContainer);
+    });
     return tooltipInstance;
 }
 

@@ -64,8 +64,11 @@
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
-        display: flex;
         height: 40px;
+    }
+
+    .dropdown-checkbox-item.checkbox-wrapper {
+        display: flex;
     }
 
     .dropdown-checkbox-item:hover {

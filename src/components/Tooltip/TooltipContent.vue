@@ -7,8 +7,7 @@
             :placement="placement"
             :offset="offset"
             :with-delay="withDelay">
-            <span class="label"
-                  :disabled="disabled">
+            <span class="label">
                 {{ label }}
             </span>
         </Popper>
