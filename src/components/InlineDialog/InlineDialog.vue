@@ -1,5 +1,5 @@
 <template>
-    <span ref="dialog-container">
+    <div ref="dialog-container" class="dialog-container">
         <slot name="trigger"
               :is-open="open"
               :toggle="onTriggerClick"/>
@@ -12,7 +12,7 @@
                 <slot/>
             </div>
         </Popup>
-    </span>
+    </div>
 </template>
 
 <script>
@@ -89,8 +89,13 @@
 </script>
 
 <style scoped>
+    .dialog-container {
+        display: inline-block;
+    }
+
     .dialog-content {
         max-width: 300px;
         max-height: 400px;
+        overflow: auto;
     }
 </style>
