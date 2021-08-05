@@ -95,6 +95,11 @@ input:-moz-placeholder {
 .input-wrapper[disabled] {
     pointer-events: none;
     background-color: #F4F5F7;
+    color: #A5ADBA;
+}
+
+.input-wrapper[disabled] input::placeholder {
+    color: #A5ADBA;
 }
 
 .input-wrapper:hover {

@@ -10,6 +10,11 @@
                    placeholder="Click here to input"/>
             The number is: {{ number }}
         </FieldGroup>
+        <FieldGroup label="Disabled input" required>
+            <Input v-model="message" should-fit-container placeholder="Click here to input"
+                   disabled/>
+            The message is: {{ message }}
+        </FieldGroup>
     </div>
 </template>
 
