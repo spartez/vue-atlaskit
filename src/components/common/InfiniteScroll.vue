@@ -22,26 +22,27 @@
             };
         },
         async mounted() {
-            this.createObserver();
+            this.observer = new IntersectionObserver(([entries]) => {
+                if (entries.isIntersecting) {
+                    this.tableBottomReached();
+                }
+            });
+            this.observe();
         },
         beforeDestroy() {
             this.observer.disconnect();
         },
         methods: {
-            createObserver() {
-                if (this.observer) {
-                    this.observer.unobserve(this.$refs['infinite-scroll-loader']);
+            observe() {
+                if (!this.$refs['infinite-scroll-loader']) {
+                    return;
                 }
-                this.observer = new IntersectionObserver(([entries]) => {
-                    if (entries.isIntersecting) {
-                        this.tableBottomReached();
-                    }
-                });
+                this.observer.disconnect();
                 this.observer.observe(this.$refs['infinite-scroll-loader']);
             },
             tableBottomReached() {
                 this.$emit('table-bottom-reached', () => {
-                    this.createObserver();
+                    this.observe();
                 });
             }
         }
