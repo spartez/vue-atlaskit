@@ -2,8 +2,23 @@
     <div class="wrapper">
         <h3>Normal view</h3>
         <p>
-            <Calendar data-cy="calendar" :value="date"/>
+            <Calendar data-cy="calendar" :value="date" @date-selected="onDateSelected"/>
         </p>
+        <h3>With time zones</h3>
+        <div class="time-zones">
+            <div>
+                <p>Pacific/Auckland: {{ formatDate(date, 'Pacific/Auckland') }}</p>
+                <Calendar :value="date" time-zone="Pacific/Auckland" @date-selected="onDateSelected"/>
+            </div>
+            <div>
+                <p>Default (system) time zone: {{ formatDate(date) }}</p>
+                <Calendar :value="date" @date-selected="onDateSelected"/>
+            </div>
+            <div>
+                <p>Pacific/Honolulu: {{ formatDate(date, 'Pacific/Honolulu') }}</p>
+                <Calendar :value="date" time-zone="Pacific/Honolulu" @date-selected="onDateSelected"/>
+            </div>
+        </div>
         <h3>Disabled past dates</h3>
         <p>
             <Calendar :value="date" :disabled-range="noPastRange"/>
@@ -22,6 +37,7 @@
 <script>
     import Calendar from '@/components/Calendar/Calendar';
     import { addDays, subDays } from 'date-fns';
+    import { format, utcToZonedTime } from 'date-fns-tz';
 
     export default {
         name: 'CalendarStory',
@@ -53,7 +69,21 @@
         methods: {
             onDateRangeSelected(value) {
                 this.dateRange = value;
+            },
+
+            onDateSelected(value) {
+                this.date = value;
+            },
+
+            formatDate(date, timeZone) {
+                return date && format(utcToZonedTime(date, timeZone), 'yyyy-MM-dd HH:mm');
             }
         }
     };
 </script>
+
+<style scoped>
+    .time-zones {
+        display: flex;
+    }
+</style>

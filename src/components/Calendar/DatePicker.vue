@@ -11,7 +11,8 @@
         </TextField>
         <Popup :is-open="isOpen" :target-element="$refs['date-picker']" placement="bottom-start"
                data-cy="select-menu">
-            <Calendar :value="selectedDate" :disabled-range="disabledRange" @date-selected="onDateSelected"/>
+            <Calendar :value="selectedDate" :disabled-range="disabledRange" :time-zone="timeZone"
+                      @date-selected="onDateSelected"/>
         </Popup>
     </div>
 </template>
@@ -58,6 +59,10 @@
                     from: undefined,
                     to: undefined
                 })
+            },
+            timeZone: {
+                type: String,
+                default: undefined
             }
         },
         data() {

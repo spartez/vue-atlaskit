@@ -24,6 +24,7 @@
         <Popup :is-open="isOpen" :target-element="$refs['date-picker']" placement="bottom-start">
             <div class="date-range">
                 <Calendar :value="dateRange" :range-value="true" :visible-date="visibleDate"
+                          :time-zone="timeZone"
                           @date-selected="onDateSelected"/>
                 <div v-if="showQuickRanges" class="quick-ranges" tabindex="-1">
                     <DropdownGroup label="Quick ranges">
@@ -109,6 +110,10 @@
                     from: undefined,
                     to: undefined
                 })
+            },
+            timeZone: {
+                type: String,
+                default: undefined
             }
         },
         data() {

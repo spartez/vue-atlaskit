@@ -20,7 +20,6 @@
         startOfWeek,
         lastDayOfWeek,
         eachDayOfInterval,
-        isToday,
         isSameMonth,
         isSameDay,
         isBefore,
@@ -32,6 +31,10 @@
         setYear,
         setMonth
     } from 'date-fns';
+    import {
+        utcToZonedTime,
+        zonedTimeToUtc
+    } from 'date-fns-tz';
 
     import { chunk } from '../../utils/utils';
     import CalendarHeader from './CalendarHeader';
@@ -49,7 +52,10 @@
             CalendarHeader, Weeks, Months, Years
         },
         props: {
-            value: { type: [Date, Object], default: () => undefined },
+            value: {
+                type: [Date, Object],
+                default: () => undefined
+            },
             rangeValue: {
                 type: Boolean,
                 default: false
@@ -63,6 +69,10 @@
             },
             visibleDate: {
                 type: Date,
+                default: undefined
+            },
+            timeZone: {
+                type: String,
                 default: undefined
             }
         },
@@ -120,13 +130,14 @@
         watch: {
             value: {
                 handler(date) {
-                    this.selectedDate = this.rangeValue ? date.from : date;
+                    const selectedDate = this.rangeValue ? date.from : date;
+                    this.selectedDate = selectedDate ? utcToZonedTime(selectedDate, this.timeZone) : undefined;
                 },
                 immediate: true
             },
             visibleDate: {
                 handler() {
-                    this.currentDate = this.visibleDate || (this.rangeValue ? this.value.from : this.value) || TODAY;
+                    this.currentDate = this.visibleDate || this.selectedDate || TODAY;
                 },
                 immediate: true
             }
@@ -135,7 +146,7 @@
             enrichDay(date) {
                 return {
                     date,
-                    isToday: isToday(date),
+                    isToday: this.isToday(date),
                     isNotSameMonth: !isSameMonth(this.currentDate, date),
                     isSelected: this.isSelected(date),
                     isDisabled: this.isDisabled(date),
@@ -143,6 +154,9 @@
                     isRangeStart: isSameDay(date, this.rangeFrom),
                     isRangeEnd: isSameDay(date, this.rangeTo)
                 };
+            },
+            isToday(date) {
+                return isSameDay(utcToZonedTime(new Date(), this.timeZone), date);
             },
             isSelected(date) {
                 if (this.rangeValue) {
@@ -181,9 +195,16 @@
                 this.currentDate = setYear(this.currentDate, year);
             },
             onDateSelected(day) {
-                this.selectedDate = day.date;
-                this.currentDate = day.date;
-                this.$emit('date-selected', this.selectedDate);
+                const { date } = day;
+                if (this.selectedDate) {
+                    date.setHours(this.selectedDate.getHours());
+                    date.setMinutes(this.selectedDate.getMinutes());
+                    date.setSeconds(this.selectedDate.getSeconds());
+                }
+                this.selectedDate = date;
+                this.currentDate = date;
+                const utcDate = zonedTimeToUtc(date, this.timeZone);
+                this.$emit('date-selected', utcDate);
             },
             onIntervalChange(interval) {
                 this.currentInterval = interval;
