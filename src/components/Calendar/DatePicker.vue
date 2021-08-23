@@ -20,6 +20,7 @@
 <script>
     import format from 'date-fns/format';
     import { fromUnixTime, parse, isValid } from 'date-fns';
+    import { utcToZonedTime, zonedTimeToUtc } from 'date-fns-tz';
     import TextField from '../Form/TextField';
     import Calendar from './Calendar';
     import Popup from '../common/Popup';
@@ -90,7 +91,8 @@
                 if (!this.isValid) {
                     return '';
                 }
-                return format(this.value, this.dateFormat);
+                const date = utcToZonedTime(this.value, this.timeZone);
+                return format(date, this.dateFormat);
             },
             listeners() {
                 const {
@@ -111,13 +113,24 @@
         },
         methods: {
             onInput(e) {
-                const date = parse(e.target.value, this.dateFormat, new Date()).getTime();
+                const timestamp = parse(e.target.value, this.dateFormat, new Date()).getTime();
                 if (e.target.value.length === 0) {
                     this.selectedDate = undefined;
-                } else if (!Number.isNaN(date)) {
-                    const formatted = format(date, this.dateFormat);
+                } else if (!Number.isNaN(timestamp)) {
+                    const formatted = format(timestamp, this.dateFormat);
                     if (e.target.value !== formatted) return;
-                    this.selectedDate = date;
+                    const date = new Date(timestamp);
+                    this.copyTime(date);
+                    const utcDate = zonedTimeToUtc(date, this.timeZone);
+                    this.selectedDate = utcDate.getTime();
+                }
+            },
+            copyTime(date) {
+                if (this.selectedDate) {
+                    const selectedDate = new Date(this.selectedDate);
+                    date.setHours(selectedDate.getHours());
+                    date.setMinutes(selectedDate.getMinutes());
+                    date.setSeconds(selectedDate.getSeconds());
                 }
             },
             toggle() {
