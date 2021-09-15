@@ -167,12 +167,17 @@
             isDisabled(date) {
                 if (!this.disabledFrom && !this.disabledTo) {
                     return false;
-                } if (!this.disabledFrom) {
+                }
+                if (!this.disabledFrom) {
                     return !isAfter(date, this.disabledTo);
-                } if (!this.disabledTo) {
+                }
+                if (!this.disabledTo) {
                     return !isBefore(date, this.disabledFrom);
                 }
-                return !isAfter(date, this.disabledTo) && !isBefore(date, this.disabledFrom);
+                if (isAfter(this.disabledTo, this.disabledFrom)) {
+                    return !isAfter(date, this.disabledTo) && !isBefore(date, this.disabledFrom);
+                }
+                return isBefore(date, this.disabledTo) || isAfter(date, this.disabledFrom);
             },
             isHighlighted(date) {
                 if (!this.rangeValue) {

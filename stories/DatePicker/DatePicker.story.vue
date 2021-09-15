@@ -20,12 +20,16 @@
         <p>
             <DatePicker v-model="date" :disabled-range="noPastRange"/>
         </p>
+        <h3>Disabled past and future dates</h3>
+        <p>
+            <DatePicker v-model="date" :disabled-range="noPastAndFutureRange"/>
+        </p>
     </div>
 </template>
 
 <script>
     import DatePicker from '@/components/Calendar/DatePicker';
-    import { subDays, format } from 'date-fns';
+    import { subDays, addDays, format } from 'date-fns';
     import { utcToZonedTime } from 'date-fns-tz';
 
     export default {
@@ -36,6 +40,10 @@
                 date: '',
                 noPastRange: {
                     to: subDays(new Date(), 1)
+                },
+                noPastAndFutureRange: {
+                    to: subDays(new Date(), 1),
+                    from: addDays(new Date(), 4)
                 }
             };
         },
