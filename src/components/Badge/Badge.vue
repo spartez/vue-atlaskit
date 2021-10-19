@@ -1,5 +1,13 @@
 <template>
-    <span>{{ value }}</span>
+    <span class="wrapper">
+        <span v-if="$slots['icon-before']" class="icon-wrapper">
+            <slot name="icon-before"/>
+        </span>
+        <span class="value">{{ value }}</span>
+        <span v-if="$slots['icon-after']" class="icon-wrapper">
+            <slot name="icon-after"/>
+        </span>
+    </span>
 </template>
 
 <script>
@@ -15,8 +23,9 @@
 </script>
 
 <style scoped>
-    span {
-        display: inline-block;
+    .wrapper {
+        display: inline-flex;
+        align-items: center;
         font-size: 12px;
         font-weight: normal;
         line-height: 1;
@@ -26,9 +35,19 @@
         padding: 2px 6px;
         box-sizing: border-box;
         flex-shrink: 0;
+        height: 16px;
+        vertical-align: middle;
     }
 
-    span:empty::after {
+    .icon-wrapper {
+        height: 12px;
+        display: inline-flex;
+        align-items: center;
+        overflow: hidden;
+        margin-top: -2px;
+    }
+
+    .value:empty::after {
         display: inline-block;
         content: '-';
     }
