@@ -1,5 +1,12 @@
 <template>
-    <div class="dropdown-item" v-on="$listeners" @click="$emit('select',value)">
+    <a v-if="href" class="dropdown-item" v-bind="$attrs"
+       :href="href">
+        <span class="dropdown-item-label">
+            <slot/>
+        </span>
+    </a>
+    <div v-else class="dropdown-item" v-on="$listeners"
+         @click="$emit('select',value)">
         <span class="dropdown-item-label">
             <slot/>
         </span>
@@ -10,6 +17,10 @@
         props: {
             value: {
                 type: [Object, String, Number, Boolean]
+            },
+            href: {
+                type: String,
+                default: undefined
             }
         }
     };

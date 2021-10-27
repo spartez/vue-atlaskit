@@ -10,6 +10,20 @@
                 <DropdownItem>Lorem ipsum dolor sit amet consectetur adipisicing elit</DropdownItem>
             </Dropdown>
         </p>
+        <h3>Dropdown with links</h3>
+        <p>
+            <Dropdown label="Drop down menu" min-width="200px">
+                <DropdownItem href="https://www.spartez.com" target="_blank">
+                    Spartez
+                </DropdownItem>
+                <DropdownItem href="https://www.google.com" target="_blank">
+                    Google
+                </DropdownItem>
+                <DropdownItem href="https://www.atlassian.com" target="_blank">
+                    Atlassian
+                </DropdownItem>
+            </Dropdown>
+        </p>
         <h3>Grouped items</h3>
         <p>
             <Dropdown label="Drop down menu">

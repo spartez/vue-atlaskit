@@ -16,7 +16,7 @@
                :placement="placement"
                @click.native="onMenuClick">
             <slot name="dropdown-menu" :toggle="onTriggerClick">
-                <div class="dropdown-menu">
+                <div class="dropdown-menu" :style="{ minWidth }">
                     <slot/>
                 </div>
             </slot>
@@ -69,6 +69,10 @@
             appendToBody: {
                 type: Boolean,
                 default: false
+            },
+            minWidth: {
+                type: [Number, String],
+                default: undefined
             }
         },
         data() {
