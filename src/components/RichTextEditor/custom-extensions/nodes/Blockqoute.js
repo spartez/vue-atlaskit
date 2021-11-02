@@ -1,5 +1,5 @@
 /* eslint-disable */
-import { Node } from 'tiptap';
+import { Node } from '@tiptap/vue-3';
 import { blockquote } from '@atlaskit/adf-schema'
 import Renderer from '../renderers/Blockquote'
 import { wrappingInputRule, toggleWrap } from 'tiptap-commands'

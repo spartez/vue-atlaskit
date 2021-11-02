@@ -1,5 +1,5 @@
 /* eslint-disable */
-import { Node } from 'tiptap';
+import { Node } from '@tiptap/vue-3';
 import { taskList } from '@atlaskit/adf-schema'
 
 export default class TaskList extends Node {

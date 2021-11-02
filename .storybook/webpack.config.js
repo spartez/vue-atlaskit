@@ -14,15 +14,13 @@ module.exports = async ({ config }) => {
     imageRule.exclude = /\.svg$/;
     config.module.rules.push({
         test: /\.svg$/,
-        loader: 'vue-svg-loader',
+        use: [
+            'vue-loader',
+            'vue-svg-loader'
+        ],
         exclude: [
             path.resolve(__dirname, './stories/assets/images/')
         ],
-        options: {
-            svgo: {
-                plugins: [{ removeDimensions: true }, { removeViewBox: false }]
-            }
-        }
     });
     config.module.rules.push({
         test: /\.(png|jpg|gif|svg)$/,

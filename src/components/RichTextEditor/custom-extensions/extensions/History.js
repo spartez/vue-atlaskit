@@ -1,5 +1,5 @@
 /* eslint-disable */
-import { Extension } from 'tiptap';
+import { Extension } from '@tiptap/vue-3';
 import {
     history, undo, redo
 } from 'prosemirror-history';

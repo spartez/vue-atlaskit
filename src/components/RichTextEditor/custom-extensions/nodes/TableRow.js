@@ -1,5 +1,5 @@
 /* eslint-disable */
-import { Node } from 'tiptap';
+import { Node } from '@tiptap/vue-3';
 import { tableRow } from '@atlaskit/adf-schema'
 
 export default class TableRow extends Node {

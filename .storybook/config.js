@@ -1,8 +1,8 @@
 import '@atlaskit/css-reset/dist/bundle.css';
 import './style.css';
 
-import { storiesOf, configure } from '@storybook/vue';
-import { withInfo } from 'storybook-addon-vue-info';
+import { storiesOf, configure } from '@storybook/vue3';
+import { h } from 'vue'
 
 const req = require.context('../stories', true, /\.story\.vue$/);
 
@@ -20,11 +20,10 @@ const registerStory = (filename) => {
     const summary = require(`!!html-loader!../stories/${group}/${name}.story`);
 
     storiesOf(group, module)
-        .addDecorator(withInfo)
         .add(name, () => ({
             name: 'StoryWrapper',
             components: component.components,
-            render(h) {
+            render() {
                 return h(component, { style: { padding: '20px' } });
             }
         }), {

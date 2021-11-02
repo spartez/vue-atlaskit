@@ -1,5 +1,5 @@
 /* eslint-disable */
-import { Node } from 'tiptap';
+import { Node } from '@tiptap/vue-3';
 import { toggleMark, markInputRule, markPasteRule } from 'tiptap-commands';
 import { status } from '@atlaskit/adf-schema'
 import Lozenge from '../renderers/Lozenge'

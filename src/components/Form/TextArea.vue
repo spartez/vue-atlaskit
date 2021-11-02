@@ -15,14 +15,15 @@
 </template>
 
 <script>
-    import TextField from './TextField';
+    import TextField from './TextField.vue';
 
     const ENTER = 13;
     export default {
         name: 'TextArea',
         components: { TextField },
+        emits: ['blur', 'focus', 'confirm', 'update:modelValue'],
         props: {
-            value: {
+            modelValue: {
                 type: String,
                 required: true
             },
@@ -72,10 +73,10 @@
             },
             text: {
                 get() {
-                    return this.value;
+                    return this.modelValue;
                 },
                 set(value) {
-                    this.$emit('input', value);
+                    this.$emit('update:modelValue', value);
                 }
             }
         },
