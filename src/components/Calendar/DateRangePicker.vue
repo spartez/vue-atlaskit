@@ -4,7 +4,7 @@
                    :is-invalid="isInvalid" select @mousedown="toggle">
             <div class="input-from-wrapper">
                 <span class="input-from-ghost">{{ formattedDateFrom || `e.g. ${placeholderDate}` }}</span>
-                <input ref="input-from" :value="formattedDateFrom" type="text"
+                <input ref="input-from" :model-value="formattedDateFrom" type="text"
                        class="input-from"
                        :placeholder="`e.g. ${placeholderDate}`" :disabled="isLoading"
                        v-on="listeners" @keydown.enter="onEnter"
@@ -12,7 +12,7 @@
                        @focus="onFocus" @blur="onBlur">
             </div>
             <span>-</span>
-            <input ref="input-to" :value="formattedDateTo" type="text"
+            <input ref="input-to" :model-value="formattedDateTo" type="text"
                    class="input-to"
                    :placeholder="placeholderDate" :disabled="isLoading"
                    v-on="listeners" @keydown.enter="onEnter"
@@ -22,7 +22,8 @@
         </TextField>
         <Popup :is-open="isOpen" :target-element="$refs['date-picker']" placement="bottom-start">
             <div class="date-range">
-                <Calendar :value="dateRange" :disabled-range="disabledRange" :range-value="true" :visible-date="visibleDate"
+                <Calendar :value="dateRange" :disabled-range="disabledRange" :range-value="true"
+                          :visible-date="visibleDate"
                           @date-selected="onDateSelected"/>
                 <div v-if="showQuickRanges" class="quick-ranges" tabindex="-1">
                     <DropdownGroup label="Quick ranges">
@@ -63,12 +64,12 @@
         fromUnixTime, parse, isValid, isBefore, isAfter, startOfWeek, endOfWeek,
         startOfMonth, endOfMonth, subMonths, subWeeks, subDays, startOfYear, endOfYear, subYears, getTime
     } from 'date-fns';
-    import TextField from '../Form/TextField';
-    import Calendar from './Calendar';
-    import Popup from '../common/Popup';
+    import TextField from '../Form/TextField.vue';
+    import Calendar from './Calendar.vue';
+    import Popup from '../common/Popup.vue';
     import CalendarIcon from '../Icon/CalendarIcon';
-    import DropdownItem from '../Dropdown/DropdownItem';
-    import DropdownGroup from '../Dropdown/DropdownGroup';
+    import DropdownItem from '../Dropdown/DropdownItem.vue';
+    import DropdownGroup from '../Dropdown/DropdownGroup.vue';
 
     const MILISECONDS_IN_SECOND = 1000;
 
@@ -77,6 +78,7 @@
         components: {
             TextField, Calendar, Popup, CalendarIcon, DropdownItem, DropdownGroup
         },
+        emits: ['update:modelValue', 'confirm', 'blur', 'focus'],
         props: {
             value: {
                 type: Object,
@@ -108,7 +110,7 @@
                     from: undefined,
                     to: undefined
                 })
-            },
+            }
         },
         data() {
             return {
@@ -134,9 +136,9 @@
                 },
                 set(date) {
                     if (this.value.to && isAfter(date, this.value.to)) {
-                        this.$emit('update:value', { from: this.value.to, to: date });
+                        this.$emit('update:modelValue', { from: this.value.to, to: date });
                     } else {
-                        this.$emit('update:value', { from: date, to: this.value.to });
+                        this.$emit('update:modelValue', { from: date, to: this.value.to });
                     }
                 }
             },
@@ -149,9 +151,9 @@
                 },
                 set(date) {
                     if (this.value.from && isBefore(date, this.value.from)) {
-                        this.$emit('update:value', { from: date, to: this.value.from });
+                        this.$emit('update:modelValue', { from: date, to: this.value.from });
                     } else {
-                        this.$emit('update:value', { from: this.value.from, to: date });
+                        this.$emit('update:modelValue', { from: this.value.from, to: date });
                     }
                 }
             },
@@ -297,7 +299,7 @@
                 return undefined;
             },
             setRange(from, to) {
-                this.$emit('update:value', { from: getTime(from), to: getTime(to) });
+                this.$emit('update:modelValue', { from: getTime(from), to: getTime(to) });
                 this.isOpen = false;
             },
             isInputFromFocused() {

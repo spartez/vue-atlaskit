@@ -1,5 +1,5 @@
 /* eslint-disable */
-import { Mark } from 'tiptap';
+import { Mark } from '@tiptap/vue-3';
 import { confluenceInlineComment } from '@atlaskit/adf-schema'
 
 export default class ConfluenceInlineComments extends Mark {

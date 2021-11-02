@@ -15,7 +15,7 @@
 </template>
 
 <script>
-    import Day from './Day';
+    import Day from './Day.vue';
 
     const WEEKDAYS_LABELS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 

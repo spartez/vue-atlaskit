@@ -1,5 +1,6 @@
 /* eslint-disable */
-import { Extension, Plugin } from 'tiptap';
+import { Extension } from '@tiptap/vue-3';
+import { Plugin } from 'prosemirror-state';
 import { Decoration, DecorationSet } from 'prosemirror-view';
 
 export default class Placeholder extends Extension {

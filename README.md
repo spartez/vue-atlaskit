@@ -1,16 +1,26 @@
-# @spartez/vue-atlaskit
+# @spartez/vue-atlaskit-next
 
-![Rollup badge](https://img.shields.io/badge/Rollup-^1.10.0-ff69b4.svg)
-![Jest](https://img.shields.io/badge/Jest-^24.7.1-blue.svg)
-![Vue](https://img.shields.io/badge/Vue-^2.5.13-brightgreen.svg)
-![Storybook](https://img.shields.io/badge/Storybook-^5.0.8-ff70a3.svg)
-![Npm badge](https://img.shields.io/npm/v/@spartez/vue-atlaskit.svg)
+[comment]: <> (![Rollup badge]&#40;https://img.shields.io/badge/Rollup-^1.10.0-ff69b4.svg&#41;)
 
-> Unofficial Vue UI library, built according to the Atlassian Design Guidelines.
+[comment]: <> (![Jest]&#40;https://img.shields.io/badge/Jest-^24.7.1-blue.svg&#41;)
+
+Vue: ^3.0.5
+
+NPM: ^7.6.0
+
+Node: ^15.11.0
+
+[comment]: <> (![Vue]&#40;https://img.shields.io/badge/Vue-^2.5.13-brightgreen.svg&#41;)
+
+[comment]: <> (![Storybook]&#40;https://img.shields.io/badge/Storybook-^5.0.8-ff70a3.svg&#41;)
+
+[comment]: <> (![Npm badge]&#40;https://img.shields.io/npm/v/@spartez/vue-atlaskit.svg&#41;)
+
+> Unofficial Vue 3 UI library, built according to the Atlassian Design Guidelines.
 
 ## Installation
 ```
-npm install @spartez/vue-atlaskit
+npm install @spartez/vue-atlaskit-next
 ```
 
 ### ES6
@@ -18,7 +28,7 @@ npm install @spartez/vue-atlaskit
 //
 // Register a component manually for optimal tree shaking
 //
-import { Spinner } from '@spartez/vue-atlaskit';
+import { Spinner } from '@spartez/vue-atlaskit-next';
 
 export default {
   components: {
@@ -30,8 +40,8 @@ export default {
 ### Browser
 
 ```html
-<script src="path/to/vue/vue.min.js"></script>
-<script src="https://unpkg.com/@spartez/vue-atlaskit/dist/index.min.js"></script>
+<script src="path/to/vue3/vue3.min.js"></script>
+<script src="https://unpkg.com/@spartez/vue-atlaskit-next/dist/index.min.js"></script>
 <!-- Components are registered globally -->
 ```
 
@@ -39,16 +49,16 @@ export default {
 
 ```html
 <script>
-  new Vue({
-      el: '#app',
-      template: `<Button>{{hello}}</Button>`,
-      data: { hello: 'Click Me!' }
-  })
+    const app = {
+        template: `<Button>{{hello}}</Button>`,
+        data: { hello: 'Click Me!' }
+    }
+    Vue.createApp(app).mount('#app');
 </script>
 ```
 For including styles you can either place the below styles in your `index.html` 
  ```html
- <link href="https://unpkg.com/@spartez/vue-atlaskit/dist/bundle.css" rel="stylesheet">
+ <link href="https://unpkg.com/@spartez/vue-atlaskit-next/dist/bundle.css" rel="stylesheet">
  ```
  
  

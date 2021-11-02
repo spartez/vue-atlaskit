@@ -1,5 +1,5 @@
 <template>
-    <Select :value="value"
+    <Select :model-value="modelValue"
             :options="users"
             :async="true"
             :multi="multi"
@@ -30,8 +30,8 @@
 
 <script>
     import pDebounce from 'p-debounce';
-    import Select from './Select';
-    import UserRenderer from '../field-renderers/UserRenderer';
+    import Select from './Select.vue';
+    import UserRenderer from '../field-renderers/UserRenderer.vue';
 
     export default {
         name: 'UserPicker',
@@ -41,7 +41,7 @@
                 type: Function,
                 required: true
             },
-            value: {
+            modelValue: {
                 type: [Object, Array],
                 default: undefined
             },
@@ -99,7 +99,7 @@
             },
 
             onInput(users) {
-                this.$emit('update:value', users)
+                this.$emit('update:modelValue', users);
             }
         }
     };

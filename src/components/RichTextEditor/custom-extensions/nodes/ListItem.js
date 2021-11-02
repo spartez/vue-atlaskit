@@ -1,5 +1,5 @@
 /* eslint-disable */
-import { Node } from 'tiptap';
+import { Node } from '@tiptap/vue-3';
 import { splitListItem, liftListItem, sinkListItem } from 'tiptap-commands';
 import { listItem } from '@atlaskit/adf-schema';
 

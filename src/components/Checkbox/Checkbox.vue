@@ -2,11 +2,11 @@
     <label ref="checkbox" class="checkbox-wrapper" :for="id"
            tabindex="-1">
         <input :id="id" ref="input" v-model="isChecked"
-               :value="value"
+               :value="modelValue"
                type="checkbox" :is-invalid="isInvalid"
                :disabled="disabled" @focus="onFocus"
                @blur="onBlur">
-        <CheckboxIcon v-if="!indeterminate" class="icon"/>
+        <CheckboxIcon v-if="!indeterminate" :size="size" class="icon"/>
         <CheckboxIndeterminateIcon v-else class="indeterminate"/>
         <span v-if="$slots['default']" class="input-label"><slot/></span>
     </label>
@@ -19,20 +19,21 @@
         name: 'Checkbox',
         components: { CheckboxIcon, CheckboxIndeterminateIcon },
         model: {
-            prop: 'checked',
+            prop: 'checked'
         },
+        emits: ['update:modelValue', 'blur', 'focus'],
         props: {
             disabled: {
                 type: Boolean,
                 default: false
             },
-            value: {
-                type: [String, Object, Number],
+            modelValue: {
+                type: [String, Object, Number, Boolean],
                 default: undefined
             },
             checked: {
                 type: [Boolean, Array],
-                required: true
+                required: false
             },
             isFocused: {
                 type: Boolean,
@@ -45,6 +46,10 @@
             indeterminate: {
                 type: Boolean,
                 default: false
+            },
+            size: {
+                type: String,
+                default: 'medium'
             }
         },
         data() {
@@ -56,7 +61,7 @@
                     return this.checked;
                 },
                 set(value) {
-                    this.$emit('update:checked', value);
+                    this.$emit('update:modelValue', value);
                 }
             }
         },
@@ -101,6 +106,7 @@ input[type="checkbox"] {
 
 .checkbox-wrapper {
     display: inline-flex;
+    align-items: center;
     position: relative;
     cursor: pointer;
     outline: none;

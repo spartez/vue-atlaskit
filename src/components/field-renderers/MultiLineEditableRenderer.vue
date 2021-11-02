@@ -25,9 +25,9 @@
 </template>
 
 <script>
-    import TextArea from '../Form/TextArea';
-    import MultiLineRenderer from './MultiLineRenderer';
-    import InlineEdit from '../Form/InlineEdit';
+    import TextArea from '../Form/TextArea.vue';
+    import MultiLineRenderer from './MultiLineRenderer.vue';
+    import InlineEdit from '../Form/InlineEdit.vue';
 
     export default {
         name: 'MultiLineEditableRenderer',
@@ -54,6 +54,7 @@
                 default: false
             }
         },
+        emits: ['save-requested'],
         methods: {
             onSaveRequested(...args) {
                 this.$emit('save-requested', ...args);

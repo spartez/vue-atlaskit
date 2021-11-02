@@ -1,5 +1,5 @@
 /* eslint-disable */
-import { Mark } from 'tiptap';
+import { Mark } from '@tiptap/vue-3';
 import { indentation } from '@atlaskit/adf-schema'
 
 export default class Indentation extends Mark {

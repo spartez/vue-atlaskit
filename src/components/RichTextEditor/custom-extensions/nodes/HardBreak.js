@@ -1,5 +1,5 @@
 /* eslint-disable */
-import { Node } from 'tiptap';
+import { Node } from '@tiptap/vue-3';
 import { hardBreak } from '@atlaskit/adf-schema'
 
 export default class HardBreak extends Node {
