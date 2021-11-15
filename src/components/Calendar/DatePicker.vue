@@ -18,9 +18,9 @@
 <script>
     import format from 'date-fns/format';
     import { fromUnixTime, parse, isValid } from 'date-fns';
-    import TextField from '../Form/TextField';
-    import Calendar from './Calendar';
-    import Popup from '../common/Popup';
+    import TextField from '../Form/TextField.vue';
+    import Calendar from './Calendar.vue';
+    import Popup from '../common/Popup.vue';
     import CalendarIcon from '../Icon/CalendarIcon';
 
     const MILISECONDS_IN_SECOND = 1000;

@@ -1,5 +1,5 @@
 /* eslint-disable */
-import { Node } from 'tiptap';
+import { Node } from '@tiptap/vue-3';
 import { toggleBlockType, setBlockType, textblockTypeInputRule } from 'tiptap-commands';
 import { codeBlock } from '@atlaskit/adf-schema';
 import Renderer from '../renderers/CodeBlock';

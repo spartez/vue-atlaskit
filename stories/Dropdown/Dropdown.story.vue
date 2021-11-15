@@ -31,18 +31,18 @@
                 </DropdownGroup>
             </Dropdown>
         </p>
-        <h3>Custom trigger</h3>
-        <p>
-            <Dropdown label="Drop down menu">
-                <div slot="trigger" slot-scope="{ toggle, isOpen }" class="custom-trigger">
-                    <span v-if="isOpen" @click="toggle">💥</span>
-                    <span v-else @click="toggle">🎁</span>
-                </div>
-                <DropdownItem>First item</DropdownItem>
-                <DropdownItem>Second item</DropdownItem>
-                <DropdownItem>Lorem ipsum dolor sit amet consectetur adipisicing elit</DropdownItem>
-            </Dropdown>
-        </p>
+        <!--        <h3>Custom trigger</h3>-->
+        <!--        <p>-->
+        <!--            <Dropdown label="Drop down menu">-->
+        <!--                <div slot="trigger" slot-scope="{ toggle, isOpen }" class="custom-trigger">-->
+        <!--                    <span v-if="isOpen" @click="toggle">💥</span>-->
+        <!--                    <span v-else @click="toggle">🎁</span>-->
+        <!--                </div>-->
+        <!--                <DropdownItem>First item</DropdownItem>-->
+        <!--                <DropdownItem>Second item</DropdownItem>-->
+        <!--                <DropdownItem>Lorem ipsum dolor sit amet consectetur adipisicing elit</DropdownItem>-->
+        <!--            </Dropdown>-->
+        <!--        </p>-->
         <h3>Dropdown with checkboxes (selected: {{ selected }})</h3>
         <p>
             <Dropdown label="With checkboxes" :close-on-click="false">
@@ -132,10 +132,10 @@
 </template>
 
 <script>
-    import Dropdown from '@/components/Dropdown/Dropdown';
-    import DropdownItem from '@/components/Dropdown/DropdownItem';
-    import DropdownGroup from '@/components/Dropdown/DropdownGroup';
-    import DropdownCheckboxItem from '@/components/Dropdown/DropdownCheckboxItem';
+    import Dropdown from '@/components/Dropdown/Dropdown.vue';
+    import DropdownItem from '@/components/Dropdown/DropdownItem.vue';
+    import DropdownGroup from '@/components/Dropdown/DropdownGroup.vue';
+    import DropdownCheckboxItem from '@/components/Dropdown/DropdownCheckboxItem.vue';
 
     export default {
         name: 'DropdownStory',

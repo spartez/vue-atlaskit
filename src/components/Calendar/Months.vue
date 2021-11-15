@@ -15,7 +15,7 @@
 
 <script>
     import { chunk } from '../../utils/utils';
-    import Button from '../Button/Button';
+    import Button from '../Button/Button.vue';
 
     const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
     const MONTHS_PER_ROW = 3;

@@ -21,6 +21,7 @@
     export default {
         name: 'Tag',
         components: { EditorCloseIcon },
+        emits: ['on-remove', 'dragstart', 'dragend'],
         props: {
             tag: {
                 type: Object,

@@ -1,5 +1,5 @@
 <template>
-    <div class="dropdown-item" v-on="$attrs" @click="$emit('select',value)">
+    <div class="dropdown-item" v-on="$attrs" @click="$emit('select',modelValue)">
         <span class="dropdown-item-label">
             <slot/>
         </span>
@@ -7,8 +7,9 @@
 </template>
 <script>
     export default {
+        emits: ['select'],
         props: {
-            value: {
+            modelValue: {
                 type: [Object, String, Number, Boolean]
             }
         }

@@ -11,8 +11,8 @@
 </script>
 
 <style scoped>
->>> textarea,
->>> input {
+::v-deep(textarea),
+::v-deep(input) {
     background: transparent;
     border: 0;
     color: inherit;

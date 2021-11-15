@@ -1,5 +1,5 @@
 /* eslint-disable */
-import { Mark } from 'tiptap';
+import { Mark } from '@tiptap/vue-3';
 import { underline } from '@atlaskit/adf-schema'
 import { toggleMark } from 'tiptap-commands';
 

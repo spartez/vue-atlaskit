@@ -25,14 +25,15 @@
 </template>
 
 <script>
-    import Button from '../Button/Button';
+    import Button from '../Button/Button.vue';
     import ChevronDownIcon from '../Icon/ChevronDownIcon';
-    import Popup from '../common/Popup';
+    import Popup from '../common/Popup.vue';
 
     export default {
         components: {
             Button, ChevronDownIcon, Popup
         },
+        emits: ['close', 'open'],
         props: {
             label: {
                 type: String,

@@ -1,5 +1,5 @@
 <template>
-    <Checkbox class="dropdown-checkbox-item" :checked="checked" :value="value"
+    <Checkbox class="dropdown-checkbox-item" :model-value="modelValue"
               @input="onInput">
         <span class="label-text">
             <slot/>
@@ -13,36 +13,29 @@
 </template>
 
 <script>
-    import Checkbox from '../Checkbox/Checkbox';
-    import Button from '../Button/Button';
+    import Checkbox from '../Checkbox/Checkbox.vue';
+    import Button from '../Button/Button.vue';
 
     export default {
         components: { Checkbox, Button },
-        model: {
-            prop: 'checked',
-            event: 'input'
-        },
+        emits: ['update:modelValue'],
         props: {
-            checked: {
+            modelValue: {
                 type: [Boolean, Array],
-                required: true
-            },
-            value: {
-                type: String,
                 default: undefined
             }
         },
         computed: {
             isMulti() {
-                return Array.isArray(this.checked) && this.value;
+                return Array.isArray(this.checked) && this.modelValue;
             }
         },
         methods: {
             onInput(value) {
-                this.$emit('input', value);
+                this.$emit('update:modelValue', value);
             },
             onOnlyClicked() {
-                this.$emit('input', [this.value]);
+                this.$emit('update:modelValue', [this.modelValue]);
             }
         }
     };
