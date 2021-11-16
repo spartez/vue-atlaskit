@@ -13,7 +13,13 @@
         <div>
             <span>with icon after</span>
             <Badge value="22" appearance="default">
-                <EditFilledIcon slot="icon-after" size="xsmall"/>
+                <EditFilledIcon slot="icon-after" size="xxsmall"/>
+            </Badge>
+        </div>
+        <div>
+            <span>with icon after and long text</span>
+            <Badge value="1w 1d 1m" appearance="default" max-width="40px">
+                <EditFilledIcon slot="icon-after" size="xxsmall"/>
             </Badge>
         </div>
     </div>

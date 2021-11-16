@@ -1,5 +1,5 @@
 <template>
-    <span class="wrapper">
+    <span class="wrapper" :style="{maxWidth: maxWidth}">
         <span v-if="$slots['icon-before']" class="icon-wrapper">
             <slot name="icon-before"/>
         </span>
@@ -17,6 +17,10 @@
             value: {
                 type: [String, Number],
                 default: '-'
+            },
+            maxWidth: {
+                type: [String],
+                default: 'auto'
             }
         }
     };
@@ -44,7 +48,14 @@
         display: inline-flex;
         align-items: center;
         overflow: hidden;
+        flex-shrink: 0;
         margin-top: -2px;
+    }
+
+    .value{
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
     }
 
     .value:empty::after {
