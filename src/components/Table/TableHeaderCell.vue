@@ -5,13 +5,15 @@
         :sticky-right="stickyRight"
         :sortable="column.sortable"
         @click="onClick">
-        <span class="table-header-label">
-            {{ column.name }}
-        </span>
-        <template v-if="column.sortable">
-            <ChevronDownIcon v-if="sorted && sortedDesc" size="small"/>
-            <ChevronUpIcon v-if="sorted && !sortedDesc" size="small"/>
-        </template>
+        <slot :name="headerSlotName(column.id)">
+            <span class="table-header-label">
+                {{ column.name }}
+            </span>
+            <template v-if="column.sortable">
+                <ChevronDownIcon v-if="sorted && sortedDesc" size="small"/>
+                <ChevronUpIcon v-if="sorted && !sortedDesc" size="small"/>
+            </template>
+        </slot>
     </th>
 </template>
 
@@ -48,6 +50,9 @@
             }
         },
         methods: {
+            headerSlotName(columnId) {
+                return `header-${columnId}`;
+            },
             onClick() {
                 if (this.column.sortable) {
                     this.$emit('sorted');
