@@ -10,9 +10,7 @@
                                      :sorted="sortedBy === column.id"
                                      :sorted-desc="sortedDesc"
                                      @sorted="onSorted(column)">
-                        <template v-slot:[headerSlotName(column.id)]>
-                            <slot :name="headerSlotName(column.id)"/>
-                        </template>
+                        <slot :name="headerSlotName(column.id)"/>
                     </TableHeaderCell>
                 </tr>
             </thead>
