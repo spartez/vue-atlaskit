@@ -84,8 +84,9 @@
         components: {
             TextField, Popper, SelectMenu, Tag, Icons
         },
+        emits: ['search-change', 'close', 'open', 'focus', 'blur', 'cancel', 'update:modelValue', 'error', 'confirm'],
         props: {
-            value: {
+            modelValue: {
                 type: [String, Number, Object, Array],
                 default: ''
             },
@@ -196,8 +197,8 @@
         computed: {
             selected() {
                 return this.multi
-                    ? this.value.map(e => this.normalizer(e))
-                    : this.normalizer(this.value);
+                    ? this.modelValue.map(e => this.normalizer(e))
+                    : this.normalizer(this.modelValue);
             },
 
             normalizedOptions() {
@@ -344,7 +345,7 @@
             },
 
             onClear() {
-                this.$emit('update:value', this.nonClearableOptions);
+                this.$emit('update:modelValue', this.nonClearableOptions);
                 this.isOpen = false;
                 this.$nextTick(() => this.$refs.input.focus());
             },
@@ -356,7 +357,7 @@
                 const selected = this.multi
                     ? [...this.selected.map(e => e.value), option.value]
                     : option.value;
-                this.$emit('update:value', selected);
+                this.$emit('update:modelValue', selected);
             },
 
             onInput({ target }) {
@@ -372,7 +373,7 @@
                     .filter(option => option.id !== id || option.disabled)
                     .map(option => option.value);
                 this.updatePopperPosition();
-                this.$emit('update:value', selected);
+                this.$emit('update:modelValue', selected);
                 this.$nextTick(() => this.updatePopperPosition());
             },
 
@@ -382,7 +383,7 @@
                     const { id } = this.selected[this.selected.length - 1];
                     this.onRemove(id);
                 } else if (this.canClearSelectedOption) {
-                    this.$emit('update:value', undefined);
+                    this.$emit('update:modelValue', undefined);
                 }
             },
 
@@ -466,7 +467,7 @@
             createTag() {
                 const selected = this.multi ? [...this.selected.map(o => o.value), this.search] : this.search;
                 this.search = '';
-                this.$emit('update:value', selected);
+                this.$emit('update:modelValue', selected);
             },
 
             handleDrag(e) {
@@ -487,7 +488,7 @@
                 const list = [...this.selected];
                 const [item] = list.splice(this.prevIndex, 1);
                 list.splice(nextIndex, 0, item);
-                this.$emit('update:value', list.map(e => e.value));
+                this.$emit('update:modelValue', list.map(e => e.value));
                 this.$refs.input.focus();
             },
             onDragStart(e, index) {

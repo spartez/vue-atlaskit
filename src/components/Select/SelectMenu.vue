@@ -37,6 +37,7 @@
     export default {
         name: 'SelectMenu',
         components: { SelectOption },
+        emits: ['update-popper-position', 'option-selected', 'hover'],
         props: {
             options: {
                 type: Array,

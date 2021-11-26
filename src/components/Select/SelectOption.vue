@@ -10,6 +10,7 @@
 <script>
     export default {
         name: 'SelectOption',
+        emits: ['option-selected', 'hover'],
         props: {
             option: {
                 type: Object,
