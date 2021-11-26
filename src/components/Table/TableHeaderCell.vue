@@ -5,15 +5,15 @@
         :sticky-right="stickyRight"
         :sortable="column.sortable"
         @click="onClick">
-        <slot>
+        <slot :sortedDesc="sortedDesc" :sorted="sorted" :sortable="column.sortable">
             <span class="table-header-label">
                 {{ column.name }}
             </span>
+            <template v-if="column.sortable">
+                <ChevronDownIcon v-if="sorted && sortedDesc" size="small"/>
+                <ChevronUpIcon v-if="sorted && !sortedDesc" size="small"/>
+            </template>
         </slot>
-        <template v-if="column.sortable">
-            <ChevronDownIcon v-if="sorted && sortedDesc" size="small"/>
-            <ChevronUpIcon v-if="sorted && !sortedDesc" size="small"/>
-        </template>
     </th>
 </template>
 
