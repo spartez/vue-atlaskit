@@ -9,7 +9,11 @@
                                      :sticky-header="stickyHeader"
                                      :sorted="sortedBy === column.id"
                                      :sorted-desc="sortedDesc"
-                                     @sorted="onSorted(column)"/>
+                                     @sorted="onSorted(column)">
+                        <template v-slot="props">
+                            <slot :name="headerSlotName(column.id)" v-bind="props"/>
+                        </template>
+                    </TableHeaderCell>
                 </tr>
             </thead>
             <tbody>
@@ -123,6 +127,9 @@
             this.createObserver();
         },
         methods: {
+            headerSlotName(columnId) {
+                return `header-${columnId}`;
+            },
             onRowClick(row, event) {
                 this.$emit('row-click', { row, event });
             },
