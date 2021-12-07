@@ -114,18 +114,21 @@
         margin-top: 8px;
     }
 
+    /*noinspection CssInvalidPseudoSelector*/
     ::v-slotted(.message .actions ul) {
         display: flex;
-        padding-left: 0px;
+        padding-left: 0;
         list-style: none;
     }
 
+    /*noinspection CssInvalidPseudoSelector*/
     ::v-slotted(.message .actions ul li){
         align-items: center;
         display: flex;
-        margin: 0px;
+        margin: 0;
     }
 
+    /*noinspection CssInvalidPseudoSelector*/
     ::v-slotted(.message .actions ul li + li::before) {
         color: rgb(66, 82, 110);
         content: "·";
