@@ -114,19 +114,19 @@
         margin-top: 8px;
     }
 
-    .message .actions ul {
+    ::v-slotted(.message .actions ul) {
         display: flex;
         padding-left: 0px;
         list-style: none;
     }
 
-    .message .actions ul li {
+    ::v-slotted(.message .actions ul li){
         align-items: center;
         display: flex;
         margin: 0px;
     }
 
-    .message .actions ul li + li::before {
+    ::v-slotted(.message .actions ul li + li::before) {
         color: rgb(66, 82, 110);
         content: "·";
         display: inline-block;
@@ -134,4 +134,5 @@
         vertical-align: middle;
         width: 16px;
     }
+
 </style>
