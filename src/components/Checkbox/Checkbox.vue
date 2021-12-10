@@ -77,7 +77,7 @@
         },
         created() {
             // eslint-disable-next-line
-            this.id = this._uuid;
+      this.id = this._uuid;
         },
         methods: {
             onBlur(e) {
@@ -94,77 +94,77 @@
 
 <style scoped>
 input[type="checkbox"] {
-    left: 50%;
-    margin: 0;
-    opacity: 0;
-    padding: 0;
-    position: absolute;
-    transform: translate(-50%, -50%);
-    top: 50%;
-    cursor: pointer;
+  left: 50%;
+  margin: 0;
+  opacity: 0;
+  padding: 0;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  cursor: pointer;
 }
 
 .checkbox-wrapper {
-    display: inline-flex;
-    align-items: center;
-    position: relative;
-    cursor: pointer;
-    outline: none;
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+  outline: none;
 }
 
 .input-label {
-    padding: 2px 4px;
-    display: flex;
-    flex-grow: 1;
-    min-width: 0;
+  padding: 2px 4px;
+  display: flex;
+  flex-grow: 1;
+  min-width: 0;
 }
 
 input:checked + .icon >>> rect {
-    color: #0052cc;
-    stroke: #0052cc;
+  color: #0052cc;
+  stroke: #0052cc;
 }
 
 input + .icon >>> rect {
-    color: #fafbfc;
-    stroke: #dfe1e6;
+  color: #fafbfc;
+  stroke: #dfe1e6;
 }
 
 label:hover input:not(:checked) + .icon >>> rect {
-    fill: #EBECF0;
+  fill: #EBECF0;
 }
 
 label:hover input:not(:checked) + .icon >>> path {
-    fill: #EBECF0;
+  fill: #EBECF0;
 }
 
 label:hover input:checked + .icon >>> rect {
-    color: #0065ff;
-    stroke: #0065ff;
+  color: #0065ff;
+  stroke: #0065ff;
 }
 
 input + .icon >>> path {
-    fill: #fafbfc;
+  fill: #fafbfc;
 }
 
 input:not([is-invalid=true]):focus + .icon >>> rect {
-    stroke: #4c9aff;
+  stroke: #4c9aff;
 }
 
 input[is-invalid=true] + .icon >>> rect {
-    stroke: #FF5630;
+  stroke: #FF5630;
 }
 
 input[disabled=true] + .icon >>> rect {
-    opacity: .5;
+  opacity: .5;
 }
 
 :not(.indeterminate) >>> rect {
-    transition: 0.2s ease-in-out;
-    stroke-width: 2px;
+  transition: 0.2s ease-in-out;
+  stroke-width: 2px;
 }
 
 >>> path {
-    transition: 0.2s ease-in-out;
+  transition: 0.2s ease-in-out;
 }
 
 </style>

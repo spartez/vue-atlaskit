@@ -114,19 +114,22 @@
         margin-top: 8px;
     }
 
-    .message .actions ul {
+    /*noinspection CssInvalidPseudoSelector*/
+    ::v-slotted(.message .actions ul) {
         display: flex;
-        padding-left: 0px;
+        padding-left: 0;
         list-style: none;
     }
 
-    .message .actions ul li {
+    /*noinspection CssInvalidPseudoSelector*/
+    ::v-slotted(.message .actions ul li){
         align-items: center;
         display: flex;
-        margin: 0px;
+        margin: 0;
     }
 
-    .message .actions ul li + li::before {
+    /*noinspection CssInvalidPseudoSelector*/
+    ::v-slotted(.message .actions ul li + li::before) {
         color: rgb(66, 82, 110);
         content: "·";
         display: inline-block;
@@ -134,4 +137,5 @@
         vertical-align: middle;
         width: 16px;
     }
+
 </style>

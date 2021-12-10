@@ -1,11 +1,11 @@
 <template>
     <TextField :is-focused="focused" :is-invalid="isInvalid" :is-loading="isLoading"
-               :disabled="isLoading">
+               :disabled="isDisabled || isLoading">
         <textarea ref="textarea"
                   v-model="text"
                   v-bind="$attrs"
                   :rows="rows"
-                  :disabled="isLoading"
+                  :disabled="isDisabled || isLoading"
                   :style="{ height: currentHeight, width, maxHeight }"
                   :auto="height === 'auto'"
                   v-on="listeners"
@@ -36,6 +36,10 @@
                 default: false
             },
             isLoading: {
+                type: Boolean,
+                default: false
+            },
+            isDisabled: {
                 type: Boolean,
                 default: false
             },
@@ -124,16 +128,16 @@
 </script>
 
 <style scoped>
-    textarea {
-        overflow: auto;
-        resize: vertical;
-        font-family: inherit;
-        font-weight: inherit;
-        font-size: inherit;
-        color: inherit;
-    }
+textarea {
+  overflow: auto;
+  resize: vertical;
+  font-family: inherit;
+  font-weight: inherit;
+  font-size: inherit;
+  color: inherit;
+}
 
-    textarea[auto] {
-        resize: none;
-    }
+textarea[auto] {
+  resize: none;
+}
 </style>

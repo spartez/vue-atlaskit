@@ -3,15 +3,15 @@
          @mousedown.prevent>
         <div class="select-menu-inner">
             <SelectOption
-                v-for="(item, index) in options"
-                :key="`${item.id}-${index}`"
-                :selected-id="selectedId"
-                :option="item"
-                :index="index"
-                :current-suggestion-index="currentSuggestionIndex"
-                data-cy="select-option"
-                @hover="onMouseOver"
-                @option-selected="onOptionSelected">
+                    v-for="(item, index) in options"
+                    :key="`${item.id}-${index}`"
+                    :selected-id="selectedId"
+                    :option="item"
+                    :index="index"
+                    :current-suggestion-index="currentSuggestionIndex"
+                    data-cy="select-option"
+                    @hover="onMouseOver"
+                    @option-selected="onOptionSelected">
                 <template v-slot:option="{ option, isCurrent }">
                     <slot name="option"
                           :is-current="isCurrent"
@@ -19,9 +19,9 @@
                 </template>
             </SelectOption>
             <div
-                v-if="!hasSuggestions"
-                data-cy="no-options"
-                class="no-options">
+                    v-if="!hasSuggestions"
+                    data-cy="no-options"
+                    class="no-options">
                 {{ !containsQuery && async ? placeholder : noOptionsMessage }}
             </div>
         </div>
@@ -32,12 +32,12 @@
 </template>
 
 <script>
-    import SelectOption from './SelectOption.vue';
+    import SelectOption from './SelectOption';
 
     export default {
         name: 'SelectMenu',
         components: { SelectOption },
-        emits: ['option-selected', 'update-popper-position', 'hover'],
+        emits: ['update-popper-position', 'option-selected', 'hover'],
         props: {
             options: {
                 type: Array,

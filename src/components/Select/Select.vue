@@ -84,7 +84,7 @@
         components: {
             TextField, Popper, SelectMenu, Tag, Icons
         },
-        emits: ['update:modelValue', 'confirm', 'error','cancel', 'blur', 'focus', 'open', 'close', 'search-change'],
+        emits: ['search-change', 'close', 'open', 'focus', 'blur', 'cancel', 'update:modelValue', 'error', 'confirm'],
         props: {
             modelValue: {
                 type: [String, Number, Object, Array],

@@ -17,13 +17,13 @@ describe('Select', () => {
     });
 
     it('should return normalized version of selected option', () => {
-        const localThis = { value: '1', normalizer: defaultNormalizer };
+        const localThis = { modelValue: '1', normalizer: defaultNormalizer };
 
         expect(Select.computed.selected.call(localThis)).toEqual({ id: '1', label: '1', value: '1' });
     });
 
     it('should return normalized version of selected option when multi', () => {
-        const localThis = { value: ['1'], normalizer: defaultNormalizer, multi: true };
+        const localThis = { modelValue: ['1'], normalizer: defaultNormalizer, multi: true };
 
         expect(Select.computed.selected.call(localThis)).toEqual([{ id: '1', label: '1', value: '1' }]);
     });
@@ -41,7 +41,7 @@ describe('Select', () => {
     });
 
     it('input gets focused on select click', async () => {
-        const component = mount(Select, { props: { value: 'foo', options } });
+        const component = mount(Select, { props: { modelValue: 'foo', options } });
         component.findComponent(TextField).trigger('click');
         await component.vm.$nextTick();
 
@@ -54,7 +54,7 @@ describe('Select', () => {
 
     it('hide options list on input blur', async () => {
         const component = mount(Select, {
-            props: { isFocused: true, value: 'foo', options }
+            props: { isFocused: true, modelValue: 'foo', options }
         });
         const input = component.find('input');
         await component.vm.$nextTick();
@@ -80,7 +80,7 @@ describe('Select', () => {
 
     it('should preselect passed array of options', () => {
         const [a, b] = options;
-        const component = mount(Select, { props: { value: [a, b], options, multi: true } });
+        const component = mount(Select, { props: { modelValue: [a, b], options, multi: true } });
 
         expect(component.findAllComponents(Tag)[0].props('tag').label).toBe(a);
         expect(component.findAllComponents(Tag)[1].props('tag').label).toBe(b);
@@ -89,7 +89,7 @@ describe('Select', () => {
     test('should reset search input after option selected', () => {
         const component = mount(Select, {
             props: {
-                value: undefined,
+                modelValue: undefined,
                 options
             }
         });
@@ -104,33 +104,33 @@ describe('Select', () => {
     test('input should be emitted after each select passing the selected option', () => {
         const component = mount(Select, {
             props: {
-                value: null,
+                modelValue: null,
                 options
             }
         });
         const [selected] = options;
 
         component.vm.onOptionSelected(normalizer(selected));
-        expect(component.emitted('update:value')).toEqual([['foo']]);
+        expect(component.emitted('update:modelValue')).toEqual([['foo']]);
     });
 
     test('input should be emitted after removing an option, passing the undefined value', () => {
         const component = mount(Select, {
             props: {
-                value: ['foo'],
+                modelValue: ['foo'],
                 options
             }
         });
 
         component.vm.removeOption();
-        expect(component.emitted('update:value')).toEqual([[undefined]]);
+        expect(component.emitted('update:modelValue')).toEqual([[undefined]]);
     });
 
     test('should preselect passed array of values', () => {
         const selected = ['1', '2'];
         const component = mount(Select, {
             props: {
-                value: selected,
+                modelValue: selected,
                 options: ['1', '2', '3'],
                 multi: true
             }
@@ -150,11 +150,11 @@ describe('Select', () => {
     });
 
     test('should preselect passed array of objects', () => {
-        const customNormalizer = option => ({ id: option.id, label: option.id, value: option });
+        const customNormalizer = option => ({ id: option.id, label: option.id, modelValue: option });
         const selected = [{ id: '3' }, { id: '2' }];
         const component = mount(Select, {
             props: {
-                value: selected,
+                modelValue: selected,
                 options: [{ id: '1' }, { id: '2' }, { id: '3' }],
                 normalizer: customNormalizer,
                 multi: true
@@ -177,7 +177,7 @@ describe('Select', () => {
     test('should preselect passed simple value', () => {
         const component = mount(Select, {
             props: {
-                value: '1',
+                modelValue: '1',
                 options: ['1', '2', '3']
             }
         });
@@ -189,7 +189,7 @@ describe('Select', () => {
     test('should preselect passed object', () => {
         const component = mount(Select, {
             props: {
-                value: { id: '2' },
+                modelValue: { id: '2' },
                 options: [{ id: '1' }, { id: '2' }, { id: '3' }],
                 normalizer
             }
@@ -201,7 +201,7 @@ describe('Select', () => {
     test('should have visible clear icon when option is selected', () => {
         const component = mount(Select, {
             props: {
-                value: '1',
+                modelValue: '1',
                 options: ['1', '2', '3']
             },
             stubs
@@ -213,7 +213,7 @@ describe('Select', () => {
     test('should hide clear icon when option is selected and is-clearable is set to false', () => {
         const component = mount(Select, {
             props: {
-                value: '1',
+                modelValue: '1',
                 options: ['1', '2', '3'],
                 isClearable: false
             },
@@ -227,39 +227,39 @@ describe('Select', () => {
         const component = mount(Select, {
             props: {
                 multi: true,
-                value: ['foo'],
+                modelValue: ['foo'],
                 options
             }
         });
         const [, selected] = options;
         component.vm.onOptionSelected(normalizer(selected));
-        expect(component.emitted('update:value')).toEqual([[['foo', 'bar']]]);
+        expect(component.emitted('update:modelValue')).toEqual([[['foo', 'bar']]]);
     });
 
     test('should add objects to selected array', () => {
         const component = mount(Select, {
             props: {
-                value: [{ id: '1' }],
+                modelValue: [{ id: '1' }],
                 options: [{ id: '1' }, { id: '2' }, { id: '3' }],
                 multi: true
 
             }
         });
         component.vm.onOptionSelected(normalizer({ id: '2' }));
-        expect(component.emitted('update:value')).toEqual([[[{ id: '1' }, { id: '2' }]]]);
+        expect(component.emitted('update:modelValue')).toEqual([[[{ id: '1' }, { id: '2' }]]]);
     });
 
     test('should remove already selected object', () => {
         const component = mount(Select, {
             props: {
-                value: [{ id: '2' }],
+                modelValue: [{ id: '2' }],
                 options: [{ id: '1' }, { id: '2' }, { id: '3' }],
                 normalizer,
                 multi: true
             }
         });
         component.vm.onRemove('2');
-        expect(component.emitted('update:value')).toEqual([[[]]]);
+        expect(component.emitted('update:modelValue')).toEqual([[[]]]);
     });
 
     test('should should push new value when createable is set to true', () => {
@@ -267,12 +267,12 @@ describe('Select', () => {
             props: {
                 multi: true,
                 createable: true,
-                value: ['1']
+                modelValue: ['1']
             }
         });
         component.vm.search = 'TEST';
         component.vm.onSuggestionSelected();
-        expect(component.emitted('update:value')).toEqual([[['1', 'TEST']]]);
+        expect(component.emitted('update:modelValue')).toEqual([[['1', 'TEST']]]);
     });
 
     test('should prevent pushing new values when max number of options is reached', () => {
@@ -281,11 +281,11 @@ describe('Select', () => {
                 multi: true,
                 createable: true,
                 max: 1,
-                value: ['1']
+                modelValue: ['1']
             }
         });
         component.vm.search = 'TEST';
         component.vm.onSuggestionSelected();
-        expect(component.emitted('update:value')).toBeFalsy();
+        expect(component.emitted('update:modelValue')).toBeFalsy();
     });
 });

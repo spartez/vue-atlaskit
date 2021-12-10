@@ -7,7 +7,7 @@ describe('Checkbox', () => {
         const component = mount(Checkbox, { props: { checked: false } });
         const input = component.find('input');
         input.trigger('click');
-        const [emitted] = component.emitted('update:checked');
+        const [emitted] = component.emitted('update:modelValue');
         expect(emitted).toEqual([true]);
     });
 
