@@ -2,22 +2,44 @@
     <div ref="menu" class="select-menu" tabindex="-1"
          @mousedown.prevent>
         <div class="select-menu-inner">
-            <SelectOption
-                v-for="(item, index) in options"
-                :key="`${item.id}-${index}`"
-                :selected-id="selectedId"
-                :option="item"
-                :index="index"
-                :current-suggestion-index="currentSuggestionIndex"
-                data-cy="select-option"
-                @hover="onMouseOver"
-                @option-selected="onOptionSelected">
-                <template v-slot:option="{ option, isCurrent }">
-                    <slot name="option"
-                          :is-current="isCurrent"
-                          :option="option"/>
-                </template>
-            </SelectOption>
+            <div v-if="isGrouped">
+                <SelectGroup v-for="(group, groupIndex) in options" :key="group.id" :label="group.label">
+                    <SelectOption
+                        v-for="(item, index) in group.options"
+                        :key="`${item.id}-${index}-${group.id}`"
+                        :selected-id="selectedId"
+                        :option="item"
+                        :index="groupIndex * group.options.length + index"
+                        :current-suggestion-index="currentSuggestionIndex"
+                        data-cy="select-option"
+                        @hover="onMouseOver(groupIndex * group.options.length + index)"
+                        @option-selected="onOptionSelected">
+                        <template v-slot:option="{ option, isCurrent }">
+                            <slot name="option"
+                                  :is-current="isCurrent"
+                                  :option="option"/>
+                        </template>
+                    </SelectOption>
+                </SelectGroup>
+            </div>
+            <div v-else>
+                <SelectOption
+                    v-for="(item, index) in options"
+                    :key="`${item.id}-${index}`"
+                    :selected-id="selectedId"
+                    :option="item"
+                    :index="index"
+                    :current-suggestion-index="currentSuggestionIndex"
+                    data-cy="select-option"
+                    @hover="onMouseOver"
+                    @option-selected="onOptionSelected">
+                    <template v-slot:option="{ option, isCurrent }">
+                        <slot name="option"
+                              :is-current="isCurrent"
+                              :option="option"/>
+                    </template>
+                </SelectOption>
+            </div>
             <div
                 v-if="!hasSuggestions"
                 data-cy="no-options"
@@ -33,10 +55,11 @@
 
 <script>
     import SelectOption from './SelectOption.vue';
+    import SelectGroup from './SelectGroup.vue';
 
     export default {
         name: 'SelectMenu',
-        components: { SelectOption },
+        components: { SelectGroup, SelectOption },
         emits: ['update-popper-position', 'option-selected', 'hover'],
         props: {
             options: {
@@ -74,6 +97,10 @@
             placeholder: {
                 type: String,
                 default: undefined
+            },
+            isGrouped: {
+                type: Boolean,
+                default: false
             }
         },
         computed: {

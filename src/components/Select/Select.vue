@@ -55,6 +55,7 @@
                         :has-suggestions="hasSuggestions"
                         :no-options-message="noOptionsMessage"
                         :placeholder="searchPromptText"
+                        :is-grouped="isGrouped"
                         data-cy="select-menu"
                         @update-popper-position="updatePopperPosition"
                         @hover="onMouseOverSuggestion"
@@ -119,6 +120,16 @@
                     id: value, label: value, value, disabled: false
                 })
             },
+            groupNormalizer: {
+                type: Function,
+                default: (value, index) => ({
+                    id: value.id ?? index,
+                    label: value.label,
+                    options: value.options.map(el => ({
+                        id: el, label: el, value: el, disabled: false
+                    }))
+                })
+            },
             isLoading: {
                 type: Boolean,
                 default: false
@@ -178,6 +189,10 @@
             isDisabled: {
                 type: Boolean,
                 default: false
+            },
+            isGrouped: {
+                type: Boolean,
+                default: false
             }
         },
         data() {
@@ -202,7 +217,7 @@
             },
 
             normalizedOptions() {
-                return this.options.map(e => this.normalizer(e));
+                return this.options.map((e, index) => (this.isGrouped ? this.groupNormalizer(e, index) : this.normalizer(e)));
             },
 
             input() {
@@ -218,14 +233,29 @@
 
             suggestions() {
                 if (this.search && !this.async) {
+                    if (this.isGrouped) {
+                        return this.nonSelectedSuggestions
+                            .map(group => ({
+                                id: group.id,
+                                label: group.label,
+                                options: group.options.filter(option => this.filterPredicate(option.label, this.search))
+                            }))
+                            .filter(group => group.options.length !== 0);
+                    }
                     return this.nonSelectedSuggestions
                         .filter(option => this.filterPredicate(option.label, this.search));
                 }
                 return this.nonSelectedSuggestions;
             },
 
+            ungroupedSuggestions() {
+                return this.isGrouped
+                    ? this.suggestions.flatMap(group => group.options)
+                    : this.suggestions;
+            },
+
             hasSuggestions() {
-                return this.suggestions && this.suggestions.length > 0;
+                return this.ungroupedSuggestions && this.ungroupedSuggestions.length > 0;
             },
 
             isAnyOptionSelected() {
@@ -397,7 +427,7 @@
                     this.currentSuggestionIndex = 0;
                 } else {
                     this.currentSuggestionIndex += 1;
-                    if (this.currentSuggestionIndex > this.suggestions.length - 1) {
+                    if (this.currentSuggestionIndex > this.ungroupedSuggestions.length - 1) {
                         this.currentSuggestionIndex = 0;
                     }
                 }
@@ -410,11 +440,11 @@
                     return;
                 }
                 if (this.currentSuggestionIndex === undefined) {
-                    this.currentSuggestionIndex = this.suggestions.length - 1;
+                    this.currentSuggestionIndex = this.ungroupedSuggestions.length - 1;
                 } else {
                     this.currentSuggestionIndex -= 1;
                     if (this.currentSuggestionIndex < 0) {
-                        this.currentSuggestionIndex = this.suggestions.length - 1;
+                        this.currentSuggestionIndex = this.ungroupedSuggestions.length - 1;
                     }
                 }
             },
@@ -442,7 +472,7 @@
                     return;
                 }
 
-                const option = this.suggestions[this.currentSuggestionIndex];
+                const option = this.ungroupedSuggestions[this.currentSuggestionIndex];
                 this.currentSuggestionIndex = undefined;
                 this.$nextTick(() => {
                     this.$refs.input.focus();
