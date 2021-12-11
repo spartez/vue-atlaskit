@@ -9,10 +9,10 @@
         <Checkbox v-model="checkedValues" value="foo">
             foo
         </Checkbox>
-        <Checkbox v-model="checkedValues" value="bar">
+        <Checkbox v-model="checkedValues" :isFocused="true" value="bar">
             bar
         </Checkbox>
-        <Checkbox v-model="checkedValues" value="baz">
+        <Checkbox v-model="checkedValues" :disabled="true" value="baz">
             baz
         </Checkbox>
         <p>value: {{ checkedValues }}</p>
@@ -20,7 +20,7 @@
 </template>
 
 <script>
-    import Checkbox from '@/components/Checkbox/Checkbox';
+    import Checkbox from '@/components/Checkbox/Checkbox.vue';
 
     export default {
         name: 'CheckboxBasic',

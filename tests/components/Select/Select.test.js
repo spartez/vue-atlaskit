@@ -1,9 +1,9 @@
 import { mount } from '@vue/test-utils';
-import Select from '@/components/Select/Select';
-import SelectMenu from '@/components/Select/SelectMenu';
-import TextField from '@/components/Form/TextField';
-import Tag from '@/components/Select/Tag';
-import Icons from '@/components/Select/Icons';
+import Select from '@/components/Select/Select.vue';
+import SelectMenu from '@/components/Select/SelectMenu.vue';
+import TextField from '@/components/Form/TextField.vue';
+import Tag from '@/components/Select/Tag.vue';
+import Icons from '@/components/Select/Icons.vue';
 
 const options = ['foo', 'bar', 'baz'];
 const defaultNormalizer = option => ({ id: option, label: option, value: option });
@@ -41,7 +41,7 @@ describe('Select', () => {
     });
 
     it('input gets focused on select click', async () => {
-        const component = mount(Select, { props: { modelValue: 'foo', options } });
+        const component = mount(Select, { props: { modelValue: 'foo', options }, attachTo: document.body });
         component.findComponent(TextField).trigger('click');
         await component.vm.$nextTick();
 
@@ -54,17 +54,18 @@ describe('Select', () => {
 
     it('hide options list on input blur', async () => {
         const component = mount(Select, {
-            props: { isFocused: true, modelValue: 'foo', options }
+            props: { isFocused: true, modelValue: 'foo', options }, attachTo: document.body
         });
         const input = component.find('input');
         await component.vm.$nextTick();
-        const menu = component.findComponent(SelectMenu);
+        let menu = component.findComponent(SelectMenu);
 
         expect(menu.exists()).toBeTruthy();
 
-        input.trigger('blur');
+        await input.trigger('blur');
         await component.vm.$nextTick();
 
+        menu = component.findComponent(SelectMenu);
         expect(menu.exists()).toBeFalsy();
     });
 

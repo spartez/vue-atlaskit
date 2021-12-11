@@ -1,7 +1,6 @@
 import { mount } from '@vue/test-utils';
-import Button from '@/components/Button/Button';
-import Spinner from '@/components/Spinner/Spinner';
-
+import Button from '@/components/Button/Button.vue';
+import Spinner from '@/components/Spinner/Spinner.vue';
 
 describe('Button', () => {
     it('renders correct content for a button', () => {
@@ -15,10 +14,10 @@ describe('Button', () => {
         expect(component.findComponent(Spinner).exists()).toBe(true);
     });
 
-    it('emits click event on button click', () => {
+    it('emits click event on button click', async () => {
         const clickHandler = jest.fn();
-        const component = mount(Button, { slots: { default: 'Click me!' }, attrs: { click: clickHandler } });
-        component.trigger('click');
+        const component = mount(Button, { slots: { default: 'Click me!' }, attrs: { onClick: clickHandler } });
+        await component.trigger('click');
         expect(clickHandler).toBeCalled();
     });
 });

@@ -1,9 +1,9 @@
 import { mount } from '@vue/test-utils';
-import InlineEdit from '@/components/Form/InlineEdit';
-import InlineEditViewContent from '@/components/Form/InlineEditViewContent';
-import InlineEditButtons from '@/components/Form/InlineEditButtons';
-import InlineErrorMessage from '@/components/Form/InlineErrorMessage';
-import TextField from '@/components/Form/TextField';
+import InlineEdit from '@/components/Form/InlineEdit.vue';
+import InlineEditViewContent from '@/components/Form/InlineEditViewContent.vue';
+import InlineEditButtons from '@/components/Form/InlineEditButtons.vue';
+import InlineErrorMessage from '@/components/Form/InlineErrorMessage.vue';
+import TextField from '@/components/Form/TextField.vue';
 
 const stubs = { InlineEditViewContent };
 const props = { value: 'MackBook' };
@@ -21,7 +21,7 @@ describe('InlineEdit', () => {
 
     it('should show input on editing request', async () => {
         const component = mount(InlineEdit, { props });
-        component.setData({ isEditing: true });
+        await component.setData({ isEditing: true });
 
         const viewContent = component.findComponent(InlineEditViewContent);
 
