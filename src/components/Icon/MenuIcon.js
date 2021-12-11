@@ -1,5 +1,5 @@
-import IconWrapper from './IconWrapper';
-            import { h } from 'vue'
+import { h } from 'vue';
+import IconWrapper from './IconWrapper.vue';
 
 export default {
     name: 'MenuIcon',
@@ -16,6 +16,6 @@ export default {
     },
     render() {
         // eslint-disable-next-line max-len
-        return h(IconWrapper, { ...this.$props ,  innerHTML: '<svg viewBox="0 0 24 24"><path d="M5 15h14v2H5zm0-8h14v2H5zm0 4h14v2H5z" fill="currentColor" fill-rule="evenodd"/></svg>'  });
+        return h(IconWrapper, { ...this.$props, innerHTML: '<svg viewBox="0 0 24 24"><path d="M5 15h14v2H5zm0-8h14v2H5zm0 4h14v2H5z" fill="currentColor" fill-rule="evenodd"/></svg>' });
     }
 };

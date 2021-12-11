@@ -1,3 +1,3 @@
-import Lozenge from './Lozenge'
+import Lozenge from './Lozenge.vue';
 
-export { Lozenge }
+export { Lozenge };

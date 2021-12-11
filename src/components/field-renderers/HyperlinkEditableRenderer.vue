@@ -11,8 +11,8 @@
 </template>
 
 <script>
-    import HyperlinkRenderer from './HyperlinkRenderer';
-    import InlineEdit from '../Form/InlineEdit';
+    import HyperlinkRenderer from './HyperlinkRenderer.vue';
+    import InlineEdit from '../Form/InlineEdit.vue';
 
     export default {
         name: 'HyperlinkEditableRenderer',

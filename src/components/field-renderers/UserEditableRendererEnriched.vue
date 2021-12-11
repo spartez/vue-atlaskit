@@ -31,9 +31,9 @@
 
 <script>
     import CrossIcon from '../Icon/CrossIcon';
-    import PromisedContentLoader from '../common/PromisedContentLoader';
-    import UserEditableRenderer from './UserEditableRenderer';
-    import UserRenderer from './UserRenderer';
+    import PromisedContentLoader from '../common/PromisedContentLoader.vue';
+    import UserEditableRenderer from './UserEditableRenderer.vue';
+    import UserRenderer from './UserRenderer.vue';
 
     export default {
         name: 'UserRendererEnriched',

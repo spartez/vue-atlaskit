@@ -1,5 +1,5 @@
-import IconWrapper from './IconWrapper';
-            import { h } from 'vue'
+import { h } from 'vue';
+import IconWrapper from './IconWrapper.vue';
 
 export default {
     name: 'PriorityMediumIcon',
@@ -16,6 +16,6 @@ export default {
     },
     render() {
         // eslint-disable-next-line max-len
-        return h(IconWrapper, { ...this.$props ,  innerHTML: '<svg viewBox="0 0 24 24"><path d="M5 8h14a1 1 0 010 2H5a1 1 0 110-2zm0 6h14a1 1 0 010 2H5a1 1 0 010-2z" fill="#FFAB00"/></svg>'  });
+        return h(IconWrapper, { ...this.$props, innerHTML: '<svg viewBox="0 0 24 24"><path d="M5 8h14a1 1 0 010 2H5a1 1 0 110-2zm0 6h14a1 1 0 010 2H5a1 1 0 010-2z" fill="#FFAB00"/></svg>' });
     }
 };

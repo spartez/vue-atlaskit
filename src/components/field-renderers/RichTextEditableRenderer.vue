@@ -21,9 +21,9 @@
 </template>
 
 <script>
-    import RichTextEditor from '../RichTextEditor/RichTextEditor';
-    import InlineErrorMessage from '../Form/InlineErrorMessage';
-    import Button from '../Button/Button';
+    import RichTextEditor from '../RichTextEditor/RichTextEditor.vue';
+    import InlineErrorMessage from '../Form/InlineErrorMessage.vue';
+    import Button from '../Button/Button.vue';
 
 
     export default {

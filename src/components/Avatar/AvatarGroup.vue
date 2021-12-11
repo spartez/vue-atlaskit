@@ -27,11 +27,11 @@
                 <template v-slot:trigger="{toggle,isOpen}">
                     <div class="trigger"
                          :size="size" :open="isOpen">
-                    <div class="more" @click="toggle">
-                        <transition :name="counterUp ? 'counter-up' : 'counter-down'">
-                            <span :key="collapsedCount" class="collapsed-count">+{{ collapsedCount }}</span>
-                        </transition>
-                    </div>
+                        <div class="more" @click="toggle">
+                            <transition :name="counterUp ? 'counter-up' : 'counter-down'">
+                                <span :key="collapsedCount" class="collapsed-count">+{{ collapsedCount }}</span>
+                            </transition>
+                        </div>
                     </div>
                 </template>
                 <DropdownItem v-for="collapsedUser in collapsed" :key="collapsedUser.key">
@@ -55,10 +55,10 @@
 </template>
 
 <script>
-    import Avatar from './Avatar';
-    import Tooltip from '../Tooltip/Tooltip';
-    import Dropdown from '../Dropdown/Dropdown';
-    import DropdownItem from '../Dropdown/DropdownItem';
+    import Avatar from './Avatar.vue';
+    import Tooltip from '../Tooltip/Tooltip.vue';
+    import Dropdown from '../Dropdown/Dropdown.vue';
+    import DropdownItem from '../Dropdown/DropdownItem.vue';
 
     export default {
         name: 'AvatarGroup',

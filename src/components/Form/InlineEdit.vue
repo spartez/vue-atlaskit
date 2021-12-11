@@ -49,11 +49,11 @@
 </template>
 
 <script>
-    import TextField from './TextField';
-    import InlineEditButtons from './InlineEditButtons';
-    import InlineEditViewContent from './InlineEditViewContent';
-    import InlineErrorMessage from './InlineErrorMessage';
-    import Popper from '../Popper/Popper';
+    import TextField from './TextField.vue';
+    import InlineEditButtons from './InlineEditButtons.vue';
+    import InlineEditViewContent from './InlineEditViewContent.vue';
+    import InlineErrorMessage from './InlineErrorMessage.vue';
+    import Popper from '../Popper/Popper.vue';
 
     const ENTER = 13;
     const ESC = 27;

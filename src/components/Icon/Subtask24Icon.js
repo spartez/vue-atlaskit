@@ -1,5 +1,5 @@
-import IconWrapper from './IconWrapper';
-            import { h } from 'vue'
+import { h } from 'vue';
+import IconWrapper from './IconWrapper.vue';
 
 export default {
     name: 'Subtask24Icon',
@@ -16,6 +16,6 @@ export default {
     },
     render() {
         // eslint-disable-next-line max-len
-        return h(IconWrapper, { ...this.$props ,  innerHTML: '<svg viewBox="0 0 24 24"><path fill="#2684FF" fill-rule="evenodd" d="M13 11V6a1 1 0 00-1-1H6a1 1 0 00-1 1v6a1 1 0 001 1h5v5a1 1 0 001 1h6a1 1 0 001-1v-6a1 1 0 00-1-1h-5zM3 0h18a3 3 0 013 3v18a3 3 0 01-3 3H3a3 3 0 01-3-3V3a3 3 0 013-3zm4 7h4v4H7V7zm6 6h4v4h-4v-4z"/></svg>'  });
+        return h(IconWrapper, { ...this.$props, innerHTML: '<svg viewBox="0 0 24 24"><path fill="#2684FF" fill-rule="evenodd" d="M13 11V6a1 1 0 00-1-1H6a1 1 0 00-1 1v6a1 1 0 001 1h5v5a1 1 0 001 1h6a1 1 0 001-1v-6a1 1 0 00-1-1h-5zM3 0h18a3 3 0 013 3v18a3 3 0 01-3 3H3a3 3 0 01-3-3V3a3 3 0 013-3zm4 7h4v4H7V7zm6 6h4v4h-4v-4z"/></svg>' });
     }
 };

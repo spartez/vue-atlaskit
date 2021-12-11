@@ -1,6 +1,6 @@
-export { default as MenuSection } from './MenuSection'
-export { default as MenuItem } from './MenuItem'
-import Menu from './Menu'
+import Menu from './Menu.vue';
 
-export { Menu }
+export { default as MenuSection } from './MenuSection.vue';
+export { default as MenuItem } from './MenuItem.vue';
 
+export { Menu };

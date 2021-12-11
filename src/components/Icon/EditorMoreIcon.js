@@ -1,5 +1,5 @@
-import IconWrapper from './IconWrapper';
-            import { h } from 'vue'
+import { h } from 'vue';
+import IconWrapper from './IconWrapper.vue';
 
 export default {
     name: 'EditorMoreIcon',
@@ -16,6 +16,6 @@ export default {
     },
     render() {
         // eslint-disable-next-line max-len
-        return h(IconWrapper, { ...this.$props ,  innerHTML: '<svg viewBox="0 0 24 24"><path d="M12 14a1.5 1.5 0 110-3 1.5 1.5 0 010 3zm-4.5 0a1.5 1.5 0 110-3 1.5 1.5 0 010 3zm9 0a1.5 1.5 0 110-3 1.5 1.5 0 010 3z" fill="currentColor" fill-rule="evenodd"/></svg>'  });
+        return h(IconWrapper, { ...this.$props, innerHTML: '<svg viewBox="0 0 24 24"><path d="M12 14a1.5 1.5 0 110-3 1.5 1.5 0 010 3zm-4.5 0a1.5 1.5 0 110-3 1.5 1.5 0 010 3zm9 0a1.5 1.5 0 110-3 1.5 1.5 0 010 3z" fill="currentColor" fill-rule="evenodd"/></svg>' });
     }
 };

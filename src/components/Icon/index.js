@@ -463,6 +463,4 @@ export { default as PriorityMediumIcon } from './PriorityMediumIcon';
 export { default as PriorityMinorIcon } from './PriorityMinorIcon';
 export { default as PriorityTrivialIcon } from './PriorityTrivialIcon';
 
-export { default as IconWrapper } from './IconWrapper';
-
-
+export { default as IconWrapper } from './IconWrapper.vue';

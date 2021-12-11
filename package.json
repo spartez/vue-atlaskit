@@ -47,6 +47,7 @@
         "@vue/compiler-sfc": "^3.2.20",
         "@vue/test-utils": "^2.0.0-rc.17",
         "babel-core": "^7.0.0-bridge.0",
+        "babel-eslint": "^8.2.1",
         "babel-jest": "^26.6.3",
         "babel-loader": "^8.0.5",
         "babel-preset-vue": "^2.0.2",

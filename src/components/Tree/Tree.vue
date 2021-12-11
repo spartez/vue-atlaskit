@@ -21,7 +21,7 @@
 </template>
 
 <script>
-    import Node from './Node';
+    import Node from './Node.vue';
 
     import { EventBus } from '../event-bus';
 

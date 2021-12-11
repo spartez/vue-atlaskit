@@ -9,7 +9,7 @@
 </template>
 
 <script>
-    import PresenceWrapper from './PresenceWrapper';
+    import PresenceWrapper from './PresenceWrapper.vue';
 
     export default {
         name: 'Approved',

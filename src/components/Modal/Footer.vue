@@ -12,7 +12,7 @@
 </template>
 
 <script>
-    import Button from '../Button/Button';
+    import Button from '../Button/Button.vue';
 
     export default {
         name: 'Footer',

@@ -1,5 +1,5 @@
-import IconWrapper from './IconWrapper';
-            import { h } from 'vue'
+import { h } from 'vue';
+import IconWrapper from './IconWrapper.vue';
 
 export default {
     name: 'GoogleSlide16Icon',
@@ -16,6 +16,6 @@ export default {
     },
     render() {
         // eslint-disable-next-line max-len
-        return h(IconWrapper, { ...this.$props ,  innerHTML: '<svg viewBox="0 0 16 16"><path fill="#FFC107" fill-rule="evenodd" d="M2 0h12a2 2 0 012 2v12a2 2 0 01-2 2H2a2 2 0 01-2-2V2a2 2 0 012-2zm8.287 2.5l-4.067.04 3.508 6.114 4.066-.041L10.287 2.5zM2 9.33l2.068 3.523L7.576 6.74 5.508 3.217 2 9.331zm4.984.106L4.987 13h7.015L14 9.437H6.984z"/></svg>'  });
+        return h(IconWrapper, { ...this.$props, innerHTML: '<svg viewBox="0 0 16 16"><path fill="#FFC107" fill-rule="evenodd" d="M2 0h12a2 2 0 012 2v12a2 2 0 01-2 2H2a2 2 0 01-2-2V2a2 2 0 012-2zm8.287 2.5l-4.067.04 3.508 6.114 4.066-.041L10.287 2.5zM2 9.33l2.068 3.523L7.576 6.74 5.508 3.217 2 9.331zm4.984.106L4.987 13h7.015L14 9.437H6.984z"/></svg>' });
     }
 };

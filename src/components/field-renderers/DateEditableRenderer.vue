@@ -20,9 +20,9 @@
 </template>
 
 <script>
-    import DatePicker from '../Calendar/DatePicker';
-    import DateRenderer from './DateRenderer';
-    import InlineEdit from '../Form/InlineEdit';
+    import DatePicker from '../Calendar/DatePicker.vue';
+    import DateRenderer from './DateRenderer.vue';
+    import InlineEdit from '../Form/InlineEdit.vue';
 
     export default {
         name: 'DateEditableRenderer',

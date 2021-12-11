@@ -1,5 +1,5 @@
-import Calendar from './Calendar'
-import DatePicker from './DatePicker'
-import DateRangePicker from './DateRangePicker'
+import Calendar from './Calendar.vue';
+import DatePicker from './DatePicker.vue';
+import DateRangePicker from './DateRangePicker.vue';
 
-export { Calendar, DateRangePicker, DatePicker }
+export { Calendar, DateRangePicker, DatePicker };

@@ -14,7 +14,7 @@
 <script>
     import EditorDoneIcon from '../Icon/EditorDoneIcon';
     import EditorCloseIcon from '../Icon/EditorCloseIcon';
-    import Button from '../Button/Button';
+    import Button from '../Button/Button.vue';
 
 
     export default {

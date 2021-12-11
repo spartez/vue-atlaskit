@@ -1,3 +1,1 @@
-export { default as SectionMessage } from './SectionMessage'
-
-
+export { default as SectionMessage } from './SectionMessage.vue';

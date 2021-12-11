@@ -15,7 +15,7 @@
 </template>
 
 <script>
-    import Popper from '../Popper/Popper';
+    import Popper from '../Popper/Popper.vue';
 
     export default {
         name: 'InlineErrorMessage',

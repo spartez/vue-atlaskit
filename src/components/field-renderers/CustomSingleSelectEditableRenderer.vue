@@ -31,8 +31,8 @@
 </template>
 
 <script>
-    import Select from '../Select/Select';
-    import InlineEdit from '../Form/InlineEdit';
+    import Select from '../Select/Select.vue';
+    import InlineEdit from '../Form/InlineEdit.vue';
 
     export default {
         name: 'CustomSingleSelectEditableRenderer',

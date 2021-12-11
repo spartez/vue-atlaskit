@@ -7,9 +7,9 @@
 </template>
 
 <script>
-    import Button from '../Button/Button';
+    import Button from '../Button/Button.vue';
     import { CopyIcon } from '../Icon';
-    import Tooltip from '../Tooltip/Tooltip';
+    import Tooltip from '../Tooltip/Tooltip.vue';
 
     export default {
         name: 'CopyToClipboard',

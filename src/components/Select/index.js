@@ -1,4 +1,2 @@
-export { default as Select } from './Select'
-export { default as UserPicker } from './UserPicker'
-
-
+export { default as Select } from './Select.vue';
+export { default as UserPicker } from './UserPicker.vue';

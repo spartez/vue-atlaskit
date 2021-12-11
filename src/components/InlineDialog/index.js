@@ -1,3 +1,1 @@
-export { default as InlineDialog } from './InlineDialog'
-
-
+export { default as InlineDialog } from './InlineDialog.vue';

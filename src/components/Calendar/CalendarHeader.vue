@@ -26,7 +26,7 @@
     } from 'date-fns';
     import ChevronLeftLargeIcon from '../Icon/ChevronLeftLargeIcon';
     import ChevronRightLargeIcon from '../Icon/ChevronRightLargeIcon';
-    import Button from '../Button/Button';
+    import Button from '../Button/Button.vue';
 
     const DECADE = 10;
 

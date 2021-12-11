@@ -22,7 +22,7 @@ function camelize(str) {
 }
 
 function componentTemplate({ componentName, svg }) {
-    return `import IconWrapper from './IconWrapper';
+    return `import IconWrapper from './IconWrapper.vue';
             import { h } from 'vue'
 
 export default {
@@ -86,4 +86,4 @@ async function generateIcons(path) {
     await generateIcons('node_modules/@atlaskit/icon-object/svgs');
     await generateIcons('node_modules/@atlaskit/icon-file-type/svgs');
     await generateIcons('node_modules/@atlaskit/icon-priority/svgs');
-})();
+}());

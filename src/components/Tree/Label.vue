@@ -13,7 +13,7 @@
 </template>
 
 <script>
-    import Checkbox from '../Checkbox/Checkbox';
+    import Checkbox from '../Checkbox/Checkbox.vue';
     import { EventBus } from '../event-bus';
 
     const LIST_NESTING_MARGIN = '24';
