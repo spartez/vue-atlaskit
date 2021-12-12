@@ -17,10 +17,9 @@
                   :content-height="contentHeight">
                 <TextField :is-focused="isFocused" :is-invalid="!!error"
                            :is-loading="isLoading"
-                           :style="{ minWidth: `${contentWidth}px` }"
+                           :style="{ minWidth: `${contentWidth}px`, height: `${contentHeight}px`}"
                            :is-disabled="isLoading" :compact="compact"
-                           @click.stop
-                           @hook:beforeMount="beforeTextFieldMount">
+                           @click.stop>
                     <input ref="input" v-model="editingValue"
                            :type="type" :step="step" class="input"
                            :maxlength="maxlength" :disabled="isLoading"
@@ -138,6 +137,8 @@
                 if (!isEditing) {
                     this.$refs['text-field'].style['min-width'] = 'auto';
                     this.error = undefined;
+                } else {
+                    this.beforeTextFieldMount();
                 }
             },
             editingValue() {
@@ -226,8 +227,10 @@
             },
             beforeTextFieldMount() {
                 const { width, height } = this.$refs.value.$el.getBoundingClientRect();
-                this.contentWidth = width;
-                this.contentHeight = height;
+                this.$nextTick(() => {
+                    this.contentWidth = width;
+                    this.contentHeight = height;
+                });
             },
             validate(e) {
                 if (!this.pattern) return;
