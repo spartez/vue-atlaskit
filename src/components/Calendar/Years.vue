@@ -15,7 +15,7 @@
 <script>
 
     import { chunk } from '../../utils/utils';
-    import Button from '../Button/Button.vue';
+    import Button from '../Button/Button';
 
     const HALF_DECADE = 5;
 

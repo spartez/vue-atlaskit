@@ -40,9 +40,9 @@
 
 <script>
     import pDebounce from 'p-debounce';
-    import Select from '../Select/Select.vue';
-    import UserRenderer from './UserRenderer.vue';
-    import InlineEdit from '../Form/InlineEdit.vue';
+    import Select from '../Select/Select';
+    import UserRenderer from './UserRenderer';
+    import InlineEdit from '../Form/InlineEdit';
 
 
     export default {

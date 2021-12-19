@@ -22,8 +22,7 @@
         </TextField>
         <Popup :is-open="isOpen" :target-element="$refs['date-picker']" placement="bottom-start">
             <div class="date-range">
-                <Calendar :value="dateRange" :disabled-range="disabledRange" :range-value="true"
-                          :visible-date="visibleDate"
+                <Calendar :value="dateRange" :disabled-range="disabledRange" :range-value="true" :visible-date="visibleDate"
                           @date-selected="onDateSelected"/>
                 <div v-if="showQuickRanges" class="quick-ranges" tabindex="-1">
                     <DropdownGroup label="Quick ranges">
@@ -64,12 +63,12 @@
         fromUnixTime, parse, isValid, isBefore, isAfter, startOfWeek, endOfWeek,
         startOfMonth, endOfMonth, subMonths, subWeeks, subDays, startOfYear, endOfYear, subYears, getTime
     } from 'date-fns';
-    import TextField from '../Form/TextField.vue';
-    import Calendar from './Calendar.vue';
-    import Popup from '../common/Popup.vue';
+    import TextField from '../Form/TextField';
+    import Calendar from './Calendar';
+    import Popup from '../common/Popup';
     import CalendarIcon from '../Icon/CalendarIcon';
-    import DropdownItem from '../Dropdown/DropdownItem.vue';
-    import DropdownGroup from '../Dropdown/DropdownGroup.vue';
+    import DropdownItem from '../Dropdown/DropdownItem';
+    import DropdownGroup from '../Dropdown/DropdownGroup';
 
     const MILISECONDS_IN_SECOND = 1000;
 
@@ -109,7 +108,7 @@
                     from: undefined,
                     to: undefined
                 })
-            }
+            },
         },
         data() {
             return {

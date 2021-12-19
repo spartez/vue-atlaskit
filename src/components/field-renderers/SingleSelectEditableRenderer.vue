@@ -25,9 +25,9 @@
 </template>
 
 <script>
-    import Select from '../Select/Select.vue';
-    import StringLineRenderer from './StringLineRenderer.vue';
-    import InlineEdit from '../Form/InlineEdit.vue';
+    import Select from '../Select/Select';
+    import StringLineRenderer from './StringLineRenderer';
+    import InlineEdit from '../Form/InlineEdit';
 
     export default {
         name: 'SingleSelectEditableRenderer',

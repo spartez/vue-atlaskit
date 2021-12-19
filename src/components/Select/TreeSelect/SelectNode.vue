@@ -9,7 +9,7 @@
 </template>
 
 <script>
-    import Node from '../../Tree/Node.vue';
+    import Node from '../../Tree/Node';
 
     export default {
         name: 'SelectNode',

@@ -14,7 +14,7 @@
 </template>
 
 <script>
-    import Spinner from '../Spinner/Spinner.vue';
+    import Spinner from '../Spinner/Spinner';
     import Caret from '../Icon/HipchatChevronDownIcon';
     import Clear from '../Icon/EditorErrorIcon';
 

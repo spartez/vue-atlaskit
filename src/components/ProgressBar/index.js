@@ -1,1 +1,3 @@
-export { default as ProgressBar } from './ProgressBar.vue';
+export { default as ProgressBar } from './ProgressBar'
+
+

@@ -27,10 +27,10 @@
 </template>
 
 <script>
-    import Blanket from './Blanket.vue';
-    import PositionerAbsolute from './PositionerAbsolute.vue';
-    import Header from './Header.vue';
-    import Footer from './Footer.vue';
+    import Blanket from './Blanket';
+    import PositionerAbsolute from './PositionerAbsolute';
+    import Header from './Header';
+    import Footer from './Footer';
 
     const ESC = 27;
     export default {

@@ -34,10 +34,10 @@
     } from 'date-fns';
 
     import { chunk } from '../../utils/utils';
-    import CalendarHeader from './CalendarHeader.vue';
-    import Weeks from './Weeks.vue';
-    import Months from './Months.vue';
-    import Years from './Years.vue';
+    import CalendarHeader from './CalendarHeader';
+    import Weeks from './Weeks';
+    import Months from './Months';
+    import Years from './Years';
 
     const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
     const DAYS_IN_WEEK = 7;

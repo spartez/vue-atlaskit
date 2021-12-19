@@ -3,7 +3,7 @@
 </template>
 
 <script>
-    import UserEditableRendererEnriched from './UserEditableRendererEnriched.vue';
+    import UserEditableRendererEnriched from './UserEditableRendererEnriched';
 
     export default {
         name: 'UserRendererEnriched',

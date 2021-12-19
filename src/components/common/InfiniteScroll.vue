@@ -5,7 +5,7 @@
 </template>
 
 <script>
-    import Spinner from '../Spinner/Spinner.vue';
+    import Spinner from '../Spinner/Spinner';
 
     export default {
         name: 'InfiniteScroll',

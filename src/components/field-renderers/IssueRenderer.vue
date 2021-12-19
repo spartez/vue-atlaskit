@@ -21,10 +21,10 @@
 
 <script>
     import { QuestionIcon } from '../Icon';
-    import IssueStatusRenderer from './IssueStatusRenderer.vue';
-    import IssuePriorityRenderer from './IssuePriorityRenderer.vue';
-    import IssueTypeRenderer from './IssueTypeRenderer.vue';
-    import User from './UserRenderer.vue';
+    import IssueStatusRenderer from './IssueStatusRenderer';
+    import IssuePriorityRenderer from './IssuePriorityRenderer';
+    import IssueTypeRenderer from './IssueTypeRenderer';
+    import User from './UserRenderer';
 
     export default {
         name: 'IssueRenderer',

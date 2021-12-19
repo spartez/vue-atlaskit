@@ -19,7 +19,7 @@
 </template>
 
 <script>
-    import Tree from '../../Tree/Tree.vue';
+    import Tree from '../../Tree/Tree';
 
     export default {
         name: 'SelectMenu',

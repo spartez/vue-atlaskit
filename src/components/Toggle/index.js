@@ -1,2 +1,4 @@
-export { default as LockSwitch } from './LockSwitch.vue';
-export { default as Toggle } from './Toggle.vue';
+export { default as LockSwitch } from './LockSwitch'
+export { default as Toggle } from './Toggle'
+
+

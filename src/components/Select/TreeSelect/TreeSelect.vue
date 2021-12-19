@@ -55,10 +55,10 @@
 </template>
 
 <script>
-    import TextField from '../../Form/TextField.vue';
-    import SelectMenu from './SelectMenu.vue';
-    import Popper from '../../Popper/Popper.vue';
-    import Icons from '../Icons.vue';
+    import TextField from '../../Form/TextField';
+    import SelectMenu from './SelectMenu';
+    import Popper from '../../Popper/Popper';
+    import Icons from '../Icons';
     import { EventBus } from '../../event-bus';
 
     const INPUT_WIDTH = '5px';

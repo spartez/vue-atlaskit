@@ -19,7 +19,7 @@
 </template>
 
 <script>
-    import Button from '../Button/Button.vue';
+    import Button from '../Button/Button';
     import SearchIcon from '../Icon/SearchIcon';
 
     export default {

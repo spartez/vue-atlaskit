@@ -13,8 +13,8 @@
 </template>
 
 <script>
-    import NumberLongRenderer from './NumberLongRenderer.vue';
-    import InlineEdit from '../Form/InlineEdit.vue';
+    import NumberLongRenderer from './NumberLongRenderer';
+    import InlineEdit from '../Form/InlineEdit';
 
     export default {
         name: 'NumberLongEditableRenderer',

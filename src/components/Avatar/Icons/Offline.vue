@@ -6,7 +6,7 @@
 </template>
 
 <script>
-    import PresenceWrapper from './PresenceWrapper.vue';
+    import PresenceWrapper from './PresenceWrapper';
 
     export default {
         name: 'Offline',

@@ -1,5 +1,5 @@
-import { h } from 'vue';
-import IconWrapper from './IconWrapper.vue';
+import IconWrapper from './IconWrapper';
+            import { h } from 'vue'
 
 export default {
     name: 'PriorityBlockerIcon',
@@ -16,6 +16,6 @@ export default {
     },
     render() {
         // eslint-disable-next-line max-len
-        return h(IconWrapper, { ...this.$props, innerHTML: '<svg viewBox="0 0 24 24"><path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zM6 11a1 1 0 000 2h12a1 1 0 000-2H6z" fill="#FF5630"/></svg>' });
+        return h(IconWrapper, { ...this.$props ,  innerHTML: '<svg viewBox="0 0 24 24"><path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zM6 11a1 1 0 000 2h12a1 1 0 000-2H6z" fill="#FF5630"/></svg>'  });
     }
 };

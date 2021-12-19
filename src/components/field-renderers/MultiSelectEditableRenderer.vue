@@ -23,9 +23,9 @@
 </template>
 
 <script>
-    import Select from '../Select/Select.vue';
-    import MultiSelectRenderer from './MultiSelectRenderer.vue';
-    import InlineEdit from '../Form/InlineEdit.vue';
+    import Select from '../Select/Select';
+    import MultiSelectRenderer from './MultiSelectRenderer';
+    import InlineEdit from '../Form/InlineEdit';
 
     export default {
         name: 'MultiSelectEditableRenderer',

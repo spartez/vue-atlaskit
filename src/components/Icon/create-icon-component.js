@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import IconWrapper from './IconWrapper.vue';
+import IconWrapper from './IconWrapper';
 
 export default (name, IconGlyph) => Vue.component(name, {
     props: {

@@ -7,7 +7,7 @@
 </template>
 
 <script>
-    import IssueRenderer from './IssueRenderer.vue';
+    import IssueRenderer from './IssueRenderer';
 
     export default {
         name: 'LinkedIssuesList',

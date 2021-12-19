@@ -12,7 +12,7 @@
 </template>
 
 <script>
-    import ContentLoader from './ContentLoader.vue';
+    import ContentLoader from './ContentLoader';
 
     export default {
         name: 'AvatarDetailsLoader',

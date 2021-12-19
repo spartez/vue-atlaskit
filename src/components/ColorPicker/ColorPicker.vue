@@ -16,8 +16,8 @@
 </template>
 
 <script>
-    import ColorCard from './ColorCard.vue';
-    import Popup from '../common/Popup.vue';
+    import ColorCard from './ColorCard';
+    import Popup from '../common/Popup';
 
     export default {
         name: 'ColorPicker',

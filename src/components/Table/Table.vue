@@ -42,9 +42,9 @@
 </template>
 
 <script>
-    import TableHeaderCell from './TableHeaderCell.vue';
-    import TableRow from './TableRow.vue';
-    import Spinner from '../Spinner/Spinner.vue';
+    import TableHeaderCell from './TableHeaderCell';
+    import TableRow from './TableRow';
+    import Spinner from '../Spinner/Spinner';
 
     function withPxSuffix(value) {
         if (typeof value === 'number') return `${value}px`;

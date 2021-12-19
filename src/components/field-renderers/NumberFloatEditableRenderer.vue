@@ -12,8 +12,8 @@
 </template>
 
 <script>
-    import NumberFloatRenderer from './NumberFloatRenderer.vue';
-    import InlineEdit from '../Form/InlineEdit.vue';
+    import NumberFloatRenderer from './NumberFloatRenderer';
+    import InlineEdit from '../Form/InlineEdit';
 
     export default {
         name: 'NumberFloatEditableRenderer',

@@ -25,9 +25,9 @@
 </template>
 
 <script>
-    import TextArea from '../Form/TextArea.vue';
-    import MultiLineRenderer from './MultiLineRenderer.vue';
-    import InlineEdit from '../Form/InlineEdit.vue';
+    import TextArea from '../Form/TextArea';
+    import MultiLineRenderer from './MultiLineRenderer';
+    import InlineEdit from '../Form/InlineEdit';
 
     export default {
         name: 'MultiLineEditableRenderer',

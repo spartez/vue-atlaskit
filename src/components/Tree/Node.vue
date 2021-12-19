@@ -38,7 +38,7 @@
 </template>
 
 <script>
-    import Label from './Label.vue';
+    import Label from './Label';
     import { ChevronRightIcon } from '../Icon';
 
     export default {

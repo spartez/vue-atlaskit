@@ -15,7 +15,7 @@
 </template>
 
 <script>
-    import ContentLoader from './ContentLoader.vue';
+    import ContentLoader from './ContentLoader';
 
     const random = () => Math.random() * (1 - 0.7) + 0.7;
 

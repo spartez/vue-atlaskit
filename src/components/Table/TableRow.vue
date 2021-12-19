@@ -18,7 +18,7 @@
 </template>
 
 <script>
-    import TableRowCell from './TableRowCell.vue';
+    import TableRowCell from './TableRowCell';
 
     export default {
         components: { TableRowCell },

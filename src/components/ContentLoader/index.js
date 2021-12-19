@@ -1,8 +1,9 @@
-export { default as AvatarDetailsLoader } from './AvatarDetailsLoader.vue';
-export { default as AvatarNameLoader } from './AvatarNameLoader.vue';
-export { default as PageDetailsLoader } from './PageDetailsLoader.vue';
-export { default as BulletListLoader } from './BulletListLoader.vue';
-export { default as ContentLoader } from './ContentLoader.vue';
-export { default as FolderPathLoader } from './FolderPathLoader.vue';
-export { default as ListWithImageLoader } from './ListWithImageLoader.vue';
-export { default as TableLoader } from './TableLoader.vue';
+export { default as AvatarDetailsLoader } from './AvatarDetailsLoader'
+export { default as AvatarNameLoader } from './AvatarNameLoader'
+export { default as PageDetailsLoader } from './PageDetailsLoader'
+export { default as BulletListLoader } from './BulletListLoader'
+export { default as ContentLoader } from './ContentLoader'
+export { default as FolderPathLoader } from './FolderPathLoader'
+export { default as ListWithImageLoader } from './ListWithImageLoader'
+export { default as TableLoader } from './TableLoader'
+

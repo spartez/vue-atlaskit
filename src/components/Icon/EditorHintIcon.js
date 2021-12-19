@@ -1,5 +1,5 @@
-import { h } from 'vue';
-import IconWrapper from './IconWrapper.vue';
+import IconWrapper from './IconWrapper';
+            import { h } from 'vue'
 
 export default {
     name: 'EditorHintIcon',
@@ -16,6 +16,6 @@ export default {
     },
     render() {
         // eslint-disable-next-line max-len
-        return h(IconWrapper, { ...this.$props, innerHTML: '<svg viewBox="0 0 24 24"><path d="M14 16h-4s0-.5-1-2-2.5-3-2.5-5S7 4 12 4s5.5 3 5.5 5-1.5 3.5-2.5 5-1 2-1 2zm-4 1h4v1l-1.5 2h-1L10 18v-1z" fill="currentColor" fill-rule="evenodd"/></svg>' });
+        return h(IconWrapper, { ...this.$props ,  innerHTML: '<svg viewBox="0 0 24 24"><path d="M14 16h-4s0-.5-1-2-2.5-3-2.5-5S7 4 12 4s5.5 3 5.5 5-1.5 3.5-2.5 5-1 2-1 2zm-4 1h4v1l-1.5 2h-1L10 18v-1z" fill="currentColor" fill-rule="evenodd"/></svg>'  });
     }
 };

@@ -71,11 +71,11 @@
 </template>
 
 <script>
-    import TextField from '../Form/TextField.vue';
-    import SelectMenu from './SelectMenu.vue';
-    import Popper from '../Popper/Popper.vue';
-    import Tag from './Tag.vue';
-    import Icons from './Icons.vue';
+    import TextField from '../Form/TextField';
+    import SelectMenu from './SelectMenu';
+    import Popper from '../Popper/Popper';
+    import Tag from './Tag';
+    import Icons from './Icons';
 
 
     const INPUT_WIDTH = '5px';

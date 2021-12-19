@@ -11,7 +11,7 @@
 </template>
 
 <script>
-    import Button from '../Button/Button.vue';
+    import Button from '../Button/Button';
 
     export default {
         name: 'Day',

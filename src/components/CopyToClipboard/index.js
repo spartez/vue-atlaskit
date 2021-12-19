@@ -1,3 +1,3 @@
-import CopyToClipboard from './CopyToClipboard.vue';
+import CopyToClipboard from './CopyToClipboard'
 
-export { CopyToClipboard };
+export { CopyToClipboard }
