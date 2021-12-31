@@ -1,6 +1,6 @@
 {
     "name": "@spartez/vue-atlaskit-next",
-    "version": "0.1.20",
+    "version": "0.1.22",
     "description": "Unofficial Vue UI library, built according to the Atlassian Design Guidelines.",
     "main": "dist/cjs/index.js",
     "module": "dist/esm/index.js",

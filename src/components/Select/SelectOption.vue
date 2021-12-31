@@ -21,7 +21,7 @@
                 default: undefined
             },
             selectedId: {
-                type: [String, Number],
+                type: [String, Number, Object],
                 default: undefined
             },
             currentSuggestionIndex: {

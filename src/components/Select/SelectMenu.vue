@@ -9,10 +9,10 @@
                         :key="`${item.id}-${index}-${group.id}`"
                         :selected-id="selectedId"
                         :option="item"
-                        :index="groupIndex * group.options.length + index"
+                        :index="sumGroupsOptionsLengthBeforeIndex(groupIndex) + index"
                         :current-suggestion-index="currentSuggestionIndex"
                         data-cy="select-option"
-                        @hover="onMouseOver(groupIndex * group.options.length + index)"
+                        @hover="onMouseOver(groupIndex, index)"
                         @option-selected="onOptionSelected">
                         <template v-slot:option="{ option, isCurrent }">
                             <slot name="option"
@@ -120,11 +120,19 @@
             onOptionSelected(option) {
                 this.$emit('option-selected', option);
             },
-            onMouseOver(index) {
-                this.$emit('hover', index);
+            onMouseOver(groupIndex, index) {
+                const before = this.sumGroupsOptionsLengthBeforeIndex(groupIndex);
+                this.$emit('hover', before + index);
             },
             resetIndex() {
                 this.$emit('hover', undefined);
+            },
+            sumGroupsOptionsLengthBeforeIndex(groupIndex) {
+                const x = this.options
+                    .slice(0, groupIndex)
+                    .map(group => group.options.length)
+                    .reduceRight((a, b) => a + b, 0);
+                return x;
             }
         }
     };

@@ -238,7 +238,13 @@
                             .map(group => ({
                                 id: group.id,
                                 label: group.label,
-                                options: group.options.filter(option => this.filterPredicate(option.label, this.search))
+                                options: group.options.filter((option) => {
+                                    if (typeof option.label === 'object' && option.label !== null) {
+                                        return Object.entries(option.label)
+                                            .map(key => this.filterPredicate(key[1], this.search)).reduce((a, b) => a || b);
+                                    }
+                                    return this.filterPredicate(option.label, this.search);
+                                })
                             }))
                             .filter(group => group.options.length !== 0);
                     }

@@ -12,6 +12,9 @@
                     <AddIcon slot="icon-before" size="xsmall"/>
                     Create Issue
                 </Button>
+                <template v-slot:option="{option}">
+                    {{ option.label }}
+                </template>
             </Select>
         </FieldGroup>
         <table>
@@ -46,15 +49,13 @@
         },
         data() {
             return {
-                groupedOptions: [
-                    {
-                        label: 'Option1',
-                        options: ['A', 'B', 'C']
-                    },
-                    {
-                        label: 'Option2',
-                        options: ['DA', 'E', 'F']
-                    }
+                groupedOptions: [{
+                                     label: 'TO BE MAPPED', options: [{ id: '10004', label: 'Task' }, { id: '10005', label: 'Epic' }]
+                                 },
+                                 {
+                                     label: 'ALREADY MAPPED',
+                                     options: [{ id: '10006', label: 'Subtask' }]
+                                 }
                 ],
                 value: undefined,
                 isLoading: false
