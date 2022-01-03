@@ -12,7 +12,7 @@
                         :index="sumGroupsOptionsLengthBeforeIndex(groupIndex) + index"
                         :current-suggestion-index="currentSuggestionIndex"
                         data-cy="select-option"
-                        @hover="onMouseOver(groupIndex, index)"
+                        @hover="onMouseOverGrouped(groupIndex, index)"
                         @option-selected="onOptionSelected">
                         <template v-slot:option="{ option, isCurrent }">
                             <slot name="option"
@@ -120,9 +120,12 @@
             onOptionSelected(option) {
                 this.$emit('option-selected', option);
             },
-            onMouseOver(groupIndex, index) {
+            onMouseOverGrouped(groupIndex, index) {
                 const before = this.sumGroupsOptionsLengthBeforeIndex(groupIndex);
                 this.$emit('hover', before + index);
+            },
+            onMouseOver(index) {
+                this.$emit('hover', index);
             },
             resetIndex() {
                 this.$emit('hover', undefined);
