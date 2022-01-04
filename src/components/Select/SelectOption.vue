@@ -1,6 +1,11 @@
 <template>
-    <div ref="option" :selected="isSelected" class="select-option"
-         :current="current" @click.stop="onOptionSelected" @mouseover="onMouseOver">
+    <div ref="option"
+         :selected="isSelected"
+         class="select-option"
+         :current="current"
+         :disabled="disabled"
+         @click.stop="onOptionSelected"
+         @mouseover="onMouseOver">
         <slot name="option" :option="option.value" :is-current="current">
             {{ option.label }}
         </slot>
@@ -27,6 +32,10 @@
             currentSuggestionIndex: {
                 type: Number,
                 default: undefined
+            },
+            disabled: {
+                type: Boolean,
+                default: false
             }
         },
         computed: {
@@ -55,10 +64,14 @@
         },
         methods: {
             onOptionSelected() {
-                this.$emit('option-selected', this.option);
+                if (!this.disabled) {
+                    this.$emit('option-selected', this.option);
+                }
             },
             onMouseOver() {
-                this.$emit('hover', this.index);
+                if (!this.disabled) {
+                    this.$emit('hover', this.index);
+                }
             }
         }
     };
@@ -85,5 +98,9 @@
 .select-option[current=true] {
   background-color: #ebecf0;
   color: inherit;
+}
+
+.select-option[disabled=true]:hover {
+  cursor: not-allowed;
 }
 </style>

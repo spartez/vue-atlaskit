@@ -44,7 +44,8 @@
         <Popper v-if="shouldOpenMenu" ref="menu" offset="0,0"
                 :target-element="$refs.target"
                 :boundaries-element="boundariesElement"
-                placement="bottom-start">
+                placement="bottom-start"
+                class="popper">
             <SelectMenu :selected="selected" :options="suggestions"
                         :current-suggestion-index="currentSuggestionIndex"
                         :is-fetching="isFetching"
@@ -126,7 +127,7 @@
                     id: value.id ?? index,
                     label: value.label,
                     options: value.options.map(el => ({
-                        id: el, label: el, value: el, disabled: false
+                        id: el, label: el, value: el, disabled: el.disabled
                     }))
                 })
             },
@@ -479,6 +480,9 @@
                 }
 
                 const option = this.ungroupedSuggestions[this.currentSuggestionIndex];
+                if (option.disabled) {
+                    return;
+                }
                 this.currentSuggestionIndex = undefined;
                 this.$nextTick(() => {
                     this.$refs.input.focus();
@@ -600,5 +604,9 @@
 
     .select ~ .select {
         margin-top: 20px;
+    }
+
+    .popper {
+      z-index: 1000;
     }
 </style>

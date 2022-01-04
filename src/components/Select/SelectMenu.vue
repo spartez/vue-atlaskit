@@ -12,6 +12,7 @@
                         :index="sumGroupsOptionsLengthBeforeIndex(groupIndex) + index"
                         :current-suggestion-index="currentSuggestionIndex"
                         data-cy="select-option"
+                        :disabled="item.disabled"
                         @hover="onMouseOverGrouped(groupIndex, index)"
                         @option-selected="onOptionSelected">
                         <template v-slot:option="{ option, isCurrent }">
