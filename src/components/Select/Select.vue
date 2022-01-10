@@ -447,8 +447,9 @@
             },
 
             onSuggestionSelected(e) {
-                // if current index is undefined, means we don't want to select any value, just submit
-                if (this.currentSuggestionIndex === undefined && !this.canCreateTag) {
+                // if suggested option is undefined, means we don't want to select any value, just submit
+                const suggestedOption = this.suggestions && this.suggestions[this.currentSuggestionIndex];
+                if (suggestedOption === undefined && !this.canCreateTag) {
                     this.$emit('confirm', e);
                     return;
                 }
@@ -465,11 +466,10 @@
                     return;
                 }
 
-                const option = this.suggestions[this.currentSuggestionIndex];
                 this.currentSuggestionIndex = undefined;
                 this.$nextTick(() => {
                     this.$refs.input.focus();
-                    this.onOptionSelected(option);
+                    this.onOptionSelected(suggestedOption);
                 });
             },
 

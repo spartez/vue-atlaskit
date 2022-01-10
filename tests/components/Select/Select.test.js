@@ -89,6 +89,17 @@ describe('Select', () => {
         expect(menu.exists()).toBeTruthy();
     });
 
+    test('should emit confirm on enter if the suggested option is not visible', async () => {
+        const component = mount(Select, { propsData: { value: 'foo', options } });
+        component.findComponent(TextField).trigger('click');
+        component.vm.currentSuggestionIndex = 5;
+        await component.vm.$nextTick();
+
+        component.find('input').trigger('keydown.enter');
+
+        expect(component.emitted('confirm')).toBeTruthy();
+    });
+
     it('should preselect passed array of options', () => {
         const [a, b] = options;
         const component = shallowMount(Select, { propsData: { value: [a, b], options, multi: true } });
