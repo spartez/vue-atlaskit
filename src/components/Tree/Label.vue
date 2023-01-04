@@ -1,15 +1,21 @@
 <template>
-    <div ref="label" class="node-label" :current="current"
-         :selected="checked"
-         :style="{ 'padding-left': `${indent}px` }"
-         :indent-left="$slots['chevron']">
-        <slot name="chevron"/>
-        <Checkbox v-model="checked"
-                  :value="node.id"
-                  class="label">
-            <slot>{{ node.label }}</slot>
-        </Checkbox>
-    </div>
+  <div
+    ref="label"
+    class="node-label"
+    :current="current"
+    :selected="checked"
+    :style="{ 'padding-left': `${indent}px` }"
+    :indent-left="$slots['chevron']"
+  >
+    <slot name="chevron"/>
+    <Checkbox
+      v-model="checked"
+      :value="node.id"
+      class="label"
+    >
+      <slot>{{ node.label }}</slot>
+    </Checkbox>
+  </div>
 </template>
 
 <script>
@@ -112,12 +118,12 @@
 }
 
 .node-label[selected] {
-    background-color: #42526E;
-    color: #fff;
+    background-color: var(--ds-background-selected, #253858);
+    color: var(--ds-text-selected, #F4F5F7);
 }
 
 .node-label[current] {
-    background-color: #EBECF0;
+    background-color: var(--ds-surface-hovered, rgb(250, 251, 252));
     color: inherit;
 }
 

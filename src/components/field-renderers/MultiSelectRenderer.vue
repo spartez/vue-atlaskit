@@ -1,25 +1,48 @@
 <template>
-    <div ref="overflowContainer" class="multiselect overflow-container">
-        <span v-for="(value, i) in visibleValues" :key="i" ref="tag"
-              class="tag" :title="value">
-            {{ value }}
-        </span>
-        <Button v-if="hiddenValues.length > 0" ref="target" spacing="none"
-                :is-selected="isOpen"
-                @click="toggleDropdown">
-            +{{ hiddenValues.length }}
-        </Button>
-        <Popper v-if="isOpen" ref="popper" :target-element="$refs.target.$el"
-                offset="0,5"
-                placement="bottom-end">
-            <div ref="dropdown" class="dropdown-list">
-                <div v-for="(value, i) in hiddenValues" :key="i" class="item"
-                     :title="value">
-                    {{ value }}
-                </div>
-            </div>
-        </Popper>
-    </div>
+  <div
+    ref="overflowContainer"
+    class="multiselect overflow-container"
+  >
+    <span
+      v-for="(value, i) in visibleValues"
+      :key="i"
+      ref="tag"
+      class="tag"
+      :title="value"
+    >
+      {{ value }}
+    </span>
+    <Button
+      v-if="hiddenValues.length > 0"
+      ref="target"
+      spacing="none"
+      :is-selected="isOpen"
+      @click="toggleDropdown"
+    >
+      +{{ hiddenValues.length }}
+    </Button>
+    <Popper
+      v-if="isOpen"
+      ref="popper"
+      :target-element="$refs.target.$el"
+      offset="0,5"
+      placement="bottom-end"
+    >
+      <div
+        ref="dropdown"
+        class="dropdown-list"
+      >
+        <div
+          v-for="(value, i) in hiddenValues"
+          :key="i"
+          class="item"
+          :title="value"
+        >
+          {{ value }}
+        </div>
+      </div>
+    </Popper>
+  </div>
 </template>
 
 <script>

@@ -1,5 +1,9 @@
 <template>
-    <UserEditableRendererEnriched :user="user" :avatar-only="avatarOnly" :editable="false"/>
+  <UserEditableRendererEnriched
+    :user="user"
+    :avatar-only="avatarOnly"
+    :editable="false"
+  />
 </template>
 
 <script>

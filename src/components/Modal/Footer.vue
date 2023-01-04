@@ -1,14 +1,23 @@
 <template>
-    <div class="footer">
-        <Button :auto-focus="autoFocus" type="submit" :is-disabled="pending || !shouldAllowSubmit"
-                :is-loading="pending" :appearance="appearance">
-            {{ submit }}
-        </Button>
-        <Button v-if="cancel" appearance="subtle" :is-disabled="pending"
-                @click="onCancel">
-            {{ cancel }}
-        </Button>
-    </div>
+  <div class="footer">
+    <Button
+      :auto-focus="autoFocus"
+      type="submit"
+      :is-disabled="pending || !shouldAllowSubmit"
+      :is-loading="pending"
+      :appearance="appearance"
+    >
+      {{ submit }}
+    </Button>
+    <Button
+      v-if="cancel"
+      appearance="subtle"
+      :is-disabled="pending"
+      @click="onCancel"
+    >
+      {{ cancel }}
+    </Button>
+  </div>
 </template>
 
 <script>

@@ -1,15 +1,25 @@
 <template>
-    <table>
-        <tbody>
-            <tr v-for="(half_decade,i) in decade" :key="i">
-                <td v-for="year in half_decade" :key="year">
-                    <Button appearance="subtle" class="year" @click="onYearSelected(year)">
-                        {{ year }}
-                    </Button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+  <table>
+    <tbody>
+      <tr
+        v-for="(half_decade,i) in decade"
+        :key="i"
+      >
+        <td
+          v-for="year in half_decade"
+          :key="year"
+        >
+          <Button
+            appearance="subtle"
+            class="year"
+            @click="onYearSelected(year)"
+          >
+            {{ year }}
+          </Button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </template>
 
 <script>

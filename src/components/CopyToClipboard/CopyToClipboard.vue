@@ -1,13 +1,20 @@
 <template>
-    <Tooltip :label="tooltip" :placement="placement" :spacing="spacing">
-        <div class="content" @click="onClick">
-            <slot>
-                <Button :appearance="appearance">
-                    <CopyIcon/>
-                </Button>
-            </slot>
-        </div>
-    </Tooltip>
+  <Tooltip
+    :label="tooltip"
+    :placement="placement"
+    :spacing="spacing"
+  >
+    <div
+      class="content"
+      @click="onClick"
+    >
+      <slot>
+        <Button :appearance="appearance">
+          <CopyIcon/>
+        </Button>
+      </slot>
+    </div>
+  </Tooltip>
 </template>
 
 <script>

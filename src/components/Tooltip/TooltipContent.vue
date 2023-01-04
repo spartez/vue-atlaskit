@@ -1,15 +1,19 @@
 <template>
-    <transition name="fade" appear>
-        <Popper
-            :transition-delay="300"
-            :boundaries-element="boundariesElement"
-            :target-element="targetElement"
-            :placement="placement"
-            :offset="offset"
-            :with-delay="withDelay">
-            <span class="label">{{ label }}</span>
-        </Popper>
-    </transition>
+  <transition
+    name="fade"
+    appear
+  >
+    <Popper
+      :transition-delay="300"
+      :boundaries-element="boundariesElement"
+      :target-element="targetElement"
+      :placement="placement"
+      :offset="offset"
+      :with-delay="withDelay"
+    >
+      <span class="label">{{ label }}</span>
+    </Popper>
+  </transition>
 </template>
 
 <script>
@@ -61,9 +65,9 @@
     box-shadow: 0 1px 2px 1px rgba(0, 1, 0, 0.2);
     white-space: nowrap;
     pointer-events: none;
-    background-color: #172b4d;
+    background-color: var(--ds-background-neutral-bold, #172b4d);
     border-radius: 3px;
-    color: #ffffff;
+    color: var(--ds-text-inverse, #FFF);
     top: 0;
     left: 0;
 }

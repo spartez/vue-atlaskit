@@ -1,8 +1,12 @@
 <template>
-    <transition name="expand" @enter="enter" @after-enter="afterEnter"
-                @leave="leave">
-        <slot/>
-    </transition>
+  <transition
+    name="expand"
+    @enter="enter"
+    @after-enter="afterEnter"
+    @leave="leave"
+  >
+    <slot/>
+  </transition>
 </template>
 <script>
     export default {

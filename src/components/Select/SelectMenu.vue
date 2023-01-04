@@ -1,35 +1,45 @@
 <template>
-    <div ref="menu" class="select-menu" tabindex="-1"
-         @mousedown.prevent>
-        <div class="select-menu-inner">
-            <SelectOption
-                v-for="(item, index) in options"
-                :key="`${item.id}-${index}`"
-                :selected-id="selectedId"
-                :option="item"
-                :index="index"
-                :current-suggestion-index="currentSuggestionIndex"
-                data-cy="select-option"
-                @mouseover="onMouseOver"
-                @option-selected="onOptionSelected">
-                <slot
-                    slot="option"
-                    slot-scope="{ option, isCurrent }"
-                    name="option"
-                    :is-current="isCurrent"
-                    :option="option"/>
-            </SelectOption>
-            <div
-                v-if="!hasSuggestions"
-                data-cy="no-options"
-                class="no-options">
-                {{ !containsQuery && async ? placeholder : noOptionsMessage }}
-            </div>
-        </div>
-        <div v-if="$slots.default" @mouseover="resetIndex">
-            <slot/>
-        </div>
+  <div
+    ref="menu"
+    class="select-menu"
+    tabindex="-1"
+    @mousedown.prevent
+  >
+    <div class="select-menu-inner">
+      <SelectOption
+        v-for="(item, index) in options"
+        :key="`${item.id}-${index}`"
+        :selected-id="selectedId"
+        :option="item"
+        :index="index"
+        :current-suggestion-index="currentSuggestionIndex"
+        data-cy="select-option"
+        @mouseover="onMouseOver"
+        @option-selected="onOptionSelected"
+      >
+        <slot
+          slot="option"
+          slot-scope="{ option, isCurrent }"
+          name="option"
+          :is-current="isCurrent"
+          :option="option"
+        />
+      </SelectOption>
+      <div
+        v-if="!hasSuggestions"
+        data-cy="no-options"
+        class="no-options"
+      >
+        {{ !containsQuery && async ? placeholder : noOptionsMessage }}
+      </div>
     </div>
+    <div
+      v-if="$slots.default"
+      @mouseover="resetIndex"
+    >
+      <slot/>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -105,7 +115,7 @@
 
 <style scoped>
 .select-menu {
-    background-color: rgb(255, 255, 255);
+    background-color: var(--ds-surface-overlay, #fff);
     box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 0px 1px,
     rgba(0, 0, 0, 0.1) 0px 4px 11px;
     margin-bottom: 8px;

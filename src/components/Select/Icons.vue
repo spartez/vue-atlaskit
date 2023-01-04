@@ -1,16 +1,24 @@
 <template>
-    <div class="icons">
-        <Spinner v-if="isFetching" class="spinner-icon" size="icon"/>
-        <Clear
-            v-if="shouldShowClearIcon"
-            size="xsmall"
-            class="clear-icon"
-            primary-color="#A5ADBA"
-            @click.native="onClear"/>
-        <slot>
-            <Caret v-if="!createable" size="xsmall"/>
-        </slot>
-    </div>
+  <div class="icons">
+    <Spinner
+      v-if="isFetching"
+      class="spinner-icon"
+      size="icon"
+    />
+    <Clear
+      v-if="shouldShowClearIcon"
+      size="xsmall"
+      class="clear-icon"
+      primary-color="#A5ADBA"
+      @click.native="onClear"
+    />
+    <slot>
+      <Caret
+        v-if="!createable"
+        size="xsmall"
+      />
+    </slot>
+  </div>
 </template>
 
 <script>

@@ -1,7 +1,11 @@
 <template>
-    <component :is="tag" ref="infinite-scroll-loader" class="infinite-scroll-loader">
-        <Spinner size="small"/>
-    </component>
+  <component
+    :is="tag"
+    ref="infinite-scroll-loader"
+    class="infinite-scroll-loader"
+  >
+    <Spinner size="small"/>
+  </component>
 </template>
 
 <script>

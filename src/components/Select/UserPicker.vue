@@ -1,25 +1,49 @@
 <template>
-    <Select :value="value"
-            :options="users"
-            :async="true"
-            :multi="multi"
-            :is-focused="isFocused"
-            :is-fetching="isFetching"
-            :placeholder="placeholder"
-            :normalizer="normalizer"
-            v-on="$listeners"
-            @open="loadInitialOptions"
-            @search-change="debouncedGetUsers">
-        <div slot="option" slot-scope="{option}" class="label">
-            <UserRenderer tag="span" :user="option"/>
-        </div>
-        <div slot="selected" slot-scope="{selected}" class="label">
-            <UserRenderer tag="span" :user="selected"/>
-        </div>
-        <div slot="tag" slot-scope="{tag}" class="user-tag">
-            <UserRenderer appearance="micro" tag="span" :user="tag.value"/>
-        </div>
-    </Select>
+  <Select
+    :value="value"
+    :options="users"
+    :async="true"
+    :multi="multi"
+    :is-focused="isFocused"
+    :is-fetching="isFetching"
+    :placeholder="placeholder"
+    :normalizer="normalizer"
+    v-on="$listeners"
+    @open="loadInitialOptions"
+    @search-change="debouncedGetUsers"
+  >
+    <div
+      slot="option"
+      slot-scope="{option}"
+      class="label"
+    >
+      <UserRenderer
+        tag="span"
+        :user="option"
+      />
+    </div>
+    <div
+      slot="selected"
+      slot-scope="{selected}"
+      class="label"
+    >
+      <UserRenderer
+        tag="span"
+        :user="selected"
+      />
+    </div>
+    <div
+      slot="tag"
+      slot-scope="{tag}"
+      class="user-tag"
+    >
+      <UserRenderer
+        appearance="micro"
+        tag="span"
+        :user="tag.value"
+      />
+    </div>
+  </Select>
 </template>
 
 <script>

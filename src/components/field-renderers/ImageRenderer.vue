@@ -1,21 +1,40 @@
 <template>
-    <div class="image-container" :loading="isLoading">
-        <img v-if="url"
-             class="image"
-             :src="url"
-             alt="attached image"
-             :height="height"
-             :width="width">
-        <div v-else class="placeholder" :style="{ width: `${placeholderSize}px`, height: `${placeholderSize}px` }"/>
-        <div v-if="showActions && (url || $slots.actions)" class="actions">
-            <a v-if="url && zoomable" :href="url" target="_blank">
-                <Button class="action-button" appearance="subtle">
-                    <SearchIcon/>
-                </Button>
-            </a>
-            <slot name="actions"/>
-        </div>
+  <div
+    class="image-container"
+    :loading="isLoading"
+  >
+    <img
+      v-if="url"
+      class="image"
+      :src="url"
+      alt="attached image"
+      :height="height"
+      :width="width"
+    >
+    <div
+      v-else
+      class="placeholder"
+      :style="{ width: `${placeholderSize}px`, height: `${placeholderSize}px` }"
+    />
+    <div
+      v-if="showActions && (url || $slots.actions)"
+      class="actions"
+    >
+      <a
+        v-if="url && zoomable"
+        :href="url"
+        target="_blank"
+      >
+        <Button
+          class="action-button"
+          appearance="subtle"
+        >
+          <SearchIcon/>
+        </Button>
+      </a>
+      <slot name="actions"/>
     </div>
+  </div>
 </template>
 
 <script>

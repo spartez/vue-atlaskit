@@ -1,13 +1,21 @@
 <template>
-    <div class="progress-bar-wrapper">
-        <div v-if="showLabels" ref="labels" class="labels">
-            <span class="label">{{ label }}</span>
-            <span>{{ progress }}%</span>
-        </div>
-        <div class="progress-bar">
-            <span ref="progress" class="progress" :style="{ width: `${progress}%`, transitionDuration }"/>
-        </div>
+  <div class="progress-bar-wrapper">
+    <div
+      v-if="showLabels"
+      ref="labels"
+      class="labels"
+    >
+      <span class="label">{{ label }}</span>
+      <span>{{ progress }}%</span>
     </div>
+    <div class="progress-bar">
+      <span
+        ref="progress"
+        class="progress"
+        :style="{ width: `${progress}%`, transitionDuration }"
+      />
+    </div>
+  </div>
 </template>
 
 <script>
@@ -57,7 +65,7 @@
     .progress-bar .progress {
         left: 0;
         width: 0%;
-        background: #42526e;
+        background: var(--ds-background-neutral-bold, #42526E);
         border-radius: 3px;
         transition: width 0.5s;
         display: block;

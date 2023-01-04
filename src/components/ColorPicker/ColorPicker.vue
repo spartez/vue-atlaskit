@@ -1,18 +1,34 @@
 <template>
-    <div ref="dropdown-container" class="color-picker">
-        <button type="button" @click="onTriggerClick">
-            <div class="color" :style="style"/>
-        </button>
-        <Popup :is-open="open" offset="0,8"
-               :target-element="$refs['dropdown-container']"
-               placement="bottom-start">
-            <div class="content">
-                <ColorCard v-for="color in colors" :key="color" :color="color"
-                           :selected="selected"
-                           @color-selected="onColorSelected"/>
-            </div>
-        </Popup>
-    </div>
+  <div
+    ref="dropdown-container"
+    class="color-picker"
+  >
+    <button
+      type="button"
+      @click="onTriggerClick"
+    >
+      <div
+        class="color"
+        :style="style"
+      />
+    </button>
+    <Popup
+      :is-open="open"
+      offset="0,8"
+      :target-element="$refs['dropdown-container']"
+      placement="bottom-start"
+    >
+      <div class="content">
+        <ColorCard
+          v-for="color in colors"
+          :key="color"
+          :color="color"
+          :selected="selected"
+          @color-selected="onColorSelected"
+        />
+      </div>
+    </Popup>
+  </div>
 </template>
 
 <script>

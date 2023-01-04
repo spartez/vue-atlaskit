@@ -1,14 +1,32 @@
 <template>
-    <div class="buttons-wrapper">
-        <Button spacing="none" class="box-shadow-wrapper" data-cy="submit-button"
-                @click="onConfirm" @focus="onFocus" @blur="onBlur">
-            <EditorDoneIcon slot="icon-before" size="small"/>
-        </Button>
-        <Button spacing="none" class="box-shadow-wrapper" data-cy="cancel-button"
-                @click="onCancel" @focus="onFocus" @blur="onBlur">
-            <EditorCloseIcon slot="icon-before" size="small"/>
-        </Button>
-    </div>
+  <div class="buttons-wrapper">
+    <Button
+      spacing="none"
+      class="box-shadow-wrapper"
+      data-cy="submit-button"
+      @click="onConfirm"
+      @focus="onFocus"
+      @blur="onBlur"
+    >
+      <EditorDoneIcon
+        slot="icon-before"
+        size="small"
+      />
+    </Button>
+    <Button
+      spacing="none"
+      class="box-shadow-wrapper"
+      data-cy="cancel-button"
+      @click="onCancel"
+      @focus="onFocus"
+      @blur="onBlur"
+    >
+      <EditorCloseIcon
+        slot="icon-before"
+        size="small"
+      />
+    </Button>
+  </div>
 </template>
 
 <script>

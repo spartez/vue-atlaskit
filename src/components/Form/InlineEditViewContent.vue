@@ -1,17 +1,24 @@
 <template>
-    <div tabindex="0" prevent-outline
-         data-cy="view-content"
-         class="view-content"
-         @keyup.enter="onEnter"
-         @click="onClick"
-         @mousedown="onMouseDown">
-        <div class="label" data-cy="label" tabindex="-1">
-            <slot/>
-            <div class="pencil-icon">
-                <EditFilledIcon size="xsmall"/>
-            </div>
-        </div>
+  <div
+    tabindex="0"
+    prevent-outline
+    data-cy="view-content"
+    class="view-content"
+    @keyup.enter="onEnter"
+    @click="onClick"
+    @mousedown="onMouseDown"
+  >
+    <div
+      class="label"
+      data-cy="label"
+      tabindex="-1"
+    >
+      <slot/>
+      <div class="pencil-icon">
+        <EditFilledIcon size="xsmall"/>
+      </div>
     </div>
+  </div>
 </template>
 
 <script>
@@ -60,7 +67,7 @@
         display: flex;
         align-items: center;
         background-color: transparent;
-        color: #091E42;
+        color: var(--ds-text, #091E42);
         border-radius: 3px;
         outline: none;
         border: transparent 2px solid;
@@ -83,7 +90,7 @@
     }
 
     .label:hover {
-        background-color: #EBECF0;
+        background-color: var(--ds-background-neutral-subtle-hovered, #EBECF0);
     }
 
     .pencil-icon {

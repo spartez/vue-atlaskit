@@ -1,18 +1,23 @@
 <template>
-    <InlineEdit v-if="editable"
-                :value="value"
-                :confirm="confirm"
-                :icon="icon"
-                :align="align"
-                :pattern="pattern"
-                :type="type"
-                :placement="placement"
-                @save-requested="onSaveRequested">
-        <slot>
-            <StringLineRenderer :value="value"/>
-        </slot>
-    </InlineEdit>
-    <StringLineRenderer v-else :value="value"/>
+  <InlineEdit
+    v-if="editable"
+    :value="value"
+    :confirm="confirm"
+    :icon="icon"
+    :align="align"
+    :pattern="pattern"
+    :type="type"
+    :placement="placement"
+    @save-requested="onSaveRequested"
+  >
+    <slot>
+      <StringLineRenderer :value="value"/>
+    </slot>
+  </InlineEdit>
+  <StringLineRenderer
+    v-else
+    :value="value"
+  />
 </template>
 
 <script>

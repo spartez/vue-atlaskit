@@ -1,8 +1,13 @@
 import '@atlaskit/css-reset/dist/bundle.css';
+import '@atlaskit/tokens/css/atlassian-dark.css'
+import '@atlaskit/tokens/css/atlassian-light.css'
+import '@atlaskit/tokens/css/atlassian-spacing.css'
+import '@atlaskit/tokens/css/atlassian-typography.css'
 import './style.css';
 
 import { storiesOf, configure } from '@storybook/vue';
 import { withInfo } from 'storybook-addon-vue-info';
+import { withRootAttribute } from "storybook-addon-root-attribute";
 
 const req = require.context('../stories', true, /\.story\.vue$/);
 
@@ -21,6 +26,38 @@ const registerStory = (filename) => {
 
     storiesOf(group, module)
         .addDecorator(withInfo)
+        .addDecorator(withRootAttribute)
+        .addParameters({
+            rootAttributes: [{
+                root: 'html',
+                attribute: 'data-theme',
+                defaultState: {
+                    name: "Light",
+                    value: null
+                },
+                states: [
+                    {
+                        name: "dark",
+                        value: "dark"
+                    }
+                ]
+            }]
+        }).addDecorator(withRootAttribute)
+        .addParameters({
+            rootAttribute: {
+                attribute: 'data-theme',
+                defaultState: {
+                    name: "Light",
+                    value: null
+                },
+                states: [
+                    {
+                        name: "Dark",
+                        value: "dark"
+                    }
+                ]
+            }
+        })
         .add(name, () => ({
             name: 'StoryWrapper',
             components: component.components,

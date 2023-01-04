@@ -1,20 +1,32 @@
 <template>
-    <div class="header">
-        <Button appearance="subtle" spacing="none" @click="onPrev">
-            <ChevronLeftLargeIcon slot="icon-before"/>
-        </Button>
-        <header>
-            <transition :name="transition">
-                <strong :key="interval.header" class="interval" :interval="currentInterval"
-                        @click="changeInterval">
-                    {{ interval.header }}
-                </strong>
-            </transition>
-        </header>
-        <Button appearance="subtle" spacing="none" @click="onNext">
-            <ChevronRightLargeIcon slot="icon-before"/>
-        </Button>
-    </div>
+  <div class="header">
+    <Button
+      appearance="subtle"
+      spacing="none"
+      @click="onPrev"
+    >
+      <ChevronLeftLargeIcon slot="icon-before"/>
+    </Button>
+    <header>
+      <transition :name="transition">
+        <strong
+          :key="interval.header"
+          class="interval"
+          :interval="currentInterval"
+          @click="changeInterval"
+        >
+          {{ interval.header }}
+        </strong>
+      </transition>
+    </header>
+    <Button
+      appearance="subtle"
+      spacing="none"
+      @click="onNext"
+    >
+      <ChevronRightLargeIcon slot="icon-before"/>
+    </Button>
+  </div>
 </template>
 
 <script>
@@ -103,7 +115,7 @@
     justify-content: stretch;
     align-items: center;
     display: flex;
-    color: #172B4D;
+    color: var(--ds-text, #172B4D);
     padding: 0 0 8px;
 }
 

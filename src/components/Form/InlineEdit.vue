@@ -1,51 +1,87 @@
 <template>
-    <div ref="container" class="content-editable-wrapper" :editing="isEditing">
-        <div ref="text-field" class="content-editable" :compact="compact"
-             :is-invalid="!!error">
-            <slot v-if="isEditing"
-                  name="editor"
-                  :value="editingValue"
-                  :input="onInput"
-                  :blur="onBlur"
-                  :focus="onFocus"
-                  :confirm="confirmEditedValue"
-                  :cancel="cancelInlineEdit"
-                  :is-focused="isFocused"
-                  :is-invalid="!!error"
-                  :is-loading="isLoading"
-                  :content-width="contentWidth"
-                  :content-height="contentHeight">
-                <TextField :is-focused="isFocused" :is-invalid="!!error"
-                           :is-loading="isLoading"
-                           :style="{ minWidth: `${contentWidth}px` }"
-                           :is-disabled="isLoading" :compact="compact"
-                           @click.stop
-                           @hook:beforeMount="beforeTextFieldMount">
-                    <input ref="input" v-model="editingValue"
-                           :type="type" :step="step" class="input"
-                           :maxlength="maxlength" :disabled="isLoading"
-                           :align="align"
-                           @keyup="onKeyUp"
-                           @keydown.meta.enter="onKeyUp"
-                           @keydown.exact="validate"
-                           @focus="onFocus"
-                           @blur="onBlur">
-                </TextField>
-            </slot>
-            <InlineEditViewContent v-else ref="value" :compact="compact"
-                                   :icon="icon"
-                                   :align="align" @edit-requested="onEditRequested">
-                <slot/>
-            </InlineEditViewContent>
-        </div>
-        <Popper v-if="isEditing && !isLoading && confirm" ref="buttons" :offset="offset"
-                :target-element="$refs['text-field']">
-            <InlineEditButtons @confirm="confirmEditedValue" @cancel="cancelInlineEdit"
-                               @blur="onBlur"/>
-        </Popper>
-        <InlineErrorMessage v-if="isValidationError" :error="error" :target-element="$refs['text-field']"
-                            :placement="placement"/>
+  <div
+    ref="container"
+    class="content-editable-wrapper"
+    :editing="isEditing"
+  >
+    <div
+      ref="text-field"
+      class="content-editable"
+      :compact="compact"
+      :is-invalid="!!error"
+    >
+      <slot
+        v-if="isEditing"
+        name="editor"
+        :value="editingValue"
+        :input="onInput"
+        :blur="onBlur"
+        :focus="onFocus"
+        :confirm="confirmEditedValue"
+        :cancel="cancelInlineEdit"
+        :is-focused="isFocused"
+        :is-invalid="!!error"
+        :is-loading="isLoading"
+        :content-width="contentWidth"
+        :content-height="contentHeight"
+      >
+        <TextField
+          :is-focused="isFocused"
+          :is-invalid="!!error"
+          :is-loading="isLoading"
+          :style="{ minWidth: `${contentWidth}px` }"
+          :is-disabled="isLoading"
+          :compact="compact"
+          @click.stop
+          @hook:beforeMount="beforeTextFieldMount"
+        >
+          <input
+            ref="input"
+            v-model="editingValue"
+            :type="type"
+            :step="step"
+            class="input"
+            :maxlength="maxlength"
+            :disabled="isLoading"
+            :align="align"
+            @keyup="onKeyUp"
+            @keydown.meta.enter="onKeyUp"
+            @keydown.exact="validate"
+            @focus="onFocus"
+            @blur="onBlur"
+          >
+        </TextField>
+      </slot>
+      <InlineEditViewContent
+        v-else
+        ref="value"
+        :compact="compact"
+        :icon="icon"
+        :align="align"
+        @edit-requested="onEditRequested"
+      >
+        <slot/>
+      </InlineEditViewContent>
     </div>
+    <Popper
+      v-if="isEditing && !isLoading && confirm"
+      ref="buttons"
+      :offset="offset"
+      :target-element="$refs['text-field']"
+    >
+      <InlineEditButtons
+        @confirm="confirmEditedValue"
+        @cancel="cancelInlineEdit"
+        @blur="onBlur"
+      />
+    </Popper>
+    <InlineErrorMessage
+      v-if="isValidationError"
+      :error="error"
+      :target-element="$refs['text-field']"
+      :placement="placement"
+    />
+  </div>
 </template>
 
 <script>

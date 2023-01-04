@@ -1,10 +1,10 @@
 <template>
-    <div class="dropdown-group">
-        <div class="title">
-            {{ label }}
-        </div>
-        <slot/>
+  <div class="dropdown-group">
+    <div class="title">
+      {{ label }}
     </div>
+    <slot/>
+  </div>
 </template>
 
 <script>

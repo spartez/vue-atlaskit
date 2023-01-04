@@ -1,14 +1,19 @@
 <template>
-    <InlineEdit v-if="editable"
-                :value="value"
-                type="number"
-                :placement="placement"
-                @save-requested="onSaveRequested">
-        <slot>
-            <NumberFloatRenderer :value="value"/>
-        </slot>
-    </InlineEdit>
-    <NumberFloatRenderer v-else :value="value"/>
+  <InlineEdit
+    v-if="editable"
+    :value="value"
+    type="number"
+    :placement="placement"
+    @save-requested="onSaveRequested"
+  >
+    <slot>
+      <NumberFloatRenderer :value="value"/>
+    </slot>
+  </InlineEdit>
+  <NumberFloatRenderer
+    v-else
+    :value="value"
+  />
 </template>
 
 <script>

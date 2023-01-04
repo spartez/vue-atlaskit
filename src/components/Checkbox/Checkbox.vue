@@ -1,15 +1,35 @@
 <template>
-    <label ref="checkbox" class="checkbox-wrapper" :for="id"
-           tabindex="-1" :disabled="disabled">
-        <input :id="id" ref="input" v-model="isChecked"
-               :value="value"
-               type="checkbox" :is-invalid="isInvalid"
-               :disabled="disabled" @focus="onFocus"
-               @blur="onBlur">
-        <CheckboxIcon v-if="!indeterminate" class="icon"/>
-        <CheckboxIndeterminateIcon v-else class="indeterminate"/>
-        <span v-if="$slots['default']" class="input-label"><slot/></span>
-    </label>
+  <label
+    ref="checkbox"
+    class="checkbox-wrapper"
+    :for="id"
+    tabindex="-1"
+    :disabled="disabled"
+  >
+    <input
+      :id="id"
+      ref="input"
+      v-model="isChecked"
+      :value="value"
+      type="checkbox"
+      :is-invalid="isInvalid"
+      :disabled="disabled"
+      @focus="onFocus"
+      @blur="onBlur"
+    >
+    <CheckboxIcon
+      v-if="!indeterminate"
+      class="icon"
+    />
+    <CheckboxIndeterminateIcon
+      v-else
+      class="indeterminate"
+    />
+    <span
+      v-if="$slots['default']"
+      class="input-label"
+    ><slot/></span>
+  </label>
 </template>
 
 <script>
@@ -115,34 +135,34 @@ input[type="checkbox"] {
 }
 
 input:checked + .icon >>> rect {
-    color: #0052cc;
-    stroke: #0052cc;
+    color: var(--ds-background-selected-bold, #0052CC);
+    stroke: var(--ds-background-selected-bold, #0052CC);
+}
+
+input:checked + .icon >>>path{
+    fill: var(--ds-surface, #FFFFFF);
 }
 
 input + .icon >>> rect {
-    color: #fafbfc;
-    stroke: #dfe1e6;
+    color: var(--ds-background-neutral, #FFFFFF);
+    stroke: var(--ds-border,#DFE1E6);
 }
 
 label:hover input:not(:checked):not(:disabled) + .icon >>> rect {
-    fill: #EBECF0;
+    fill:  var(--ds-background-neutral, #FFFFFF);
 }
 
 label:hover input:not(:checked):not(:disabled) + .icon >>> path {
-    fill: #EBECF0;
+    fill:  transparent;
 }
 
 label:hover input:checked:not(:disabled) + .icon >>> rect {
-    color: #0065ff;
-    stroke: #0065ff;
+    color: var(--ds-background-selected-bold-hovered, #0065ff);
+    stroke: var(--ds-background-selected-bold-hovered, #0065ff);
 }
 
-input + .icon >>> path {
-    fill: #fafbfc;
-}
-
-input:not([is-invalid]):focus + .icon >>> rect {
-    stroke: #4c9aff;
+input:not(:checked) + .icon >>> path {
+    fill: transparent;
 }
 
 input[is-invalid] + .icon >>> rect {

@@ -1,28 +1,49 @@
 <template>
-    <transition name="fade-in" mode="out-in">
-        <div v-if="hasMessage" ref="message" class="spotlight-message">
-            <CrossIcon class="close-icon" :primary-color="color" size="small"
-                       @click.native="onClose"
-                       @mouseenter.native="onEnter"
-                       @mouseleave.native="onLeave"/>
-            <div ref="content" class="content">
-                <slot/>
-            </div>
-            <div class="footer">
-                <div class="count">
-                    {{ step }}/{{ total }}
-                </div>
-                <div class="buttons">
-                    <button v-if="step !== 1" ref="prev" @click="prev">
-                        Prev
-                    </button>
-                    <button ref="next" @click="next">
-                        {{ lastStep ? 'Finish' : 'Next' }}
-                    </button>
-                </div>
-            </div>
+  <transition
+    name="fade-in"
+    mode="out-in"
+  >
+    <div
+      v-if="hasMessage"
+      ref="message"
+      class="spotlight-message"
+    >
+      <CrossIcon
+        class="close-icon"
+        :primary-color="color"
+        size="small"
+        @click.native="onClose"
+        @mouseenter.native="onEnter"
+        @mouseleave.native="onLeave"
+      />
+      <div
+        ref="content"
+        class="content"
+      >
+        <slot/>
+      </div>
+      <div class="footer">
+        <div class="count">
+          {{ step }}/{{ total }}
         </div>
-    </transition>
+        <div class="buttons">
+          <button
+            v-if="step !== 1"
+            ref="prev"
+            @click="prev"
+          >
+            Prev
+          </button>
+          <button
+            ref="next"
+            @click="next"
+          >
+            {{ lastStep ? 'Finish' : 'Next' }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </transition>
 </template>
 
 <script>

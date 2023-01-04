@@ -1,20 +1,29 @@
 <template>
-    <section class="message" :appearance="appearance">
-        <div class="icon">
-            <component :is="`${appearance}-icon`"/>
-        </div>
-        <div class="content-wrapper">
-            <h1 v-if="title" class="title">
-                {{ title }}
-            </h1>
-            <div class="content">
-                <slot/>
-            </div>
-            <div v-if="$slots.actions" class="actions">
-                <slot name="actions" />
-            </div>
-        </div>
-    </section>
+  <section
+    class="message"
+    :appearance="appearance"
+  >
+    <div class="icon">
+      <component :is="`${appearance}-icon`"/>
+    </div>
+    <div class="content-wrapper">
+      <h1
+        v-if="title"
+        class="title"
+      >
+        {{ title }}
+      </h1>
+      <div class="content">
+        <slot/>
+      </div>
+      <div
+        v-if="$slots.actions"
+        class="actions"
+      >
+        <slot name="actions" />
+      </div>
+    </div>
+  </section>
 </template>
 
 <script>
@@ -45,51 +54,52 @@
 <style scoped>
     .message {
         display: flex;
-        background-color: rgb(222, 235, 255);
+        background-color: var(--ds-background-information, #DEEBFF);
         border-radius: 3px;
         padding: 16px;
+        color: var(--ds-text, #172B4D);
     }
 
     .message .icon {
         width: 40px;
         flex: 0 0 auto;
-        color: rgb(7, 71, 166);
+        color: var(--ds-icon-information, #0747A6);
     }
 
     .message[appearance=warning] {
-        background-color: rgb(255, 250, 230);
+        background-color: var(--ds-background-warning, #FFFAE6);
     }
 
     .message[appearance=warning] .icon {
-        color: rgb(255, 139, 0);
-        fill: rgb(255, 250, 230);
+        color: var(--ds-icon-warning, #FF8B00);
+        fill: var(--ds-background-warning, #FFFAE6);
     }
 
     .message[appearance=error] {
-        background-color: rgb(255, 235, 230);
+        background-color: var(--ds-background-danger, #FFEBE6);
     }
 
     .message[appearance=error] .icon {
-        color: rgb(191, 38, 0);
-        fill: rgb(255, 235, 230);
+        color: var(--ds-icon-danger, #BF2600);
+        fill: var(--ds-background-danger, #FFEBE6);
     }
 
     .message[appearance=confirmation] {
-        background-color: rgb(227, 252, 239);
+        background-color: var(--ds-background-success, #E3FCEF);
     }
 
     .message[appearance=confirmation] .icon {
-        color: rgb(0, 102, 68);
-        fill: rgb(227, 252, 239);
+        color: var(--ds-icon-success, #006644);
+        fill: var(--ds-background-success, #E3FCEF);
     }
 
     .message[appearance=change] {
-        background-color: rgb(234, 230, 255);
+        background-color: var(--ds-background-discovery, #EAE6FF);
     }
 
     .message[appearance=change] .icon {
-        color: rgb(64, 50, 148);
-        fill: rgb(234, 230, 255);
+        color: var(--ds-icon-discovery, #403294);
+        fill: var(--ds-background-discovery, #EAE6FF);
     }
 
     .message .content-wrapper {
@@ -100,7 +110,7 @@
         font-size: 1.14286em;
         font-style: inherit;
         line-height: 1.25;
-        color: rgb(23, 43, 77);
+        color: var(--ds-text, #172B4D);
         font-weight: 600;
         letter-spacing: -0.006em;
         margin: 0;

@@ -1,7 +1,10 @@
 <template>
-    <div class="positioner" :style="{width: width}">
-        <slot/>
-    </div>
+  <div
+    class="positioner"
+    :style="{width: width}"
+  >
+    <slot/>
+  </div>
 </template>
 
 <script>

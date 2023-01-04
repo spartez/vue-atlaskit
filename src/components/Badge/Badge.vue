@@ -1,13 +1,22 @@
 <template>
-    <span class="wrapper" :style="{maxWidth: maxWidth}">
-        <span v-if="$slots['icon-before']" class="icon-wrapper">
-            <slot name="icon-before"/>
-        </span>
-        <span class="value">{{ value }}</span>
-        <span v-if="$slots['icon-after']" class="icon-wrapper">
-            <slot name="icon-after"/>
-        </span>
+  <span
+    class="wrapper"
+    :style="{maxWidth: maxWidth}"
+  >
+    <span
+      v-if="$slots['icon-before']"
+      class="icon-wrapper"
+    >
+      <slot name="icon-before"/>
     </span>
+    <span class="value">{{ value }}</span>
+    <span
+      v-if="$slots['icon-after']"
+      class="icon-wrapper"
+    >
+      <slot name="icon-after"/>
+    </span>
+  </span>
 </template>
 
 <script>
@@ -64,27 +73,27 @@
     }
 
     [appearance = 'added'] {
-        background-color: rgb(227, 252, 239);
-        color: rgb(0, 102, 68);
+        background-color: var(--ds-background-success, #E3FCEF);
+        color: var(--ds-text-success, #006644);
     }
 
     [appearance = 'default'] {
-        background-color: rgb(223, 225, 230);
-        color: rgb(23, 43, 77);
+        background-color: var(--ds-background-neutral, #DFE1E6);
+        color: var(--ds-text, #172B4D);
     }
 
     [appearance = 'important'] {
-        background-color: rgb(222, 53, 11);
-        color: rgb(255, 255, 255);
+        background-color: var(--ds-background-danger-bold, #DE350B);
+        color: var(--ds-text-inverse, #FFFFFF);
     }
 
     [appearance = 'primary'] {
-        background-color: rgb(0, 82, 204);
-        color: rgb(255, 255, 255);
+        background-color: var(--ds-background-brand-bold, #0052CC);
+        color: var(--ds-text-inverse, #FFFFFF);
     }
 
     [appearance = 'removed'] {
-        background-color: rgb(255, 235, 230);
-        color: rgb(191, 38, 0);
+        background-color: var(--ds-background-danger, #FFEBE6);
+        color: var(--ds-text-danger, #DE350B);
     }
 </style>

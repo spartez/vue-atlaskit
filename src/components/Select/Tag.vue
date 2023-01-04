@@ -1,18 +1,30 @@
 <template>
-    <div class="tag" draggable="true" @dragstart="onDragStart"
-         @dragend.prevent="onDragEnd" @drag="onDrag">
-        <slot>
-            <div class="label">
-                {{ tag.label }}
-            </div>
-        </slot>
-        <div v-if="shouldShowRemoveButton" ref="remove" class="remove-tag"
-             data-cy="remove-tag"
-             @mousedown.prevent.stop
-             @click.stop="onRemove">
-            <EditorCloseIcon primary-color="#000" size="xsmall" />
-        </div>
+  <div
+    class="tag"
+    draggable="true"
+    @dragstart="onDragStart"
+    @dragend.prevent="onDragEnd"
+    @drag="onDrag"
+  >
+    <slot>
+      <div class="label">
+        {{ tag.label }}
+      </div>
+    </slot>
+    <div
+      v-if="shouldShowRemoveButton"
+      ref="remove"
+      class="remove-tag"
+      data-cy="remove-tag"
+      @mousedown.prevent.stop
+      @click.stop="onRemove"
+    >
+      <EditorCloseIcon
+        primary-color="var(--ds-text, #172B4D)"
+        size="xsmall"
+      />
     </div>
+  </div>
 </template>
 
 <script>
@@ -66,12 +78,12 @@
 
 <style scoped>
 .tag {
-  background-color: rgb(223, 225, 230);
+  background-color: var(--ds-background-neutral, #DFE1E6);
   display: inline-flex;
   align-items: center;
   min-width: 0;
   box-sizing: border-box;
-  color: rgb(66, 82, 110);
+  color: var(--ds-text, hsl(0, 0%, 20%));
   max-width: 100%;
   border-radius: 2px;
   margin: 4px 2px 0 2px;
@@ -84,7 +96,7 @@
 }
 
 .label {
-  color: rgb(51, 51, 51);
+  color: var(--ds-text, hsl(0, 0%, 20%));
   font-size: 85%;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -105,6 +117,6 @@
 }
 
 .remove-tag:hover {
-  background-color: #ffbdad;
+  background-color: var(--ds-background-danger-hovered, #FFBDAD);
 }
 </style>

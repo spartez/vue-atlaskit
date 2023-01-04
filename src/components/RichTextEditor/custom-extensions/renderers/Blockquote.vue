@@ -1,5 +1,8 @@
 <template>
-    <blockquote ref="content" :contenteditable="view.editable.toString()"/>
+  <blockquote
+    ref="content"
+    :contenteditable="view.editable.toString()"
+  />
 </template>
 
 <script>

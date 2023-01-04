@@ -1,6 +1,10 @@
 <template>
-    <component :is="type" ref="content" :contenteditable="editable.toString()"
-               class="code-block"/>
+  <component
+    :is="type"
+    ref="content"
+    :contenteditable="editable.toString()"
+    class="code-block"
+  />
 </template>
 
 <script>

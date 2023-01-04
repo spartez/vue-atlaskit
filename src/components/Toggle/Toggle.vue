@@ -1,22 +1,38 @@
 <template>
-    <label :for="id" :disabled="disabled">
-        <input :id="id"
-               :disabled="disabled"
-               type="checkbox"
-               :checked="value"
-               :appearance="appearance"
-               @change="toggle">
-        <div class="slide" :size="size">
-            <div class="slide-inner">
-                <EditorDoneIcon v-if="value" data-cy="done" :size="iconSize"
-                                :primary-color="color"
-                                class="done"/>
-                <EditorCloseIcon v-else data-cy="cross" :size="iconSize"
-                                 :primary-color="color"
-                                 class="close"/>
-            </div>
-        </div>
-    </label>
+  <label
+    :for="id"
+    :disabled="disabled"
+  >
+    <input
+      :id="id"
+      :disabled="disabled"
+      type="checkbox"
+      :checked="value"
+      :appearance="appearance"
+      @change="toggle"
+    >
+    <div
+      class="slide"
+      :size="size"
+    >
+      <div class="slide-inner">
+        <EditorDoneIcon
+          v-if="value"
+          data-cy="done"
+          :size="iconSize"
+          :primary-color="color"
+          class="done"
+        />
+        <EditorCloseIcon
+          v-else
+          data-cy="cross"
+          :size="iconSize"
+          :primary-color="color"
+          class="close"
+        />
+      </div>
+    </div>
+  </label>
 </template>
 
 <script>
@@ -52,7 +68,7 @@
                 return this.size === 'large' ? 'small' : 'xsmall';
             },
             color() {
-                return this.disabled ? 'rgb(165, 173, 186)' : 'white';
+                return this.disabled ? 'rgb(165, 173, 186)' : 'var(--ds-surface, #FFFFFF)';
             }
         },
         created() {
@@ -81,7 +97,7 @@ label {
 
 .slide {
     background-clip: content-box;
-    background-color: rgb(107, 119, 140);
+    background-color: var(--ds-background-neutral-bold, #6B778C);
     display: block;
     height: 16px;
     position: relative;
@@ -94,7 +110,7 @@ label {
 }
 
 input:focus + .slide {
-    border: 2px solid rgb(76, 154, 255);
+    border: 2px solid var(--ds-border-focused, #4C9AFF);
 }
 
 .slide[size="large"] {
@@ -104,7 +120,7 @@ input:focus + .slide {
 }
 
 .slide::before {
-    background-color: rgb(255, 255, 255);
+    background-color: var(--ds-surface, #FFFFFF);
     bottom: 4px;
     content: "";
     height: 12px;
@@ -122,7 +138,7 @@ input:focus + .slide {
 }
 
 input:checked:not(:disabled)[appearance="default"] + .slide {
-    background-color: rgb(0, 135, 90);
+    background-color: var(--ds-background-success-bold, #00875A);
 }
 
 input:checked:not(:disabled)[appearance="primary"] + .slide {
@@ -161,7 +177,7 @@ input:checked + .slide > .slide-inner {
 }
 
 input:checked:not(:disabled)[appearance="default"] + .slide:hover {
-    background-color: rgb(54, 179, 126);
+    background-color: var(--ds-background-success-bold-hovered, #36B37E);
 }
 
 input:checked:not(:disabled)[appearance="primary"] + .slide:hover {
@@ -169,7 +185,7 @@ input:checked:not(:disabled)[appearance="primary"] + .slide:hover {
 }
 
 input:not(:checked):not(:disabled) + .slide:hover {
-    background-color: rgb(165, 173, 186);
+    background-color: var(--ds-background-neutral-bold-hovered, #A5ADBA);
 }
 
 label[disabled] .slide {
@@ -177,6 +193,6 @@ label[disabled] .slide {
 }
 
 label[disabled] input + .slide {
-    background-color: rgb(244, 245, 247);
+    background-color: var(--ds-icon-disabled, #A5ADBA);
 }
 </style>

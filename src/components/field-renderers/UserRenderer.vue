@@ -1,20 +1,29 @@
 <template>
-    <div class="user" :appearance="appearance" @click="onClick">
-        <slot>
-            <template v-if="user">
-                <img class="avatar"
-                     :src="user.avatar"
-                     :alt="alt === undefined ? user.name : ''"
-                     :title="user.name">
-                <component :is="tag" v-if="!avatarOnly"
-                           class="user-name"
-                           :href="link"
-                           target="_top">
-                    {{ user.name }}
-                </component>
-            </template>
-        </slot>
-    </div>
+  <div
+    class="user"
+    :appearance="appearance"
+    @click="onClick"
+  >
+    <slot>
+      <template v-if="user">
+        <img
+          class="avatar"
+          :src="user.avatar"
+          :alt="alt === undefined ? user.name : ''"
+          :title="user.name"
+        >
+        <component
+          :is="tag"
+          v-if="!avatarOnly"
+          class="user-name"
+          :href="link"
+          target="_top"
+        >
+          {{ user.name }}
+        </component>
+      </template>
+    </slot>
+  </div>
 </template>
 
 <script>

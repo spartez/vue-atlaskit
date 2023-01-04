@@ -1,57 +1,79 @@
 <template>
-    <svg
-        style="display: flex"
-        :viewBox="viewBox"
-        :width="width"
-        :height="height"
-        version="1.1"
-        :preserveAspectRatio="preserveAspectRatio">
+  <svg
+    style="display: flex"
+    :viewBox="viewBox"
+    :width="width"
+    :height="height"
+    version="1.1"
+    :preserveAspectRatio="preserveAspectRatio"
+  >
+    <rect
+      :style="fill"
+      color="yellow"
+      :clip-path="clipPath"
+      x="0"
+      y="0"
+      width="100%"
+      height="100%"
+    />
+
+    <defs>
+      <clipPath :id="idClip">
         <rect
-            :style="fill"
-            color="yellow"
-            :clip-path="clipPath"
-            x="0"
-            y="0"
-            width="100%"
-            height="100%"/>
+          v-if="!$slots['default']"
+          x="0"
+          y="0"
+          rx="3"
+          ry="3"
+          width="100%"
+          height="100%"
+        />
+        <slot/>
+      </clipPath>
 
-        <defs>
-            <clipPath :id="idClip">
-                <rect v-if="!$slots['default']"
-                      x="0"
-                      y="0"
-                      rx="3"
-                      ry="3"
-                      width="100%"
-                      height="100%"/>
-                <slot/>
-            </clipPath>
-
-            <linearGradient :id="idGradient">
-                <stop offset="0%" :stop-color="primaryColor" :stop-opacity="primaryOpacity">
-                    <animate v-if="animate"
-                             attributeName="offset"
-                             values="-2; 1"
-                             :dur="speed"
-                             repeatCount="indefinite"/>
-                </stop>
-                <stop offset="50%" :stop-color="secondaryColor" :stop-opacity="secondaryOpacity">
-                    <animate v-if="animate"
-                             attributeName="offset"
-                             values="-1.5; 1.5"
-                             :dur="speed"
-                             repeatCount="indefinite"/>
-                </stop>
-                <stop offset="100%" :stop-color="primaryColor" :stop-opacity="primaryOpacity">
-                    <animate v-if="animate"
-                             attributeName="offset"
-                             values="-1; 2"
-                             :dur="speed"
-                             repeatCount="indefinite"/>
-                </stop>
-            </linearGradient>
-        </defs>
-    </svg>
+      <linearGradient :id="idGradient">
+        <stop
+          offset="0%"
+          :stop-color="primaryColor"
+          :stop-opacity="primaryOpacity"
+        >
+          <animate
+            v-if="animate"
+            attributeName="offset"
+            values="-2; 1"
+            :dur="speed"
+            repeatCount="indefinite"
+          />
+        </stop>
+        <stop
+          offset="50%"
+          :stop-color="secondaryColor"
+          :stop-opacity="secondaryOpacity"
+        >
+          <animate
+            v-if="animate"
+            attributeName="offset"
+            values="-1.5; 1.5"
+            :dur="speed"
+            repeatCount="indefinite"
+          />
+        </stop>
+        <stop
+          offset="100%"
+          :stop-color="primaryColor"
+          :stop-opacity="primaryOpacity"
+        >
+          <animate
+            v-if="animate"
+            attributeName="offset"
+            values="-1; 2"
+            :dur="speed"
+            repeatCount="indefinite"
+          />
+        </stop>
+      </linearGradient>
+    </defs>
+  </svg>
 </template>
 
 <script>
@@ -74,11 +96,11 @@
             },
             primaryColor: {
                 type: String,
-                default: '#f9f9f9'
+                default: 'var(--ds-skeleton, rgba(9, 30, 66, 0.04))'
             },
             secondaryColor: {
                 type: String,
-                default: '#ecebeb'
+                default: 'var(--ds-skeleton, rgba(9, 30, 66, 0.04))'
             },
             primaryOpacity: {
                 type: Number,

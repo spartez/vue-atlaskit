@@ -1,5 +1,5 @@
 <template>
-    <span class="mention">{{ node.attrs.text }}</span>
+  <span class="mention">{{ node.attrs.text }}</span>
 </template>
 
 <script>

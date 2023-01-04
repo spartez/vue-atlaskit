@@ -1,17 +1,27 @@
 <template>
-    <Popper :target-element="targetElement" :placement="placement"
-            :flip-behavior="['right', 'top-end']">
-        <div ref="error-dialog" class="error-dialog">
-            <template v-if="error.fieldErrors">
-                <div v-for="(fieldError,i) in error.fieldErrors" :key="i" class="error-message">
-                    {{ fieldError.message || error.message }}
-                </div>
-            </template>
-            <template v-else-if="error.message">
-                {{ error.message }}
-            </template>
+  <Popper
+    :target-element="targetElement"
+    :placement="placement"
+    :flip-behavior="['right', 'top-end']"
+  >
+    <div
+      ref="error-dialog"
+      class="error-dialog"
+    >
+      <template v-if="error.fieldErrors">
+        <div
+          v-for="(fieldError,i) in error.fieldErrors"
+          :key="i"
+          class="error-message"
+        >
+          {{ fieldError.message || error.message }}
         </div>
-    </Popper>
+      </template>
+      <template v-else-if="error.message">
+        {{ error.message }}
+      </template>
+    </div>
+  </Popper>
 </template>
 
 <script>

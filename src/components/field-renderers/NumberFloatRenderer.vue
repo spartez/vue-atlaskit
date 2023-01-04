@@ -1,6 +1,9 @@
 <template>
-    <div class="number-float-wrapper"
-         :title="value" v-text="value"/>
+  <div
+    class="number-float-wrapper"
+    :title="value"
+    v-text="value"
+  />
 </template>
 
 <script>

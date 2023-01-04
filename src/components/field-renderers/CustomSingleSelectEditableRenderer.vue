@@ -1,34 +1,50 @@
 <template>
-    <InlineEdit v-if="editable"
-                :value="value"
-                :confirm="confirm"
-                :placement="placement"
-                @save-requested="onSaveRequested">
-        <Select slot="editor" slot-scope="props"
-                :value="props.value"
-                :options="options"
-                :normalizer="normalizer"
-                :open-on-focus="true"
-                :is-invalid="props.isInvalid"
-                :is-focused="props.isFocused"
-                :is-loading="props.isLoading"
-                :placeholder="placeholder"
-                :append-to-body="appendToBody"
-                @input="props.input"
-                @blur="props.blur"
-                @confirm="props.confirm"
-                @focus="props.focus"
-                @cancel="props.cancel">
-            <slot slot="selected" slot-scope="{selected}" name="selected"
-                  :selected="selected"/>
-            <slot slot="option" slot-scope="{option}" name="option"
-                  :option="option"/>
-        </Select>
-        <slot/>
-    </InlineEdit>
-    <div v-else class="slot">
-        <slot/>
-    </div>
+  <InlineEdit
+    v-if="editable"
+    :value="value"
+    :confirm="confirm"
+    :placement="placement"
+    @save-requested="onSaveRequested"
+  >
+    <Select
+      slot="editor"
+      slot-scope="props"
+      :value="props.value"
+      :options="options"
+      :normalizer="normalizer"
+      :open-on-focus="true"
+      :is-invalid="props.isInvalid"
+      :is-focused="props.isFocused"
+      :is-loading="props.isLoading"
+      :placeholder="placeholder"
+      :append-to-body="appendToBody"
+      @input="props.input"
+      @blur="props.blur"
+      @confirm="props.confirm"
+      @focus="props.focus"
+      @cancel="props.cancel"
+    >
+      <slot
+        slot="selected"
+        slot-scope="{selected}"
+        name="selected"
+        :selected="selected"
+      />
+      <slot
+        slot="option"
+        slot-scope="{option}"
+        name="option"
+        :option="option"
+      />
+    </Select>
+    <slot/>
+  </InlineEdit>
+  <div
+    v-else
+    class="slot"
+  >
+    <slot/>
+  </div>
 </template>
 
 <script>

@@ -1,29 +1,48 @@
 <template>
-    <transition name="modal" appear>
-        <Blanket class="dialog" :z-index="zIndex">
-            <PositionerAbsolute :width="width">
-                <form class="modal-container" novalidate @submit.prevent="onSubmit">
-                    <slot>
-                        <header>
-                            <slot name="header">
-                                <Header :heading="heading" :appearance="appearance"/>
-                            </slot>
-                        </header>
-                        <div class="content">
-                            <slot name="content"/>
-                        </div>
-                        <footer>
-                            <slot name="footer">
-                                <slot name="progress"/>
-                                <Footer :actions="actions" :auto-focus="autoFocus" :appearance="appearance"
-                                        :should-allow-submit="shouldAllowSubmit" :pending="pending" @cancel="onCancel"/>
-                            </slot>
-                        </footer>
-                    </slot>
-                </form>
-            </PositionerAbsolute>
-        </Blanket>
-    </transition>
+  <transition
+    name="modal"
+    appear
+  >
+    <Blanket
+      class="dialog"
+      :z-index="zIndex"
+    >
+      <PositionerAbsolute :width="width">
+        <form
+          class="modal-container"
+          novalidate
+          @submit.prevent="onSubmit"
+        >
+          <slot>
+            <header>
+              <slot name="header">
+                <Header
+                  :heading="heading"
+                  :appearance="appearance"
+                />
+              </slot>
+            </header>
+            <div class="content">
+              <slot name="content"/>
+            </div>
+            <footer>
+              <slot name="footer">
+                <slot name="progress"/>
+                <Footer
+                  :actions="actions"
+                  :auto-focus="autoFocus"
+                  :appearance="appearance"
+                  :should-allow-submit="shouldAllowSubmit"
+                  :pending="pending"
+                  @cancel="onCancel"
+                />
+              </slot>
+            </footer>
+          </slot>
+        </form>
+      </PositionerAbsolute>
+    </Blanket>
+  </transition>
 </template>
 
 <script>
@@ -105,11 +124,11 @@
 
 <style scoped>
     .modal-container {
-        background-color: rgb(255, 255, 255);
+        background-color: var(--ds-surface-overlay, #FFFFFF);
         box-shadow: rgba(9, 30, 66, 0.08) 0 0 0 1px,
         rgba(9, 30, 66, 0.08) 0 2px 1px,
         rgba(9, 30, 66, 0.31) 0 0 20px -6px;
-        color: rgb(9, 30, 66);
+        color: var(--ds-text, #091E42);
         display: flex;
         flex-direction: column;
         max-height: 100%;

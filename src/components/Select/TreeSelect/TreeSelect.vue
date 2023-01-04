@@ -1,57 +1,94 @@
 <template>
-    <div ref="target">
-        <TextField :is-focused="focused" :is-invalid="isInvalid" :is-loading="isLoading"
-                   class="text-field" select tabindex="-1"
-                   @click="click">
-            <div ref="list" class="flex-wrapper"
-                 @dragover.prevent>
-                <input ref="input" class="search"
-                       :value="search"
-                       :disabled="isLoading" :style="{width: currentWidth}"
-                       @keydown.down.prevent="onNextSuggestion"
-                       @keydown.up.prevent="onPreviousSuggestion"
-                       @keydown.right.prevent="toggleExpand"
-                       @keydown.left.prevent="toggleExpand"
-                       @keydown.enter="onSuggestionSelected"
-                       @input="onInput"
-                       @focus="onFocus"
-                       @blur="onBlur"
-                       @keyup.esc="onEsc"
-                       @keydown.delete="removeOption">
-            </div>
-            <div v-if="!selected.length" class="text">
-                <slot v-if="!search && selected && $scopedSlots['selected']" name="selected"
-                      :ancestors="ancestors"
-                      :selected="selected"/>
-                <span v-else :placeholder="!search && !selected.label">
-                    {{ input }}
-                </span>
-            </div>
-            <Icons :is-selected="isAnyOptionSelected" :is-fetching="isFetching"
-                   :is-clearable="isClearable" @clear="onClear"/>
-        </TextField>
-        <Popper v-if="isOpen && !isDirty" ref="menu" offset="0,0"
-                :target-element="$refs.target"
-                :boundaries-element="boundariesElement"
-                placement="bottom-start">
-            <SelectMenu :selected="selected" :options="options"
-                        :current-suggestion-id="currentSuggestionId"
-                        :is-fetching="isFetching"
-                        :async="async"
-                        :search="search"
-                        :contains-query="!!search"
-                        :style="{width: selectWidth}"
-                        :has-suggestions="true"
-                        :no-options-message="noOptionsMessage"
-                        :placeholder="searchPromptText"
-                        @mouseover="onMouseOverSuggestion"
-                        @option-selected="onOptionSelected">
-                <slot slot="option" slot-scope="{option, isCurrent}" name="option"
-                      :is-current="isCurrent"
-                      :option="option"/>
-            </SelectMenu>
-        </Popper>
-    </div>
+  <div ref="target">
+    <TextField
+      :is-focused="focused"
+      :is-invalid="isInvalid"
+      :is-loading="isLoading"
+      class="text-field"
+      select
+      tabindex="-1"
+      @click="click"
+    >
+      <div
+        ref="list"
+        class="flex-wrapper"
+        @dragover.prevent
+      >
+        <input
+          ref="input"
+          class="search"
+          :value="search"
+          :disabled="isLoading"
+          :style="{width: currentWidth}"
+          @keydown.down.prevent="onNextSuggestion"
+          @keydown.up.prevent="onPreviousSuggestion"
+          @keydown.right.prevent="toggleExpand"
+          @keydown.left.prevent="toggleExpand"
+          @keydown.enter="onSuggestionSelected"
+          @input="onInput"
+          @focus="onFocus"
+          @blur="onBlur"
+          @keyup.esc="onEsc"
+          @keydown.delete="removeOption"
+        >
+      </div>
+      <div
+        v-if="!selected.length"
+        class="text"
+      >
+        <slot
+          v-if="!search && selected && $scopedSlots['selected']"
+          name="selected"
+          :ancestors="ancestors"
+          :selected="selected"
+        />
+        <span
+          v-else
+          :placeholder="!search && !selected.label"
+        >
+          {{ input }}
+        </span>
+      </div>
+      <Icons
+        :is-selected="isAnyOptionSelected"
+        :is-fetching="isFetching"
+        :is-clearable="isClearable"
+        @clear="onClear"
+      />
+    </TextField>
+    <Popper
+      v-if="true && !isDirty"
+      ref="menu"
+      offset="0,0"
+      :target-element="$refs.target"
+      :boundaries-element="boundariesElement"
+      placement="bottom-start"
+    >
+      <SelectMenu
+        :selected="selected"
+        :options="options"
+        :current-suggestion-id="currentSuggestionId"
+        :is-fetching="isFetching"
+        :async="async"
+        :search="search"
+        :contains-query="!!search"
+        :style="{width: selectWidth}"
+        :has-suggestions="true"
+        :no-options-message="noOptionsMessage"
+        :placeholder="searchPromptText"
+        @mouseover="onMouseOverSuggestion"
+        @option-selected="onOptionSelected"
+      >
+        <slot
+          slot="option"
+          slot-scope="{option, isCurrent}"
+          name="option"
+          :is-current="isCurrent"
+          :option="option"
+        />
+      </SelectMenu>
+    </Popper>
+  </div>
 </template>
 
 <script>
