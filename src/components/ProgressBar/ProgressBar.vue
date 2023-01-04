@@ -57,7 +57,7 @@
     .progress-bar .progress {
         left: 0;
         width: 0%;
-        background: #42526e;
+        background: var(--ds-background-neutral-bold, #42526E);
         border-radius: 3px;
         transition: width 0.5s;
         display: block;

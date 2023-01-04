@@ -28,7 +28,7 @@
             icons: IconComponents,
             size: 'medium',
             color: undefined,
-            backgroundColor: '#fff'
+            backgroundColor: 'var(--ds-surface)'
         };
     },
     methods: {

@@ -8,7 +8,7 @@
         </p>
         <h3>Bold</h3>
         <p v-for="appearance in appearances" :key="`bold-${appearance}`">
-            <Lozenge :appearance="appearance" :bold="true">
+            <Lozenge :appearance="appearance" :isBold="true">
                 {{ appearance }}
             </Lozenge>
         </p>

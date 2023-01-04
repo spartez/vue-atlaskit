@@ -13,7 +13,7 @@
 <style scoped>
 .outline {
     padding: 2px;
-    background-color: #fff;
+    background-color: var(--ds-surface-overlay, var(--ds-surface, #FFFFFF));
     border-radius: 50%;
     display: flex;
     justify-content: center;

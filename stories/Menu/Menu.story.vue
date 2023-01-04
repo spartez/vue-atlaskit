@@ -60,7 +60,6 @@
 
 <style scoped>
     .wrapper {
-        background: #F4F5F7;
         width: 300px;
     }
 </style>

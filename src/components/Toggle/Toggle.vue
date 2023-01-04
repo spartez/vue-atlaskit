@@ -7,10 +7,10 @@
         <div class="slide" :size="size">
             <div class="slide-inner">
                 <EditorDoneIcon v-if="modelValue" data-cy="done" :size="iconSize"
-                                primary-color="White"
+                                :primary-color="color"
                                 class="done"/>
                 <CrossIcon v-else data-cy="cross" :size="iconSize"
-                           primary-color="White"
+                           :primary-color="color"
                            class="close"/>
             </div>
         </div>
@@ -44,6 +44,9 @@
         computed: {
             iconSize() {
                 return this.size === 'large' ? 'small' : 'xsmall';
+            },
+            color() {
+                return this.disabled ? 'rgb(165, 173, 186)' : 'var(--ds-surface, #FFFFFF)';
             }
         },
         created() {
@@ -72,7 +75,7 @@ label {
 
 .slide {
     background-clip: content-box;
-    background-color: rgb(107, 119, 140);
+    background-color: var(--ds-background-neutral-bold, #6B778C);
     display: block;
     height: 16px;
     position: relative;
@@ -85,7 +88,7 @@ label {
 }
 
 input:focus + .slide {
-    border: 2px solid rgb(76, 154, 255);
+    border: 2px solid var(--ds-border-focused, #4C9AFF);
 }
 
 .slide[size="large"] {
@@ -95,7 +98,7 @@ input:focus + .slide {
 }
 
 .slide::before {
-    background-color: rgb(255, 255, 255);
+    background-color: var(--ds-surface, #FFFFFF);
     bottom: 4px;
     content: "";
     height: 12px;
@@ -113,7 +116,7 @@ input:focus + .slide {
 }
 
 input:checked + .slide {
-    background-color: rgb(0, 135, 90);
+    background-color: var(--ds-background-success-bold, #00875A);
 }
 
 input:checked + .slide::before {
@@ -148,10 +151,10 @@ input:checked + .slide > .slide-inner {
 }
 
 input:checked + .slide:hover {
-    background-color: rgb(54, 179, 126);
+    background-color: var(--ds-background-success-bold-hovered, #36B37E);
 }
 
 input:not(:checked) + .slide:hover {
-    background-color: rgb(165, 173, 186);
+    background-color: var(--ds-background-neutral-bold-hovered, #A5ADBA);
 }
 </style>

@@ -25,7 +25,7 @@
         align-items: center;
         box-sizing: border-box;
         cursor: pointer;
-        color: rgb(23, 43, 77);
+        color: var(--ds-text, rgb(23, 43, 77));
         text-decoration: none;
         padding: 8px 12px 7px;
         overflow: hidden;
@@ -50,8 +50,8 @@
     }
 
     .menu-item:hover, .menu-item[active=true] {
-        background-color: rgba(0,25,75,0.043);
-        color: rgb(23, 43, 77);
+        background-color: var(--ds-background-neutral-subtle-hovered, #F4F5F7);
+        color: var(--ds-text, rgb(23, 43, 77));
         fill: rgb(244, 245, 247);
         text-decoration: none;
     }

@@ -32,14 +32,14 @@
         font-style: inherit;
         line-height: 18px;
         font-weight: normal;
-        color: #de350b;
+        color: var(--ds-text-danger, #DE350B);
         margin-top: 4px;
         display: flex;
         align-items: center;
     }
 
     .label {
-        color: #6b778c;
+        color: var(--ds-text-subtlest, #6B778C);
         font-size: 12px;
         line-height: 1.33333;
         display: block;
@@ -48,7 +48,7 @@
     }
 
     [required] .label::after {
-        color: #DE350B;
+        color: var(--ds-text-danger, #DE350B);
         font-size: 12px;
         line-height: 1.33;
         font-weight: 600;

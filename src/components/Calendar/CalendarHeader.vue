@@ -103,7 +103,7 @@
     justify-content: stretch;
     align-items: center;
     display: flex;
-    color: #172B4D;
+    color: var(--ds-text, #172B4D);
     padding: 0 0 8px;
 }
 

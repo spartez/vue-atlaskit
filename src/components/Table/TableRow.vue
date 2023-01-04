@@ -58,6 +58,6 @@
     }
 
     .table-row:hover > .table-row-cell {
-        background-color: rgb(244, 245, 247);
+        background-color: var(--ds-surface-hovered, rgb(250, 251, 252));
     }
 </style>

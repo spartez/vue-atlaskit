@@ -120,30 +120,34 @@ input[type="checkbox"] {
 }
 
 input:checked + .icon >>> rect {
-  color: #0052cc;
-  stroke: #0052cc;
+    color: var(--ds-background-selected-bold, #0052CC);
+    stroke: var(--ds-background-selected-bold, #0052CC);
+}
+
+input:checked + .icon >>> path{
+    fill: var(--ds-surface, #FFFFFF);
 }
 
 input + .icon >>> rect {
-  color: #fafbfc;
-  stroke: #dfe1e6;
+    color: var(--ds-background-neutral, #FFFFFF);
+    stroke: var(--ds-border,#DFE1E6);
 }
 
-label:hover input:not(:checked) + .icon >>> rect {
-  fill: #EBECF0;
+label:hover input:not(:checked):not(:disabled) + .icon >>> rect {
+    fill:  var(--ds-background-neutral, #FFFFFF);
 }
 
-label:hover input:not(:checked) + .icon >>> path {
-  fill: #EBECF0;
+label:hover input:not(:checked):not(:disabled) + .icon >>> path {
+    fill:  transparent;
 }
 
-label:hover input:checked + .icon >>> rect {
-  color: #0065ff;
-  stroke: #0065ff;
+label:hover input:checked:not(:disabled) + .icon >>> rect {
+    color: var(--ds-background-selected-bold-hovered, #0065ff);
+    stroke: var(--ds-background-selected-bold-hovered, #0065ff);
 }
 
-input + .icon >>> path {
-  fill: #fafbfc;
+input:not(:checked) + .icon >>> path {
+    fill: transparent;
 }
 
 input:not([is-invalid=true]):focus + .icon >>> rect {
@@ -154,8 +158,18 @@ input[is-invalid=true] + .icon >>> rect {
   stroke: #FF5630;
 }
 
-input[disabled=true] + .icon >>> rect {
-  opacity: .5;
+input:checked[disabled=true] + .icon >>> rect {
+    stroke: #f4f5f7;
+    color: #f4f5f7;
+}
+
+input:checked[disabled=true] + .icon >>> path {
+    fill: #a5adba;
+}
+
+label[disabled=true], label[disabled=true] input {
+    cursor: not-allowed;
+    color: rgb(151, 160, 175);
 }
 
 :not(.indeterminate) >>> rect {

@@ -46,8 +46,8 @@
         align-items: center;
         box-sizing: border-box;
         cursor: pointer;
-        background-color: rgb(255, 255, 255);
-        color: rgb(23, 43, 77);
+        background-color: var(--ds-surface-overlay, #fff);
+        color: var(--ds-text, #172B4D);
         text-decoration: none;
         padding: 5px 12px 6px 7px;
         overflow: hidden;
@@ -58,8 +58,7 @@
     }
 
     .dropdown-checkbox-item:hover {
-        background-color: rgb(244, 245, 247);
-        color: rgb(23, 43, 77);
+        background-color: var(--ds-background-neutral-subtle-hovered, #F4F5F7);
         fill: rgb(244, 245, 247);
         text-decoration: none;
     }

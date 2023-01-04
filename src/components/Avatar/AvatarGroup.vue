@@ -146,15 +146,14 @@
 }
 
 .trigger {
-    background-color: #fff;
+    background-color: var(--ds-background-neutral, #F4F5F7);;
     border-radius: 50%;
     padding: 2px;
     box-sizing: border-box;
 }
 
 .more {
-    background-color: rgb(223, 225, 230);
-    color: rgb(66, 82, 110);
+    color: var(--ds-text, #42526E);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -167,7 +166,6 @@
 }
 
 .trigger[open=true] {
-    background-color: rgb(38, 132, 255);
     border-radius: 50%;
 }
 
@@ -190,8 +188,7 @@
 }
 
 .trigger:hover::after {
-    background-color: rgba(9, 30, 66, 0.36);
-    opacity: 1;
+    background-color: var(--ds-background-neutral-hovered, #EBECF0);
 }
 
 .trigger[size='xxlarge'] {

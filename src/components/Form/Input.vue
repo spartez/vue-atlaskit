@@ -78,7 +78,7 @@
         },
         watch: {
             input() {
-                if (this.allowedValues) {
+                if (this.allowedValues && typeof this.input === "string") {
                     this.input = this.input.replace(new RegExp(this.allowedValues, 'g'), '');
                 }
             }

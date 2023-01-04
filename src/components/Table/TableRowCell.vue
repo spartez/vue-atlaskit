@@ -37,7 +37,7 @@
         position: relative;
         box-sizing: border-box;
         min-height: 40px;
-        color: rgb(23, 43, 77);
+        color: var(--ds-text, #172B4D);
         line-height: 20px;
         padding: 8px 16px;
         display: flex;
@@ -53,13 +53,13 @@
         position: sticky;
         left: 0;
         z-index: 2;
-        background: white;
+        background: var(--ds-surface, #fff);
     }
 
     .table-row-cell[sticky-right=true] {
         position: sticky;
         right: 0;
         z-index: 2;
-        background: white;
+        background: var(--ds-surface, #fff);
     }
 </style>

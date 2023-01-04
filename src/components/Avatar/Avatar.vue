@@ -64,7 +64,7 @@
             },
             outline: {
                 type: String,
-                default: '#fff'
+                default: 'var(--ds-surface-overlay, #FFFFFF)'
             },
             status: {
                 type: String,

@@ -144,7 +144,7 @@
 
 <style scoped>
 .select-menu {
-    background-color: rgb(255, 255, 255);
+    background-color: var(--ds-surface-overlay, #fff);
     box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 0px 1px,
     rgba(0, 0, 0, 0.1) 0px 4px 11px;
     margin-bottom: 8px;

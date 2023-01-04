@@ -5,9 +5,12 @@
         </Button>
         <Modal v-if="show" heading="Modal Danger" auto-focus
                :appearance="appearance" @submit="onSubmit" @cancel="onCancel">
-            <p slot="content">
+            <template v-slot:header>
+                <p>
                 {{ paragraph }}
-            </p>
+                </p>
+            </template>
+
         </Modal>
     </div>
 </template>
