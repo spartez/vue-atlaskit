@@ -44,7 +44,7 @@
     "@rollup/plugin-json": "^4.1.0",
     "@rollup/plugin-node-resolve": "^9.0.0",
     "eslint-plugin-vue": "7.0.0",
-    "@storybook/vue": "^5.1.9",
+    "@storybook/vue": "^6.5.15",
     "@vue/test-utils": "^1.0.3",
     "babel-core": "^7.0.0-bridge.0",
     "babel-jest": "^24.7.1",
