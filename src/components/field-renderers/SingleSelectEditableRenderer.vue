@@ -1,28 +1,36 @@
 <template>
-    <InlineEdit v-if="editable"
-                :value="value"
-                :confirm="confirm"
-                :placement="placement"
-                @save-requested="onSaveRequested">
-        <Select slot="editor" slot-scope="props"
-                :value="props.value"
-                :options="options"
-                :open-on-focus="true"
-                :is-invalid="props.isInvalid"
-                :is-focused="props.isFocused"
-                :is-loading="props.isLoading"
-                :placeholder="placeholder"
-                :append-to-body="appendToBody"
-                @input="props.input"
-                @blur="props.blur"
-                @confirm="props.confirm"
-                @focus="props.focus"
-                @cancel="props.cancel"/>
-        <slot>
-            <StringLineRenderer :value="value"/>
-        </slot>
-    </InlineEdit>
-    <StringLineRenderer v-else :value="value"/>
+  <InlineEdit
+    v-if="editable"
+    :value="value"
+    :confirm="confirm"
+    :placement="placement"
+    @save-requested="onSaveRequested"
+  >
+    <Select
+      slot="editor"
+      slot-scope="props"
+      :value="props.value"
+      :options="options"
+      :open-on-focus="true"
+      :is-invalid="props.isInvalid"
+      :is-focused="props.isFocused"
+      :is-loading="props.isLoading"
+      :placeholder="placeholder"
+      :append-to-body="appendToBody"
+      @input="props.input"
+      @blur="props.blur"
+      @confirm="props.confirm"
+      @focus="props.focus"
+      @cancel="props.cancel"
+    />
+    <slot>
+      <StringLineRenderer :value="value"/>
+    </slot>
+  </InlineEdit>
+  <StringLineRenderer
+    v-else
+    :value="value"
+  />
 </template>
 
 <script>

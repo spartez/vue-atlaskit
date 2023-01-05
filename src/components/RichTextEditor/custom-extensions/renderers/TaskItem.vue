@@ -1,13 +1,17 @@
 <template>
-    <li>
-        <span contenteditable="false">
-            <input v-model="done" type="checkbox">
-        </span>
-        <span
-            ref="content"
-            :contenteditable="view.editable.toString()"
-            class="todo-content"/>
-    </li>
+  <li>
+    <span contenteditable="false">
+      <input
+        v-model="done"
+        type="checkbox"
+      >
+    </span>
+    <span
+      ref="content"
+      :contenteditable="view.editable.toString()"
+      class="todo-content"
+    />
+  </li>
 </template>
 
 <script>

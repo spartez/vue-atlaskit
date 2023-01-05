@@ -1,27 +1,35 @@
 <template>
-    <InlineEdit v-if="editable"
-                :value="value"
-                :icon="icon"
-                pencil-style="floating"
-                :placement="placement"
-                @save-requested="onSaveRequested">
-        <slot>
-            <MultiLineRenderer :value="value"/>
-        </slot>
-        <TextArea slot="editor" slot-scope="{ value, input, isFocused, isInvalid, isLoading, blur, focus, confirm, cancel }"
-                  :value="value"
-                  :is-focused="isFocused"
-                  :is-invalid="isInvalid"
-                  :is-loading="isLoading"
-                  :submit-on-enter="submitOnEnter"
-                  @confirm="confirm"
-                  @keydown.meta.enter="confirm"
-                  @keyup.esc="cancel"
-                  @input="input"
-                  @blur="blur"
-                  @focus="focus"/>
-    </InlineEdit>
-    <MultiLineRenderer v-else :value="value"/>
+  <InlineEdit
+    v-if="editable"
+    :value="value"
+    :icon="icon"
+    pencil-style="floating"
+    :placement="placement"
+    @save-requested="onSaveRequested"
+  >
+    <slot>
+      <MultiLineRenderer :value="value"/>
+    </slot>
+    <TextArea
+      slot="editor"
+      slot-scope="{ value, input, isFocused, isInvalid, isLoading, blur, focus, confirm, cancel }"
+      :value="value"
+      :is-focused="isFocused"
+      :is-invalid="isInvalid"
+      :is-loading="isLoading"
+      :submit-on-enter="submitOnEnter"
+      @confirm="confirm"
+      @keydown.meta.enter="confirm"
+      @keyup.esc="cancel"
+      @input="input"
+      @blur="blur"
+      @focus="focus"
+    />
+  </InlineEdit>
+  <MultiLineRenderer
+    v-else
+    :value="value"
+  />
 </template>
 
 <script>

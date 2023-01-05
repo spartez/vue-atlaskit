@@ -1,13 +1,22 @@
 <template>
-    <td class="day" :highlighted="isHighlighted" :range-start="isRangeStart"
-        :range-end="isRangeEnd">
-        <Button appearance="subtle" class="date" :today="day.isToday"
-                :disabled="isDisabled"
-                :is-not-same-month="day.isNotSameMonth"
-                :is-selected="day.isSelected" @click.stop="onDateSelected">
-            {{ date }}
-        </Button>
-    </td>
+  <td
+    class="day"
+    :highlighted="isHighlighted"
+    :range-start="isRangeStart"
+    :range-end="isRangeEnd"
+  >
+    <Button
+      appearance="subtle"
+      class="date"
+      :today="day.isToday"
+      :disabled="isDisabled"
+      :is-not-same-month="day.isNotSameMonth"
+      :is-selected="day.isSelected"
+      @click.stop="onDateSelected"
+    >
+      {{ date }}
+    </Button>
+  </td>
 </template>
 
 <script>
@@ -69,11 +78,11 @@
     font-weight: 500;
     background-color: transparent;
     position: relative;
-    color: #0052CC;
+    color: var(--ds-text-selected, #0052CC);
 }
 
 [today]::after {
-    background-color: #0052CC;
+    background-color: var(--ds-text-selected, #0052CC);
     bottom: 2px;
     content: "";
     display: block;

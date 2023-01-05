@@ -1,13 +1,18 @@
 <template>
-    <InlineEdit v-if="editable"
-                :value="link"
-                :placement="placement"
-                @save-requested="onSaveRequested">
-        <slot>
-            <HyperlinkRenderer :link="link"/>
-        </slot>
-    </InlineEdit>
-    <HyperlinkRenderer v-else :link="link"/>
+  <InlineEdit
+    v-if="editable"
+    :value="link"
+    :placement="placement"
+    @save-requested="onSaveRequested"
+  >
+    <slot>
+      <HyperlinkRenderer :link="link"/>
+    </slot>
+  </InlineEdit>
+  <HyperlinkRenderer
+    v-else
+    :link="link"
+  />
 </template>
 
 <script>

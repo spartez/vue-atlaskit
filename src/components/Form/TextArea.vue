@@ -1,17 +1,25 @@
 <template>
-    <TextField :is-focused="focused" :is-invalid="isInvalid" :is-loading="isLoading"
-               :disabled="isLoading">
-        <textarea ref="textarea"
-                  v-model="text"
-                  v-bind="$attrs"
-                  :rows="rows"
-                  :disabled="isLoading"
-                  :style="{ height: currentHeight, width, maxHeight }"
-                  :auto="height === 'auto'"
-                  v-on="listeners"
-                  @keydown="resize" @input="resize"
-                  @focus="onFocus" @blur="onBlur"/>
-    </TextField>
+  <TextField
+    :is-focused="focused"
+    :is-invalid="isInvalid"
+    :is-loading="isLoading"
+    :disabled="isLoading"
+  >
+    <textarea
+      ref="textarea"
+      v-model="text"
+      v-bind="$attrs"
+      :rows="rows"
+      :disabled="isLoading"
+      :style="{ height: currentHeight, width, maxHeight }"
+      :auto="height === 'auto'"
+      v-on="listeners"
+      @keydown="resize"
+      @input="resize"
+      @focus="onFocus"
+      @blur="onBlur"
+    />
+  </TextField>
 </template>
 
 <script>

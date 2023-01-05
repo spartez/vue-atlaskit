@@ -1,26 +1,34 @@
 <template>
-    <InlineEdit v-if="editable"
-                :value="selectedValues"
-                :placement="placement"
-                @save-requested="onSaveRequested">
-        <Select slot="editor" slot-scope="props"
-                :value="props.value"
-                :multi="true"
-                :open-on-focus="true"
-                :options="options"
-                :is-invalid="props.isInvalid"
-                :is-focused="props.isFocused"
-                :is-loading="props.isLoading"
-                @input="props.input"
-                @blur="props.blur"
-                @confirm="props.confirm"
-                @focus="props.focus"
-                @cancel="props.cancel"/>
-        <slot>
-            <MultiSelectRenderer :selected-values="selectedValues"/>
-        </slot>
-    </InlineEdit>
-    <MultiSelectRenderer v-else :selected-values="selectedValues"/>
+  <InlineEdit
+    v-if="editable"
+    :value="selectedValues"
+    :placement="placement"
+    @save-requested="onSaveRequested"
+  >
+    <Select
+      slot="editor"
+      slot-scope="props"
+      :value="props.value"
+      :multi="true"
+      :open-on-focus="true"
+      :options="options"
+      :is-invalid="props.isInvalid"
+      :is-focused="props.isFocused"
+      :is-loading="props.isLoading"
+      @input="props.input"
+      @blur="props.blur"
+      @confirm="props.confirm"
+      @focus="props.focus"
+      @cancel="props.cancel"
+    />
+    <slot>
+      <MultiSelectRenderer :selected-values="selectedValues"/>
+    </slot>
+  </InlineEdit>
+  <MultiSelectRenderer
+    v-else
+    :selected-values="selectedValues"
+  />
 </template>
 
 <script>

@@ -1,21 +1,40 @@
 <template>
+  <div>
     <div>
-        <div>
-            <label>Size</label>
-            <select v-model="size">
-                <option value="small">small</option>
-                <option value="medium">medium</option>
-                <option value="large">large</option>
-                <option value="xlarge">xlarge</option>
-            </select>
-            <button @click="toggleColors">Toggle colors</button>
-        </div>
-        <p :style="{ color, backgroundColor, fill: backgroundColor, padding: '20px' }">
-            <span v-for="(icon, name) in icons">
-                <component :is="icon" :size="size" :key="name" secondary-color="inherit" :title="name"/>
-            </span>
-        </p>
+      <label>Size</label>
+      <select v-model="size">
+        <option value="small">
+          small
+        </option>
+        <option value="medium">
+          medium
+        </option>
+        <option value="large">
+          large
+        </option>
+        <option value="xlarge">
+          xlarge
+        </option>
+      </select>
+      <button @click="toggleColors">
+        Toggle colors
+      </button>
     </div>
+    <p :style="{ color, backgroundColor, fill: backgroundColor, padding: '20px' }">
+      <span
+        v-for="(icon, name) in icons"
+        :key="name"
+      >
+        <component
+          :is="icon"
+          :key="name"
+          :size="size"
+          secondary-color="inherit"
+          :title="name"
+        />
+      </span>
+    </p>
+  </div>
 </template>
 
 <script>
@@ -28,7 +47,7 @@
             icons: IconComponents,
             size: 'medium',
             color: undefined,
-            backgroundColor: '#fff'
+            backgroundColor: 'var(--ds-surface)'
         };
     },
     methods: {

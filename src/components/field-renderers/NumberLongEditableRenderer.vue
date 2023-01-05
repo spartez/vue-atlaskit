@@ -1,15 +1,20 @@
 <template>
-    <InlineEdit v-if="editable"
-                :value="value"
-                type="number"
-                step="1"
-                :placement="placement"
-                @save-requested="onSaveRequested">
-        <slot>
-            <NumberLongRenderer :value="value"/>
-        </slot>
-    </InlineEdit>
-    <NumberLongRenderer v-else :value="value"/>
+  <InlineEdit
+    v-if="editable"
+    :value="value"
+    type="number"
+    step="1"
+    :placement="placement"
+    @save-requested="onSaveRequested"
+  >
+    <slot>
+      <NumberLongRenderer :value="value"/>
+    </slot>
+  </InlineEdit>
+  <NumberLongRenderer
+    v-else
+    :value="value"
+  />
 </template>
 
 <script>

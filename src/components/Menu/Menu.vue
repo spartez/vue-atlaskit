@@ -1,7 +1,7 @@
 <template>
-    <div class="menu">
-        <slot/>
-    </div>
+  <div class="menu">
+    <slot/>
+  </div>
 </template>
 
 <style scoped>

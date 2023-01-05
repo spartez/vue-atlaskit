@@ -1,7 +1,13 @@
 <template>
-    <FieldGroup label="Label" required>
-        <TextArea rows="5" value="candy"/>
-    </FieldGroup>
+  <FieldGroup
+    label="Label"
+    required
+  >
+    <TextArea
+      v-model="value"
+      rows="5"
+    />
+  </FieldGroup>
 </template>
 
 <script>
@@ -10,6 +16,12 @@
 
     export default {
         name: 'TextAreaStory',
-        components: { FieldGroup, TextArea }
+        components: { FieldGroup, TextArea },
+        data(){
+            return{
+                value: 'candy'
+
+            }
+        }
     };
 </script>

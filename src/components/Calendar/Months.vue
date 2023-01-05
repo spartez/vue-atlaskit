@@ -1,16 +1,26 @@
 <template>
-    <table>
-        <tbody>
-            <tr v-for="(quarter,i) in monthsOfYear" :key="i">
-                <td v-for="month in quarter" :key="month">
-                    <Button appearance="subtle" data-cy="month" class="month"
-                            @click="onMonthSelected(month)">
-                        {{ month }}
-                    </Button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+  <table>
+    <tbody>
+      <tr
+        v-for="(quarter,i) in monthsOfYear"
+        :key="i"
+      >
+        <td
+          v-for="month in quarter"
+          :key="month"
+        >
+          <Button
+            appearance="subtle"
+            data-cy="month"
+            class="month"
+            @click="onMonthSelected(month)"
+          >
+            {{ month }}
+          </Button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </template>
 
 <script>

@@ -1,5 +1,8 @@
 <template>
-    <div class="date" v-text="formattedDate"/>
+  <div
+    class="date"
+    v-text="formattedDate"
+  />
 </template>
 
 <script>

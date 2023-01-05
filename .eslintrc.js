@@ -1,6 +1,6 @@
 /* eslint-env node */
 module.exports = {
-    extends: ['@spartez/eslint-config-vue'],
+    extends: ['plugin:vue/recommended'],
     rules: {
         'max-len': [
             'warn',

@@ -1,10 +1,13 @@
 <template>
-    <div class="menu-section">
-        <div v-if="label" class="menu-section-label">
-            {{ label }}
-        </div>
-        <slot/>
+  <div class="menu-section">
+    <div
+      v-if="label"
+      class="menu-section-label"
+    >
+      {{ label }}
     </div>
+    <slot/>
+  </div>
 </template>
 
 <script>
@@ -32,7 +35,7 @@
         font-size: 11px;
         line-height: 1.45455;
         font-weight: 700;
-        color: rgb(107, 119, 140);
+        color: var(--ds-text-subtle, #42526E);
         margin-top: 14px;
         margin-bottom: 6px;
         padding: 0px 12px;

@@ -1,62 +1,104 @@
 <template>
-    <div ref="date-picker" class="date-picker" @click.stop>
-        <TextField :is-focused="focused" :is-loading="isLoading" :disabled="isLoading"
-                   :is-invalid="isInvalid" select @mousedown="toggle">
-            <div class="input-from-wrapper">
-                <span class="input-from-ghost">{{ formattedDateFrom || `e.g. ${placeholderDate}` }}</span>
-                <input ref="input-from" :value="formattedDateFrom" type="text"
-                       class="input-from"
-                       :placeholder="`e.g. ${placeholderDate}`" :disabled="isLoading"
-                       v-on="listeners" @keydown.enter="onEnter"
-                       @input="onInputFrom" @keyup.esc="onEsc"
-                       @focus="onFocus" @blur="onBlur">
-            </div>
-            <span>-</span>
-            <input ref="input-to" :value="formattedDateTo" type="text"
-                   class="input-to"
-                   :placeholder="placeholderDate" :disabled="isLoading"
-                   v-on="listeners" @keydown.enter="onEnter"
-                   @input="onInputTo" @keyup.esc="onEsc"
-                   @focus="onFocus" @blur="onBlur">
-            <CalendarIcon class="icon" size="small" :disabled-range="disabledRange"
-                          @mousedown.native.prevent/>
-        </TextField>
-        <Popup :is-open="isOpen" :target-element="$refs['date-picker']" placement="bottom-start">
-            <div class="date-range">
-                <Calendar :value="dateRange" :range-value="true" :visible-date="visibleDate"
-                          :time-zone="timeZone"
-                          @date-selected="onDateSelected"/>
-                <div v-if="showQuickRanges" class="quick-ranges" tabindex="-1">
-                    <DropdownGroup label="Quick ranges">
-                        <DropdownItem @click="onQuickRange('this-week')">
-                            This week
-                        </DropdownItem>
-                        <DropdownItem @click="onQuickRange('this-month')">
-                            This month
-                        </DropdownItem>
-                        <DropdownItem @click="onQuickRange('last-week')">
-                            Last week
-                        </DropdownItem>
-                        <DropdownItem @click="onQuickRange('last-month')">
-                            Last month
-                        </DropdownItem>
-                        <DropdownItem @click="onQuickRange('last-7days')">
-                            Last 7 days
-                        </DropdownItem>
-                        <DropdownItem @click="onQuickRange('last-30days')">
-                            Last 30 days
-                        </DropdownItem>
-                        <DropdownItem @click="onQuickRange('this-year')">
-                            This year
-                        </DropdownItem>
-                        <DropdownItem @click="onQuickRange('last-year')">
-                            Last year
-                        </DropdownItem>
-                    </DropdownGroup>
-                </div>
-            </div>
-        </Popup>
-    </div>
+  <div
+    ref="date-picker"
+    class="date-picker"
+    @click.stop
+  >
+    <TextField
+      :is-focused="focused"
+      :is-loading="isLoading"
+      :disabled="isLoading"
+      :is-invalid="isInvalid"
+      select
+      @mousedown="toggle"
+    >
+      <div class="input-from-wrapper">
+        <span class="input-from-ghost">{{ formattedDateFrom || `e.g. ${placeholderDate}` }}</span>
+        <input
+          ref="input-from"
+          :value="formattedDateFrom"
+          type="text"
+          class="input-from"
+          :placeholder="`e.g. ${placeholderDate}`"
+          :disabled="isLoading"
+          v-on="listeners"
+          @keydown.enter="onEnter"
+          @input="onInputFrom"
+          @keyup.esc="onEsc"
+          @focus="onFocus"
+          @blur="onBlur"
+        >
+      </div>
+      <span>-</span>
+      <input
+        ref="input-to"
+        :value="formattedDateTo"
+        type="text"
+        class="input-to"
+        :placeholder="placeholderDate"
+        :disabled="isLoading"
+        v-on="listeners"
+        @keydown.enter="onEnter"
+        @input="onInputTo"
+        @keyup.esc="onEsc"
+        @focus="onFocus"
+        @blur="onBlur"
+      >
+      <CalendarIcon
+        class="icon"
+        size="small"
+        :disabled-range="disabledRange"
+        @mousedown.native.prevent
+      />
+    </TextField>
+    <Popup
+      :is-open="isOpen"
+      :target-element="$refs['date-picker']"
+      placement="bottom-start"
+    >
+      <div class="date-range">
+        <Calendar
+          :value="dateRange"
+          :range-value="true"
+          :visible-date="visibleDate"
+          :time-zone="timeZone"
+          @date-selected="onDateSelected"
+        />
+        <div
+          v-if="showQuickRanges"
+          class="quick-ranges"
+          tabindex="-1"
+        >
+          <DropdownGroup label="Quick ranges">
+            <DropdownItem @click="onQuickRange('this-week')">
+              This week
+            </DropdownItem>
+            <DropdownItem @click="onQuickRange('this-month')">
+              This month
+            </DropdownItem>
+            <DropdownItem @click="onQuickRange('last-week')">
+              Last week
+            </DropdownItem>
+            <DropdownItem @click="onQuickRange('last-month')">
+              Last month
+            </DropdownItem>
+            <DropdownItem @click="onQuickRange('last-7days')">
+              Last 7 days
+            </DropdownItem>
+            <DropdownItem @click="onQuickRange('last-30days')">
+              Last 30 days
+            </DropdownItem>
+            <DropdownItem @click="onQuickRange('this-year')">
+              This year
+            </DropdownItem>
+            <DropdownItem @click="onQuickRange('last-year')">
+              Last year
+            </DropdownItem>
+          </DropdownGroup>
+        </div>
+      </div>
+    </Popup>
+  </div>
 </template>
 
 <script>

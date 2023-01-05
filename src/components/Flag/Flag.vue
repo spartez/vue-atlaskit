@@ -1,29 +1,55 @@
 <template>
-    <transition :name="leaveLeft ? 'flag-left' : 'flag'" appear>
-        <div class="notification" :appearance="appearance">
-            <div class="header">
-                <div class="icon">
-                    <component :is="flag.name" :primary-color="flag.primary" :secondary-color="flag.secondary"
-                               class="icon"/>
-                </div>
-                <span class="title">{{ title }}</span>
-                <ChevronDownIcon v-if="appearance !== 'default'" class="chevron" size="large"
-                                 :expanded="expanded" @click.native="onExpand"/>
-                <EditorCloseIcon v-else class="close" @click.native="$emit('close')"/>
-            </div>
-            <slot>
-                <div class="content" :expanded="expanded">
-                    <div class="description">
-                        {{ description }}
-                    </div>
-                    <div class="actions">
-                        <a v-for="action in actions" :key="action.content" class="action"
-                           @click="onClick(action)">{{ action.content }}</a>
-                    </div>
-                </div>
-            </slot>
+  <transition
+    :name="leaveLeft ? 'flag-left' : 'flag'"
+    appear
+  >
+    <div
+      class="notification"
+      :appearance="appearance"
+    >
+      <div class="header">
+        <div class="icon">
+          <component
+            :is="flag.name"
+            :primary-color="flag.primary"
+            :secondary-color="flag.secondary"
+            class="icon"
+          />
         </div>
-    </transition>
+        <span class="title">{{ title }}</span>
+        <ChevronDownIcon
+          v-if="appearance !== 'default'"
+          class="chevron"
+          size="large"
+          :expanded="expanded"
+          @click.native="onExpand"
+        />
+        <EditorCloseIcon
+          v-else
+          class="close"
+          @click.native="$emit('close')"
+        />
+      </div>
+      <slot>
+        <div
+          class="content"
+          :expanded="expanded"
+        >
+          <div class="description">
+            {{ description }}
+          </div>
+          <div class="actions">
+            <a
+              v-for="action in actions"
+              :key="action.content"
+              class="action"
+              @click="onClick(action)"
+            >{{ action.content }}</a>
+          </div>
+        </div>
+      </slot>
+    </div>
+  </transition>
 </template>
 
 <script>
@@ -71,29 +97,29 @@
             flag() {
                 switch (this.appearance) {
                     case 'info':
-                        return { name: this.appearance, primary: '#fff', secondary: '#42526E' };
+                        return { name: this.appearance, primary: 'var(--ds-icon-inverse, #FFFFFF)', secondary: 'var(--ds-background-neutral-bold, #42526E)' };
                     case 'error':
-                        return { name: this.appearance, primary: '#fff', secondary: '#DE350B' };
+                        return { name: this.appearance, primary: 'var(--ds-icon-inverse, #FFFFFF)', secondary: 'var(--ds-background-danger-bold, #DE350B)' };
                     case 'warning':
-                        return { name: this.appearance, primary: '', secondary: '#FFC400' };
+                        return { name: this.appearance, primary: '', secondary: 'var(--ds-background-warning-bold, #FFAB00)' };
                     case 'success':
-                        return { name: this.appearance, primary: '#fff', secondary: '#00875A' };
+                        return { name: this.appearance, primary: 'var(--ds-icon-inverse, #FFFFFF)', secondary: 'var(--ds-background-success-bold, #00875A)' };
                     default:
-                        return { name: this.type, primary: this.color, secondary: '#fff' };
+                        return { name: this.type, primary: this.color, secondary: 'var(--ds-surface, #fff)' };
                 }
             },
             color() {
                 switch (this.type) {
                     case 'info':
-                        return '#6554c0';
+                        return 'var(--ds-icon-discovery, #403294)';
                     case 'error':
-                        return '#de350a';
+                        return 'var(--ds-icon-danger, #BF2600)';
                     case 'warning':
-                        return '#ffab00';
+                        return 'var(--ds-icon-warning, #FF8B00)';
                     case 'success':
-                        return '#36b37e';
+                        return 'var(--ds-icon-success, #006644)';
                     default:
-                        return '#6554c0';
+                        return '#var(--ds-icon-discovery, #403294)';
                 }
             }
         },
@@ -115,7 +141,7 @@
 
 <style scoped>
 .notification {
-    background-color: rgb(255, 255, 255);
+    background-color: var(--ds-surface-overlay, #fff);
     box-sizing: border-box;
     box-shadow: rgba(9, 30, 66, 0.31) 0px 0px 1px, rgba(9, 30, 66, 0.25) 0px 20px 32px -8px;
     width: 100%;
@@ -183,7 +209,6 @@
 }
 
 .action {
-    background: rgba(255, 255, 255, 0.08);
     padding: 0 8px;
     height: 24px;
     line-height: 24px;
@@ -206,22 +231,23 @@
 }
 
 [appearance="error"] {
-    background-color: rgb(222, 53, 11);
-    color: #fff;
+    background-color: var(--ds-background-danger-bold, #DE350B);
+    color: var(--ds-text-inverse, #FFFFFF);
 }
 
 [appearance="info"] {
-    background-color: rgb(66, 82, 110);
-    color: #fff;
+    background-color: var(--ds-background-neutral-bold, #42526E);
+    color: var(--ds-text-inverse, #FFFFFF);
 }
 
 [appearance="success"] {
-    background-color: rgb(0, 135, 90);
-    color: #fff;
+    background-color: var(--ds-background-success-bold, #00875A);
+    color: var(--ds-text-inverse, #FFFFFF);
 }
 
 [appearance="warning"] {
-    background-color: rgb(255, 196, 0);
+    background-color: var(--ds-background-warning-bold, #FFAB00);
+    color: var(--ds-text-warning-inverse, #172B4D);
 }
 
 .chevron[expanded="true"] {

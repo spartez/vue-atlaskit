@@ -1,32 +1,55 @@
 <template>
-    <PromisedContentLoader :width="150" :height="24" :value="user.enriched"
-                           :pending-delay="0">
-        <UserEditableRenderer slot-scope="{ value }" :user="value"
-                              :load-options="user.getUsers"
-                              :editable="editable"
-                              v-on="$listeners"/>
-        <template slot="loader-shape">
-            <circle cx="12" cy="12"
-                    :r="12"/>
-            <rect x="28" y="4"
-                  :rx="8" :ry="8"
-                  :width="45" :height="16"/>
-            <rect x="78" y="4"
-                  :rx="8" :ry="8"
-                  :width="70" :height="16"/>
-        </template>
-        <component :is="editable ? 'UserEditableRenderer' : 'UserRenderer'"
-                   slot="error-message" :user="{ key: user.value }"
-                   :editable="true"
-                   v-on="$listeners">
-            <div class="user-error">
-                <div class="avatar">
-                    <CrossIcon size="small"/>
-                </div>
-                <span>{{ user.value }} <small>(deleted)</small></span>
-            </div>
-        </component>
-    </PromisedContentLoader>
+  <PromisedContentLoader
+    :width="150"
+    :height="24"
+    :value="user.enriched"
+    :pending-delay="0"
+  >
+    <UserEditableRenderer
+      slot-scope="{ value }"
+      :user="value"
+      :load-options="user.getUsers"
+      :editable="editable"
+      v-on="$listeners"
+    />
+    <template slot="loader-shape">
+      <circle
+        cx="12"
+        cy="12"
+        :r="12"
+      />
+      <rect
+        x="28"
+        y="4"
+        :rx="8"
+        :ry="8"
+        :width="45"
+        :height="16"
+      />
+      <rect
+        x="78"
+        y="4"
+        :rx="8"
+        :ry="8"
+        :width="70"
+        :height="16"
+      />
+    </template>
+    <component
+      :is="editable ? 'UserEditableRenderer' : 'UserRenderer'"
+      slot="error-message"
+      :user="{ key: user.value }"
+      :editable="true"
+      v-on="$listeners"
+    >
+      <div class="user-error">
+        <div class="avatar">
+          <CrossIcon size="small"/>
+        </div>
+        <span>{{ user.value }} <small>(deleted)</small></span>
+      </div>
+    </component>
+  </PromisedContentLoader>
 </template>
 
 <script>

@@ -1,20 +1,31 @@
 <template>
-    <label :for="id">
-        <input :id="id"
-               type="checkbox"
-               :checked="value"
-               @change="toggle">
-        <div class="slide" :size="size">
-            <div class="slide-inner">
-                <LockFilledIcon v-if="value" :size="iconSize"
-                                primary-color="White"
-                                class="done"/>
-                <UnlockFilledIcon v-else :size="iconSize"
-                                  primary-color="White"
-                                  class="close"/>
-            </div>
-        </div>
-    </label>
+  <label :for="id">
+    <input
+      :id="id"
+      type="checkbox"
+      :checked="value"
+      @change="toggle"
+    >
+    <div
+      class="slide"
+      :size="size"
+    >
+      <div class="slide-inner">
+        <LockFilledIcon
+          v-if="value"
+          :size="iconSize"
+          primary-color="var(--ds-surface, #FFFFFF)"
+          class="done"
+        />
+        <UnlockFilledIcon
+          v-else
+          :size="iconSize"
+          primary-color="var(--ds-surface, #FFFFFF)"
+          class="close"
+        />
+      </div>
+    </div>
+  </label>
 </template>
 
 <script>
@@ -72,7 +83,7 @@ label {
 
 .slide {
     background-clip: content-box;
-    background-color: #6B778C;
+    background-color: var(--ds-background-neutral-bold, #6B778C);
     display: block;
     height: 16px;
     position: relative;
@@ -85,7 +96,7 @@ label {
 }
 
 input:focus + .slide {
-    border: 2px solid rgb(76, 154, 255);
+    border: 2px solid var(--ds-border-focused, #4C9AFF);
 }
 
 .slide[size="large"] {
@@ -95,7 +106,7 @@ input:focus + .slide {
 }
 
 .slide::before {
-    background-color: rgb(255, 255, 255);
+    background-color: var(--ds-surface, #FFFFFF);
     bottom: 4px;
     content: "";
     height: 12px;
@@ -152,6 +163,6 @@ input:checked + .slide:hover {
 }
 
 input:not(:checked) + .slide:hover {
-    background-color: rgb(165, 173, 186);
+    background-color: var(--ds-icon-disabled, #A5ADBA);
 }
 </style>

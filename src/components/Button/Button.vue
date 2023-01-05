@@ -1,19 +1,38 @@
 <template>
-    <button ref="button"
-            type="button"
-            :appearance="appearance"
-            :disabled="isDisabled"
-            :selected="isSelected"
-            :loading="isLoading"
-            :spacing="spacing"
-            v-on="listeners">
-        <span class="wrapper" tabindex="-1" :icon-is-only-child="iconIsOnlyChild">
-            <slot v-if="!isLoading" name="icon-before"/>
-            <span v-if="this.$slots.default" ref="label" class="label"><slot/></span>
-            <slot v-if="!isLoading" name="icon-after"/>
-            <Spinner v-if="isLoading" :size="spacing === 'default' ? 'small' : 'icon'"/>
-        </span>
-    </button>
+  <button
+    ref="button"
+    type="button"
+    :appearance="appearance"
+    :disabled="isDisabled"
+    :selected="isSelected"
+    :loading="isLoading"
+    :spacing="spacing"
+    v-on="listeners"
+  >
+    <span
+      class="wrapper"
+      tabindex="-1"
+      :icon-is-only-child="iconIsOnlyChild"
+    >
+      <slot
+        v-if="!isLoading"
+        name="icon-before"
+      />
+      <span
+        v-if="this.$slots.default"
+        ref="label"
+        class="label"
+      ><slot/></span>
+      <slot
+        v-if="!isLoading"
+        name="icon-after"
+      />
+      <Spinner
+        v-if="isLoading"
+        :size="spacing === 'default' ? 'small' : 'icon'"
+      />
+    </span>
+  </button>
 </template>
 
 <script>
@@ -135,160 +154,167 @@ button[loading] >>> .spinner {
 }
 
 button[loading][selected] >>> .spinner {
-    color: #FFF;
+    color: var(--ds-text-inverse, #FFFFFF);
 }
 
 button:focus {
-    box-shadow: rgba(38, 132, 255, 0.6) 0 0 0 2px;
+    box-shadow: var(--ds-border-focused, #4C9AFF) 0 0 0 2px;
 }
 
 /*default*/
 button[appearance="default"] {
-    background: #f6f7f8;
-    color: #505F79;
+    background: var(--ds-background-neutral, #f4f5f7);
+    color: var(--ds-text, #505f79);
 }
 
 button[appearance="default"]:not([disabled]):not([selected]):hover {
-    background: #efeff2;
+    background: var(--ds-background-neutral-hovered, #ebecf0);
 }
 
 button[appearance="default"]:not([disabled]):not([selected]):active {
-    /*background: #d2e6ff;*/
-    background-color: rgba(179, 212, 255, 0.6);
-    color: #0052CC;
+    background-color: var(--ds-background-neutral-pressed, #505f79);
+    color: var(--ds-text, #0052CC);
 }
 
 button[appearance="default"]:active >>> svg {
-    color: #0052CC;
+    color: var(--ds-text, #0052CC);
 }
 
 /*primary*/
 button[appearance="primary"] {
-    background: #0052CC;
-    color: #FFFFFF;
+    background: var(--ds-background-brand-bold, #0052CC);
+    color: var(--ds-text-inverse, #FFFFFF);
 }
 
 button[appearance="primary"]:not([disabled]):not([selected]):hover {
-    background: #0065FF;
+    background: var(--ds-background-brand-bold-hovered, rgba(0, 82, 204, 0.9));
 }
 
 button[appearance="primary"]:not([disabled]):not([selected]):active {
-    background: #0747A6;
+    background: var(--ds-background-brand-bold-pressed, #0747A6);
 }
 
 button[appearance="primary"][loading] >>> .spinner {
-    color: #FFF;
+    color: var(--ds-text-inverse, #FFFFFF);
 }
 
 /*link*/
 button[appearance="link"] {
     background: none;
-    color: #0052CC;
+    color: var(--ds-background-brand-bold, #0052CC);
 }
 
 button[appearance="link"]:not([disabled]):not([selected]):hover {
-    color: #0065FF;
+    color: var(--ds-link, #0065FF);
     text-decoration: underline;
 }
 
 button[appearance="link"]:not([disabled]):not([selected]):active {
     text-decoration: none;
-    color: #0747A6;
+    color: var(--ds-link-pressed, #0747A6);
 }
 
 /*subtle*/
 button[appearance="subtle"] {
-    background: none;
-    color: #505F79;
+    background: var(--ds-background-neutral-subtle, none);
+    color: var(--ds-text-subtle, #505f79);
 }
 
 button[appearance="subtle"]:not([disabled]):not([selected]):hover {
-    background-color: rgba(9, 30, 66, 0.08);
+    background-color: var(--ds-background-neutral-subtle-hovered, rgba(9, 30, 66, 0.08));
 }
 
 button[appearance="subtle"]:not([disabled]):not([selected]):active {
-    background: rgba(179, 212, 255, 0.6);
-    color: #0052CC;
+    background: var(--ds-background-neutral-subtle-pressed, rgba(179, 212, 255, 0.6));
+    color: var(--ds-text, #0052CC);
 }
 
 /*subtle-link*/
 button[appearance="subtle-link"] {
-    background: none;
-    color: #6B778C;
+    background: var(--ds-background-neutral-subtle, none);
+    color: var(--ds-text-subtle, #505f79);
+
 }
 
 button[appearance="subtle-link"]:not([disabled]):not([selected]):hover {
     text-decoration: underline;
-    color: #8993A4;
+    color: var(--ds-text-subtle, #505f79);
+
 }
 
 button[appearance="subtle-link"]:not([disabled]):not([selected]):active {
     text-decoration: none;
-    color: #505F79;
+    color: var(--ds-text-subtle, #505f79);
 }
 
 /*warning*/
 button[appearance="warning"] {
-    background: #FFAB00;
-    color: #172B4D;
+    background: var(--ds-background-warning-bold, #FFAB00);
+    color: var(--ds-text-inverse, #FFFFFF);
+
 }
 
 button:focus[appearance="warning"] {
-    box-shadow: #FF8B00 0 0 0 2px;
+    box-shadow: var(--ds-background-warning-bold, #FFAB00) 0 0 0 2px;
 }
+
 button[appearance="warning"]:not([disabled]):not([selected]):hover {
-    background: #FFC400;
+    background: var(--ds-background-warning-bold-hovered, #FFC400);
 }
 
 button[appearance="warning"]:not([disabled]):not([selected]):active,
 button[appearance="warning"][selected],
 button[appearance="warning"][selected]:hover {
-    background: #FF991F;
-    color: #172B4D;
+    background: var(--ds-background-warning-bold-pressed, #FF991F);
+    color: var(--ds-text-inverse, #FFFFFF);
+
 }
 
 button[appearance="warning"]:active >>> svg,
 button[appearance="warning"][selected] >>> svg,
 button[appearance="warning"][selected]:hover >>> svg {
-    color: #172B4D;
+    color: var(--ds-text-inverse, #FFFFFF);
 }
 
 /*danger*/
 button[appearance="danger"] {
-    background: #DE350B;
-    color: #FFFFFF;
+    background: var(--ds-background-danger-bold, #DE350B);
+    color: var(--ds-text-inverse, #FFFFFF);
 }
 
 button:focus[appearance="danger"] {
-    box-shadow: #FF8F73 0 0 0 2px;
+    box-shadow: var(--ds-border-focused, #FF8F73) 0 0 0 2px;
 }
 
 button[appearance="danger"]:not([disabled]):not([selected]):hover {
-    background: #FF5630;
+    background: var(--ds-background-danger-bold-hovered, #FF5630);
 }
 
 button[appearance="danger"]:not([disabled]):not([selected]):active,
 button[appearance="danger"][selected],
 button[appearance="danger"][selected]:hover {
-    background: #BF2600;
+    background: var(--ds-background-danger-bold-pressed, #BF2600);
+    color: var(--ds-text-inverse, #FFFFFF);
 }
 
-button[appearance="danger"][loading] >>> .spinner {
-    color: #FFF;
+button[appearance="danger"]:active >>> svg,
+button[appearance="danger"][selected] >>> svg,
+button[appearance="danger"][selected]:hover >>> svg {
+    color: var(--ds-text-inverse, #FFFFFF);
 }
 
 button[selected],
 button[selected]:hover,
 button[selected]:active {
-    background: #253858;
-    color: rgb(244, 245, 247);
+    background: var(--ds-background-selected, #253858);
+    color: var(--ds-text-selected, #F4F5F7);
     text-decoration: none;
 }
 
 button[selected] >>> svg,
 button[selected]:hover >>> svg,
 button[selected]:active >>> svg {
-    color: rgb(244, 245, 247);
+    color: var(--ds-text-selected, #F4F5F7);
 }
 
 button[disabled] span.wrapper,
@@ -302,11 +328,12 @@ button[disabled] {
 }
 
 button[loading][disabled] >>> .spinner {
-    color: #172B4D;
+    color: var(--ds-text, #FFFFFF);
+
 }
 
 button[disabled]:not([appearance="subtle-link"]):not([appearance="link"]):not([appearance="subtle"]) {
-    background: rgb(245 246 248);
+    background: var(--ds-background-disabled, rgb(245 246 248));
 }
 
 button::-moz-focus-inner,

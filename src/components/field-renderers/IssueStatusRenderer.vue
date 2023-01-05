@@ -1,7 +1,11 @@
 <template>
-    <span class="status" :status-color="statusColor" :title="statusName">
-        <span class="content">{{ statusName }}</span>
-    </span>
+  <span
+    class="status"
+    :status-color="statusColor"
+    :title="statusName"
+  >
+    <span class="content">{{ statusName }}</span>
+  </span>
 </template>
 
 <script>

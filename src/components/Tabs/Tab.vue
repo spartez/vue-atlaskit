@@ -1,8 +1,14 @@
 <template>
-    <a href="#" :active="selected === id" :disabled="disabled"
-       :stretch="stretch" :inactive="inactive" @click.prevent="onClick">
-        <slot/>
-    </a>
+  <a
+    href="#"
+    :active="selected === id"
+    :disabled="disabled"
+    :stretch="stretch"
+    :inactive="inactive"
+    @click.prevent="onClick"
+  >
+    <slot/>
+  </a>
 </template>
 <script>
 
@@ -64,12 +70,12 @@
         flex-grow: 1;
     }
 
-    a:not([inactive]) hover {
-        color: #0052CC;
+    a:not([inactive]):hover {
+        color: var(--ds-text-selected, #0052CC);
     }
 
     [active] {
-        color: rgb(0, 82, 204);
+        color: var(--ds-text-selected, #0052CC)
     }
 
     [active]:after {
@@ -81,17 +87,17 @@
         width: inherit;
         left: 8px;
         right: 8px;
-        border-bottom: 2px solid rgb(0, 82, 204);
+        border-bottom: 2px solid var(--ds-text-selected, #0052CC);
         height: 0px;
     }
 
     [inactive] {
-        color: rgb(66, 82, 110);
+        color: var(--ds-text-subtle, #42526E);
         cursor: default;
     }
 
     [disabled] {
-        color: rgb(165, 173, 186);
+        color: var(--ds-text-subtle, rgb(165, 173, 186));
         pointer-events: none;
     }
 </style>

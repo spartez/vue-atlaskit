@@ -1,14 +1,22 @@
 <template>
-    <div class="spinner" :size="size">
-        <svg
-            focusable="false"
-            :size="dimensions.px"
-            :height="dimensions.px"
-            :width="dimensions.px"
-            :viewBox="`0 0 ${dimensions.px} ${dimensions.px}`">
-            <circle :cx="origin" :cy="origin" :r="dimensions.radius" />
-        </svg>
-    </div>
+  <div
+    class="spinner"
+    :size="size"
+  >
+    <svg
+      focusable="false"
+      :size="dimensions.px"
+      :height="dimensions.px"
+      :width="dimensions.px"
+      :viewBox="`0 0 ${dimensions.px} ${dimensions.px}`"
+    >
+      <circle
+        :cx="origin"
+        :cy="origin"
+        :r="dimensions.radius"
+      />
+    </svg>
+  </div>
 </template>
 
 <script>

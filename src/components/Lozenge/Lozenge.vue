@@ -1,9 +1,13 @@
 <template>
-    <span>
-        <span class="lozenge" :appearance="appearance" :bold="isBold">
-            <slot/>
-        </span>
+  <span>
+    <span
+      class="lozenge"
+      :appearance="appearance"
+      :bold="isBold"
+    >
+      <slot/>
     </span>
+  </span>
 </template>
 
 <script>
@@ -31,9 +35,9 @@
 
 <style scoped>
     .lozenge {
-        background-color: rgb(223, 225, 230);
+        background-color: var(--ds-background-neutral, #DFE1E6);
         box-sizing: border-box;
-        color: rgb(66, 82, 110);
+        color: var(--ds-text-subtle, #42526E);
         display: inline;
         font-size: 11px;
         font-weight: 700;
@@ -49,53 +53,53 @@
     }
 
     .lozenge[appearance="success"] {
-        background-color: rgb(227, 252, 239);
-        color: rgb(0, 102, 68);
+        background-color: var(--ds-background-success, #E3FCEF);
+        color: var(--ds-text-success, #006644);
     }
 
     .lozenge[appearance="removed"] {
-        background-color: rgb(255, 235, 230);
-        color: rgb(191, 38, 0);
+        background-color: var(--ds-background-danger, #FFEBE6);
+        color: var(--ds-text-danger, #DE350B);
     }
 
     .lozenge[appearance="inprogress"] {
-        background-color: rgb(222, 235, 255);
-        color: rgb(7, 71, 166);
+        background-color: var(--ds-background-information, #DEEBFF);
+        color: var(--ds-text-information, #0052CC);
     }
 
     .lozenge[appearance="new"] {
-        background-color: rgb(234, 230, 255);
-        color: rgb(64, 50, 148);
+        background-color: var(--ds-background-discovery, #EAE6FF);
+        color: var(--ds-text-discovery, #403294);
     }
 
     .lozenge[appearance="moved"] {
-        background-color: rgb(255, 240, 179);
-        color: rgb(23, 43, 77);
+        background-color: var(--ds-background-warning, #FFFAE6);
+        color: var(--ds-text-warning, #974F0C);
     }
 
     .lozenge[bold] {
-        background-color: rgb(66, 82, 110);
-        color: rgb(255, 255, 255);
+        background-color: var(--ds-background-neutral-bold, #42526E);
+        color: var(--ds-text-inverse, #FFFFFF);
     }
 
     .lozenge[bold][appearance="success"] {
-        background-color: rgb(0, 135, 90);
+        background-color: var(--ds-background-success-bold, #00875A);
     }
 
     .lozenge[bold][appearance="removed"] {
-        background-color: rgb(222, 53, 11);
+        background-color: var(--ds-background-danger-bold, #DE350B);
     }
 
     .lozenge[bold][appearance="inprogress"] {
-        background-color: rgb(0, 82, 204);
+        background-color: var(--ds-background-information-bold, #0052CC);
     }
 
     .lozenge[bold][appearance="new"] {
-        background-color: rgb(82, 67, 170);
+        background-color: var(--ds-background-discovery-bold, #5243AA);
     }
 
     .lozenge[bold][appearance="moved"] {
-        background-color: rgb(255, 139, 0);
+        background-color: var(--ds-background-warning-bold, #FFAB00);
         color: rgb(23, 43, 77);
     }
 </style>

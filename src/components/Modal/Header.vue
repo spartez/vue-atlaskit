@@ -1,11 +1,15 @@
 <template>
-    <div class="header">
-        <component :is="icon" v-if="appearance" class="icon"
-                   :primary-color="color"/>
-        <h3 class="title">
-            {{ heading }}
-        </h3>
-    </div>
+  <div class="header">
+    <component
+      :is="icon"
+      v-if="appearance"
+      class="icon"
+      :primary-color="color"
+    />
+    <h3 class="title">
+      {{ heading }}
+    </h3>
+  </div>
 </template>
 
 <script>

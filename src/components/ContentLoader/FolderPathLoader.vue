@@ -1,16 +1,31 @@
 <template>
-    <ContentLoader view-box="0 0 340 20">
-        <rect :x="0" :y="2"
-              :rx="8" :ry="8"
-              :width="loaderHeight * 3" :height="loaderHeight - 4"/>
-        <text :x="loaderHeight * 3 + 5" :y="2" fill="black"
-              class="loader-text" :size="size">
-            /
-        </text>
-        <rect :x="loaderHeight * 3 + 15" :y="2"
-              :rx="8" :ry="8"
-              :width="loaderHeight * 4" :height="loaderHeight - 4"/>
-    </ContentLoader>
+  <ContentLoader view-box="0 0 340 20">
+    <rect
+      :x="0"
+      :y="2"
+      :rx="8"
+      :ry="8"
+      :width="loaderHeight * 3"
+      :height="loaderHeight - 4"
+    />
+    <text
+      :x="loaderHeight * 3 + 5"
+      :y="2"
+      fill="black"
+      class="loader-text"
+      :size="size"
+    >
+      /
+    </text>
+    <rect
+      :x="loaderHeight * 3 + 15"
+      :y="2"
+      :rx="8"
+      :ry="8"
+      :width="loaderHeight * 4"
+      :height="loaderHeight - 4"
+    />
+  </ContentLoader>
 </template>
 
 <script>

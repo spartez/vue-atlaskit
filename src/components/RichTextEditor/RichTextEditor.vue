@@ -1,81 +1,115 @@
 <template>
-    <div class="rich-text-form" :is-empty="!value" :is-editing="editable">
-        <slot name="top" :insert="insertDocument"/>
-        <div class="editor" :is-editing="editable">
-            <editor-menu-bar v-if="editable && menu" v-slot="{ commands, isActive }" :editor="editor">
-                <div class="menu-bar">
-                    <Button
-                        appearance="subtle"
-                        :is-selected="isActive.strong()"
-                        spacing="none"
-                        @click="commands.strong">
-                        <EditorBoldIcon slot="icon-before"/>
-                    </Button>
+  <div
+    class="rich-text-form"
+    :is-empty="!value"
+    :is-editing="editable"
+  >
+    <slot
+      name="top"
+      :insert="insertDocument"
+    />
+    <div
+      class="editor"
+      :is-editing="editable"
+    >
+      <editor-menu-bar
+        v-if="editable && menu"
+        v-slot="{ commands, isActive }"
+        :editor="editor"
+      >
+        <div class="menu-bar">
+          <Button
+            appearance="subtle"
+            :is-selected="isActive.strong()"
+            spacing="none"
+            @click="commands.strong"
+          >
+            <EditorBoldIcon slot="icon-before"/>
+          </Button>
 
-                    <Button
-                        appearance="subtle"
-                        :is-selected="isActive.em()"
-                        spacing="none"
-                        @click="commands.em">
-                        <EditorItalicIcon slot="icon-before"/>
-                    </Button>
+          <Button
+            appearance="subtle"
+            :is-selected="isActive.em()"
+            spacing="none"
+            @click="commands.em"
+          >
+            <EditorItalicIcon slot="icon-before"/>
+          </Button>
 
-                    <Button
-                        appearance="subtle"
-                        :is-selected="isActive.strike()"
-                        spacing="none"
-                        @click="commands.strike">
-                        <EditorStrikethroughIcon slot="icon-before"/>
-                    </Button>
+          <Button
+            appearance="subtle"
+            :is-selected="isActive.strike()"
+            spacing="none"
+            @click="commands.strike"
+          >
+            <EditorStrikethroughIcon slot="icon-before"/>
+          </Button>
 
-                    <Button
-                        appearance="subtle"
-                        :is-selected="isActive.underline()"
-                        spacing="none"
-                        @click="commands.underline">
-                        <EditorUnderlineIcon slot="icon-before"/>
-                    </Button>
+          <Button
+            appearance="subtle"
+            :is-selected="isActive.underline()"
+            spacing="none"
+            @click="commands.underline"
+          >
+            <EditorUnderlineIcon slot="icon-before"/>
+          </Button>
 
-                    <Button
-                        appearance="subtle"
-                        :is-selected="isActive.bulletList()"
-                        spacing="none"
-                        @click="commands.bulletList">
-                        <EditorBulletListIcon slot="icon-before"/>
-                    </Button>
+          <Button
+            appearance="subtle"
+            :is-selected="isActive.bulletList()"
+            spacing="none"
+            @click="commands.bulletList"
+          >
+            <EditorBulletListIcon slot="icon-before"/>
+          </Button>
 
-                    <Button
-                        appearance="subtle"
-                        :is-selected="isActive.orderedList()"
-                        spacing="none"
-                        @click="commands.orderedList">
-                        <EditorNumberListIcon slot="icon-before"/>
-                    </Button>
+          <Button
+            appearance="subtle"
+            :is-selected="isActive.orderedList()"
+            spacing="none"
+            @click="commands.orderedList"
+          >
+            <EditorNumberListIcon slot="icon-before"/>
+          </Button>
 
-                    <Button
-                        appearance="subtle"
-                        :class="{ 'is-active': isActive.blockquote() }"
-                        spacing="none"
-                        @click="commands.blockquote">
-                        <EditorQuoteIcon slot="icon-before"/>
-                    </Button>
+          <Button
+            appearance="subtle"
+            :class="{ 'is-active': isActive.blockquote() }"
+            spacing="none"
+            @click="commands.blockquote"
+          >
+            <EditorQuoteIcon slot="icon-before"/>
+          </Button>
 
-                    <Button
-                        appearance="subtle"
-                        :is-selected="isActive.code()"
-                        spacing="none"
-                        @click="commands.code">
-                        <EditorCodeIcon slot="icon-before"/>
-                    </Button>
-                    <slot name="menu-bar" :insert="insertDocument"/>
-                </div>
-            </editor-menu-bar>
-            <editor-content class="editor-content" :editable="editable" :read-only="!editable"
-                            :editor="editor" :data-text="emptyFieldText"
-                            @click.native="onEditRequested"/>
+          <Button
+            appearance="subtle"
+            :is-selected="isActive.code()"
+            spacing="none"
+            @click="commands.code"
+          >
+            <EditorCodeIcon slot="icon-before"/>
+          </Button>
+          <slot
+            name="menu-bar"
+            :insert="insertDocument"
+          />
         </div>
-        <slot v-if="editable" name="actions" :setContent="editor.setContent"/>
+      </editor-menu-bar>
+      <editor-content
+        class="editor-content"
+        :editable="editable"
+        :read-only="!editable"
+        :editor="editor"
+        :data-text="emptyFieldText"
+        @click.native="onEditRequested"
+      />
     </div>
+    <slot
+      v-if="editable"
+      name="actions"
+      :setContent="editor.setContent"
+    />
+  </div>
 </template>
 
 <script>

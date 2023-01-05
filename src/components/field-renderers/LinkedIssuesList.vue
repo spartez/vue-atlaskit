@@ -1,9 +1,16 @@
 <template>
-    <ul>
-        <li v-for="issue in issues" :key="issue.id">
-            <IssueRenderer :issue="issue" :base-url="baseUrl" :appearance="appearance"/>
-        </li>
-    </ul>
+  <ul>
+    <li
+      v-for="issue in issues"
+      :key="issue.id"
+    >
+      <IssueRenderer
+        :issue="issue"
+        :base-url="baseUrl"
+        :appearance="appearance"
+      />
+    </li>
+  </ul>
 </template>
 
 <script>

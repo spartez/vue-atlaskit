@@ -1,18 +1,30 @@
 <template>
-    <div ref="dialog-container" class="dialog-container">
-        <slot name="trigger"
-              :is-open="open"
-              :toggle="onTriggerClick"/>
-        <Popup ref="dialog" :is-open="open" :offset="offset"
-               :target-element="$refs['dialog-container']"
-               :boundaries-element="boundariesElement"
-               :placement="placement"
-               :position-fixed="positionFixed">
-            <div ref="dialog-content" class="dialog-content">
-                <slot/>
-            </div>
-        </Popup>
-    </div>
+  <div
+    ref="dialog-container"
+    class="dialog-container"
+  >
+    <slot
+      name="trigger"
+      :is-open="open"
+      :toggle="onTriggerClick"
+    />
+    <Popup
+      ref="dialog"
+      :is-open="open"
+      :offset="offset"
+      :target-element="$refs['dialog-container']"
+      :boundaries-element="boundariesElement"
+      :placement="placement"
+      :position-fixed="positionFixed"
+    >
+      <div
+        ref="dialog-content"
+        class="dialog-content"
+      >
+        <slot/>
+      </div>
+    </Popup>
+  </div>
 </template>
 
 <script>

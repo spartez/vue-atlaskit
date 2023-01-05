@@ -1,27 +1,47 @@
 <template>
-    <div ref="dropdown-container" class="dropdown-container">
-        <slot v-if="$scopedSlots.trigger" name="trigger"
-              :is-open="open"
-              :toggle="onTriggerClick"/>
-        <Button v-else :is-selected="open" :appearance="appearance"
-                @click="onTriggerClick">
-            {{ label }}
-            <ChevronDownIcon slot="icon-after"/>
-        </Button>
+  <div
+    ref="dropdown-container"
+    class="dropdown-container"
+  >
+    <slot
+      v-if="$scopedSlots.trigger"
+      name="trigger"
+      :is-open="open"
+      :toggle="onTriggerClick"
+    />
+    <Button
+      v-else
+      :is-selected="open"
+      :appearance="appearance"
+      @click="onTriggerClick"
+    >
+      {{ label }}
+      <ChevronDownIcon slot="icon-after"/>
+    </Button>
 
-        <Popup ref="menu" :is-open="open" offset="0,8"
-               :target-element="$refs['dropdown-container']"
-               :boundaries-element="boundariesElement"
-               :position-fixed="positionFixed"
-               :placement="placement"
-               @click.native="onMenuClick">
-            <slot name="dropdown-menu" :toggle="onTriggerClick">
-                <div class="dropdown-menu" :style="{ minWidth }">
-                    <slot/>
-                </div>
-            </slot>
-        </Popup>
-    </div>
+    <Popup
+      ref="menu"
+      :is-open="open"
+      offset="0,8"
+      :target-element="$refs['dropdown-container']"
+      :boundaries-element="boundariesElement"
+      :position-fixed="positionFixed"
+      :placement="placement"
+      @click.native="onMenuClick"
+    >
+      <slot
+        name="dropdown-menu"
+        :toggle="onTriggerClick"
+      >
+        <div
+          class="dropdown-menu"
+          :style="{ minWidth }"
+        >
+          <slot/>
+        </div>
+      </slot>
+    </Popup>
+  </div>
 </template>
 
 <script>
@@ -142,5 +162,6 @@
         max-width: 300px;
         max-height: 400px;
         overflow: auto;
+        background-color: var(--ds-surface-overlay, #fff);
     }
 </style>

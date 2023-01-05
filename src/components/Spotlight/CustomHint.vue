@@ -1,20 +1,33 @@
 <template>
-    <transition name="fade-in" mode="out-in">
-        <div ref="message" class="spotlight-message">
-            <header class="header">
-                <h4 class="title">
-                    <span>{{ title }}</span>
-                </h4>
-                <CrossIcon class="close-icon" :primary-color="color" size="small"
-                           @click.native="onClose"
-                           @mouseenter.native="onEnter"
-                           @mouseleave.native="onLeave"/>
-            </header>
-            <div ref="content" class="content">
-                <slot/>
-            </div>
-        </div>
-    </transition>
+  <transition
+    name="fade-in"
+    mode="out-in"
+  >
+    <div
+      ref="message"
+      class="spotlight-message"
+    >
+      <header class="header">
+        <h4 class="title">
+          <span>{{ title }}</span>
+        </h4>
+        <CrossIcon
+          class="close-icon"
+          :primary-color="color"
+          size="small"
+          @click.native="onClose"
+          @mouseenter.native="onEnter"
+          @mouseleave.native="onLeave"
+        />
+      </header>
+      <div
+        ref="content"
+        class="content"
+      >
+        <slot/>
+      </div>
+    </div>
+  </transition>
 </template>
 
 <script>

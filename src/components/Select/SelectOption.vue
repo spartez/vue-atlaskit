@@ -1,10 +1,20 @@
 <template>
-    <div ref="option" :selected="isSelected" class="select-option"
-         :current="current" @click.stop="onOptionSelected" @mouseover="onMouseOver">
-        <slot name="option" :option="option.value" :is-current="current">
-            {{ option.label }}
-        </slot>
-    </div>
+  <div
+    ref="option"
+    :selected="isSelected"
+    class="select-option"
+    :current="current"
+    @click.stop="onOptionSelected"
+    @mouseover="onMouseOver"
+  >
+    <slot
+      name="option"
+      :option="option.value"
+      :is-current="current"
+    >
+      {{ option.label }}
+    </slot>
+  </div>
 </template>
 
 <script>
@@ -77,12 +87,12 @@
 }
 
 .select-option[selected] {
-  background-color: #42526e;
-  color: #fff;
+  background-color: var(--ds-background-selected,#E6EFFC);
+  color: var(--ds-text-selected, #0052CC);
 }
 
 .select-option[current] {
-  background-color: #ebecf0;
+  background-color: var(--ds-background-neutral-subtle-hovered, #F4F5F7);
   color: inherit;
 }
 

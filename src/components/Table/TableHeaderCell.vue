@@ -1,20 +1,32 @@
 <template>
-    <th class="table-header-cell"
-        :sticky-header="stickyHeader"
-        :sticky-left="stickyLeft"
-        :sticky-right="stickyRight"
-        :sortable="column.sortable"
-        @click="onClick">
-        <slot :sortedDesc="sortedDesc" :sorted="sorted" :sortable="column.sortable">
-            <span class="table-header-label">
-                {{ column.name }}
-            </span>
-            <template v-if="column.sortable">
-                <ChevronDownIcon v-if="sorted && sortedDesc" size="small"/>
-                <ChevronUpIcon v-if="sorted && !sortedDesc" size="small"/>
-            </template>
-        </slot>
-    </th>
+  <th
+    class="table-header-cell"
+    :sticky-header="stickyHeader"
+    :sticky-left="stickyLeft"
+    :sticky-right="stickyRight"
+    :sortable="column.sortable"
+    @click="onClick"
+  >
+    <slot
+      :sortedDesc="sortedDesc"
+      :sorted="sorted"
+      :sortable="column.sortable"
+    >
+      <span class="table-header-label">
+        {{ column.name }}
+      </span>
+      <template v-if="column.sortable">
+        <ChevronDownIcon
+          v-if="sorted && sortedDesc"
+          size="small"
+        />
+        <ChevronUpIcon
+          v-if="sorted && !sortedDesc"
+          size="small"
+        />
+      </template>
+    </slot>
+  </th>
 </template>
 
 <script>
@@ -69,9 +81,9 @@
         font-size: 12px;
         line-height: 1.67;
         letter-spacing: -0.1px;
-        color: rgb(94, 108, 132);
+        color: var(--ds-text-subtle, #5E6C84);
         padding: 9px 16px 7px;
-        border-bottom: 2px solid rgb(223, 225, 230);
+        border-bottom: 2px solid var(--ds-border, #DFE1E6);
         display: flex;
     }
 
@@ -79,25 +91,25 @@
         position: sticky;
         top: 0;
         z-index: 10;
-        background: white;
+        background: var(--ds-surface, #fff);
     }
 
     .table-header-cell[sticky-left] {
         position: sticky;
         left: 0;
         z-index: 20;
-        background: white;
+        background: var(--ds-surface, #fff);
     }
 
     .table-header-cell[sticky-right] {
         position: sticky;
         right: 0;
         z-index: 20;
-        background: white;
+        background: var(--ds-surface, #fff);
     }
 
     .table-header-cell[sortable]:hover {
-        background-color: rgb(244, 245, 247);
+        background-color: var(--ds-surface-hovered, rgb(250, 251, 252));
         cursor: pointer;
     }
 

@@ -1,20 +1,51 @@
 <template>
-    <div ref="date-picker" class="date-picker" @click.stop>
-        <TextField :is-focused="focused" :is-loading="isLoading" :disabled="isLoading"
-                   :is-invalid="isInvalid" select @mousedown="toggle">
-            <input ref="input" :value="formattedDate" type="text"
-                   width="50%" placeholder="e.g. 31/12/2018" :disabled="isLoading"
-                   v-on="listeners" @keydown.enter="onEnter"
-                   @input="onInput" @keyup.esc="onEsc"
-                   @focus="onFocus" @blur="onBlur">
-            <CalendarIcon class="icon" size="small" @mousedown.native.prevent/>
-        </TextField>
-        <Popup :is-open="isOpen" :target-element="$refs['date-picker']" placement="bottom-start"
-               data-cy="select-menu">
-            <Calendar :value="selectedDate" :disabled-range="disabledRange" :time-zone="timeZone"
-                      @date-selected="onDateSelected"/>
-        </Popup>
-    </div>
+  <div
+    ref="date-picker"
+    class="date-picker"
+    @click.stop
+  >
+    <TextField
+      :is-focused="focused"
+      :is-loading="isLoading"
+      :disabled="isLoading"
+      :is-invalid="isInvalid"
+      select
+      @mousedown="toggle"
+    >
+      <input
+        ref="input"
+        :value="formattedDate"
+        type="text"
+        width="50%"
+        placeholder="e.g. 31/12/2018"
+        :disabled="isLoading"
+        v-on="listeners"
+        @keydown.enter="onEnter"
+        @input="onInput"
+        @keyup.esc="onEsc"
+        @focus="onFocus"
+        @blur="onBlur"
+      >
+      <CalendarIcon
+        class="icon"
+        size="small"
+        @mousedown.native.prevent
+      />
+    </TextField>
+    <Popup
+      :is-open="isOpen"
+      :target-element="$refs['date-picker']"
+      placement="bottom-start"
+      data-cy="select-menu"
+    >
+      <Calendar
+        :value="selectedDate"
+        :disabled-range="disabledRange"
+        :time-zone="timeZone"
+        @date-selected="onDateSelected"
+      />
+    </Popup>
+  </div>
 </template>
 
 <script>

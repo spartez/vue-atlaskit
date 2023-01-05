@@ -1,10 +1,13 @@
 <template>
-    <section class="message" :appearance="appearance">
-        <div class="icon">
-            <component :is="`${appearance}-icon`"/>
-        </div>
-        <span>{{ node.textContent }}</span>
-    </section>
+  <section
+    class="message"
+    :appearance="appearance"
+  >
+    <div class="icon">
+      <component :is="`${appearance}-icon`"/>
+    </div>
+    <span>{{ node.textContent }}</span>
+  </section>
 </template>
 
 <script>

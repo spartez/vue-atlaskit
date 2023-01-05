@@ -1,14 +1,23 @@
 <template>
-    <div class="tooltip">
-        <div ref="target" class="target" @mouseenter="onMouseEnter"
-             @mouseleave="onMouseLeave">
-            <slot/>
-        </div>
-        <TooltipContent v-if="show" ref="popper"
-                        :target-element="$refs.target"
-                        :boundaries-element="boundariesElement"
-                        :placement="placement" :offset="offset" :label="label"/>
+  <div class="tooltip">
+    <div
+      ref="target"
+      class="target"
+      @mouseenter="onMouseEnter"
+      @mouseleave="onMouseLeave"
+    >
+      <slot/>
     </div>
+    <TooltipContent
+      v-if="show"
+      ref="popper"
+      :target-element="$refs.target"
+      :boundaries-element="boundariesElement"
+      :placement="placement"
+      :offset="offset"
+      :label="label"
+    />
+  </div>
 </template>
 
 <script>

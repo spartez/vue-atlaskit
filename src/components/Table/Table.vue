@@ -1,44 +1,71 @@
 <template>
-    <div class="table-wrapper">
-        <table ref="table" class="table">
-            <thead>
-                <tr class="table-header-row">
-                    <TableHeaderCell v-for="(column, index) in columns" :key="column.id" :column="column"
-                                     :sticky-left="stickyLeftColumn && index === 0"
-                                     :sticky-right="stickyRightColumn && index === (columns.length - 1)"
-                                     :sticky-header="stickyHeader"
-                                     :sorted="sortedBy === column.id"
-                                     :sorted-desc="sortedDesc"
-                                     @sorted="onSorted(column)">
-                        <template v-slot="props">
-                            <slot :name="headerSlotName(column.id)" v-bind="props"/>
-                        </template>
-                    </TableHeaderCell>
-                </tr>
-            </thead>
-            <tbody>
-                <TableRow v-for="row in data" :key="row.id"
-                          :columns="columns"
-                          :row="row"
-                          :sticky-right="stickyRightColumn"
-                          :sticky-left="stickyLeftColumn" @click="onRowClick(row, $event)">
-                    <template v-for="column in columns" v-slot:[column.id]="props">
-                        <slot :name="column.id" v-bind="props"/>
-                    </template>
-                </TableRow>
-            </tbody>
-            <tfoot v-show="infiniteScroll">
-                <tr>
-                    <td ref="infinite-scroll-loader" class="infinite-scroll-loader" :style="{ width: `${tableWidth}px` }">
-                        <Spinner size="small"/>
-                    </td>
-                </tr>
-            </tfoot>
-        </table>
-        <div class="busy-glass" :busy="busy">
-            <Spinner/>
-        </div>
+  <div class="table-wrapper">
+    <table
+      ref="table"
+      class="table"
+    >
+      <thead>
+        <tr class="table-header-row">
+          <TableHeaderCell
+            v-for="(column, index) in columns"
+            :key="column.id"
+            :column="column"
+            :sticky-left="stickyLeftColumn && index === 0"
+            :sticky-right="stickyRightColumn && index === (columns.length - 1)"
+            :sticky-header="stickyHeader"
+            :sorted="sortedBy === column.id"
+            :sorted-desc="sortedDesc"
+            @sorted="onSorted(column)"
+          >
+            <template #default="props">
+              <slot
+                :name="headerSlotName(column.id)"
+                v-bind="props"
+              />
+            </template>
+          </TableHeaderCell>
+        </tr>
+      </thead>
+      <tbody>
+        <TableRow
+          v-for="row in data"
+          :key="row.id"
+          :columns="columns"
+          :row="row"
+          :sticky-right="stickyRightColumn"
+          :sticky-left="stickyLeftColumn"
+          @click="onRowClick(row, $event)"
+        >
+          <template
+            v-for="column in columns"
+            #[column.id]="props"
+          >
+            <slot
+              :name="column.id"
+              v-bind="props"
+            />
+          </template>
+        </TableRow>
+      </tbody>
+      <tfoot v-show="infiniteScroll">
+        <tr>
+          <td
+            ref="infinite-scroll-loader"
+            class="infinite-scroll-loader"
+            :style="{ width: `${tableWidth}px` }"
+          >
+            <Spinner size="small"/>
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+    <div
+      class="busy-glass"
+      :busy="busy"
+    >
+      <Spinner/>
     </div>
+  </div>
 </template>
 
 <script>

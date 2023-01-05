@@ -1,43 +1,72 @@
 <template>
-    <InlineEdit v-if="editable && !avatarOnly"
-                :value="user"
-                class="user-inline-edit"
-                :confirm="confirm"
-                :placement="placement"
-                @save-requested="onSaveRequested">
-        <Select slot="editor" slot-scope="props"
-                :value="props.value"
-                :options="users"
-                :open-on-focus="true"
-                :is-clearable="clearable"
-                :async="true"
-                placeholder="Type to search..."
-                :normalizer="normalizer"
-                :is-invalid="props.isInvalid"
-                :is-focused="props.isFocused"
-                :is-loading="props.isLoading"
-                :is-fetching="isFetching"
-                :confirm="confirm"
-                @open="loadInitialOptions"
-                @search-change="debouncedGetUsers"
-                @input="props.input"
-                @blur="props.blur"
-                @confirm="props.confirm"
-                @focus="props.focus"
-                @cancel="props.cancel">
-            <div slot="option" slot-scope="{option}" class="label">
-                <UserRenderer :tag="tag" :user="option" :avatar-only="avatarOnly"/>
-            </div>
-            <div slot="selected" slot-scope="{selected}" class="label">
-                <UserRenderer :tag="tag" :user="selected" :avatar-only="avatarOnly"/>
-            </div>
-        </Select>
-        <slot>
-            <UserRenderer :tag="tag" :user="user" :avatar-only="avatarOnly"/>
-        </slot>
-    </InlineEdit>
-    <UserRenderer v-else :tag="tag" :user="user"
-                  :avatar-only="avatarOnly"/>
+  <InlineEdit
+    v-if="editable && !avatarOnly"
+    :value="user"
+    class="user-inline-edit"
+    :confirm="confirm"
+    :placement="placement"
+    @save-requested="onSaveRequested"
+  >
+    <Select
+      slot="editor"
+      slot-scope="props"
+      :value="props.value"
+      :options="users"
+      :open-on-focus="true"
+      :is-clearable="clearable"
+      :async="true"
+      placeholder="Type to search..."
+      :normalizer="normalizer"
+      :is-invalid="props.isInvalid"
+      :is-focused="props.isFocused"
+      :is-loading="props.isLoading"
+      :is-fetching="isFetching"
+      :confirm="confirm"
+      @open="loadInitialOptions"
+      @search-change="debouncedGetUsers"
+      @input="props.input"
+      @blur="props.blur"
+      @confirm="props.confirm"
+      @focus="props.focus"
+      @cancel="props.cancel"
+    >
+      <div
+        slot="option"
+        slot-scope="{option}"
+        class="label"
+      >
+        <UserRenderer
+          :tag="tag"
+          :user="option"
+          :avatar-only="avatarOnly"
+        />
+      </div>
+      <div
+        slot="selected"
+        slot-scope="{selected}"
+        class="label"
+      >
+        <UserRenderer
+          :tag="tag"
+          :user="selected"
+          :avatar-only="avatarOnly"
+        />
+      </div>
+    </Select>
+    <slot>
+      <UserRenderer
+        :tag="tag"
+        :user="user"
+        :avatar-only="avatarOnly"
+      />
+    </slot>
+  </InlineEdit>
+  <UserRenderer
+    v-else
+    :tag="tag"
+    :user="user"
+    :avatar-only="avatarOnly"
+  />
 </template>
 
 <script>

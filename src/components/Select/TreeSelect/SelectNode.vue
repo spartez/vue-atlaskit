@@ -1,11 +1,25 @@
 <template>
-    <div ref="option" class="select-option" @click.stop>
-        <slot name="option" :option="option" :is-current="current">
-            <Node :node="option" :level="1" :expand-level="2"
-                  :selected="[selected]" :current="current" @click.native.stop
-                  @input="onSelect"/>
-        </slot>
-    </div>
+  <div
+    ref="option"
+    class="select-option"
+    @click.stop
+  >
+    <slot
+      name="option"
+      :option="option"
+      :is-current="current"
+    >
+      <Node
+        :node="option"
+        :level="1"
+        :expand-level="2"
+        :selected="[selected]"
+        :current="current"
+        @click.native.stop
+        @input="onSelect"
+      />
+    </slot>
+  </div>
 </template>
 
 <script>

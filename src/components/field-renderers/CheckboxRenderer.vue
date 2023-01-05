@@ -1,9 +1,16 @@
 <template>
-    <span class="input-label">
-        <Checked v-if="value" size="small" primary-color="#36B37E"/>
-        <span v-else class="icon"/>
-        <span v-if="label">{{ label }}</span>
-    </span>
+  <span class="input-label">
+    <Checked
+      v-if="value"
+      size="small"
+      primary-color="#36B37E"
+    />
+    <span
+      v-else
+      class="icon"
+    />
+    <span v-if="label">{{ label }}</span>
+  </span>
 </template>
 
 <script>

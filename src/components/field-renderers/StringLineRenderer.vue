@@ -1,6 +1,9 @@
 <template>
-    <div class="string-line-wrapper"
-         :title="value" v-text="value"/>
+  <div
+    class="string-line-wrapper"
+    :title="value"
+    v-text="value"
+  />
 </template>
 
 <script>

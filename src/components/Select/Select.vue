@@ -1,72 +1,122 @@
 <template>
-    <div ref="target" class="select" :disabled="isDisabled">
-        <TextField :is-focused="focused" :is-invalid="isInvalid" :is-loading="isLoading"
-                   class="select-wrapper" :select="select" tabindex="-1"
-                   @click="click">
-            <div ref="list" class="flex-wrapper" :gap="multi && !!selected.length"
-                 @dragover.prevent>
-                <template v-if=" multi">
-                    <Tag v-for="(tag,i) in selected" :key="`${tag.id}-${i}`" :tag="tag"
-                         :index="i"
-                         :count="selected.length"
-                         :min="min"
-                         data-cy="tag"
-                         @dragend="onDragEnd"
-                         @drag="handleDrag"
-                         @dragstart="onDragStart"
-                         @on-remove="onRemove">
-                        <slot name="tag" :tag="tag"/>
-                    </Tag>
-                </template>
-                <input ref="input" class="search"
-                       :value="search"
-                       :disabled="isDisabled"
-                       :style="{width: currentWidth}"
-                       @keydown.down.prevent="onNextSuggestion"
-                       @keydown.up.prevent="onPreviousSuggestion"
-                       @keydown.enter="onSuggestionSelected"
-                       @input="onInput"
-                       @focus="onFocus"
-                       @blur="onBlur"
-                       @keyup.esc="onEsc"
-                       @keydown.delete="removeOption">
-            </div>
-            <div v-if="!selected.length" class="text">
-                <slot v-if="!search && selected.value && $scopedSlots['selected'] && !multi" name="selected" :selected="selected.value"/>
-                <span v-else :placeholder="!search && !selected.label">
-                    {{ input }}
-                </span>
-            </div>
-            <Icons :is-selected="isAnyOptionSelected" :is-fetching="isFetching"
-                   :createable="createable" :is-clearable="showClearIcon" @clear="onClear">
-                <slot name="icon"/>
-            </Icons>
-        </TextField>
-        <Popper v-if="shouldOpenMenu" ref="menu" offset="0,0"
-                :target-element="$refs.target"
-                :boundaries-element="boundariesElement"
-                placement="bottom-start">
-            <SelectMenu :selected="selected" :options="suggestions"
-                        :current-suggestion-index="currentSuggestionIndex"
-                        :is-fetching="isFetching"
-                        :async="async"
-                        :append-to-body="appendToBody"
-                        :contains-query="!!search"
-                        :style="{width: selectWidth}"
-                        :has-suggestions="hasSuggestions"
-                        :no-options-message="noOptionsMessage"
-                        :placeholder="searchPromptText"
-                        data-cy="select-menu"
-                        @update-popper-position="updatePopperPosition"
-                        @mouseover="onMouseOverSuggestion"
-                        @option-selected="onOptionSelected">
-                <slot slot="option" slot-scope="{option, isCurrent}" name="option"
-                      :is-current="isCurrent"
-                      :option="option"/>
-                <slot name="custom-action"/>
-            </SelectMenu>
-        </Popper>
-    </div>
+  <div
+    ref="target"
+    class="select"
+    :disabled="isDisabled"
+  >
+    <TextField
+      :is-focused="focused"
+      :is-invalid="isInvalid"
+      :is-loading="isLoading"
+      class="select-wrapper"
+      :select="select"
+      tabindex="-1"
+      @click="click"
+    >
+      <div
+        ref="list"
+        class="flex-wrapper"
+        :gap="multi && !!selected.length"
+        @dragover.prevent
+      >
+        <template v-if=" multi">
+          <Tag
+            v-for="(tag,i) in selected"
+            :key="`${tag.id}-${i}`"
+            :tag="tag"
+            :index="i"
+            :count="selected.length"
+            :min="min"
+            data-cy="tag"
+            @dragend="onDragEnd"
+            @drag="handleDrag"
+            @dragstart="onDragStart"
+            @on-remove="onRemove"
+          >
+            <slot
+              name="tag"
+              :tag="tag"
+            />
+          </Tag>
+        </template>
+        <input
+          ref="input"
+          class="search"
+          :value="search"
+          :disabled="isDisabled"
+          :style="{width: currentWidth}"
+          @keydown.down.prevent="onNextSuggestion"
+          @keydown.up.prevent="onPreviousSuggestion"
+          @keydown.enter="onSuggestionSelected"
+          @input="onInput"
+          @focus="onFocus"
+          @blur="onBlur"
+          @keyup.esc="onEsc"
+          @keydown.delete="removeOption"
+        >
+      </div>
+      <div
+        v-if="!selected.length"
+        class="text"
+      >
+        <slot
+          v-if="!search && selected.value && $scopedSlots['selected'] && !multi"
+          name="selected"
+          :selected="selected.value"
+        />
+        <span
+          v-else
+          :placeholder="!search && !selected.label"
+        >
+          {{ input }}
+        </span>
+      </div>
+      <Icons
+        :is-selected="isAnyOptionSelected"
+        :is-fetching="isFetching"
+        :createable="createable"
+        :is-clearable="showClearIcon"
+        @clear="onClear"
+      >
+        <slot name="icon"/>
+      </Icons>
+    </TextField>
+    <Popper
+      v-if="shouldOpenMenu"
+      ref="menu"
+      offset="0,0"
+      :target-element="$refs.target"
+      :boundaries-element="boundariesElement"
+      placement="bottom-start"
+    >
+      <SelectMenu
+        :selected="selected"
+        :options="suggestions"
+        :current-suggestion-index="currentSuggestionIndex"
+        :is-fetching="isFetching"
+        :async="async"
+        :append-to-body="appendToBody"
+        :contains-query="!!search"
+        :style="{width: selectWidth}"
+        :has-suggestions="hasSuggestions"
+        :no-options-message="noOptionsMessage"
+        :placeholder="searchPromptText"
+        data-cy="select-menu"
+        @update-popper-position="updatePopperPosition"
+        @mouseover="onMouseOverSuggestion"
+        @option-selected="onOptionSelected"
+      >
+        <slot
+          slot="option"
+          slot-scope="{option, isCurrent}"
+          name="option"
+          :is-current="isCurrent"
+          :option="option"
+        />
+        <slot name="custom-action"/>
+      </SelectMenu>
+    </Popper>
+  </div>
 </template>
 
 <script>

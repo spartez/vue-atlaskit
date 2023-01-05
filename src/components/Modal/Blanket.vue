@@ -1,7 +1,10 @@
 <template>
-    <div class="blanket" :style="{zIndex}">
-        <slot/>
-    </div>
+  <div
+    class="blanket"
+    :style="{zIndex}"
+  >
+    <slot/>
+  </div>
 </template>
 
 <script>

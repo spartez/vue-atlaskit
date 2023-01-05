@@ -1,23 +1,31 @@
 <template>
-    <ul ref="tree" @mouseleave="onMouseOut">
-        <Node v-for="node in nodes"
-              :key="node.id"
-              :selected="selected"
-              :node="node"
-              :level="1"
-              :expanded="expanded"
-              :expand-level="expandLevel"
-              :search="search"
-              :hovered="hovered"
-              @toggle-expand="onToggleExpand"
-              @input="onSelect"
-              @expand="onExpand"
-              @highlight="highlight">
-            <template v-slot:label="{node}">
-                <slot :node="node" name="label"/>
-            </template>
-        </Node>
-    </ul>
+  <ul
+    ref="tree"
+    @mouseleave="onMouseOut"
+  >
+    <Node
+      v-for="node in nodes"
+      :key="node.id"
+      :selected="selected"
+      :node="node"
+      :level="1"
+      :expanded="expanded"
+      :expand-level="expandLevel"
+      :search="search"
+      :hovered="hovered"
+      @toggle-expand="onToggleExpand"
+      @input="onSelect"
+      @expand="onExpand"
+      @highlight="highlight"
+    >
+      <template #label="{node}">
+        <slot
+          :node="node"
+          name="label"
+        />
+      </template>
+    </Node>
+  </ul>
 </template>
 
 <script>

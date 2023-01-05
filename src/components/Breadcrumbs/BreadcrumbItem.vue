@@ -1,12 +1,18 @@
 <template>
-    <div class="breadcrumb" :with-icon="$slots.icon">
-        <span class="item">
-            <slot name="icon"/>
-            <slot name="link">
-                <a :href="link" :target="target">{{ text }}</a>
-            </slot>
-        </span>
-    </div>
+  <div
+    class="breadcrumb"
+    :with-icon="$slots.icon"
+  >
+    <span class="item">
+      <slot name="icon"/>
+      <slot name="link">
+        <a
+          :href="link"
+          :target="target"
+        >{{ text }}</a>
+      </slot>
+    </span>
+  </div>
 </template>
 
 <script>
@@ -56,7 +62,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    color: rgb(107, 119, 140);
+    color: var(--ds-text-subtle, #6B778C);
     margin-left: 0px;
     display: block;
 }
@@ -68,8 +74,7 @@
 .breadcrumb:after {
     display: inline-block;
     content: '/';
-    color: rgb(122, 134, 154);
-    flex-shrink: 0;
+    color: var(--ds-text-subtle, #6B778C);
     text-align: center;
     margin: 0px 6px;
     width: 8px;

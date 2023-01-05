@@ -1,56 +1,118 @@
 <template>
-    <div class="avatar-group">
-        <transition-group name="participant" tag="div" class="avatar-group-inner"
-                          :over-limit="isOverLimit"
-                          @before-leave="beforeLeave">
-            <div v-if="$slots.before" key="slot-before" class="avatar-wrapper"
-                 :style="{ zIndex: count + 1 }">
-                <slot name="before"/>
-            </div>
-            <div v-for="(user,i) in visible" :key="user.key" class="avatar-wrapper"
-                 :data-index="i" :style="{ zIndex: count - i }" :last="i === count - 1">
-                <Tooltip :key="user.key" class="tooltip"
-                         :append-to-body="true" :label="user.displayName">
-                    <Avatar :key="user.key" :tag="user.link ? 'a' : 'span'"
-                            class="avatar"
-                            :size="size"
-                            :link="user.link"
-                            :status="user.status"
-                            :outline="borderColor"
-                            :avatar="user.avatar" :presence="user.presence"/>
-                </Tooltip>
-            </div>
-            <Dropdown v-if="isOverLimit" key="dropdown"
-                      placement="bottom-end"
-                      :position-fixed="dropdownPositionFixed"
-                      :append-to-body="appendToBody"
-                      class="dropdown-wrapper">
-                <div slot="trigger" slot-scope="{ toggle, isOpen }" :style="`border-color: ${borderColor}`"
-                     class="trigger" :size="size" :open="isOpen">
-                    <div class="more" @click="toggle">
-                        <transition :name="counterUp ? 'counter-up' : 'counter-down'">
-                            <span :key="collapsedCount" class="collapsed-count">+{{ collapsedCount }}</span>
-                        </transition>
-                    </div>
-                </div>
-                <DropdownItem v-for="collapsedUser in collapsed" :key="collapsedUser.key" :non-link="!collapsedUser.link">
-                    <a v-if="collapsedUser.link" class="list-item" :href="collapsedUser.link"
-                       target="_blank">
-                        <Avatar tag="a" :link="collapsedUser.link" class="user-list-avatar"
-                                size="small" :status="collapsedUser.status" :outline="borderColor"
-                                :avatar="collapsedUser.avatar" :presence="collapsedUser.presence"/>
-                        <span class="user-name">{{ collapsedUser.displayName }}</span>
-                    </a>
-                    <div v-else class="list-item">
-                        <Avatar tag="span" :link="collapsedUser.link" class="user-list-avatar"
-                                size="small" :status="collapsedUser.status" :outline="borderColor"
-                                :avatar="collapsedUser.avatar" :presence="collapsedUser.presence"/>
-                        <span class="user-name">{{ collapsedUser.displayName }}</span>
-                    </div>
-                </DropdownItem>
-            </Dropdown>
-        </transition-group>
-    </div>
+  <div class="avatar-group">
+    <transition-group
+      name="participant"
+      tag="div"
+      class="avatar-group-inner"
+      :over-limit="isOverLimit"
+      @before-leave="beforeLeave"
+    >
+      <div
+        v-if="$slots.before"
+        key="slot-before"
+        class="avatar-wrapper"
+        :style="{ zIndex: count + 1 }"
+      >
+        <slot name="before"/>
+      </div>
+      <div
+        v-for="(user,i) in visible"
+        :key="user.key"
+        class="avatar-wrapper"
+        :data-index="i"
+        :style="{ zIndex: count - i }"
+        :last="i === count - 1"
+      >
+        <Tooltip
+          :key="user.key"
+          class="tooltip"
+          :append-to-body="true"
+          :label="user.displayName"
+        >
+          <Avatar
+            :key="user.key"
+            :tag="user.link ? 'a' : 'span'"
+            class="avatar"
+            :size="size"
+            :link="user.link"
+            :status="user.status"
+            :outline="borderColor"
+            :avatar="user.avatar"
+            :presence="user.presence"
+          />
+        </Tooltip>
+      </div>
+      <Dropdown
+        v-if="isOverLimit"
+        key="dropdown"
+        placement="bottom-end"
+        :position-fixed="dropdownPositionFixed"
+        :append-to-body="appendToBody"
+        class="dropdown-wrapper"
+      >
+        <div
+          slot="trigger"
+          slot-scope="{ toggle, isOpen }"
+          :style="`border-color: ${borderColor}`"
+          class="trigger"
+          :size="size"
+          :open="isOpen"
+        >
+          <div
+            class="more"
+            @click="toggle"
+          >
+            <transition :name="counterUp ? 'counter-up' : 'counter-down'">
+              <span
+                :key="collapsedCount"
+                class="collapsed-count"
+              >+{{ collapsedCount }}</span>
+            </transition>
+          </div>
+        </div>
+        <DropdownItem
+          v-for="collapsedUser in collapsed"
+          :key="collapsedUser.key"
+          :non-link="!collapsedUser.link"
+        >
+          <a
+            v-if="collapsedUser.link"
+            class="list-item"
+            :href="collapsedUser.link"
+            target="_blank"
+          >
+            <Avatar
+              tag="a"
+              :link="collapsedUser.link"
+              class="user-list-avatar"
+              size="small"
+              :status="collapsedUser.status"
+              :outline="borderColor"
+              :avatar="collapsedUser.avatar"
+              :presence="collapsedUser.presence"
+            />
+            <span class="user-name">{{ collapsedUser.displayName }}</span>
+          </a>
+          <div
+            v-else
+            class="list-item"
+          >
+            <Avatar
+              tag="span"
+              :link="collapsedUser.link"
+              class="user-list-avatar"
+              size="small"
+              :status="collapsedUser.status"
+              :outline="borderColor"
+              :avatar="collapsedUser.avatar"
+              :presence="collapsedUser.presence"
+            />
+            <span class="user-name">{{ collapsedUser.displayName }}</span>
+          </div>
+        </DropdownItem>
+      </Dropdown>
+    </transition-group>
+  </div>
 </template>
 
 <script>
@@ -150,14 +212,13 @@
 
 .trigger {
     float: right;
-    background-color: #fff;
+    background-color: var(--ds-background-neutral, #F4F5F7);
     border-radius: 50%;
     box-sizing: border-box;
 }
 
 .more {
-    background-color: rgb(223, 225, 230);
-    color: rgb(66, 82, 110);
+    color: var(--ds-text, #42526E);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -170,7 +231,6 @@
 }
 
 .trigger[open] {
-    background-color: rgb(38, 132, 255);
     border-radius: 50%;
 }
 
@@ -194,9 +254,8 @@
     transition: opacity 200ms ease 0s;
 }
 
-.trigger:hover::after {
-    background-color: rgba(9, 30, 66, 0.36);
-    opacity: 1;
+.trigger:hover {
+    background-color: var(--ds-background-neutral-hovered, #EBECF0);
 }
 
 .trigger[size='xxlarge'] {

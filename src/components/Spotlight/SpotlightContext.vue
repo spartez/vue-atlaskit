@@ -6,6 +6,11 @@
 
     export default {
         name: 'SpotlightContext',
+        provide() {
+            return {
+                $spotlight: this
+            };
+        },
         data() {
             return {
                 spotlights: [],
@@ -131,11 +136,6 @@
                     default:
                 }
             }
-        },
-        provide() {
-            return {
-                $spotlight: this
-            };
         },
         render() {
             return this.$slots.default[0];

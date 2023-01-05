@@ -1,9 +1,12 @@
 <template>
-    <span>
-        <span class="lozenge" :appearance="color">
-            {{ text }}
-        </span>
+  <span>
+    <span
+      class="lozenge"
+      :appearance="color"
+    >
+      {{ text }}
     </span>
+  </span>
 </template>
 
 <script>

@@ -1,23 +1,39 @@
 <template>
-    <div ref="editor" class="rich-text-editable-renderer">
-        <RichTextEditor v-model="content" :editable="isEditing" :empty-field-text="emptyFieldText"
-                        :base-url="baseUrl" @edit-requested="onEditRequested">
-            <template v-slot:actions="{setContent}">
-                <div class="buttons">
-                    <Button type="submit" :is-loading="isLoading" :is-disabled="isDisabled"
-                            appearance="primary"
-                            @click="onSave">
-                        Save
-                    </Button>
-                    <Button @click="onCancel">
-                        Cancel
-                    </Button>
-                </div>
-            </template>
-        </RichTextEditor>
-        <InlineErrorMessage v-if="error" :error="error" :target-element="$refs['editor']"
-                            :placement="placement"/>
-    </div>
+  <div
+    ref="editor"
+    class="rich-text-editable-renderer"
+  >
+    <RichTextEditor
+      v-model="content"
+      :editable="isEditing"
+      :empty-field-text="emptyFieldText"
+      :base-url="baseUrl"
+      @edit-requested="onEditRequested"
+    >
+      <template>
+        <div class="buttons">
+          <Button
+            type="submit"
+            :is-loading="isLoading"
+            :is-disabled="isDisabled"
+            appearance="primary"
+            @click="onSave"
+          >
+            Save
+          </Button>
+          <Button @click="onCancel">
+            Cancel
+          </Button>
+        </div>
+      </template>
+    </RichTextEditor>
+    <InlineErrorMessage
+      v-if="error"
+      :error="error"
+      :target-element="$refs['editor']"
+      :placement="placement"
+    />
+  </div>
 </template>
 
 <script>

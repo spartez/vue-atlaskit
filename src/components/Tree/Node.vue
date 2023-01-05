@@ -1,40 +1,56 @@
 <template>
-    <li v-show="shouldBeDisplayedInSearchResults">
-        <Label v-model="checked"
-               :node="node"
-               :hovered="hovered"
-               :level="level"
-               @mouseenter.native="$emit('highlight', node.id.toString())">
-            <div v-if="hasChildNodes" slot="chevron" class="icon"
-                 :expanded="isExpanded" @click="$emit('toggle-expand',node.id.toString())">
-                <ChevronRightIcon/>
-            </div>
-            <slot name="label">
-                {{ node.label }}
-            </slot>
-        </Label>
-        <ul v-show="isExpanded" class="sub-tree">
-            <Node v-for="child in node.children" :key="child.id"
-                  :selected="selected"
-                  :node="child"
-                  :ancestors="parentNodes"
-                  :parent="node"
-                  :level="level + 1"
-                  :expand-level="expandLevel"
-                  :current="current"
-                  :hovered="hovered"
-                  :expanded="expanded"
-                  :search="search"
-                  @toggle-expand="onToggleExpand"
-                  @input="onSelect"
-                  @expand="onExpand"
-                  @highlight="onHover">
-                <template v-slot:label="{node}">
-                    <slot :node="node" name="label"/>
-                </template>
-            </Node>
-        </ul>
-    </li>
+  <li v-show="shouldBeDisplayedInSearchResults">
+    <Label
+      v-model="checked"
+      :node="node"
+      :hovered="hovered"
+      :level="level"
+      @mouseenter.native="$emit('highlight', node.id.toString())"
+    >
+      <div
+        v-if="hasChildNodes"
+        slot="chevron"
+        class="icon"
+        :expanded="isExpanded"
+        @click="$emit('toggle-expand',node.id.toString())"
+      >
+        <ChevronRightIcon/>
+      </div>
+      <slot name="label">
+        {{ node.label }}
+      </slot>
+    </Label>
+    <ul
+      v-show="isExpanded"
+      class="sub-tree"
+    >
+      <Node
+        v-for="child in node.children"
+        :key="child.id"
+        :selected="selected"
+        :node="child"
+        :ancestors="parentNodes"
+        :parent="node"
+        :level="level + 1"
+        :expand-level="expandLevel"
+        :current="current"
+        :hovered="hovered"
+        :expanded="expanded"
+        :search="search"
+        @toggle-expand="onToggleExpand"
+        @input="onSelect"
+        @expand="onExpand"
+        @highlight="onHover"
+      >
+        <template #label="{node}">
+          <slot
+            :node="node"
+            name="label"
+          />
+        </template>
+      </Node>
+    </ul>
+  </li>
 </template>
 
 <script>

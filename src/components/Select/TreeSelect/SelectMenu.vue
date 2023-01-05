@@ -1,21 +1,27 @@
 <template>
-    <div ref="menu" class="select-menu" tabindex="-1"
-         @mousedown.prevent>
-        <div class="select-menu-inner">
-            <Tree
-                :value="selected"
-                :nodes="options"
-                :current-suggestion-id="currentSuggestionId"
-                :expand-level="2"
-                :search="search"
-                @input="onOptionSelected"/>
-            <div
-                v-if="!hasSuggestions"
-                class="no-options">
-                {{ !containsQuery && async ? placeholder : noOptionsMessage }}
-            </div>
-        </div>
+  <div
+    ref="menu"
+    class="select-menu"
+    tabindex="-1"
+    @mousedown.prevent
+  >
+    <div class="select-menu-inner">
+      <Tree
+        :value="selected"
+        :nodes="options"
+        :current-suggestion-id="currentSuggestionId"
+        :expand-level="2"
+        :search="search"
+        @input="onOptionSelected"
+      />
+      <div
+        v-if="!hasSuggestions"
+        class="no-options"
+      >
+        {{ !containsQuery && async ? placeholder : noOptionsMessage }}
+      </div>
     </div>
+  </div>
 </template>
 
 <script>
@@ -72,7 +78,7 @@
 
 <style scoped>
 .select-menu {
-  background-color: rgb(255, 255, 255);
+  background-color: var(--ds-surface-overlay, #fff);
   box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 0px 1px,
     rgba(0, 0, 0, 0.1) 0px 4px 11px;
   margin-bottom: 8px;

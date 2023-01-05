@@ -1,16 +1,24 @@
 <template>
-    <div class="wrapper">
-        <div class="breadcrumbs">
-            <slot>
-                <BreadcrumbItem v-for="item in items" :key="item.text" :link="item.link"
-                                :text="item.text"/>
-            </slot>
-        </div>
-
-        <CopyToClipboard v-if="copy" :text="lastItemLink" placement="bottom-start">
-            <CopyIcon class="copy-icon"/>
-        </CopyToClipboard>
+  <div class="wrapper">
+    <div class="breadcrumbs">
+      <slot>
+        <BreadcrumbItem
+          v-for="item in items"
+          :key="item.text"
+          :link="item.link"
+          :text="item.text"
+        />
+      </slot>
     </div>
+
+    <CopyToClipboard
+      v-if="copy"
+      :text="lastItemLink"
+      placement="bottom-start"
+    >
+      <CopyIcon class="copy-icon"/>
+    </CopyToClipboard>
+  </div>
 </template>
 
 <script>
