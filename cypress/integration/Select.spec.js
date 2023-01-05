@@ -29,7 +29,7 @@ describe('SingleSelect', () => {
     it('keys should navigate the dropdown when input is focused', () => {
         cy.get('[data-cy=input-wrapper]').click();
         cy.get('input').type('{downarrow}');
-        cy.get('[data-cy=select-option]').first().should('have.css', 'background-color', 'rgb(235, 236, 240)');
+        cy.get('[data-cy=select-option]').first().should('have.css', 'background-color', 'rgb(244, 245, 247)');
         cy.get('input').should('have.focus');
     });
 
