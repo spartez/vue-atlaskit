@@ -2,7 +2,29 @@
     <div ref="menu" class="select-menu" tabindex="-1"
          @mousedown.prevent>
         <div class="select-menu-inner">
-            <SelectOption
+            <div v-if="isGrouped">
+                <SelectGroup v-for="(group, groupIndex) in options" :key="group.id" :label="group.label">
+                    <SelectOption
+                        v-for="(item, index) in group.options"
+                        :key="`${item.id}-${index}-${group.id}`"
+                        :selected-id="selectedId"
+                        :option="item"
+                        :index="sumGroupsOptionsLengthBeforeIndex(groupIndex) + index"
+                        :current-suggestion-index="currentSuggestionIndex"
+                        data-cy="select-option"
+                        :disabled="item.disabled"
+                        @hover="onMouseOverGrouped(groupIndex, index)"
+                        @option-selected="onOptionSelected">
+                        <template v-slot:option="{ option, isCurrent }">
+                            <slot name="option"
+                                  :is-current="isCurrent"
+                                  :option="option"/>
+                        </template>
+                    </SelectOption>
+                </SelectGroup>
+            </div>
+            <div v-else>
+                <SelectOption
                     v-for="(item, index) in options"
                     :key="`${item.id}-${index}`"
                     :selected-id="selectedId"
@@ -12,16 +34,17 @@
                     data-cy="select-option"
                     @hover="onMouseOver"
                     @option-selected="onOptionSelected">
-                <template v-slot:option="{ option, isCurrent }">
-                    <slot name="option"
-                          :is-current="isCurrent"
-                          :option="option"/>
-                </template>
-            </SelectOption>
+                    <template v-slot:option="{ option, isCurrent }">
+                        <slot name="option"
+                              :is-current="isCurrent"
+                              :option="option"/>
+                    </template>
+                </SelectOption>
+            </div>
             <div
-                    v-if="!hasSuggestions"
-                    data-cy="no-options"
-                    class="no-options">
+                v-if="!hasSuggestions"
+                data-cy="no-options"
+                class="no-options">
                 {{ !containsQuery && async ? placeholder : noOptionsMessage }}
             </div>
         </div>
@@ -32,11 +55,12 @@
 </template>
 
 <script>
-    import SelectOption from './SelectOption';
+    import SelectOption from './SelectOption.vue';
+    import SelectGroup from './SelectGroup.vue';
 
     export default {
         name: 'SelectMenu',
-        components: { SelectOption },
+        components: { SelectGroup, SelectOption },
         emits: ['update-popper-position', 'option-selected', 'hover'],
         props: {
             options: {
@@ -74,6 +98,10 @@
             placeholder: {
                 type: String,
                 default: undefined
+            },
+            isGrouped: {
+                type: Boolean,
+                default: false
             }
         },
         computed: {
@@ -93,11 +121,22 @@
             onOptionSelected(option) {
                 this.$emit('option-selected', option);
             },
+            onMouseOverGrouped(groupIndex, index) {
+                const before = this.sumGroupsOptionsLengthBeforeIndex(groupIndex);
+                this.$emit('hover', before + index);
+            },
             onMouseOver(index) {
                 this.$emit('hover', index);
             },
             resetIndex() {
                 this.$emit('hover', undefined);
+            },
+            sumGroupsOptionsLengthBeforeIndex(groupIndex) {
+                const x = this.options
+                    .slice(0, groupIndex)
+                    .map(group => group.options.length)
+                    .reduceRight((a, b) => a + b, 0);
+                return x;
             }
         }
     };
