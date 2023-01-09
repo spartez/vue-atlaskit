@@ -2,11 +2,11 @@
     <label :for="id">
         <input :id="id"
                type="checkbox"
-               :checked="value"
+               :checked="modelValue"
                @change="toggle">
         <div class="slide" :size="size">
             <div class="slide-inner">
-                <EditorDoneIcon v-if="value" data-cy="done" :size="iconSize"
+                <EditorDoneIcon v-if="modelValue" data-cy="done" :size="iconSize"
                                 primary-color="White"
                                 class="done"/>
                 <CrossIcon v-else data-cy="cross" :size="iconSize"
@@ -25,7 +25,7 @@
         name: 'Toggle',
         components: { CrossIcon, EditorDoneIcon },
         props: {
-            value: {
+            modelValue: {
                 type: [Number, String, Boolean],
                 default: false
             },
@@ -53,7 +53,7 @@
         methods: {
             toggle() {
                 if (this.disabled) return;
-                this.$emit('update:value', !this.value);
+                this.$emit('update:modelValue', !this.modelValue);
             }
         }
     };

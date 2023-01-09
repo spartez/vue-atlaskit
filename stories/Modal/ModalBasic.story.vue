@@ -5,17 +5,14 @@
         </Button>
         <Modal v-if="show" heading="Modal Basic" auto-focus
                @submit="onSubmit" @cancel="onCancel">
-            <p slot="content">
-                {{ paragraph }}
-            </p>
         </Modal>
     </div>
 </template>
 
 <script>
-    import Modal from '@/components/Modal/Modal';
-    import Button from '@/components/Button/Button';
     import faker from 'faker';
+    import Modal from '@/components/Modal/Modal.vue';
+    import Button from '@/components/Button/Button.vue';
 
     const paragraph = faker.lorem.paragraph();
 

@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils';
-import Input from '@/components/Form/Input';
+import Input from '@/components/Form/Input.vue';
 
 
 describe('Input', () => {
@@ -20,7 +20,7 @@ describe('Input', () => {
         component.find('input').element.value = 'Typed value';
         component.find('input').trigger('input');
 
-        const [value] = component.emitted('update:value');
+        const [value] = component.emitted('update:modelValue');
 
         expect(value).toEqual(['Typed value']);
     });

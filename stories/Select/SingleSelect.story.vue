@@ -2,7 +2,6 @@
     <div class="wrapper">
         <FieldGroup data-cy="field-group" label="Single Select">
             <Select v-model="value" data-cy="input-component"
-                    append-to-body
                     :options="options"
                     placeholder="select item"/>
         </FieldGroup>
@@ -22,8 +21,8 @@
 </template>
 
 <script>
-    import Select from '@/components/Select/Select';
-    import FieldGroup from '../../src/components/Form/FieldGroup';
+    import Select from '@/components/Select/Select.vue';
+    import FieldGroup from '../../src/components/Form/FieldGroup.vue';
     import { cities } from '../api-mocks/fake-data';
 
     export default {

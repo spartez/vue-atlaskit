@@ -2,7 +2,6 @@
     <div class="wrapper">
         <FieldGroup data-cy="field-group" label="Custom Select">
             <Select v-model="value" data-cy="input-component"
-                    append-to-body
                     placeholder="Quick add..."
                     :select="false"
                     class="select-ww"
@@ -30,11 +29,11 @@
 </template>
 
 <script>
-    import Select from '@/components/Select/Select';
-    import Button from '@/components/Button/Button';
+    import Select from '@/components/Select/Select.vue';
+    import Button from '@/components/Button/Button.vue';
     import SearchIcon from '@/components/Icon/SearchIcon';
     import AddIcon from '@/components/Icon/AddIcon';
-    import FieldGroup from '../../src/components/Form/FieldGroup';
+    import FieldGroup from '../../src/components/Form/FieldGroup.vue';
     import { cities } from '../api-mocks/fake-data';
 
     export default {

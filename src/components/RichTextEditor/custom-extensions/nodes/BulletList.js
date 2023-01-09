@@ -1,5 +1,5 @@
 /* eslint-disable */
-import { Node } from 'tiptap';
+import { Node } from '@tiptap/vue-3';
 import { wrappingInputRule } from 'tiptap-commands';
 import { bulletList } from '@atlaskit/adf-schema';
 import { toggleList } from "../commands/toggleList";

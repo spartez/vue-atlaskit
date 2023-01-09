@@ -10,7 +10,7 @@ describe('Calendar', () => {
 
     it('should select date on click', () => {
         cy.get('[data-cy=calendar] [data-cy=day]').first().click();
-        cy.get('[data-cy=calendar] [data-cy=day] button[selected]')
+        cy.get('[data-cy=calendar] [data-cy=day] button[selected=true]')
             .should('have.css', 'background-color', 'rgb(37, 56, 88)');
     });
 });

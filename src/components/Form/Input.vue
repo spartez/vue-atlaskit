@@ -10,7 +10,7 @@
 </template>
 
 <script>
-    import TextField from './TextField';
+    import TextField from './TextField.vue';
 
 
     export default {
@@ -18,8 +18,9 @@
         components: {
             TextField
         },
+        emits: ['update:modelValue', 'focus', 'blur'],
         props: {
-            value: {
+            modelValue: {
                 type: [Number, String],
                 default: undefined
             },
@@ -68,10 +69,10 @@
         computed: {
             input: {
                 get() {
-                    return this.value;
+                    return this.modelValue;
                 },
-                set(val) {
-                    this.$emit('update:value', val);
+                set(value) {
+                    this.$emit('update:modelValue', value);
                 }
             }
         },

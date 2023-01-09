@@ -1,3 +1,4 @@
-import Vue from 'vue';
 
-export const EventBus = new Vue();
+// eslint-disable-next-line new-cap
+// export const EventBus = new createApp({});
+export const EventBus = {};

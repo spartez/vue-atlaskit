@@ -1,6 +1,8 @@
-import Dropdown from './Dropdown'
-import DropdownItem from './DropdownItem'
-import DropdownCheckboxItem from './DropdownCheckboxItem'
-import DropdownGroup from './DropdownGroup'
+import Dropdown from './Dropdown.vue';
+import DropdownItem from './DropdownItem.vue';
+import DropdownCheckboxItem from './DropdownCheckboxItem.vue';
+import DropdownGroup from './DropdownGroup.vue';
 
-export { Dropdown, DropdownItem, DropdownCheckboxItem, DropdownGroup }
+export {
+    Dropdown, DropdownItem, DropdownCheckboxItem, DropdownGroup
+};
