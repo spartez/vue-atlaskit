@@ -52,77 +52,77 @@
 }
 
 [color="standard"] {
-    background-color: rgb(244, 245, 247);
-    color: rgb(37, 56, 88);
+    background-color: var(--ds-background-neutral, #F4F5F7);
+    color: var(--ds-text, #253858);
 }
 
 [color="green"] {
-    background-color: rgb(87, 217, 163);
-    color: rgb(23, 43, 77);
+    background-color: var(--ds-background-accent-green-subtle, #57D9A3);
+    color: var(--ds-text, #253858);
 }
 
 [color="blue"] {
-    background-color: rgb(76, 154, 255);
-    color: rgb(23, 43, 77);
+    background-color: var(--ds-background-accent-blue-subtle, #4C9AFF);
+    color: var(--ds-text, #253858);
 }
 
 [color="red"] {
-    background-color: rgb(255, 143, 115);
-    color: rgb(23, 43, 77);
+    background-color: var(--ds-background-accent-red-subtle, #FF8F73);
+    color: var(--ds-text, #253858);
 }
 
 [color="purple"] {
-    background-color: rgb(153, 141, 217);
-    color: rgb(23, 43, 77);
+    background-color: var(--ds-background-accent-purple-subtle, #998DD9);
+    color: var(--ds-text, #253858);
 }
 
 [color="grey"] {
-    background-color: rgb(66, 82, 110);
-    color: rgb(255, 255, 255);
+    background-color: var(--ds-background-accent-gray-subtle, #42526E);
+    color: var(--ds-text-accent-gray-bolder, #FFFFFF);
 }
 
 [color="teal"] {
-    background-color: rgb(0, 199, 230);
-    color: rgb(23, 43, 77);
+    background-color: var(--ds-background-accent-teal-subtle, #00C7E6);
+    color: var(--ds-text, #253858);
 }
 
 [color="yellow"] {
-    background-color: rgb(255, 196, 0);
-    color: rgb(23, 43, 77);
+    background-color: var(--ds-background-accent-yellow-subtle, #FFC400);
+    color: var(--ds-text, #253858);
 }
 
 [color="green-light"] {
-    background-color: rgb(121, 242, 192);
-    color: rgb(0, 102, 68);
+    background-color: var(--ds-background-accent-green-subtler, #79F2C0);
+    color: var(--ds-text-accent-green, #006644);
 }
 
 [color="blue-light"] {
-    background-color: rgb(179, 212, 255);
-    color: rgb(7, 71, 166);
+    background-color: var(--ds-background-accent-blue-subtler, #B3D4FF);
+    color: var(--ds-text-accent-blue, #0747A6);
 }
 
-[color="redLight"] {
-    background-color: rgb(255, 189, 173);
-    color: rgb(66, 82, 110);
+[color="red-light"] {
+    background-color: var(--ds-background-accent-red-subtler, #FFBDAD);
+    color: var(--ds-text-accent-red, #42526E);
 }
 
 [color="purple-light"] {
-    background-color: rgb(192, 182, 242);
-    color: rgb(64, 50, 148);
+    background-color: var(--ds-background-accent-purple-subtler, #C0B6F2);
+    color: var(--ds-text-accent-purple, #403294);
 }
 
 [color="grey-light"] {
-    background-color: rgb(235, 236, 240);
-    color: rgb(66, 82, 110);
+    background-color: var(--ds-background-accent-gray-subtler, #EBECF0);
+    color: var(--ds-text-accent-gray, #42526E);
 }
 
 [color="teal-light"] {
-    background-color: rgb(121, 226, 242);
-    color: rgb(66, 82, 110);
+    background-color: var(--ds-background-accent-teal-subtler, #79E2F2);
+    color: var(--ds-text-accent-teal, #42526E);
 }
 
 [color="yellow-light"] {
-    background-color: rgb(255, 227, 128);
-    color: rgb(66, 82, 110);
+    background-color: var(--ds-background-accent-orange-subtler, #FFE380);
+    color: var(--ds-text-accent-yellow, #42526E);
 }
 </style>

@@ -67,12 +67,12 @@
 
 <style scoped>
 .tag {
-  background-color: rgb(223, 225, 230);
+  background-color: var(--ds-background-neutral, #DFE1E6);
   display: inline-flex;
   align-items: center;
   min-width: 0;
   box-sizing: border-box;
-  color: rgb(66, 82, 110);
+  color: var(--ds-text, hsl(0, 0%, 20%));
   max-width: 100%;
   border-radius: 2px;
   margin: 4px 2px 0 2px;
@@ -85,7 +85,7 @@
 }
 
 .label {
-  color: rgb(51, 51, 51);
+  color: var(--ds-text, hsl(0, 0%, 20%));
   font-size: 85%;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -106,6 +106,6 @@
 }
 
 .remove-tag:hover {
-  background-color: #ffbdad;
+  background-color: var(--ds-background-danger-hovered, #FFBDAD);
 }
 </style>

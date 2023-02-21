@@ -69,11 +69,11 @@
     font-weight: 500;
     background-color: transparent;
     position: relative;
-    color: #0052CC;
+    color: var(--ds-text-selected, #0052CC);
 }
 
 [today=true]::after {
-    background-color: #0052CC;
+    background-color: var(--ds-text-selected, #0052CC);
     bottom: 2px;
     content: "";
     display: block;

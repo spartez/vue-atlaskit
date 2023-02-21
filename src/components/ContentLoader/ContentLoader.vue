@@ -74,11 +74,11 @@
             },
             primaryColor: {
                 type: String,
-                default: '#f9f9f9'
+                default: 'var(--ds-skeleton, rgba(9, 30, 66, 0.04))'
             },
             secondaryColor: {
                 type: String,
-                default: '#ecebeb'
+                default: 'var(--ds-skeleton, rgba(9, 30, 66, 0.04))'
             },
             primaryOpacity: {
                 type: Number,

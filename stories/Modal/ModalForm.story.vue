@@ -5,17 +5,19 @@
         </Button>
         <Modal v-if="show" heading="Form Demo" @submit="onSubmit"
                @cancel="onCancel">
-            <div slot="content">
-                <FieldGroup label="Title" required>
-                    <Input v-model="title" auto-focus/>
-                </FieldGroup>
-                <FieldGroup label="Type" required>
-                    <Input v-model="type"/>
-                </FieldGroup>
-                <FieldGroup label="Type" required>
-                    <Select v-model="type" :options="options" :selected="selected"/>
-                </FieldGroup>
-            </div>
+            <template v-slot:content>
+                <div>
+                    <FieldGroup label="Title" required>
+                        <Input v-model="title" auto-focus/>
+                    </FieldGroup>
+                    <FieldGroup label="Type" required>
+                        <Input v-model="type"/>
+                    </FieldGroup>
+                    <FieldGroup label="Type" required>
+                        <Select v-model="type" :options="options" :selected="selected"/>
+                    </FieldGroup>
+                </div>
+            </template>
         </Modal>
     </div>
 </template>

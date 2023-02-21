@@ -70,9 +70,9 @@
         font-size: 12px;
         line-height: 1.67;
         letter-spacing: -0.1px;
-        color: rgb(94, 108, 132);
+        color: var(--ds-text-subtle, #5E6C84);
         padding: 9px 16px 7px;
-        border-bottom: 2px solid rgb(223, 225, 230);
+        border-bottom: 2px solid var(--ds-border, #DFE1E6);
         display: flex;
     }
 
@@ -80,25 +80,25 @@
         position: sticky;
         top: 0;
         z-index: 10;
-        background: white;
+        background: var(--ds-surface, #fff);
     }
 
     .table-header-cell[sticky-left=true] {
         position: sticky;
         left: 0;
         z-index: 20;
-        background: white;
+        background: var(--ds-surface, #fff);
     }
 
     .table-header-cell[sticky-right=true] {
         position: sticky;
         right: 0;
         z-index: 20;
-        background: white;
+        background: var(--ds-surface, #fff);
     }
 
     .table-header-cell[sortable=true]:hover {
-        background-color: rgb(244, 245, 247);
+        background-color: var(--ds-surface-hovered, rgb(250, 251, 252));
         cursor: pointer;
     }
 

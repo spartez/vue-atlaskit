@@ -93,9 +93,9 @@
     box-shadow: 0 1px 2px 1px rgba(0, 1, 0, 0.2);
     white-space: nowrap;
     pointer-events: none;
-    background-color: #172b4d;
     border-radius: 3px;
-    color: #ffffff;
+    background-color: var(--ds-background-neutral-bold, #172b4d);
+    color: var(--ds-text-inverse, #FFF);
 }
 
 .fade-enter-active,
