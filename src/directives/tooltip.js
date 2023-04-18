@@ -46,6 +46,9 @@ function createTooltipComponent(el, context) {
                     props: {
                         ...this.props,
                         targetElement: el
+                    },
+                    attrs: {
+                        'tooltip-label': true
                     }
                 });
             }

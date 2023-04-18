@@ -11,7 +11,10 @@
       :offset="offset"
       :with-delay="withDelay"
     >
-      <span class="label">{{ label }}</span>
+      <span
+        class="label"
+        tooltip-label
+      >{{ label }}</span>
     </Popper>
   </transition>
 </template>
