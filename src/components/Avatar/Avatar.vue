@@ -17,6 +17,7 @@
         draggable="false"
         :src="avatar"
         alt="avatar"
+        avatar-img
         @error="error = true"
       >
       <svg
