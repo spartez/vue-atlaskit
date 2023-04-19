@@ -13,7 +13,7 @@
     >
       <span
         class="label"
-        tooltip-label
+        data-private
       >{{ label }}</span>
     </Popper>
   </transition>

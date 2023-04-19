@@ -48,7 +48,7 @@ function createTooltipComponent(el, context) {
                         targetElement: el
                     },
                     attrs: {
-                        'tooltip-label': true
+                        'data-private': true
                     }
                 });
             }

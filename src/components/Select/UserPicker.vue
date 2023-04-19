@@ -16,7 +16,7 @@
       slot="option"
       slot-scope="{option}"
       class="label"
-      user-picker-option
+      data-private
     >
       <UserRenderer
         tag="span"
@@ -27,7 +27,7 @@
       slot="selected"
       slot-scope="{selected}"
       class="label"
-      user-picker-selected
+      data-private
     >
       <UserRenderer
         tag="span"
@@ -38,7 +38,7 @@
       slot="tag"
       slot-scope="{tag}"
       class="user-tag"
-      user-picker-tag
+      data-private
     >
       <UserRenderer
         appearance="micro"
