@@ -16,6 +16,7 @@
       slot="option"
       slot-scope="{option}"
       class="label"
+      data-private
     >
       <UserRenderer
         tag="span"
@@ -26,6 +27,7 @@
       slot="selected"
       slot-scope="{selected}"
       class="label"
+      data-private
     >
       <UserRenderer
         tag="span"
@@ -36,6 +38,7 @@
       slot="tag"
       slot-scope="{tag}"
       class="user-tag"
+      data-private
     >
       <UserRenderer
         appearance="micro"
