@@ -1,6 +1,7 @@
 /* eslint-env node */
 module.exports = {
     extends: ['plugin:vue/recommended'],
+    "parserOptions": { "ecmaVersion": 9 },
     rules: {
         'max-len': [
             'warn',
