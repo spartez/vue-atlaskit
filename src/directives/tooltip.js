@@ -116,5 +116,4 @@ export default {
             el._tooltip.hide();
         }
     }
-
 };
