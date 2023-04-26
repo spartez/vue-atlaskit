@@ -110,5 +110,11 @@ export default {
         if (el._tooltip) {
             el._tooltip.update(el._tooltipProps);
         }
+    },
+    unbind(el) {
+        if (el._tooltip) {
+            el._tooltip.hide();
+        }
     }
+
 };
