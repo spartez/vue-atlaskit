@@ -3,6 +3,7 @@
         <input :id="id"
                type="checkbox"
                :checked="modelValue"
+               :disabled="disabled"
                @change="toggle">
         <div class="slide" :size="size">
             <div class="slide-inner">
@@ -87,6 +88,10 @@ label {
     cursor: pointer;
 }
 
+input:disabled + .slide {
+    cursor: initial;
+}
+
 input:focus + .slide {
     border: 2px solid var(--ds-border-focused, #4C9AFF);
 }
@@ -150,11 +155,11 @@ input:checked + .slide > .slide-inner {
     flex-direction: row;
 }
 
-input:checked + .slide:hover {
+input:not(:disabled):checked + .slide:hover {
     background-color: var(--ds-background-success-bold-hovered, #36B37E);
 }
 
-input:not(:checked) + .slide:hover {
+input:not(:disabled):not(:checked) + .slide:hover {
     background-color: var(--ds-background-neutral-bold-hovered, #A5ADBA);
 }
 </style>
