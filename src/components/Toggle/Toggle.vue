@@ -9,10 +9,12 @@
             <div class="slide-inner">
                 <EditorDoneIcon v-if="modelValue" data-cy="done" :size="iconSize"
                                 :primary-color="color"
-                                class="done"/>
+                                class="done"
+                                aria-hidden="true" />
                 <CrossIcon v-else data-cy="cross" :size="iconSize"
                            :primary-color="color"
-                           class="close"/>
+                           class="close"
+                           aria-hidden="true" />
             </div>
         </div>
     </label>
@@ -47,7 +49,9 @@
                 return this.size === 'large' ? 'small' : 'xsmall';
             },
             color() {
-                return this.disabled ? 'rgb(165, 173, 186)' : 'var(--ds-surface, #FFFFFF)';
+                return this.disabled
+                  ? 'var(--ds-icon-disabled, #A5ADBA)'
+                  : 'var(--ds-surface, #FFFFFF)';
             }
         },
         created() {
@@ -89,7 +93,7 @@ label {
 }
 
 input:disabled + .slide {
-    cursor: initial;
+    cursor: not-allowed;
 }
 
 input:focus + .slide {
@@ -124,12 +128,20 @@ input:checked + .slide {
     background-color: var(--ds-background-success-bold, #00875A);
 }
 
+input:disabled + .slide {
+    background-color: var(--ds-background-disabled, #F4F5F7);
+}
+
 input:checked + .slide::before {
     transform: translateX(16px);
 }
 
 input:checked + .slide[size="large"]::before {
     transform: translateX(20px);
+}
+
+input:disabled + .slide::before {
+  background: var(--ds-surface, #FFFFFF);
 }
 
 .done {
