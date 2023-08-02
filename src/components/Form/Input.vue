@@ -18,7 +18,7 @@
     import TextField from './TextField';
 
     export default {
-        name: 'Input',
+        name: 'AtlasInput',
         components: {
             TextField
         },

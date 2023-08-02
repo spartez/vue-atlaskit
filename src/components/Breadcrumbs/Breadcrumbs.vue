@@ -12,7 +12,7 @@
     </div>
 
     <CopyToClipboard
-      v-if="copy"
+      v-if="copy && lastItemLink"
       :text="lastItemLink"
       placement="bottom-start"
     >
@@ -46,7 +46,7 @@
         },
         mounted() {
             const links = this.$el.querySelectorAll('a');
-            this.lastItemLink = links[links.length - 1].getAttribute('href');
+            this.lastItemLink = links.length > 0 && links[links.length - 1].getAttribute('href');
         }
     };
 </script>

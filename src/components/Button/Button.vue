@@ -39,7 +39,7 @@
     import Spinner from '../Spinner/Spinner';
 
     export default {
-        name: 'Button',
+        name: 'AtlasButton',
         components: {
             Spinner
         },
