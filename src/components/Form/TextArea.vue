@@ -21,6 +21,9 @@
     export default {
         name: 'TextArea',
         components: { TextField },
+        compatConfig: {
+            MODE: 3
+        },
         emits: ['blur', 'focus', 'confirm', 'update:modelValue'],
         props: {
             modelValue: {

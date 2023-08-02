@@ -24,6 +24,9 @@
         components: {
             Spinner
         },
+        compatConfig: {
+            MODE: 3
+        },
         props: {
             isSelected: { type: Boolean, default: false },
             isDisabled: { type: Boolean, default: false },

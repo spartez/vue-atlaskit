@@ -124,7 +124,7 @@
             groupNormalizer: {
                 type: Function,
                 default: (value, index) => ({
-                    id: value.id ?? index,
+                    id: value.id || index,
                     label: value.label,
                     options: value.options.map(el => ({
                         id: el, label: el, value: el, disabled: el.disabled

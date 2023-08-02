@@ -16,7 +16,10 @@
                 type: Boolean,
                 default: false
             }
-        }
+        },
+        compatConfig: {
+            MODE: 3
+        },
     };
 </script>
 

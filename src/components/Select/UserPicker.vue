@@ -36,6 +36,9 @@
     export default {
         name: 'UserPicker',
         components: { UserRenderer, Select },
+        compatConfig: {
+            MODE: 3
+        },
         props: {
             getUsers: {
                 type: Function,

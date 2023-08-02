@@ -8,6 +8,9 @@
 <script>
     export default {
         emits: ['select'],
+        compatConfig: {
+            MODE: 3
+        },
         props: {
             modelValue: {
                 type: [Object, String, Number, Boolean]
