@@ -1,14 +1,18 @@
 import { Button } from './components/Button';
 import { Spinner } from './components/Spinner';
 import { IconWrapper } from './components/Icon';
-import { Input, TextArea, TextField, FieldGroup } from './components/Form';
+import {
+    Input, TextArea, TextField, FieldGroup
+} from './components/Form';
 import { Checkbox } from './components/Checkbox';
 import { Toggle, LockSwitch } from './components/Toggle';
 import { Tooltip } from './components/Tooltip';
 import { Modal } from './components/Modal';
 import { DatePicker, DateRangePicker } from './components/Calendar';
 import { Lozenge } from './components/Lozenge';
-import { Dropdown, DropdownGroup, DropdownCheckboxItem, DropdownItem } from './components/Dropdown';
+import {
+    Dropdown, DropdownGroup, DropdownCheckboxItem, DropdownItem
+} from './components/Dropdown';
 import { Menu, MenuItem, MenuSection } from './components/Menu';
 import { Badge } from './components/Badge';
 import { Select, UserPicker } from './components/Select';
@@ -25,12 +29,14 @@ import {
     AvatarDetailsLoader,
     BulletListLoader,
     FolderPathLoader,
-    PageDetailsLoader,
+    PageDetailsLoader
 } from './components/ContentLoader';
 import { Avatar, AvatarGroup } from './components/Avatar';
 // import Tree from './components/Tree/Tree';
 import { ColorPicker } from './components/ColorPicker';
-import { InfiniteScroll, PromisedContentLoader, Popup, TransitionExpand } from './components/common';
+import {
+    InfiniteScroll, PromisedContentLoader, Popup, TransitionExpand
+} from './components/common';
 // import TreeSelect from './components/Select/TreeSelect/TreeSelect';
 import { ProgressBar } from './components/ProgressBar';
 // import RichTextEditor from './components/RichTextEditor/RichTextEditor';
@@ -41,6 +47,7 @@ import { CopyToClipboard } from './components/CopyToClipboard';
 // import SpotlightContext from './components/Spotlight/SpotlightContext';
 // import SpotlightOverlay from './components/Spotlight/SpotlightOverlay';
 // import CustomSingleSelectEditableRenderer from './components/field-renderers/CustomSingleSelectEditableRenderer';
+import { Breadcrumbs, BreadcrumbItem } from './components/Breadcrumbs';
 import '@atlaskit/css-reset/dist/bundle.css';
 
 export {
@@ -94,7 +101,9 @@ export {
     // Spotlight,
     Flag,
     CopyToClipboard,
-    LockSwitch
+    LockSwitch,
+    BreadcrumbItem,
+    Breadcrumbs
 };
 export * from './components/Icon';
 export * from './components/field-renderers';
