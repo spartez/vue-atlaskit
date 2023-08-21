@@ -1,7 +1,7 @@
 <template>
   <div
     class="breadcrumb"
-    :with-icon="$slots.icon"
+    :with-icon="!!$slots.icon"
   >
     <span class="item">
       <slot name="icon"/>
@@ -44,7 +44,7 @@
     transition: all ease-out .3s;
 }
 
-.breadcrumb[with-icon] {
+.breadcrumb[with-icon="true"] {
     min-width: 60px;
 }
 
@@ -67,7 +67,7 @@
     display: block;
 }
 
-[with-icon] >>> a {
+[with-icon="true"] >>> a {
     margin-left: 5px;
 }
 
