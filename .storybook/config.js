@@ -1,8 +1,4 @@
-import '@atlaskit/css-reset/dist/bundle.css';
-import '@atlaskit/tokens/css/atlassian-dark.css'
-import '@atlaskit/tokens/css/atlassian-light.css'
-import '@atlaskit/tokens/css/atlassian-spacing.css'
-import '@atlaskit/tokens/css/atlassian-typography.css'
+import { getGlobalTheme, setGlobalTheme } from '@atlaskit/tokens';
 import './style.css';
 
 import { storiesOf, configure } from '@storybook/vue';
@@ -30,10 +26,10 @@ const registerStory = (filename) => {
         .addParameters({
             rootAttributes: [{
                 root: 'html',
-                attribute: 'data-theme',
+                attribute: 'theme',
                 defaultState: {
                     name: "Light",
-                    value: null
+                    value: "light"
                 },
                 states: [
                     {
@@ -42,13 +38,14 @@ const registerStory = (filename) => {
                     }
                 ]
             }]
-        }).addDecorator(withRootAttribute)
+        })
+        .addDecorator(withRootAttribute)
         .addParameters({
             rootAttribute: {
-                attribute: 'data-theme',
+                attribute: 'theme',
                 defaultState: {
                     name: "Light",
-                    value: null
+                    value: "light"
                 },
                 states: [
                     {
@@ -61,6 +58,20 @@ const registerStory = (filename) => {
         .add(name, () => ({
             name: 'StoryWrapper',
             components: component.components,
+            mounted() {
+                const targetNode = document.querySelector("html");
+                const config = { attributes: true };
+                const callback = function (mutationsList) {
+                    for (let mutation of mutationsList) {
+                        const currentTheme = mutation.target.getAttribute("theme");
+                        if (mutation.type === 'attributes' && currentTheme && currentTheme !== getGlobalTheme().colorMode) {
+                            void setGlobalTheme({ colorMode: mutation.target.getAttribute('theme') })
+                        }
+                    }
+                };
+                const observer = new MutationObserver(callback);
+                observer.observe(targetNode, config);
+            },
             render(h) {
                 return h(component, { style: { padding: '20px' } });
             }

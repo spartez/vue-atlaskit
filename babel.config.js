@@ -1,5 +1,8 @@
 /* eslint-env node */
 module.exports = {
+    plugins: [
+        "@atlaskit/tokens/babel-plugin"
+    ],
     presets: [
         [
             '@babel/preset-env',
