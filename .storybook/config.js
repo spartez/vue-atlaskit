@@ -58,6 +58,11 @@ const registerStory = (filename) => {
         .add(name, () => ({
             name: 'StoryWrapper',
             components: component.components,
+            data() {
+                return {
+                    observer: null
+                }
+            },
             mounted() {
                 const targetNode = document.querySelector("html");
                 const config = { attributes: true };
@@ -69,8 +74,15 @@ const registerStory = (filename) => {
                         }
                     }
                 };
-                const observer = new MutationObserver(callback);
-                observer.observe(targetNode, config);
+                if (!this.observer) {
+                    this.observer = new MutationObserver(callback);
+                    this.observer.observe(targetNode, config);
+                }
+            },
+            beforeDestroy() {
+                if (this.observer) {
+                    this.observer.disconnect();
+                }
             },
             render(h) {
                 return h(component, { style: { padding: '20px' } });
