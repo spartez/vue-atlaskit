@@ -1,5 +1,29 @@
 <template>
-  <div
+  <Tooltip 
+    v-if="this.$showOptionTooltip"
+    class="tooltip-wrapper"
+    placement="top"
+    :label="option.value"
+  >
+    <div
+      ref="option"
+      :selected="isSelected"
+      class="select-option"
+      :current="current"
+      @click.stop="onOptionSelected"
+      @mouseover="onMouseOver"
+    >
+      <slot
+        name="option"
+        :option="option.value"
+        :is-current="current"
+      >
+        {{ option.label }}
+      </slot>
+    </div>
+  </Tooltip>
+  <div 
+    v-else
     ref="option"
     :selected="isSelected"
     class="select-option"
@@ -18,8 +42,17 @@
 </template>
 
 <script>
+    import Tooltip from '../Tooltip/Tooltip';
+
     export default {
         name: 'SelectOption',
+        components: { Tooltip },
+        inject: {
+            $showOptionTooltip: {
+                from: '$showOptionTooltip',
+                default: undefined
+            }
+        },
         props: {
             option: {
                 type: Object,
@@ -74,6 +107,10 @@
 </script>
 
 <style scoped>
+
+.tooltip-wrapper {
+  width: 100%;
+}
 .select-option {
   cursor: pointer;
   display: block;
