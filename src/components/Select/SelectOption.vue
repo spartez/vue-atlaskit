@@ -3,7 +3,7 @@
     v-if="this.$showOptionTooltip"
     class="tooltip-wrapper"
     placement="top"
-    :label="option.value"
+    :label="option.label"
   >
     <div
       ref="option"
