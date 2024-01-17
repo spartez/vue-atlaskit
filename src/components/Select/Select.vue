@@ -133,6 +133,11 @@
         components: {
             TextField, Popper, SelectMenu, Tag, Icons
         },
+        provide() {
+            return {
+                $showOptionTooltip: this.showOptionTooltip
+            };
+        },
         props: {
             value: {
                 type: [String, Number, Object, Array],
@@ -238,6 +243,10 @@
             dropdownWidth: {
                 type: Number,
                 default: undefined
+            },
+            showOptionTooltip: {
+                type: Boolean,
+                default: false
             }
         },
         data() {
